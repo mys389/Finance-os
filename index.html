@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceOS Pro - Ultimate Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    
+    <style>
+        .page-content { display: none; animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .active-page { display: block !important; }
+        #modalKasir, #sidebarMenu { display: none; }
+        .active-modal { display: flex !important; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-active { background: #6366f1; color: white; box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3); }
+        .gradient-card { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-[#f8fafc] text-slate-900 font-sans min-h-screen">
+
+    <header class="bg-slate-900 text-white pt-12 pb-14 px-6 rounded-b-[3rem] shadow-2xl sticky top-0 z-30">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-indigo-500 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                    <i class="fas fa-bolt text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-black tracking-tighter italic uppercase leading-none">Finance.OS</h1>
+                    <span id="modeLabel" class="text-[9px] font-bold text-indigo-400 uppercase tracking-[0.2em]">Kasir Mode</span>
+                </div>
+            </div>
+            <button onclick="toggleSidebar(true)" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                <i class="fas fa-bars-staggered text-xs"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 -mt-8 pt-4 pb-32 relative z-40">
+        <section id="pageDashboard" class="page-content active-page space-y-6">
+            <div id="balanceSection" class="grid grid-cols-2 gap-4 relative z-50">
+                <div class="bg-white p-5 rounded-[2.5rem] shadow-[0_20px_50px_rgba(99,102,241,0.2)] border border-slate-50 flex items-center gap-3 transform translate-y-2">
+                    <div class="w-9 h-9 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center shrink-0">
+                        <i class="fas fa-university text-[10px]"></i>
+                    </div>
+                    <div class="overflow-hidden">
+                        <p class="text-[8px] uppercase font-black text-slate-400 tracking-tighter">Bank</p>
+                        <h3 id="statBank" class="text-xs font-black text-slate-800 truncate">Rp 0</h3>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-[2.5rem] shadow-[0_20px_50px_rgba(16,185,129,0.2)] border border-slate-50 flex items-center gap-3 transform translate-y-2">
+                    <div class="w-9 h-9 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center shrink-0">
+                        <i class="fas fa-wallet text-[10px]"></i>
+                    </div>
+                    <div class="overflow-hidden">
+                        <p class="text-[8px] uppercase font-black text-slate-400 tracking-tighter">Cash</p>
+                        <h3 id="statCash" class="text-xs font-black text-slate-800 truncate">Rp 0</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="analyticsSection" class="space-y-6">
+                <div class="flex bg-white p-1.5 rounded-2xl shadow-sm border border-slate-100 w-fit mx-auto">
+                    <button onclick="setAnalysisTime('hari')" id="tabHari" class="px-6 py-2 text-[10px] font-black uppercase rounded-xl transition tab-active">Hari</button>
+                    <button onclick="setAnalysisTime('bulan')" id="tabBulan" class="px-6 py-2 text-[10px] font-black uppercase rounded-xl transition text-slate-400">Bulan</button>
+                    <button onclick="setAnalysisTime('tahun')" id="tabTahun" class="px-6 py-2 text-[10px] font-black uppercase rounded-xl transition text-slate-400">Tahun</button>
+                </div>
+                <div class="gradient-card p-8 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+                    <div class="relative z-10">
+                        <p class="text-[10px] font-bold opacity-60 uppercase tracking-[0.2em] mb-1">Net Profit Analysis</p>
+                        <h2 id="analyticLaba" class="text-4xl font-black tracking-tighter mb-1">Rp 0</h2>
+                        <p id="labelPeriode" class="text-[10px] font-bold text-indigo-300 uppercase tracking-widest">Keuntungan Terpilih</p>
+                        <div class="grid grid-cols-2 gap-4 mt-8 pt-6 border-t border-white/10">
+                            <div><p class="text-[9px] opacity-40 font-bold uppercase mb-1">Total Omzet</p><p id="valOmzet" class="text-sm font-black text-slate-200">Rp 0</p></div>
+                            <div class="text-right"><p class="text-[9px] opacity-40 font-bold uppercase mb-1">Transaksi</p><p id="countTrx" class="text-sm font-black text-indigo-400">0 Trx</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tagihanDashboardSection" class="hidden">
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-slate-100 text-center">
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Total Piutang Berjalan</p>
+                    <h2 id="totalPiutang" class="text-4xl font-black text-rose-600 tracking-tighter">Rp 0</h2>
+                </div>
+            </div>
+        </section>
+
+        <section id="pageRiwayat" class="page-content space-y-4">
+            <div class="bg-white/90 backdrop-blur-md p-3 rounded-[2rem] shadow-xl shadow-slate-200/40 border border-slate-100 sticky top-24 z-30 mx-1">
+                <div class="relative flex items-center gap-2">
+                    <div class="relative flex-1">
+                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-indigo-500 text-[10px]"></i>
+                        <input type="text" id="searchInput" onkeyup="filterData()" placeholder="Cari transaksi..." class="w-full pl-10 pr-4 py-2.5 bg-slate-100 rounded-xl outline-none text-[11px] font-bold focus:bg-white transition-all">
+                    </div>
+                    <div id="countBadge" class="bg-indigo-600 text-white px-3 py-2.5 rounded-xl text-[9px] font-black hidden">0</div>
+                </div>
+                <div class="flex gap-2 overflow-x-auto mt-2 pb-1 no-scrollbar items-center" id="filterKatContainer"></div>
+            </div>
+            <div id="listJurnal" class="space-y-3"></div>
+        </section>
+
+        <section id="pageSettings" class="page-content space-y-6">
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-50">
+                <h3 class="font-black text-lg mb-6 tracking-tighter text-slate-800">Sistem & Database</h3>
+                <div class="space-y-6">
+                    <div>
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Batas Hari Arsip Otomatis (Hanya Kasir)</label>
+                        <div class="flex items-center gap-4">
+                            <input type="number" id="settingArchiveDays" value="60" class="flex-1 p-4 bg-slate-50 rounded-2xl outline-none text-sm font-black text-indigo-600 border border-slate-100">
+                            <span class="font-bold text-xs text-slate-400">Hari</span>
+                        </div>
+                        <p class="text-[9px] text-slate-400 mt-2 italic">Data piutang tidak akan pernah terhapus otomatis.</p>
+                    </div>
+                    <button onclick="saveSettings()" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-lg">Simpan Pengaturan</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-slate-900/95 backdrop-blur-xl px-12 py-4 rounded-[2.5rem] flex items-center gap-16 shadow-2xl z-50 border border-white/10">
+        <button onclick="showPage('Dashboard')" id="navDashboard" class="text-indigo-400 flex flex-col items-center">
+            <i class="fas fa-chart-pie text-xl"></i>
+            <span class="text-[7px] font-black uppercase mt-1.5 tracking-tighter">Status</span>
+        </button>
+        <button onclick="toggleModalKasir(true)" class="w-14 h-14 bg-indigo-500 text-white rounded-2xl flex items-center justify-center shadow-lg -mt-14 rotate-45 border-4 border-slate-900">
+            <i class="fas fa-plus -rotate-45 text-xl"></i>
+        </button>
+        <button onclick="showPage('Riwayat')" id="navRiwayat" class="text-slate-500 flex flex-col items-center">
+            <i class="fas fa-list-ul text-xl"></i>
+            <span class="text-[7px] font-black uppercase mt-1.5 tracking-tighter">Riwayat</span>
+        </button>
+    </nav>
+
+    <div id="sidebarMenu" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[300] justify-end">
+        <div class="bg-white h-full w-72 p-8 shadow-2xl">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="font-black text-lg tracking-tighter italic">MENU UTAMA</h2>
+                <button onclick="toggleSidebar(false)" class="text-slate-300 text-xl"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="space-y-4">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Layanan</p>
+                <button onclick="switchMode('kasir')" class="w-full flex items-center gap-4 p-4 rounded-2xl font-black text-xs hover:bg-indigo-50 hover:text-indigo-600 transition">
+                    <i class="fas fa-cash-register"></i> MODE KASIR
+                </button>
+                <button onclick="switchMode('tagihan')" class="w-full flex items-center gap-4 p-4 rounded-2xl font-black text-xs hover:bg-rose-50 hover:text-rose-600 transition">
+                    <i class="fas fa-file-invoice-dollar"></i> MODE TAGIHAN
+                </button>
+                <hr class="border-slate-50 my-4">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Konfigurasi</p>
+                <button onclick="showPage('Settings'); toggleSidebar(false);" class="w-full flex items-center gap-4 p-4 rounded-2xl font-black text-xs hover:bg-slate-100 transition">
+                    <i class="fas fa-cog"></i> PENGATURAN ARSIP
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalKasir" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] items-end md:items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-[2.5rem] p-8 relative">
+            <button onclick="toggleModalKasir(false)" class="absolute right-6 top-6 text-slate-300"><i class="fas fa-times-circle text-2xl"></i></button>
+            <h2 class="text-2xl font-black mb-6 tracking-tighter">Tambah Data</h2>
+            <div class="space-y-4">
+                <select id="ket" class="w-full p-4 bg-slate-50 rounded-2xl font-black text-sm outline-none"></select>
+                <input type="text" id="nama" placeholder="Nama..." class="w-full p-4 bg-slate-50 rounded-2xl outline-none text-sm font-bold">
+                <div id="tagihanExtraFields" class="hidden"><input type="date" id="tglTempo" class="w-full p-4 bg-slate-50 rounded-2xl outline-none text-sm font-bold text-rose-500"></div>
+                <div class="grid grid-cols-2 gap-3">
+                    <input type="number" id="val1" placeholder="Modal" class="p-4 bg-slate-50 rounded-2xl outline-none text-sm font-black">
+                    <input type="number" id="val2" placeholder="Total" class="p-4 bg-slate-50 rounded-2xl outline-none text-sm font-black text-emerald-600">
+                </div>
+                <button id="btnSimpan" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-black uppercase text-xs">Simpan Data</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, deleteDoc, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = { 
+            apiKey: "AIzaSyB7KPg3jNGhnWs7mav0XBRU7aQqaonRv3o", 
+            authDomain: "kasir-topup-pro.firebaseapp.com", 
+            projectId: "kasir-topup-pro", 
+            appId: "1:72813756937:web:be0ca482a96095757aaed8" 
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        let currentMode = 'kasir';
+        let analysisRange = 'hari';
+        let masterData = [];
+        let filterKategoriActive = "Semua";
+
+        // EXPOSE TO WINDOW FOR HTML ONCLICK
+        window.showPage = (p) => {
+            document.querySelectorAll('.page-content').forEach(el => el.classList.remove('active-page'));
+            document.getElementById('page' + p).classList.add('active-page');
+            document.getElementById('navDashboard').className = p === 'Dashboard' ? 'text-indigo-400 flex flex-col items-center' : 'text-slate-500 flex flex-col items-center';
+            document.getElementById('navRiwayat').className = p === 'Riwayat' ? 'text-indigo-400 flex flex-col items-center' : 'text-slate-500 flex flex-col items-center';
+        };
+
+        window.switchMode = (mode) => {
+            currentMode = mode;
+            document.getElementById('modeLabel').innerText = mode.toUpperCase() + " MODE";
+            const isKasir = mode === 'kasir';
+            document.getElementById('balanceSection').style.display = isKasir ? 'grid' : 'none';
+            document.getElementById('analyticsSection').style.display = isKasir ? 'block' : 'none';
+            document.getElementById('tagihanDashboardSection').style.display = isKasir ? 'none' : 'block';
+            document.getElementById('tagihanExtraFields').classList.toggle('hidden', isKasir);
+            toggleSidebar(false);
+            loadKategori();
+            loadData();
+        };
+
+        window.toggleSidebar = (s) => document.getElementById('sidebarMenu').style.display = s ? 'flex' : 'none';
+        window.toggleModalKasir = (s) => document.getElementById('modalKasir').classList.toggle('active-modal', s);
+
+        window.setAnalysisTime = (r) => {
+            analysisRange = r;
+            document.querySelectorAll('#analyticsSection button').forEach(b => {
+                b.classList.remove('tab-active');
+                b.classList.add('text-slate-400');
+            });
+            const activeId = 'tab' + r.charAt(0).toUpperCase() + r.slice(1);
+            document.getElementById(activeId).classList.add('tab-active');
+            document.getElementById(activeId).classList.remove('text-slate-400');
+            loadData();
+        };
+
+        window.saveSettings = async () => {
+            const days = document.getElementById('settingArchiveDays').value;
+            await setDoc(doc(db, "settings", "archive_config"), { days: parseInt(days) });
+            Swal.fire('Berhasil', 'Batas hari arsip diperbarui.', 'success');
+        };
+
+        window.deleteData = async (id) => {
+            const confirm = await Swal.fire({
+                title: 'Hapus Data?',
+                text: "Data akan dihapus permanen.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ef4444',
+                confirmButtonText: 'Hapus'
+            });
+            if(confirm.isConfirmed) {
+                const col = currentMode === 'kasir' ? "jurnal_v7" : "tagihan_v2";
+                await deleteDoc(doc(db, col, id));
+            }
+        };
+
+        window.setFilterKat = (k) => { filterKategoriActive = k; loadKategori(); filterData(); };
+
+        function loadKategori() {
+            onSnapshot(collection(db, currentMode === 'kasir' ? "kat_kasir" : "kat_tagihan"), (s) => {
+                const sel = document.getElementById('ket');
+                const fil = document.getElementById('filterKatContainer');
+                sel.innerHTML = ""; 
+                fil.innerHTML = `<button onclick="setFilterKat('Semua')" class="whitespace-nowrap px-4 py-2 rounded-full text-[9px] font-black uppercase ${filterKategoriActive === 'Semua' ? 'bg-indigo-600 text-white' : 'bg-slate-100'}">Semua</button>`;
+                s.forEach(d => {
+                    const k = d.data().nama;
+                    sel.innerHTML += `<option value="${k}">${k}</option>`;
+                    fil.innerHTML += `<button onclick="setFilterKat('${k}')" class="whitespace-nowrap px-4 py-2 rounded-full text-[9px] font-black uppercase ${filterKategoriActive === k ? 'bg-indigo-600 text-white' : 'bg-slate-100'}">${k}</button>`;
+                });
+            });
+        }
+
+        function loadData() {
+            const col = currentMode === 'kasir' ? "jurnal_v7" : "tagihan_v2";
+            onSnapshot(query(collection(db, col), orderBy("waktu", "desc")), (s) => {
+                masterData = []; let profit = 0, omzet = 0, trx = 0, piutang = 0;
+                const now = new Date();
+                s.forEach(d => {
+                    const i = d.data(); i.id = d.id;
+                    const dt = i.waktu?.toDate() || new Date();
+                    if(currentMode === 'kasir') {
+                        let isMatch = false;
+                        if(analysisRange === 'hari') isMatch = dt.toDateString() === now.toDateString();
+                        else if(analysisRange === 'bulan') isMatch = (dt.getMonth() === now.getMonth() && dt.getFullYear() === now.getFullYear());
+                        else if(analysisRange === 'tahun') isMatch = dt.getFullYear() === now.getFullYear();
+                        
+                        if(isMatch) { profit += (i.val2 - i.val1); omzet += i.val2; trx++; }
+                    } else { piutang += (i.val2 - i.val1); }
+                    masterData.push(i);
+                });
+                document.getElementById('analyticLaba').innerText = "Rp " + profit.toLocaleString();
+                document.getElementById('valOmzet').innerText = "Rp " + omzet.toLocaleString();
+                document.getElementById('countTrx').innerText = trx + " Trx";
+                document.getElementById('totalPiutang').innerText = "Rp " + piutang.toLocaleString();
+                filterData();
+            });
+        }
+
+        window.filterData = () => {
+            const s = document.getElementById('searchInput').value.toLowerCase();
+            const list = document.getElementById('listJurnal');
+            const badge = document.getElementById('countBadge');
+            list.innerHTML = "";
+            const filtered = masterData.filter(i => (i.nama.toLowerCase().includes(s) || i.keterangan.toLowerCase().includes(s)) && (filterKategoriActive === "Semua" || i.keterangan === filterKategoriActive));
+            badge.innerText = filtered.length;
+            badge.classList.toggle('hidden', s === "");
+            filtered.forEach(i => {
+                const isTagihan = currentMode === 'tagihan';
+                list.innerHTML += `<div class="bg-white p-5 rounded-[2rem] shadow-sm flex justify-between items-center border border-slate-50">
+                    <div><h4 class="font-black text-xs">${i.nama}</h4><p class="text-[8px] text-indigo-400 font-bold uppercase">${i.keterangan}</p></div>
+                    <div class="text-right">
+                        <p class="font-black text-xs ${isTagihan ? 'text-rose-600' : 'text-indigo-600'}">Rp ${(i.val2 - (isTagihan ? i.val1 : 0)).toLocaleString()}</p>
+                        ${!isTagihan ? `<p class="text-[7px] text-emerald-500 font-bold">+Rp ${(i.val2-i.val1).toLocaleString()}</p>` : `<button onclick="deleteData('${i.id}')" class="text-slate-300 hover:text-rose-500 transition"><i class="fas fa-trash-can"></i></button>`}
+                    </div>
+                </div>`;
+            });
+        };
+
+        document.getElementById('btnSimpan').onclick = async () => {
+            const nama = document.getElementById('nama').value;
+            const val1 = parseInt(document.getElementById('val1').value) || 0;
+            const val2 = parseInt(document.getElementById('val2').value) || 0;
+
+            if(!nama) return Swal.fire('Error', 'Nama harus diisi!', 'error');
+
+            const d = { 
+                nama: nama, 
+                keterangan: document.getElementById('ket').value, 
+                val1: val1, 
+                val2: val2, 
+                waktu: serverTimestamp() 
+            };
+            if(currentMode === 'tagihan') d.jatuhTempo = document.getElementById('tglTempo').value;
+            
+            await addDoc(collection(db, currentMode === 'kasir' ? "jurnal_v7" : "tagihan_v2"), d);
+            
+            // Clear inputs
+            document.getElementById('nama').value = "";
+            document.getElementById('val1').value = "";
+            document.getElementById('val2').value = "";
+            toggleModalKasir(false);
+        };
+
+        async function runAutoCleanup() {
+            const config = await getDoc(doc(db, "settings", "archive_config"));
+            const limitDays = config.exists() ? config.data().days : 60;
+            document.getElementById('settingArchiveDays').value = limitDays;
+            const now = new Date();
+            onSnapshot(query(collection(db, "jurnal_v7"), orderBy("waktu", "asc")), async (snapshot) => {
+                const toDelete = []; const archiveData = [];
+                snapshot.forEach((docSnap) => {
+                    const d = docSnap.data();
+                    if(d.waktu) {
+                        const diff = Math.floor((now - d.waktu.toDate()) / (1000 * 60 * 60 * 24));
+                        if(diff > limitDays) {
+                            archiveData.push([d.waktu.toDate().toLocaleDateString('id-ID'), d.nama, d.keterangan, "Rp "+d.val2.toLocaleString()]);
+                            toDelete.push(docSnap.id);
+                        }
+                    }
+                });
+                if(toDelete.length > 0) {
+                    const confirm = await Swal.fire({ title: 'Pembersihan Kasir', text: `${toDelete.length} data lama terdeteksi. Sistem akan mengunduh PDF & menghapusnya.`, icon: 'warning', confirmButtonText: 'Proses' });
+                    if(confirm.isConfirmed) {
+                        const { jsPDF } = window.jspdf; const pdf = new jsPDF();
+                        pdf.text("ARSIP OTOMATIS KASIR", 14, 15);
+                        pdf.autoTable({ head: [['Tanggal', 'Nama', 'Kategori', 'Total']], body: archiveData, startY: 20 });
+                        pdf.save(`Arsip_Kasir_${now.getTime()}.pdf`);
+                        for(const id of toDelete) await deleteDoc(doc(db, "jurnal_v7", id));
+                    }
+                }
+            });
+        }
+
+        onSnapshot(doc(db, "settings", "global_balance"), (d) => { 
+            if(d.exists()){ 
+                document.getElementById('statBank').innerText = "Rp " + d.data().bankAwal.toLocaleString(); 
+                document.getElementById('statCash').innerText = "Rp " + d.data().cashAwal.toLocaleString(); 
+            } 
+        });
+        
+        switchMode('kasir');
+        runAutoCleanup();
+    </script>
+</body>
+</html>
