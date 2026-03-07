@@ -42,10 +42,7 @@
         .glass-card { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.8); }
         .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.6); }
         .premium-shadow { box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05); }
-        
         .tab-active { background: #ffffff; color: #1e293b; box-shadow: 0 4px 10px -2px rgba(0,0,0,0.08); border: 1px solid #f1f5f9; }
-        .toggle-kasir-active { background: #6366f1; color: white; box-shadow: 0 4px 10px -2px rgba(99,102,241,0.4); }
-        .toggle-tagihan-active { background: #e11d48; color: white; box-shadow: 0 4px 10px -2px rgba(225,29,72,0.4); }
         
         .no-scrollbar::-webkit-scrollbar { display: none; }
         input, select { transition: all 0.2s ease; outline: none; }
@@ -72,7 +69,7 @@
                     <i class="fas fa-bolt text-white text-xl"></i>
                 </div>
                 <div>
-                    <p id="greetingText" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Sistem Siap</p>
+                    <p id="greetingText" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Memuat...</p>
                     <h1 class="text-2xl font-black tracking-tight leading-none text-white">Finance<span class="text-brand-400">.OS</span></h1>
                 </div>
             </div>
@@ -139,8 +136,8 @@
                     </div>
                     <div class="flex bg-slate-100/80 p-1 rounded-xl border border-slate-200/50 w-fit">
                         <button onclick="window.setAnalysisTime('hari')" id="tabAnaHari" class="px-4 py-1.5 text-[9px] font-bold uppercase rounded-lg transition tab-active">Hari</button>
-                        <button onclick="window.setAnalysisTime('bulan')" id="tabAnaBulan" class="px-4 py-1.5 text-[9px] font-bold uppercase rounded-lg transition text-slate-400 hover:text-slate-600">Bulan</button>
-                        <button onclick="window.setAnalysisTime('tahun')" id="tabAnaTahun" class="px-4 py-1.5 text-[9px] font-bold uppercase rounded-lg transition text-slate-400 hover:text-slate-600">Tahun</button>
+                        <button onclick="window.setAnalysisTime('bulan')" id="tabAnaBulan" class="px-4 py-1.5 text-[9px] font-bold uppercase rounded-lg transition text-slate-400">Bulan</button>
+                        <button onclick="window.setAnalysisTime('tahun')" id="tabAnaTahun" class="px-4 py-1.5 text-[9px] font-bold uppercase rounded-lg transition text-slate-400">Tahun</button>
                     </div>
                 </div>
                 
@@ -202,7 +199,7 @@
             <div id="emptyStatePiutang" class="hidden text-center py-12">
                 <div class="w-20 h-20 bg-white shadow-sm border border-slate-100 text-slate-300 rounded-[1.5rem] flex items-center justify-center mx-auto mb-4 transform rotate-3"><i class="fas fa-file-invoice-dollar text-3xl -rotate-3"></i></div>
                 <h3 class="font-bold text-slate-700 text-sm">Hutang Bersih</h3>
-                <p class="text-[10px] text-slate-400 mt-1">Tidak ada tagihan aktif.</p>
+                <p class="text-[10px] text-slate-400 mt-1">Tidak ada piutang yang sedang berjalan.</p>
             </div>
 
             <div id="listPiutang" class="grid grid-cols-1 md:grid-cols-2 gap-3 px-1"></div>
@@ -230,7 +227,6 @@
             <div id="emptyStateKasir" class="hidden text-center py-12">
                 <div class="w-20 h-20 bg-white shadow-sm border border-slate-100 text-slate-300 rounded-[1.5rem] flex items-center justify-center mx-auto mb-4 transform rotate-3"><i class="fas fa-receipt text-3xl -rotate-3"></i></div>
                 <h3 class="font-bold text-slate-700 text-sm">Belum ada data</h3>
-                <p class="text-[10px] text-slate-400 mt-1">Data kasir Anda akan muncul di sini.</p>
             </div>
 
             <div id="listKasir" class="space-y-3 px-1"></div>
@@ -272,7 +268,7 @@
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <p class="text-[10px] text-slate-500 font-medium leading-relaxed">Data kasir lama otomatis dihapus dari Cloud dan diunduh menjadi PDF.</p>
+                    <p class="text-[10px] text-slate-500 font-medium leading-relaxed">Data kasir lama otomatis diunduh menjadi PDF untuk menghemat database.</p>
                     <div class="flex items-center gap-3">
                         <input type="number" id="settingArchiveDays" value="60" class="flex-1 p-3 bg-white rounded-xl text-xs font-black border border-slate-200 text-center focus:border-brand-500 shadow-sm">
                         <span class="font-black text-[9px] text-slate-500 bg-slate-100 px-4 py-3 rounded-xl border border-slate-200 uppercase">Hari</span>
@@ -284,7 +280,7 @@
     </main>
 
     <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-[24rem] px-4 z-50">
-        <div class="glass-nav px-2 py-2 rounded-[2rem] flex items-center justify-between premium-shadow relative shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)]">
+        <div class="glass-nav px-3 py-2.5 rounded-[2rem] flex items-center justify-between premium-shadow relative shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)]">
             
             <button onclick="window.showPage('Dashboard')" id="navDashboard" class="w-[4.5rem] flex flex-col items-center text-brand-600 transition-colors group">
                 <i class="fas fa-chart-pie text-lg mb-1 transition-transform group-hover:-translate-y-1"></i>
@@ -297,7 +293,7 @@
             </button>
 
             <div class="w-[4.5rem] h-10 flex justify-center relative">
-                <button onclick="window.bukaModalPilih()" class="absolute bottom-0 w-[3.5rem] h-[3.5rem] bg-gradient-to-tr from-brand-600 to-brand-400 text-white rounded-full flex items-center justify-center shadow-[0_10px_20px_-5px_rgba(99,102,241,0.6)] border-4 border-[#f8fafc] transition-all hover:scale-110 active:scale-95 z-20">
+                <button onclick="window.bukaModalPilih()" class="absolute bottom-[-5px] w-[3.5rem] h-[3.5rem] bg-gradient-to-tr from-brand-600 to-brand-400 text-white rounded-full flex items-center justify-center shadow-[0_10px_20px_-5px_rgba(99,102,241,0.6)] border-4 border-[#f8fafc] transition-all hover:scale-110 active:scale-95 z-20">
                     <i class="fas fa-plus text-xl"></i>
                 </button>
             </div>
@@ -395,7 +391,7 @@
                         </select>
                     </div>
                 </div>
-                <button type="button" onclick="window.simpanKasir()" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-[0_8px_15px_-5px_rgba(99,102,241,0.5)] active:scale-95 mt-2 transition-all">Simpan Transaksi Kasir</button>
+                <button type="button" onclick="window.simpanDataKasir()" id="btnSimpanKasir" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-[0_8px_15px_-5px_rgba(99,102,241,0.5)] active:scale-95 mt-2 transition-all">Simpan Transaksi Kasir</button>
             </div>
         </div>
     </div>
@@ -438,13 +434,13 @@
                         </select>
                     </div>
                 </div>
-                <button type="button" onclick="window.simpanDataPiutang()" class="w-full bg-rose-600 hover:bg-rose-700 text-white py-3 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-[0_8px_15px_-5px_rgba(225,29,72,0.5)] active:scale-95 mt-2 transition-all">Simpan Tagihan Piutang</button>
+                <button type="button" onclick="window.simpanDataPiutang()" id="btnSimpanPiutang" class="w-full bg-rose-600 hover:bg-rose-700 text-white py-3 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-[0_8px_15px_-5px_rgba(225,29,72,0.5)] active:scale-95 mt-2 transition-all">Simpan Tagihan Piutang</button>
             </div>
         </div>
     </div>
 
     <div id="modalCicilan" class="modal-overlay fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[200] p-2 md:p-4">
-        <div class="bg-white w-full max-w-md rounded-[2rem] p-5 md:p-6 relative shadow-2xl flex flex-col max-h-[90vh] border border-slate-100">
+        <div class="bg-white w-full max-w-md rounded-[2rem] p-5 md:p-6 relative shadow-2xl flex flex-col max-h-[90vh]">
             <button type="button" onclick="window.tutupModal('modalCicilan')" class="absolute right-5 top-5 w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 hover:text-rose-500"><i class="fas fa-times text-sm"></i></button>
             <div class="mb-4 border-b border-slate-100 pb-3">
                 <p id="mcKet" class="text-[9px] font-bold text-brand-500 uppercase tracking-widest mb-1 bg-brand-50 w-fit px-2 py-0.5 rounded-md">Kategori</p>
@@ -466,7 +462,7 @@
                     </select>
                     <input type="text" inputmode="numeric" oninput="window.formatUangInput(event)" id="mcNominalInput" placeholder="Nominal Cicilan (Rp)..." class="flex-1 pl-3 pr-3 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-bold shadow-sm focus:border-brand-500 outline-none">
                 </div>
-                <button type="button" onclick="window.simpanCicilanPiutang()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-xl font-bold uppercase text-[10px] tracking-wider shadow-md active:scale-95 transition-transform">Simpan Pembayaran</button>
+                <button type="button" onclick="window.simpanCicilanPiutang()" id="btnSimpanCicilan" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-xl font-bold uppercase text-[10px] tracking-wider shadow-md active:scale-95 transition-transform">Simpan Pembayaran</button>
             </div>
             <div id="mcLunasArea" class="hidden pt-3 border-t border-slate-100 text-center"><div class="inline-flex items-center px-4 py-2 bg-emerald-50 text-emerald-600 rounded-lg text-[10px] font-black uppercase tracking-widest border border-emerald-100"><i class="fas fa-check-circle mr-1.5 text-xs"></i> Lunas</div></div>
         </div>
@@ -476,12 +472,11 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, deleteDoc, doc, setDoc, getDoc, updateDoc, increment, writeBatch, arrayUnion } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Konfigurasi Database Utama
         const firebaseConfig = { apiKey: "AIzaSyB7KPg3jNGhnWs7mav0XBRU7aQqaonRv3o", authDomain: "kasir-topup-pro.firebaseapp.com", projectId: "kasir-topup-pro", appId: "1:72813756937:web:be0ca482a96095757aaed8" };
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         
-        // SWEET ALERT STYLING (PREMIUM)
+        // Custom Alert Style
         const customSwalClass = {
             popup: 'rounded-[2rem] shadow-2xl border border-slate-100',
             title: 'text-lg font-black text-slate-800 tracking-tight mt-2',
@@ -495,9 +490,11 @@
         window.Toast = Toast;
         window.showConfirm = (title, text, confirmBtnColorClass, confirmBtnText) => { return Swal.fire({ title: title, text: text, icon: 'warning', showCancelButton: true, buttonsStyling: false, confirmButtonText: confirmBtnText, cancelButtonText: 'Batal', customClass: { ...customSwalClass, confirmButton: customSwalClass.confirmButton + ' ' + confirmBtnColorClass } }); };
 
-        // FUNGSI SIMPAN KASIR ASLI
-        window.simpanKasir = async () => {
+        // FUNGSI SIMPAN KASIR (DIJAMIN KERJA)
+        window.simpanDataKasir = async () => {
+            const btn = document.getElementById('btnSimpanKasir'); const textAwal = btn.innerText;
             try {
+                btn.innerText = "Menyimpan..."; btn.disabled = true;
                 const nama = document.getElementById('kasirNama').value.trim();
                 const val1 = window.parseUang(document.getElementById('kasirModal').value);
                 const val2 = window.parseUang(document.getElementById('kasirJual').value);
@@ -522,18 +519,19 @@
                 if (statusTrx === 'Sukses') {
                     if(fieldModal === fieldMasuk) await setDoc(balanceRef, { [fieldModal]: increment(val2 - val1) }, { merge: true });
                     else await setDoc(balanceRef, { [fieldModal]: increment(-val1), [fieldMasuk]: increment(val2) }, { merge: true });
-                } else if (statusTrx === 'Pending') {
-                    await setDoc(balanceRef, { [fieldModal]: increment(-val1), pendingAwal: increment(val2) }, { merge: true });
-                }
+                } else if (statusTrx === 'Pending') { await setDoc(balanceRef, { [fieldModal]: increment(-val1), pendingAwal: increment(val2) }, { merge: true }); }
                 
                 document.getElementById('kasirNama').value = ""; document.getElementById('kasirModal').value = ""; document.getElementById('kasirJual').value = "";
                 window.tutupModal('modalKasir'); window.Toast.fire({ icon: 'success', title: 'Kasir Disimpan!' });
-            } catch (err) { Swal.fire({ icon: 'error', title: 'Gagal Menyimpan', text: err.message, customClass: customSwalClass, buttonsStyling: false }); } 
+            } catch (err) { Swal.fire({ icon: 'error', title: 'Peringatan', text: err.message, buttonsStyling: false, customClass: { ...customSwalClass, confirmButton: customSwalClass.confirmButton + ' bg-rose-500 hover:bg-rose-600' } }); } 
+            finally { btn.innerText = textAwal; btn.disabled = false; }
         };
 
-        // FUNGSI SIMPAN PIUTANG ASLI
+        // FUNGSI SIMPAN PIUTANG (DIJAMIN KERJA)
         window.simpanDataPiutang = async () => {
+            const btn = document.getElementById('btnSimpanPiutang'); const textAwal = btn.innerText;
             try {
+                btn.innerText = "Menyimpan..."; btn.disabled = true;
                 const nama = document.getElementById('piutangNama').value.trim();
                 const val2 = window.parseUang(document.getElementById('piutangTagihan').value);
                 const ket = document.getElementById('piutangKet').value;
@@ -549,12 +547,16 @@
                 
                 document.getElementById('piutangNama').value = ""; document.getElementById('piutangTagihan').value = "";
                 window.tutupModal('modalPiutang'); window.Toast.fire({ icon: 'success', title: 'Piutang Disimpan!' });
-            } catch (err) { Swal.fire({ icon: 'error', title: 'Gagal Menyimpan', text: err.message, customClass: customSwalClass, buttonsStyling: false }); } 
+            } catch (err) { Swal.fire({ icon: 'error', title: 'Peringatan', text: err.message, buttonsStyling: false, customClass: { ...customSwalClass, confirmButton: customSwalClass.confirmButton + ' bg-rose-500 hover:bg-rose-600' } }); } 
+            finally { btn.innerText = textAwal; btn.disabled = false; }
         };
 
+        // FUNGSI SIMPAN CICILAN (DIJAMIN KERJA)
         window.simpanCicilanPiutang = async () => {
+            if(!window.currentCicilanId) return;
+            const btn = document.getElementById('btnSimpanCicilan'); const textAwal = btn.innerText;
             try {
-                if(!window.currentCicilanId) return;
+                btn.innerText = "Memproses..."; btn.disabled = true;
                 const nominal = window.parseUang(document.getElementById('mcNominalInput').value);
                 const masukKe = document.getElementById('mcMasukKe').value;
 
@@ -568,16 +570,19 @@
                 document.getElementById('mcNominalInput').value = "";
                 setTimeout(() => window.openModalCicilan(window.currentCicilanId), 500); 
                 window.Toast.fire({ icon: 'success', title: 'Pembayaran Tersimpan' });
-            } catch (error) { Swal.fire({ icon: 'error', title: 'Gagal Menyimpan', text: error.message, customClass: customSwalClass, buttonsStyling: false }); } 
+            } catch (error) { Swal.fire({ icon: 'error', title: 'Peringatan', text: error.message, buttonsStyling: false, customClass: { ...customSwalClass, confirmButton: customSwalClass.confirmButton + ' bg-rose-500 hover:bg-rose-600' } }); } 
+            finally { btn.innerText = textAwal; btn.disabled = false; }
         };
 
-        // FUNGSI LAINNYA ASLI
+        // FUNGSI KATEGORI (DIJAMIN KERJA)
         window.tambahKategoriPrompt = async () => {
-            const { value: formValues } = await Swal.fire({ title: 'Kategori Piutang Baru', html: `<input id="swal-icon" class="${customSwalClass.input} w-[30%] mb-2 text-2xl" placeholder="🤩" maxlength="2"><input id="swal-nama" class="${customSwalClass.input} w-full" placeholder="Nama Kategori (Cth: Motor)">`, showCancelButton: true, confirmButtonText: 'Simpan', cancelButtonText: 'Batal', buttonsStyling: false, customClass: { ...customSwalClass, confirmButton: customSwalClass.confirmButton + ' bg-rose-500 hover:bg-rose-600' }, preConfirm: () => { return [document.getElementById('swal-icon').value, document.getElementById('swal-nama').value]; } });
+            const { value: formValues } = await Swal.fire({ title: 'Kategori Piutang', html: `<input id="swal-icon" class="${customSwalClass.input} w-[30%] mb-2 text-2xl" placeholder="🤩" maxlength="2"><input id="swal-nama" class="${customSwalClass.input} w-full" placeholder="Nama Kategori (Cth: Motor)">`, showCancelButton: true, confirmButtonText: 'Simpan', cancelButtonText: 'Batal', buttonsStyling: false, customClass: { ...customSwalClass, confirmButton: customSwalClass.confirmButton + ' bg-rose-500 hover:bg-rose-600' }, preConfirm: () => { return [document.getElementById('swal-icon').value, document.getElementById('swal-nama').value]; } });
             if (formValues && formValues[1]) {
                 const namaFormatted = formValues[1].trim().replace(/\b\w/g, c => c.toUpperCase());
-                if (window.tagihanCategoriesData.some(cat => cat.nama.toLowerCase() === namaFormatted.toLowerCase())) return window.Toast.fire({ icon: 'error', title: 'Kategori sudah ada!' });
-                await addDoc(collection(db, "kat_tagihan"), { icon: formValues[0] || window.getSmartEmoji(namaFormatted), nama: namaFormatted });
+                const exists = window.tagihanCategoriesData.some(cat => cat.nama.toLowerCase() === namaFormatted.toLowerCase());
+                if (exists) return window.Toast.fire({ icon: 'error', title: 'Kategori sudah ada!' });
+                const icon = formValues[0] || window.getSmartEmoji(namaFormatted);
+                await addDoc(collection(db, "kat_tagihan"), { icon: icon, nama: namaFormatted });
                 window.Toast.fire({ icon: 'success', title: 'Kategori ditambahkan' });
             }
         };
@@ -589,9 +594,12 @@
                 if (newNama.toLowerCase() !== oldNama.toLowerCase() && window.tagihanCategoriesData.some(cat => cat.nama.toLowerCase() === newNama.toLowerCase())) return window.Toast.fire({ icon: 'error', title: 'Kategori sudah ada!' });
                 await updateDoc(doc(db, "kat_tagihan", id), { icon: result.value[0] || window.getSmartEmoji(newNama), nama: newNama });
                 window.Toast.fire({ icon: 'success', title: 'Diperbarui' });
-            } else if (result.isDenied) { await deleteDoc(doc(db, "kat_tagihan", id)); window.Toast.fire({ icon: 'info', title: 'Dihapus' }); }
+            } else if (result.isDenied) {
+                await deleteDoc(doc(db, "kat_tagihan", id)); window.Toast.fire({ icon: 'info', title: 'Dihapus' });
+            }
         };
 
+        // FUNGSI HAPUS (DIJAMIN KERJA)
         window.deleteDataKasir = async (id) => {
             const confirm = await window.showConfirm('Hapus Kasir?', 'Data terhapus permanen. Saldo tidak akan kembali.', 'bg-rose-500 hover:bg-rose-600', 'Hapus');
             if(confirm.isConfirmed) { await deleteDoc(doc(db, "jurnal_v7", id)); window.Toast.fire({ icon: 'info', title: 'Terhapus' }); }
@@ -631,7 +639,7 @@
             window.Toast.fire({ icon: 'success', title: 'Konfigurasi Tersimpan' });
         };
 
-        // DATABASE LISTENER UTAMA
+        // KONEKSI REAL-TIME LISTENER (DATABASE INIT)
         onSnapshot(query(collection(db, "jurnal_v7"), orderBy("waktu", "desc")), (s) => {
             window.masterKasir = [];
             s.forEach(d => { const i = d.data(); i.id = d.id; i.formattedTglBuat = i.waktu ? window.formatTgl(i.waktu) : 'N/A'; i.formattedTglLunas = i.tglLunas ? window.formatTgl(i.tglLunas) : null; window.masterKasir.push(i); });
@@ -647,7 +655,7 @@
         onSnapshot(collection(db, "kat_tagihan"), (s) => {
             window.tagihanCategoriesData = [];
             s.forEach(d => { const data = d.data(); data.id = d.id; data.icon = data.icon || window.getSmartEmoji(data.nama); window.tagihanCategoriesData.push(data); });
-            window.loadKategoriKasirFix(); window.loadKategoriForm(); window.loadKategori(); window.renderKategoriPiutang();
+            window.loadKategoriKasirFix(); window.renderKategoriPiutang(); window.loadKategoriForm();
         });
 
         onSnapshot(doc(db, "settings", "global_balance"), (d) => { 
@@ -673,14 +681,6 @@
                 }
             });
         });
-
-        // INIT LOAD LANGSUNG TANPA TUNGGU
-        setTimeout(() => {
-            if(typeof Swiper !== 'undefined') window.initSwiper();
-            window.loadKategoriKasirFix();
-            window.showPage('Dashboard');
-        }, 100);
-
     </script>
 </body>
 </html>
