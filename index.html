@@ -124,7 +124,7 @@
                     <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-bl-[3rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
                     <div class="flex justify-between items-start mb-4 relative z-10">
                         <div class="w-9 h-9 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-university text-white text-sm drop-shadow-md"></i></div>
-                        <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-pen text-white text-[9px]"></i></div>
+                        <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-cog text-white text-[9px]"></i></div>
                     </div>
                     <div class="relative z-10">
                         <p class="text-[9px] font-bold text-indigo-200 uppercase tracking-widest mb-1">Saldo Bank</p>
@@ -136,7 +136,7 @@
                     <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-bl-[3rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
                     <div class="flex justify-between items-start mb-4 relative z-10">
                         <div class="w-9 h-9 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-wallet text-white text-sm drop-shadow-md"></i></div>
-                        <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-pen text-white text-[9px]"></i></div>
+                        <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-cog text-white text-[9px]"></i></div>
                     </div>
                     <div class="relative z-10">
                         <p class="text-[9px] font-bold text-emerald-100 uppercase tracking-widest mb-1">Saldo Cash</p>
@@ -186,7 +186,7 @@
                     <div class="col-span-2 bg-gradient-to-br from-brand-600 to-brand-800 rounded-[1.8rem] p-5 text-white shadow-[0_15px_30px_-5px_rgba(99,102,241,0.4)] relative overflow-hidden group">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-bl-[4rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
                         <div class="flex justify-between items-start mb-2 relative z-10">
-                            <p class="text-[10px] font-bold text-brand-200 uppercase tracking-widest">Laba Bersih</p>
+                            <p class="text-[10px] font-bold text-brand-200 uppercase tracking-widest">Total Keuntungan</p>
                             <div class="bg-white/20 backdrop-blur-sm px-2.5 py-1 rounded-lg flex items-center gap-1.5 border border-white/10">
                                 <i class="fas fa-check-circle text-[9px] text-brand-100"></i>
                                 <span id="countTrx" class="text-[9px] font-bold text-white tracking-widest">0 Trx</span>
@@ -499,7 +499,7 @@
             </div>
 
             <div id="mcFormArea" class="pt-4 border-t border-slate-100 dark:border-slate-800">
-                <label class="text-[9px] font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 block ml-1.5">Terima Pembayaran</label>
+                <label class="text-[9px] font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 block ml-1.5">Terima Uang Ke</label>
                 <div class="flex gap-2 mb-3">
                     <select id="mcMasukKe" class="w-[35%] p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl font-bold text-[10px] outline-none focus:border-brand-500 dark:text-white transition-all shadow-sm">
                         <option value="Bank">💳 Bank</option>
@@ -510,7 +510,7 @@
                         <input type="text" inputmode="numeric" oninput="formatUangInput(event)" id="mcNominalInput" placeholder="Ketik Nominal..." class="w-full pl-9 pr-3 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl outline-none text-xs font-black dark:text-white focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 focus:bg-white dark:focus:bg-slate-700 transition-all shadow-sm">
                     </div>
                 </div>
-                <button type="button" onclick="simpanCicilan()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(16,185,129,0.5)] transition-all duration-300 active:scale-95 hover:-translate-y-0.5">Verifikasi Pembayaran</button>
+                <button type="button" onclick="simpanCicilan()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(16,185,129,0.5)] transition-all duration-300 active:scale-95 hover:-translate-y-0.5">Konfirmasi Terima Uang</button>
             </div>
             <div id="mcLunasArea" class="hidden pt-4 border-t border-slate-100 dark:border-slate-800 text-center">
                 <div class="inline-flex items-center justify-center px-6 py-3 bg-emerald-50/80 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-sm border border-emerald-100/50 dark:border-emerald-800/50">
@@ -545,6 +545,7 @@
         let unsubTagihan = null;
         let unsubKategori = null;
         let currentCicilanId = null;
+        let currentCicilanSource = null;
 
         Chart.defaults.color = '#94a3b8';
         Chart.defaults.font.family = 'Inter';
@@ -877,9 +878,7 @@
         };
 
         window.editSaldoPrompt = async (tipe) => {
-            if (tipe !== 'pending') {
-                return aturModalAwal(); // Lempar ke atur modal jika bank/cash diklik
-            }
+            if (tipe !== 'pending') { return aturModalAwal(); }
             Toast.fire({ icon: 'info', title: 'Dana Pending otomatis dihitung oleh sistem' });
         };
 
@@ -937,7 +936,7 @@
                                 <input id="swal-edit-nama" class="w-full pl-9 pr-3 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-800 dark:text-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 transition-all outline-none shadow-sm" value="${data.nama}">
                             </div>
                         </div>
-                        <div class="grid grid-cols-2 gap-3">
+                        <div class="grid grid-cols-2 gap-3 mb-4">
                             <div>
                                 <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Modal Dasar</label>
                                 <div class="relative">
@@ -953,6 +952,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Sumber Modal</label>
+                                <select id="swal-edit-sumber" class="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 outline-none shadow-sm">
+                                    <option value="Bank" ${data.sumberModal === 'Bank' ? 'selected' : ''}>💳 Bank</option>
+                                    <option value="Tunai" ${data.sumberModal === 'Tunai' ? 'selected' : ''}>💵 Tunai</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Uang Masuk Ke</label>
+                                <select id="swal-edit-metode" class="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 outline-none shadow-sm">
+                                    <option value="Transfer" ${data.metode === 'Transfer' ? 'selected' : ''}>📱 Transfer</option>
+                                    <option value="Tunai" ${data.metode === 'Tunai' ? 'selected' : ''}>💵 Tunai</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 `,
                 showCancelButton: true, confirmButtonText: 'Simpan Revisi', cancelButtonText: '<span style="color:#64748b; font-weight:700;">Batal</span>', reverseButtons: true,
@@ -961,7 +976,9 @@
                     return {
                         nama: document.getElementById('swal-edit-nama').value.trim(),
                         val1: parseUang(document.getElementById('swal-edit-val1').value),
-                        val2: parseUang(document.getElementById('swal-edit-val2').value)
+                        val2: parseUang(document.getElementById('swal-edit-val2').value),
+                        sumber: document.getElementById('swal-edit-sumber').value,
+                        metode: document.getElementById('swal-edit-metode').value
                     }
                 }
             });
@@ -970,25 +987,45 @@
                 if(!formValues.nama || formValues.val2 <= 0 || isNaN(formValues.val1)) return Toast.fire({ icon: 'error', title: 'Data tidak valid!' });
 
                 const balanceRef = doc(db, "settings", "global_balance");
-                const oldModalField = data.sumberModal === 'Bank' ? 'bankAwal' : 'cashAwal';
-                const oldMasukField = data.metode === 'Transfer' ? 'bankAwal' : 'cashAwal';
+                let bankChange = 0;
+                let cashChange = 0;
+
+                let oldModalField = data.sumberModal === 'Bank' ? 'bank' : 'cash';
+                let oldMasukField = data.metode === 'Transfer' ? 'bank' : 'cash';
+                
+                // UNDO OLD LOGIC
+                if (oldModalField === 'bank') bankChange += data.val1; else cashChange += data.val1;
+                
+                if (data.status === 'Sukses') {
+                    if (oldMasukField === 'bank') bankChange -= data.val2; else cashChange -= data.val2;
+                }
+
+                // APPLY NEW LOGIC
+                let newModalField = formValues.sumber === 'Bank' ? 'bank' : 'cash';
+                let newMasukField = formValues.metode === 'Transfer' ? 'bank' : 'cash';
+
+                if (newModalField === 'bank') bankChange -= formValues.val1; else cashChange -= formValues.val1;
+
+                if (data.status === 'Sukses') {
+                    if (newMasukField === 'bank') bankChange += formValues.val2; else cashChange += formValues.val2;
+                }
 
                 try {
-                    if (data.status === 'Sukses') {
-                        if(oldModalField === oldMasukField) await updateDoc(balanceRef, { [oldModalField]: increment(-(data.val2 - data.val1)) });
-                        else await updateDoc(balanceRef, { [oldModalField]: increment(data.val1), [oldMasukField]: increment(-data.val2) });
-                    } else if (data.status === 'Pending') {
-                        await updateDoc(balanceRef, { [oldModalField]: increment(data.val1) });
+                    let updates = {};
+                    if (bankChange !== 0) updates.bankAwal = increment(bankChange);
+                    if (cashChange !== 0) updates.cashAwal = increment(cashChange);
+                    
+                    if (Object.keys(updates).length > 0) {
+                        await updateDoc(balanceRef, updates);
                     }
 
-                    await updateDoc(doc(db, "jurnal_v7", id), { nama: formValues.nama, val1: formValues.val1, val2: formValues.val2 });
-
-                    if (data.status === 'Sukses') {
-                        if(oldModalField === oldMasukField) await updateDoc(balanceRef, { [oldModalField]: increment(formValues.val2 - formValues.val1) });
-                        else await updateDoc(balanceRef, { [oldModalField]: increment(-formValues.val1), [oldMasukField]: increment(formValues.val2) });
-                    } else if (data.status === 'Pending') {
-                        await updateDoc(balanceRef, { [oldModalField]: increment(-formValues.val1) });
-                    }
+                    await updateDoc(doc(db, "jurnal_v7", id), { 
+                        nama: formValues.nama, 
+                        val1: formValues.val1, 
+                        val2: formValues.val2,
+                        sumberModal: formValues.sumber,
+                        metode: formValues.metode
+                    });
                     
                     Toast.fire({ icon: 'success', title: 'Direvisi & Tersinkronisasi' });
                 } catch(e) {
@@ -996,17 +1033,6 @@
                 }
             }
         }
-
-        window.markAsSuccess = async (id, val2, metode) => {
-            const confirm = await showConfirm('Terima Pembayaran?', `Uang sejumlah Rp ${val2.toLocaleString('id-ID')} akan otomatis masuk ke saldo ${metode}.`, '#10b981', 'Ya, Lunas');
-            if(confirm.isConfirmed) {
-                const balanceRef = doc(db, "settings", "global_balance");
-                const fieldMasuk = (metode === 'Transfer') ? 'bankAwal' : 'cashAwal';
-                await updateDoc(doc(db, "jurnal_v7", id), { status: 'Sukses', tglLunas: serverTimestamp() });
-                await updateDoc(balanceRef, { [fieldMasuk]: increment(val2) });
-                Toast.fire({ icon: 'success', title: 'Pembayaran Diterima' });
-            }
-        };
 
         window.renderCharts = (labels, profit, omzet) => {
             if(window.pChart) window.pChart.destroy();
@@ -1049,6 +1075,11 @@
                     const i = d.data(); i.id = d.id;
                     i.formattedTglBuat = i.waktu ? formatTgl(i.waktu.toDate()) : 'N/A';
                     i.formattedTglLunas = i.tglLunas ? formatTgl(i.tglLunas.toDate()) : null;
+                    i.cicilan = i.cicilan || [];
+                    i.totalDibayar = i.cicilan.reduce((sum, c) => sum + c.nominal, 0);
+                    i.sisaTagihan = (i.val2 || 0) - i.totalDibayar;
+                    
+                    if (i.status === 'Sukses') { i.sisaTagihan = 0; i.totalDibayar = i.val2; }
                     masterKasir.push(i);
                 });
                 processStats();
@@ -1084,7 +1115,7 @@
                 else if(analysisRange === 'bulan') { isMatch = (dt.getMonth() === now.getMonth() && dt.getFullYear() === now.getFullYear()); cLabel = dt.getDate().toString(); }
                 else if(analysisRange === 'tahun') { isMatch = dt.getFullYear() === now.getFullYear(); const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"]; cLabel = monthNames[dt.getMonth()]; }
                 
-                if (i.status === 'Pending') { pendingKasir += i.val2; }
+                if (i.status === 'Pending') { pendingKasir += i.sisaTagihan; }
 
                 if(isMatch && i.status === 'Sukses') { 
                     profit += (i.val2 - i.val1); omzet += i.val2; trx++; 
@@ -1243,14 +1274,26 @@
                                     <div class="bg-${isLunasTagihan ? 'emerald' : 'brand'}-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: ${percent}%"></div>
                                 </div>
                             </div>
-                            <button onclick="openModalCicilan('${i.id}')" class="w-full bg-white dark:bg-slate-800 text-brand-600 dark:text-brand-400 border border-slate-200 dark:border-slate-700 py-3 rounded-xl text-[10px] font-black uppercase tracking-wider hover:bg-brand-50 dark:hover:bg-slate-700 transition-all duration-300 shadow-sm active:scale-95 group/btn"><i class="fas fa-list-ul mr-2 group-hover/btn:scale-110 transition-transform"></i> Kelola Cicilan Pembayaran</button>
+                            <button onclick="openModalCicilan('${i.id}', 'tagihan')" class="w-full bg-white dark:bg-slate-800 text-brand-600 dark:text-brand-400 border border-slate-200 dark:border-slate-700 py-3 rounded-xl text-[10px] font-black uppercase tracking-wider hover:bg-brand-50 dark:hover:bg-slate-700 transition-all duration-300 shadow-sm active:scale-95 group/btn"><i class="fas fa-list-ul mr-2 group-hover/btn:scale-110 transition-transform"></i> Kelola Cicilan Pembayaran</button>
                         </div>
                     </div>`;
 
                 } else {
+                    let percent = i.val2 > 0 ? (i.totalDibayar / i.val2) * 100 : 0;
+                    if(percent > 100) percent = 100;
+                    
                     const actionButton = isPending 
-                        ? `<button onclick="markAsSuccess('${i.id}', ${i.val2}, '${i.metode}')" class="w-full mt-3 bg-amber-500 text-white px-5 py-3 rounded-xl text-[10px] font-black uppercase tracking-wider shadow-[0_4px_10px_rgba(245,158,11,0.3)] hover:bg-amber-600 transition-all duration-300 active:scale-95"><i class="fas fa-check-circle mr-1.5 text-xs"></i> Konfirmasi Terima ${i.metode}</button>` 
-                        : ``;
+                        ? `<div class="mt-3">
+                            <div class="flex justify-between text-[8px] font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-widest">
+                                <span>Terbayar: Rp ${i.totalDibayar.toLocaleString('id-ID')}</span>
+                                <span class="text-amber-500">Sisa: Rp ${i.sisaTagihan.toLocaleString('id-ID')}</span>
+                            </div>
+                            <div class="w-full bg-slate-200/60 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden mb-3">
+                                <div class="bg-amber-500 h-full transition-all duration-1000" style="width: ${percent}%"></div>
+                            </div>
+                            <button onclick="openModalCicilan('${i.id}', 'kasir')" class="w-full bg-amber-500 text-white px-5 py-3 rounded-xl text-[10px] font-black uppercase tracking-wider shadow-[0_4px_10px_rgba(245,158,11,0.3)] hover:bg-amber-600 transition-all duration-300 active:scale-95 flex justify-center items-center gap-1.5"><i class="fas fa-list-ul text-xs"></i> Kelola Pembayaran</button>
+                           </div>` 
+                        : `<p class="text-[8px] font-black text-emerald-500 mt-2 uppercase tracking-widest bg-emerald-50 dark:bg-emerald-900/30 px-3 py-1 rounded-md border border-emerald-100 dark:border-emerald-800/50 inline-block">+Rp ${(i.val2 - i.val1).toLocaleString('id-ID')}</p>`;
 
                     listHtml += `
                     <div class="bg-white rounded-[1.2rem] shadow-[0_2px_10px_rgba(0,0,0,0.02)] border ${borderColor} overflow-hidden transition-all duration-300">
@@ -1271,8 +1314,8 @@
                                 <div class="text-right mt-0.5">
                                     <p class="font-black text-[13px] text-slate-800 dark:text-white">Rp ${i.val2.toLocaleString('id-ID')}</p>
                                     ${isPending 
-                                        ? `<p class="text-[8px] font-black text-amber-500 mt-0.5 uppercase tracking-widest">PENDING</p>`
-                                        : `<p class="text-[8px] font-black text-emerald-500 mt-0.5 uppercase tracking-widest">+Rp ${(i.val2 - i.val1).toLocaleString('id-ID')}</p>`
+                                        ? `<p class="text-[8px] font-black text-amber-500 mt-0.5 uppercase tracking-widest">Sisa Rp ${i.sisaTagihan.toLocaleString('id-ID')}</p>`
+                                        : `<p class="text-[8px] font-black text-emerald-500 mt-0.5 uppercase tracking-widest">LUNAS</p>`
                                     }
                                 </div>
                                 <div class="w-6 h-6 flex items-center justify-center">
@@ -1309,9 +1352,11 @@
             list.innerHTML = listHtml;
         };
 
-        window.openModalCicilan = (id) => {
+        window.openModalCicilan = (id, sourceMode) => {
             currentCicilanId = id;
-            const data = masterTagihan.find(x => x.id === id);
+            currentCicilanSource = sourceMode; // Identifikasi apakah data ini dari Tagihan atau Kasir Pending
+            const data = sourceMode === 'kasir' ? masterKasir.find(x => x.id === id) : masterTagihan.find(x => x.id === id);
+            
             if(!data) return;
 
             document.getElementById('mcNama').innerText = data.nama;
@@ -1365,20 +1410,27 @@
 
             if(nominal <= 0) return Swal.fire({ icon: 'error', title: 'Perhatian', text: 'Nominal tidak boleh kosong.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
 
-            const data = masterTagihan.find(x => x.id === currentCicilanId);
+            const data = currentCicilanSource === 'kasir' ? masterKasir.find(x => x.id === currentCicilanId) : masterTagihan.find(x => x.id === currentCicilanId);
+            const collectionName = currentCicilanSource === 'kasir' ? "jurnal_v7" : "tagihan_v2";
+
             if(nominal > data.sisaTagihan) return Swal.fire({ icon: 'error', title: 'Perhatian', text: 'Nominal pembayaran melebihi sisa tagihan.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
 
             const newCicilan = { nominal: nominal, tanggal: new Date().getTime(), dompet: masukKe };
 
             try {
-                await updateDoc(doc(db, "tagihan_v2", currentCicilanId), { cicilan: arrayUnion(newCicilan) });
+                await updateDoc(doc(db, collectionName, currentCicilanId), { cicilan: arrayUnion(newCicilan) });
                 
                 const balanceRef = doc(db, "settings", "global_balance");
                 const fieldMasuk = (masukKe === 'Bank') ? 'bankAwal' : 'cashAwal';
                 await updateDoc(balanceRef, { [fieldMasuk]: increment(nominal) });
 
+                // JIKA KASIR PENDING DAN SUDAH LUNAS -> UBAH STATUS JADI SUKSES
+                if (currentCicilanSource === 'kasir' && (data.sisaTagihan - nominal) <= 0) {
+                    await updateDoc(doc(db, collectionName, currentCicilanId), { status: 'Sukses', tglLunas: serverTimestamp() });
+                }
+
                 document.getElementById('mcNominalInput').value = "";
-                setTimeout(() => openModalCicilan(currentCicilanId), 500); 
+                setTimeout(() => openModalCicilan(currentCicilanId, currentCicilanSource), 500); 
                 Toast.fire({ icon: 'success', title: 'Pembayaran Tersimpan' });
             } catch (error) {
                 Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: 'Tidak dapat menyimpan cicilan.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
@@ -1413,6 +1465,7 @@
                 try {
                     await addDoc(collection(db, "jurnal_v7"), dataToSave);
                     
+                    // SINKRONISASI ARUS KAS KASIR
                     const balanceRef = doc(db, "settings", "global_balance");
                     const fieldModal = (sumberModal === 'Bank') ? 'bankAwal' : 'cashAwal';
                     const fieldMasuk = (metodeBayar === 'Transfer') ? 'bankAwal' : 'cashAwal';
