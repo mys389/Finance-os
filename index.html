@@ -54,7 +54,7 @@
         .swiper-pagination-bullet { background: #cbd5e1; opacity: 1; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);}
         .swiper-pagination-bullet-active { background: #6366f1; width: 20px; border-radius: 6px; }
 
-        /* Custom SweetAlert Overrides for Elegance */
+        /* Custom SweetAlert Overrides */
         .swal2-popup.swal2-toast { padding: 0.75rem 1.25rem !important; }
         .swal2-title { font-family: 'Inter', sans-serif !important; }
         .swal2-html-container { font-family: 'Inter', sans-serif !important; }
@@ -143,11 +143,11 @@
                 </div>
             </div>
             
-            <div class="glass-card p-6 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+            <div class="glass-card p-5 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
                     <div>
-                        <h2 class="text-base font-black text-slate-800 tracking-tight flex items-center gap-2"><i class="fas fa-chart-pie text-brand-500"></i> Analisis Kasir</h2>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-1">Laba Bersih & Omzet</p>
+                        <h2 class="text-base font-black text-slate-800 tracking-tight flex items-center gap-2"><i class="fas fa-chart-pie text-brand-500"></i> Analisis Cerdas</h2>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-1">Performa Keuangan Anda</p>
                     </div>
                     <div class="flex bg-slate-100/80 p-1.5 rounded-xl border border-slate-200/60 w-fit">
                         <button onclick="setAnalysisTime('hari')" id="tabHari" class="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 tab-active">Hari</button>
@@ -155,13 +155,38 @@
                         <button onclick="setAnalysisTime('tahun')" id="tabTahun" class="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-slate-500 hover:text-slate-700 hover:bg-slate-200/50">Tahun</button>
                     </div>
                 </div>
-                
-                <div class="mb-6">
-                    <p class="text-[10px] font-bold text-brand-500 uppercase tracking-widest mb-1.5 bg-brand-50/80 w-fit px-2.5 py-1 rounded-lg border border-brand-100/50">Laba Bersih</p>
-                    <h2 id="analyticLaba" class="text-4xl md:text-5xl font-black tracking-tighter text-slate-800">Rp 0</h2>
+
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div class="col-span-2 bg-gradient-to-br from-brand-600 to-brand-800 rounded-[1.8rem] p-5 text-white shadow-[0_15px_30px_-5px_rgba(99,102,241,0.4)] relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-bl-[4rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
+                        <div class="flex justify-between items-start mb-2 relative z-10">
+                            <p class="text-[10px] font-bold text-brand-200 uppercase tracking-widest">Laba Bersih</p>
+                            <div class="bg-white/20 backdrop-blur-sm px-2.5 py-1 rounded-lg flex items-center gap-1.5 border border-white/10">
+                                <i class="fas fa-check-circle text-[9px] text-brand-100"></i>
+                                <span id="countTrx" class="text-[9px] font-bold text-white tracking-widest">0 Trx</span>
+                            </div>
+                        </div>
+                        <h2 id="analyticLaba" class="text-3xl md:text-4xl font-black tracking-tighter drop-shadow-md relative z-10">Rp 0</h2>
+                    </div>
+                    
+                    <div class="bg-white/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-slate-100 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-6 h-6 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center border border-emerald-100/50"><i class="fas fa-arrow-trend-up text-[10px]"></i></div>
+                            <p class="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest">Total Omzet</p>
+                        </div>
+                        <h3 id="valOmzet" class="text-[13px] md:text-base font-black text-slate-800 tracking-tight pl-1">Rp 0</h3>
+                    </div>
+                    
+                    <div class="bg-white/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-slate-100 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-6 h-6 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center border border-amber-100/50"><i class="fas fa-percent text-[10px]"></i></div>
+                            <p class="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest">Margin Profit</p>
+                        </div>
+                        <h3 id="valMargin" class="text-[13px] md:text-base font-black text-emerald-500 tracking-tight pl-1">0%</h3>
+                    </div>
                 </div>
                 
-                <div class="bg-white/80 backdrop-blur-md rounded-3xl p-5 border border-slate-100 shadow-[inset_0_2px_15px_rgba(0,0,0,0.02)]">
+                <div class="bg-white/60 backdrop-blur-md rounded-3xl p-5 border border-slate-100 shadow-[inset_0_2px_15px_rgba(0,0,0,0.01)]">
                     <div class="swiper chartSwiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide flex flex-col justify-end">
@@ -174,17 +199,6 @@
                             </div>
                         </div>
                         <div class="swiper-pagination"></div>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4 mt-6 pt-5 border-t border-slate-200/60">
-                    <div>
-                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider mb-1"><i class="fas fa-arrow-trend-up text-emerald-500 mr-1"></i> Total Omzet</p>
-                        <p id="valOmzet" class="text-sm font-black text-slate-800">Rp 0</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider mb-1">Trx Berhasil <i class="fas fa-check-circle text-brand-500 ml-1"></i></p>
-                        <p id="countTrx" class="text-sm font-black text-brand-600">0 Trx</p>
                     </div>
                 </div>
             </div>
@@ -484,7 +498,6 @@
                 }
             });
         };
-        // ===========================================
 
         window.initSwiper = () => {
             if(!window.chartSwiperInst) {
@@ -771,6 +784,82 @@
             }
         };
 
+        // ==== FITUR BARU: EDIT KASIR ====
+        window.editKasirData = async (id) => {
+            const data = masterKasir.find(x => x.id === id);
+            if(!data) return;
+
+            const { value: formValues } = await Swal.fire({
+                title: 'Edit Transaksi',
+                html: `
+                    <div class="space-y-3.5 text-left mt-2">
+                        <div>
+                            <label class="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 ml-1.5">Nama Pelanggan / Detail</label>
+                            <input id="swal-edit-nama" class="w-full mt-1.5 p-3.5 bg-slate-50/80 border border-slate-200 rounded-2xl outline-none text-xs font-bold text-slate-800 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all shadow-sm" value="${data.nama}">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 ml-1.5">Modal (Rp)</label>
+                                <input id="swal-edit-val1" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full mt-1.5 p-3.5 bg-white border border-slate-200 rounded-xl outline-none text-xs font-black text-slate-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all shadow-sm" value="${data.val1.toLocaleString('id-ID')}">
+                            </div>
+                            <div>
+                                <label class="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 ml-1.5">Jual (Rp)</label>
+                                <input id="swal-edit-val2" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full mt-1.5 p-3.5 bg-white border border-emerald-200 rounded-xl outline-none text-xs font-black text-emerald-600 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition-all shadow-sm" value="${data.val2.toLocaleString('id-ID')}">
+                            </div>
+                        </div>
+                    </div>
+                `,
+                showCancelButton: true, confirmButtonText: 'Simpan Perubahan', cancelButtonText: '<span style="color:#64748b; font-weight:700;">Batal</span>', reverseButtons: true,
+                customClass: { popup: '!rounded-[2.5rem] !pt-6 !pb-6', confirmButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[11px] !uppercase !shadow-lg', cancelButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[11px] !uppercase border border-slate-200' },
+                preConfirm: () => {
+                    return {
+                        nama: document.getElementById('swal-edit-nama').value.trim(),
+                        val1: parseUang(document.getElementById('swal-edit-val1').value),
+                        val2: parseUang(document.getElementById('swal-edit-val2').value)
+                    }
+                }
+            });
+
+            if (formValues) {
+                if(!formValues.nama || formValues.val2 <= 0 || isNaN(formValues.val1)) {
+                    return Toast.fire({ icon: 'error', title: 'Data tidak valid!' });
+                }
+
+                const balanceRef = doc(db, "settings", "global_balance");
+                const oldModalField = data.sumberModal === 'Bank' ? 'bankAwal' : 'cashAwal';
+                const oldMasukField = data.metode === 'Transfer' ? 'bankAwal' : 'cashAwal';
+
+                try {
+                    // 1. Tarik (Undo) nominal lama dari saldo
+                    if (data.status === 'Sukses') {
+                        if(oldModalField === oldMasukField) await updateDoc(balanceRef, { [oldModalField]: increment(-(data.val2 - data.val1)) });
+                        else await updateDoc(balanceRef, { [oldModalField]: increment(data.val1), [oldMasukField]: increment(-data.val2) });
+                    } else if (data.status === 'Pending') {
+                        await updateDoc(balanceRef, { [oldModalField]: increment(data.val1), pendingAwal: increment(-data.val2) });
+                    }
+
+                    // 2. Update dokumen di database
+                    await updateDoc(doc(db, "jurnal_v7", id), {
+                        nama: formValues.nama,
+                        val1: formValues.val1,
+                        val2: formValues.val2
+                    });
+
+                    // 3. Terapkan (Apply) nominal baru ke saldo
+                    if (data.status === 'Sukses') {
+                        if(oldModalField === oldMasukField) await updateDoc(balanceRef, { [oldModalField]: increment(formValues.val2 - formValues.val1) });
+                        else await updateDoc(balanceRef, { [oldModalField]: increment(-formValues.val1), [oldMasukField]: increment(formValues.val2) });
+                    } else if (data.status === 'Pending') {
+                        await updateDoc(balanceRef, { [oldModalField]: increment(-formValues.val1), pendingAwal: increment(formValues.val2) });
+                    }
+                    
+                    Toast.fire({ icon: 'success', title: 'Data Diperbarui' });
+                } catch(e) {
+                    Swal.fire({ icon: 'error', title: 'Gagal', text: 'Gagal memperbarui data.', customClass: { popup: '!rounded-[2.5rem]' } });
+                }
+            }
+        }
+
         window.markAsSuccess = async (id, val2, metode) => {
             const confirm = await showConfirm('Terima Pembayaran?', `Uang sejumlah Rp ${val2.toLocaleString('id-ID')} akan otomatis masuk ke saldo ${metode}.`, '#10b981', 'Ya, Terima Uang');
             if(confirm.isConfirmed) {
@@ -782,21 +871,34 @@
             }
         };
 
+        // ==== UI/UX UPGRADE: GRADIENT CHARTS ====
         window.renderCharts = (labels, profit, omzet) => {
             if(window.pChart) window.pChart.destroy();
             if(window.oChart) window.oChart.destroy();
+            
             const ctxP = document.getElementById('profitChart');
             if(ctxP) {
-                window.pChart = new Chart(ctxP.getContext('2d'), {
-                    type: 'line', data: { labels: labels, datasets: [{ data: profit, borderColor: '#6366f1', backgroundColor: 'rgba(99, 102, 241, 0.1)', borderWidth: 3, tension: 0.4, fill: true, pointRadius: 0, pointHoverRadius: 6, pointBackgroundColor: '#fff', pointBorderColor: '#6366f1', pointBorderWidth: 2 }] },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { backgroundColor: 'rgba(15, 23, 42, 0.9)', titleFont: {family: 'Inter', size: 10}, bodyFont: {family: 'Inter', size: 12, weight: 'bold'}, padding: 10, cornerRadius: 8, callbacks: { label: function(c) { return 'Rp ' + c.raw.toLocaleString('id-ID'); } } } }, scales: { x: { display: true, grid: { display: false } }, y: { display: false, beginAtZero: true } } }
+                const ctx = ctxP.getContext('2d');
+                const gradient = ctx.createLinearGradient(0, 0, 0, 160);
+                gradient.addColorStop(0, 'rgba(99, 102, 241, 0.5)');
+                gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+                
+                window.pChart = new Chart(ctx, {
+                    type: 'line', data: { labels: labels, datasets: [{ data: profit, borderColor: '#6366f1', backgroundColor: gradient, borderWidth: 3, tension: 0.4, fill: true, pointRadius: 0, pointHoverRadius: 6, pointBackgroundColor: '#fff', pointBorderColor: '#6366f1', pointBorderWidth: 2 }] },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { backgroundColor: 'rgba(15, 23, 42, 0.95)', titleFont: {family: 'Inter', size: 10}, bodyFont: {family: 'Inter', size: 12, weight: 'bold'}, padding: 12, cornerRadius: 12, callbacks: { label: function(c) { return 'Rp ' + c.raw.toLocaleString('id-ID'); } } } }, scales: { x: { display: true, grid: { display: false } }, y: { display: false, beginAtZero: true } } }
                 });
             }
+            
             const ctxO = document.getElementById('omzetChart');
             if(ctxO) {
-                window.oChart = new Chart(ctxO.getContext('2d'), {
-                    type: 'bar', data: { labels: labels, datasets: [{ data: omzet, backgroundColor: '#10b981', borderRadius: 6, hoverBackgroundColor: '#059669' }] },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { backgroundColor: 'rgba(15, 23, 42, 0.9)', titleFont: {family: 'Inter', size: 10}, bodyFont: {family: 'Inter', size: 12, weight: 'bold'}, padding: 10, cornerRadius: 8, callbacks: { label: function(c) { return 'Rp ' + c.raw.toLocaleString('id-ID'); } } } }, scales: { x: { display: true, grid: { display: false } }, y: { display: false, beginAtZero: true } } }
+                const ctx = ctxO.getContext('2d');
+                const gradient = ctx.createLinearGradient(0, 0, 0, 160);
+                gradient.addColorStop(0, 'rgba(16, 185, 129, 0.8)');
+                gradient.addColorStop(1, 'rgba(16, 185, 129, 0.2)');
+
+                window.oChart = new Chart(ctx, {
+                    type: 'bar', data: { labels: labels, datasets: [{ data: omzet, backgroundColor: gradient, borderRadius: 6, hoverBackgroundColor: '#059669' }] },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { backgroundColor: 'rgba(15, 23, 42, 0.95)', titleFont: {family: 'Inter', size: 10}, bodyFont: {family: 'Inter', size: 12, weight: 'bold'}, padding: 12, cornerRadius: 12, callbacks: { label: function(c) { return 'Rp ' + c.raw.toLocaleString('id-ID'); } } } }, scales: { x: { display: true, grid: { display: false } }, y: { display: false, beginAtZero: true } } }
                 });
             }
         };
@@ -856,6 +958,10 @@
             document.getElementById('valOmzet').innerText = "Rp " + omzet.toLocaleString('id-ID');
             document.getElementById('countTrx').innerText = trx + " Trx";
             
+            // Kalkulasi Margin
+            let margin = omzet > 0 ? (profit / omzet) * 100 : 0;
+            document.getElementById('valMargin').innerText = margin.toFixed(1) + "%";
+            
             let sortedLabels = [];
             if(analysisRange === 'hari' || analysisRange === 'bulan') sortedLabels = Object.keys(chartDataObj).sort((a,b) => parseInt(a) - parseInt(b));
             else { const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"]; sortedLabels = Object.keys(chartDataObj).sort((a,b) => months.indexOf(a) - months.indexOf(b)); }
@@ -879,13 +985,26 @@
                 const nama = splitKat.slice(1).join(' ') || kat;
 
                 katGrid.innerHTML += `
-                    <div class="glass-card p-4 rounded-2xl premium-shadow flex flex-col justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group cursor-default border border-slate-100 hover:border-rose-200">
+                    <div class="glass-card p-4 rounded-[1.5rem] premium-shadow flex flex-col justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group cursor-default border border-slate-100 hover:border-rose-200">
                         <div class="w-8 h-8 rounded-[0.8rem] bg-gradient-to-br from-rose-50 to-rose-100 flex items-center justify-center mb-3 shadow-inner border border-white group-hover:scale-110 transition-transform duration-300"><span class="text-sm">${icon}</span></div>
                         <p class="text-[8px] font-extrabold text-slate-400 uppercase tracking-widest mb-1 truncate">${nama}</p>
                         <p class="text-xs md:text-sm font-black text-slate-800 tracking-tight">Rp ${total.toLocaleString('id-ID')}</p>
                     </div>`;
             }
         }
+
+        // Toggles Accordion
+        window.toggleDetail = (id, iconId) => {
+            const detailEl = document.getElementById(id);
+            const iconEl = document.getElementById(iconId);
+            if (detailEl.classList.contains('hidden')) {
+                detailEl.classList.remove('hidden');
+                iconEl.classList.add('rotate-180');
+            } else {
+                detailEl.classList.add('hidden');
+                iconEl.classList.remove('rotate-180');
+            }
+        };
 
         window.renderRiwayat = () => {
             const s = document.getElementById('searchInput').value.toLowerCase();
@@ -895,7 +1014,7 @@
             let targetData = currentMode === 'kasir' ? masterKasir : masterTagihan;
             
             if(currentMode === 'tagihan') list.className = "grid grid-cols-1 md:grid-cols-2 gap-4"; 
-            else list.className = "space-y-4"; 
+            else list.className = "space-y-3.5"; 
 
             list.innerHTML = "";
             const filtered = targetData.filter(i => (i.nama.toLowerCase().includes(s) || i.keterangan.toLowerCase().includes(s)) && (filterKategoriActive === "Semua" || i.keterangan === filterKategoriActive));
@@ -953,53 +1072,65 @@
                     </div>`;
 
                 } else {
-                    let detailText = `<span class="px-2.5 py-1 rounded-lg bg-slate-100/80 text-slate-500 mr-1.5 border border-slate-200/60 shadow-sm">${i.keterangan}</span> <span class="text-[9px] font-bold text-slate-400">💳 ${i.sumberModal || '-'} ➔ 💰 ${i.metode || '-'}</span>`;
-
-                    let dateDisplayHtml = `
-                    <div class="mt-5 pt-4 border-t border-slate-100 flex flex-col gap-2">
-                        <div class="flex items-center text-[9px] text-slate-500 font-semibold">
-                            <i class="far fa-calendar-alt w-5 text-center"></i>
-                            <span class="w-12 uppercase tracking-widest text-[8px] font-extrabold">Dibuat</span><span class="mx-1">:</span>
-                            <span>${i.formattedTglBuat}</span>
-                        </div>
-                        ${!isPending && i.formattedTglLunas ? `
-                        <div class="flex items-center text-[9px] text-emerald-500 font-semibold">
-                            <i class="far fa-check-circle w-5 text-center"></i>
-                            <span class="w-12 uppercase tracking-widest text-[8px] font-extrabold">Lunas</span><span class="mx-1">:</span>
-                            <span>${i.formattedTglLunas}</span>
-                        </div>` : ''}
-                        ${isPending ? `
-                        <div class="flex items-center text-[9px] text-amber-500 font-semibold">
-                            <i class="far fa-clock w-5 text-center"></i>
-                            <span class="w-12 uppercase tracking-widest text-[8px] font-extrabold">Status</span><span class="mx-1">:</span>
-                            <span>Menunggu Pembayaran</span>
-                        </div>` : ''}
-                    </div>`;
+                    // TAMPILAN ACCORDION UNTUK KASIR
+                    let detailText = `<span class="px-2.5 py-1 rounded-lg bg-white shadow-sm text-slate-500 mr-1.5 border border-slate-200/60">${i.keterangan}</span> <span class="text-[9px] font-extrabold text-slate-400">💳 ${i.sumberModal || '-'} ➔ 💰 ${i.metode || '-'}</span>`;
 
                     const actionButton = isPending 
-                        ? `<button onclick="markAsSuccess('${i.id}', ${i.val2}, '${i.metode}')" class="mt-3 bg-gradient-to-r from-amber-400 to-amber-500 text-white px-5 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-wider shadow-[0_8px_15px_-5px_rgba(245,158,11,0.5)] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 active:scale-95"><i class="fas fa-check-circle mr-1.5"></i> Terima Uang</button>` 
-                        : `<p class="text-[10px] text-emerald-600 font-black mt-3 bg-emerald-50/80 px-4 py-1.5 rounded-xl border border-emerald-100/50 shadow-sm inline-block">+ Untung Rp ${(i.val2-i.val1).toLocaleString('id-ID')}</p>`;
+                        ? `<button onclick="markAsSuccess('${i.id}', ${i.val2}, '${i.metode}')" class="w-full mt-3 bg-gradient-to-r from-amber-400 to-amber-500 text-white px-5 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-wider shadow-[0_8px_15px_-5px_rgba(245,158,11,0.5)] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 active:scale-95"><i class="fas fa-check-circle mr-1.5 text-xs"></i> Konfirmasi Uang Diterima</button>` 
+                        : ``;
 
                     list.innerHTML += `
-                    <div class="glass-card p-6 rounded-[2.5rem] premium-shadow transition-all duration-300 group hover:border-brand-200 hover:-translate-y-1 hover:shadow-xl relative">
-                        <button onclick="deleteData('${i.id}')" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-white/80 border border-slate-100 flex items-center justify-center text-slate-300 hover:text-rose-500 hover:bg-rose-50 hover:border-rose-100 transition-all duration-300 opacity-100 md:opacity-0 md:group-hover:opacity-100 hover:scale-110 shadow-sm z-10"><i class="fas fa-trash-can text-xs"></i></button>
-                        
-                        <div class="flex items-start justify-between">
-                            <div class="flex items-start gap-4 flex-1 overflow-hidden pr-2">
-                                <div class="w-12 h-12 rounded-[1rem] flex items-center justify-center shrink-0 ${badgeClass} group-hover:scale-105 transition-transform duration-300">
-                                    <i class="fas ${iconMode} text-lg"></i>
+                    <div class="glass-card rounded-[1.8rem] premium-shadow transition-all duration-300 overflow-hidden group hover:border-brand-200 hover:shadow-lg">
+                        <div onclick="toggleDetail('detail-${i.id}', 'icon-${i.id}')" class="p-4 md:p-5 flex items-center justify-between cursor-pointer bg-white/40 hover:bg-white/80 transition-colors">
+                            <div class="flex items-center gap-3.5 overflow-hidden flex-1 pr-2">
+                                <div class="w-11 h-11 rounded-[1rem] flex items-center justify-center shrink-0 ${badgeClass} shadow-[inset_0_2px_5px_rgba(255,255,255,0.5)] group-hover:scale-105 transition-transform duration-300 border border-white">
+                                    <i class="fas ${iconMode} text-base"></i>
                                 </div>
-                                <div class="overflow-hidden mt-0.5">
-                                    <h4 class="font-black text-lg text-slate-800 truncate pr-6 tracking-tight">${i.nama}</h4>
-                                    <p class="text-[10px] text-slate-500 font-bold uppercase mt-1.5 flex items-center">${detailText}</p>
+                                <div class="overflow-hidden">
+                                    <h4 class="font-black text-[13px] text-slate-800 truncate tracking-tight">${i.nama}</h4>
+                                    <p class="text-[9px] font-extrabold text-slate-400 mt-1 truncate">${i.keterangan} • ${isPending ? 'Menunggu' : 'Selesai'}</p>
                                 </div>
                             </div>
-                            <div class="text-right flex flex-col items-end shrink-0 mt-10 md:mt-0">
-                                <p class="font-black text-xl text-slate-800 tracking-tight">Rp ${i.val2.toLocaleString('id-ID')}</p>
-                                ${actionButton}
+                            <div class="flex items-center gap-3 shrink-0 pl-2 border-l border-slate-100/80">
+                                <div class="text-right flex flex-col items-end">
+                                    <p class="font-black text-sm md:text-base text-slate-800">Rp ${i.val2.toLocaleString('id-ID')}</p>
+                                    ${isPending 
+                                        ? `<p class="text-[8px] font-black text-amber-500 mt-1 uppercase tracking-widest bg-amber-50 px-2 py-0.5 rounded-md border border-amber-100">Pending</p>`
+                                        : `<p class="text-[8px] font-black text-emerald-500 mt-1 uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-100">+Rp ${(i.val2 - i.val1).toLocaleString('id-ID')}</p>`
+                                    }
+                                </div>
+                                <div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center ml-1">
+                                    <i id="icon-${i.id}" class="fas fa-chevron-down text-slate-400 text-[10px] transition-transform duration-300"></i>
+                                </div>
                             </div>
                         </div>
-                        ${dateDisplayHtml}
+
+                        <div id="detail-${i.id}" class="hidden border-t border-slate-100/80 bg-slate-50/50 p-4 md:p-5">
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="text-[9px] flex items-center">
+                                    ${detailText}
+                                </div>
+                                <div class="flex gap-2">
+                                    <button onclick="editKasirData('${i.id}')" class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-brand-500 hover:bg-brand-50 hover:border-brand-200 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-pen text-[10px]"></i></button>
+                                    <button onclick="deleteData('${i.id}')" class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-rose-50 hover:border-rose-200 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-trash-can text-[10px]"></i></button>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col gap-2 bg-white/80 p-3.5 rounded-2xl border border-slate-100/80 mb-1 shadow-[inset_0_2px_10px_rgba(0,0,0,0.01)]">
+                                <div class="flex items-center text-[9px] text-slate-500 font-semibold">
+                                    <i class="far fa-calendar-alt w-5 text-center"></i>
+                                    <span class="w-12 uppercase tracking-widest text-[8px] font-extrabold">Dibuat</span><span class="mx-1">:</span>
+                                    <span>${i.formattedTglBuat}</span>
+                                </div>
+                                ${!isPending && i.formattedTglLunas ? `
+                                <div class="flex items-center text-[9px] text-emerald-500 font-semibold">
+                                    <i class="far fa-check-circle w-5 text-center"></i>
+                                    <span class="w-12 uppercase tracking-widest text-[8px] font-extrabold">Lunas</span><span class="mx-1">:</span>
+                                    <span>${i.formattedTglLunas}</span>
+                                </div>` : ''}
+                            </div>
+                            ${actionButton}
+                        </div>
                     </div>`;
                 }
             });
