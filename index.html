@@ -197,10 +197,10 @@
                     
                     <div class="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-slate-100 dark:border-slate-700 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
                         <div class="flex items-center gap-2 mb-2">
-                            <div class="w-6 h-6 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-500 flex items-center justify-center border border-emerald-100/50 dark:border-emerald-800/50"><i class="fas fa-arrow-trend-up text-[10px]"></i></div>
-                            <p class="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Total Omzet</p>
+                            <div class="w-6 h-6 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-500 flex items-center justify-center border border-blue-100/50 dark:border-blue-800/50"><i class="fas fa-coins text-[10px]"></i></div>
+                            <p class="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Total Saldo</p>
                         </div>
-                        <h3 id="valOmzet" class="text-[13px] md:text-base font-black text-slate-800 dark:text-white tracking-tight pl-1">Rp 0</h3>
+                        <h3 id="valTotalSaldo" class="text-[13px] md:text-base font-black text-slate-800 dark:text-white tracking-tight pl-1">Rp 0</h3>
                     </div>
                     
                     <div class="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-slate-100 dark:border-slate-700 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
@@ -547,6 +547,17 @@
         let currentCicilanId = null;
         let currentCicilanSource = null;
 
+        // Vatiabel Saldo Global
+        let currentGlobalBank = 0;
+        let currentGlobalCash = 0;
+        let currentGlobalPending = 0;
+
+        window.renderTotalSaldo = () => {
+            const total = currentGlobalBank + currentGlobalCash + currentGlobalPending;
+            const el = document.getElementById('valTotalSaldo');
+            if(el) el.innerText = "Rp " + total.toLocaleString('id-ID');
+        };
+
         Chart.defaults.color = '#94a3b8';
         Chart.defaults.font.family = 'Inter';
 
@@ -700,8 +711,8 @@
 
         window.setAnalysisTime = (r) => {
             analysisRange = r;
-            document.querySelectorAll('#analyticsSection button').forEach(b => {
-                b.className = 'px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-slate-500 hover:text-slate-700 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-700/50';
+            document.querySelectorAll('#pageDashboard .bg-slate-100\\/80 button').forEach(b => {
+                b.className = 'px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-slate-500 hover:text-slate-700 dark:hover:text-white dark:hover:bg-slate-700/50';
             });
             const activeId = 'tab' + r.charAt(0).toUpperCase() + r.slice(1);
             if(document.getElementById(activeId)) document.getElementById(activeId).className = 'px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 tab-active';
@@ -1111,9 +1122,19 @@
                 const dt = i.waktu?.toDate() || new Date();
                 let isMatch = false; let cLabel = "";
                 
-                if(analysisRange === 'hari') { isMatch = dt.toDateString() === now.toDateString(); cLabel = dt.getHours().toString().padStart(2, '0') + ":00"; }
-                else if(analysisRange === 'bulan') { isMatch = (dt.getMonth() === now.getMonth() && dt.getFullYear() === now.getFullYear()); cLabel = dt.getDate().toString(); }
-                else if(analysisRange === 'tahun') { isMatch = dt.getFullYear() === now.getFullYear(); const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"]; cLabel = monthNames[dt.getMonth()]; }
+                if(analysisRange === 'hari') { 
+                    isMatch = dt.toDateString() === now.toDateString(); 
+                    cLabel = dt.getHours().toString().padStart(2, '0') + ":00"; 
+                }
+                else if(analysisRange === 'bulan') { 
+                    isMatch = (dt.getMonth() === now.getMonth() && dt.getFullYear() === now.getFullYear()); 
+                    cLabel = dt.getDate().toString(); 
+                }
+                else if(analysisRange === 'tahun') { 
+                    isMatch = dt.getFullYear() === now.getFullYear(); 
+                    const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"]; 
+                    cLabel = monthNames[dt.getMonth()]; 
+                }
                 
                 if (i.status === 'Pending') { pendingKasir += i.sisaTagihan; }
 
@@ -1126,15 +1147,24 @@
 
             document.getElementById('statPending').innerText = "Rp " + pendingKasir.toLocaleString('id-ID');
             document.getElementById('analyticLaba').innerText = "Rp " + profit.toLocaleString('id-ID');
-            document.getElementById('valOmzet').innerText = "Rp " + omzet.toLocaleString('id-ID');
             document.getElementById('countTrx').innerText = trx + " Trx";
+            
+            // Perbarui Total Saldo Global
+            currentGlobalPending = pendingKasir;
+            window.renderTotalSaldo();
             
             let margin = omzet > 0 ? (profit / omzet) * 100 : 0;
             document.getElementById('valMargin').innerText = margin.toFixed(1) + "%";
             
             let sortedLabels = [];
-            if(analysisRange === 'hari' || analysisRange === 'bulan') sortedLabels = Object.keys(chartDataObj).sort((a,b) => parseInt(a) - parseInt(b));
-            else { const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"]; sortedLabels = Object.keys(chartDataObj).sort((a,b) => months.indexOf(a) - months.indexOf(b)); }
+            if(analysisRange === 'hari') {
+                sortedLabels = Object.keys(chartDataObj).sort();
+            } else if(analysisRange === 'bulan') {
+                sortedLabels = Object.keys(chartDataObj).sort((a,b) => parseInt(a) - parseInt(b));
+            } else { 
+                const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"]; 
+                sortedLabels = Object.keys(chartDataObj).sort((a,b) => months.indexOf(a) - months.indexOf(b)); 
+            }
             
             renderCharts(sortedLabels, sortedLabels.map(l => chartDataObj[l].profit), sortedLabels.map(l => chartDataObj[l].omzet));
 
@@ -1534,8 +1564,12 @@
         onSnapshot(doc(db, "settings", "global_balance"), (d) => { 
             if(d.exists()){ 
                 const data = d.data();
-                document.getElementById('statBank').innerText = "Rp " + (data.bankAwal || 0).toLocaleString('id-ID'); 
-                document.getElementById('statCash').innerText = "Rp " + (data.cashAwal || 0).toLocaleString('id-ID'); 
+                currentGlobalBank = data.bankAwal || 0;
+                currentGlobalCash = data.cashAwal || 0;
+                document.getElementById('statBank').innerText = "Rp " + currentGlobalBank.toLocaleString('id-ID'); 
+                document.getElementById('statCash').innerText = "Rp " + currentGlobalCash.toLocaleString('id-ID'); 
+                
+                window.renderTotalSaldo();
             } else {
                 setDoc(doc(db, "settings", "global_balance"), { bankAwal: 0, cashAwal: 0 });
             }
