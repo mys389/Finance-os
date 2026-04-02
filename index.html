@@ -1665,12 +1665,18 @@
             const newCicilan = { nominal: nominal, tanggal: new Date().getTime(), dompet: masukKe };
 
             try {
+                // 1. Simpan riwayat cicilan ke database (berlaku untuk Kasir & Piutang)
                 await updateDoc(doc(db, collectionName, currentCicilanId), { cicilan: arrayUnion(newCicilan) });
                 
-                const balanceRef = doc(db, "settings", "global_balance");
-                const fieldMasuk = (masukKe === 'Bank') ? 'bankAwal' : 'cashAwal';
-                await updateDoc(balanceRef, { [fieldMasuk]: increment(nominal) });
+                // 2. LOGIKA BARU: Hanya tambah Saldo Utama jika sumbernya dari transaksi 'Kasir' (Pending)
+                // Jika sumbernya 'tagihan' (Piutang murni), saldo Kas/Bank utama tidak akan diganggu.
+                if (currentCicilanSource === 'kasir') {
+                    const balanceRef = doc(db, "settings", "global_balance");
+                    const fieldMasuk = (masukKe === 'Bank') ? 'bankAwal' : 'cashAwal';
+                    await updateDoc(balanceRef, { [fieldMasuk]: increment(nominal) });
+                }
 
+                // 3. Ubah status jadi Sukses/Lunas jika lunas (berlaku khusus Kasir)
                 if (currentCicilanSource === 'kasir' && (data.sisaTagihan - nominal) <= 0) {
                     await updateDoc(doc(db, collectionName, currentCicilanId), { status: 'Sukses', tglLunas: serverTimestamp() });
                 }
@@ -1682,7 +1688,6 @@
                 Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: 'Tidak dapat menyimpan cicilan.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
             }
         };
-
         document.getElementById('btnSimpan').onclick = async () => {
             const nama = document.getElementById('nama').value.trim();
             const kategori = document.getElementById('ket').value;
