@@ -7,8 +7,8 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#0f172a">
-    <link rel="manifest" href='data:application/manifest+json,{"name":"FinanceOS Pro","short_name":"FinanceOS","display":"standalone","background_color":"#0f172a","theme_color":"#0f172a"}'>
+    <meta name="theme-color" content="#ec4899">
+    <link rel="manifest" href='data:application/manifest+json,{"name":"FinanceOS Pro","short_name":"FinanceOS","display":"standalone","background_color":"#ec4899","theme_color":"#ec4899"}'>
     
     <title>FinanceOS Pro - Ultimate Edition</title>
     
@@ -34,7 +34,7 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: { brand: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 900: '#312e81' } },
+                    colors: { pink: { 50: '#fdf2f8', 100: '#fce7f3', 200: '#fbcfe8', 300: '#f9a8d4', 400: '#f472b6', 500: '#ec4899', 600: '#db2777', 700: '#be185d', 800: '#9d174d', 900: '#831843' } },
                     animation: { 'blob': 'blob 7s infinite', 'slideUpFade': 'slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards' },
                     keyframes: { 
                         blob: { '0%': { transform: 'translate(0px, 0px) scale(1)' }, '33%': { transform: 'translate(30px, -50px) scale(1.1)' }, '66%': { transform: 'translate(-20px, 20px) scale(0.9)' }, '100%': { transform: 'translate(0px, 0px) scale(1)' } },
@@ -45,7 +45,7 @@
         }
     </script>
     <style>
-        body { background-color: #f8fafc; color: #1e293b; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s; }
+        body { background-color: #fdf2f8; color: #831843; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s; }
         .dark body { background-color: #020617; color: #f1f5f9; }
         
         .page-content { display: none; animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
@@ -96,11 +96,11 @@
 
         /* ===== FinanceOS Pro — Modern Pink & Blue (layout preserved) ===== */
         :root {
-            --fos-blue: #2563eb;
-            --fos-blue-soft: #eff6ff;
+            --fos-pink: #2563eb;
+            --fos-pink-soft: #eff6ff;
             --fos-pink: #ec4899;
             --fos-pink-soft: #fdf2f8;
-            --fos-ink: #0f172a;
+            --fos-ink: #ec4899;
         }
         body {
             background:
@@ -127,7 +127,7 @@
             box-shadow: 0 5px 16px rgba(37,99,235,.08);
         }
         .toggle-active {
-            background: linear-gradient(135deg, var(--fos-blue), var(--fos-pink));
+            background: linear-gradient(135deg, var(--fos-pink), var(--fos-pink));
             box-shadow: 0 8px 18px rgba(37,99,235,.22);
         }
         .swiper-pagination-bullet-active { background: var(--fos-pink); }
@@ -135,45 +135,79 @@
             border-color: rgba(37,99,235,.45) !important;
             box-shadow: 0 0 0 4px rgba(37,99,235,.08) !important;
         }
-        /* Accent hanya untuk elemen yang memang memakai brand color; struktur/layout asli tidak diubah. */
-        .text-brand-600 { color: var(--fos-blue) !important; }
-        .bg-brand-600 { background-color: var(--fos-blue) !important; }
-        .from-brand-600 { --tw-gradient-from: var(--fos-blue) var(--tw-gradient-from-position) !important; }
-        .to-brand-400 { --tw-gradient-to: var(--fos-pink) var(--tw-gradient-to-position) !important; }
-        .border-brand-200 { border-color: #bfdbfe !important; }
-        .focus\:border-brand-500:focus { border-color: var(--fos-blue) !important; }
-        .focus\:ring-brand-500\/10:focus { --tw-ring-color: rgba(37,99,235,.10) !important; }
+        /* Accent hanya untuk elemen yang memang memakai pink color; struktur/layout asli tidak diubah. */
+        .text-pink-600 { color: var(--fos-pink) !important; }
+        .bg-pink-600 { background-color: var(--fos-pink) !important; }
+        .from-pink-600 { --tw-gradient-from: var(--fos-pink) var(--tw-gradient-from-position) !important; }
+        .to-pink-400 { --tw-gradient-to: var(--fos-pink) var(--tw-gradient-to-position) !important; }
+        .border-pink-200 { border-color: #bfdbfe !important; }
+        .focus\:border-pink-500:focus { border-color: var(--fos-pink) !important; }
+        .focus\:ring-pink-500\/10:focus { --tw-ring-color: rgba(37,99,235,.10) !important; }
         @media (max-width: 640px) {
             .glass-card { box-shadow: 0 8px 24px rgba(15,23,42,.04); }
         }
-    </style>
+    
+/* Mobile performance: keep the history compact and reduce expensive effects on small screens */
+@media (max-width: 640px) {
+  .page-content { contain: layout paint; }
+  #listJurnal > div { content-visibility: auto; contain-intrinsic-size: 74px; }
+  .backdrop-blur-xl, .backdrop-blur-md { backdrop-filter: blur(8px); }
+  .transition-all { transition-duration: 180ms !important; }
+}
+
+/* Feminine floral accents - tetap ringan untuk HP */
+body::before{content:"✿  ❀  ✿";position:fixed;top:72px;right:-10px;font-size:30px;letter-spacing:8px;color:rgba(236,72,153,.16);transform:rotate(-12deg);pointer-events:none;z-index:0;}
+body::after{content:"❀  ✿";position:fixed;bottom:82px;left:-8px;font-size:26px;letter-spacing:7px;color:rgba(244,114,182,.14);transform:rotate(8deg);pointer-events:none;z-index:0;}
+.glass-card,.premium-shadow{position:relative;overflow:hidden;}
+.glass-card::after{content:"✿";position:absolute;right:14px;top:10px;font-size:18px;color:rgba(236,72,153,.10);pointer-events:none;}
+@media(max-width:640px){body::before{top:68px;font-size:22px;letter-spacing:5px;}body::after{bottom:76px;font-size:20px;letter-spacing:4px}.glass-card::after{font-size:14px;right:10px;top:8px;}}
+</style>
+
+<style id="pink-only-theme">
+/* FinanceOS — unified pink theme (light + dark) */
+:root {
+  --pink-main: #ec4899;
+  --pink-dark: #be185d;
+  --pink-soft: #fdf2f8;
+  --pink-border: #f9a8d4;
+}
+body { accent-color: var(--pink-main); }
+.dark body { background-color: #1f0a14 !important; }
+/* Keep gradients and component accents consistently pink. */
+[class*="from-pink-"] { --tw-gradient-from: #db2777 var(--tw-gradient-from-position) !important; }
+[class*="to-pink-"] { --tw-gradient-to: #ec4899 var(--tw-gradient-to-position) !important; }
+/* Form controls */
+input:focus, select:focus, textarea:focus { border-color: #ec4899 !important; box-shadow: 0 0 0 2px rgba(236,72,153,.15) !important; }
+/* Links / buttons that used non-pink inline colors */
+button, a { --tw-ring-color: #ec4899; }
+</style>
 </head>
 <body class="font-sans min-h-screen pb-32 relative pt-[env(safe-area-inset-top)] pb-[calc(8rem+env(safe-area-inset-bottom))]">
 
     <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-brand-300/30 dark:bg-brand-600/20 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[80px] animate-blob"></div>
-        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-emerald-300/20 dark:bg-emerald-600/10 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[80px] animate-blob" style="animation-delay: 2s"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-pink-300/30 dark:bg-pink-600/20 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[80px] animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-pink-300/20 dark:bg-pink-600/10 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[80px] animate-blob" style="animation-delay: 2s"></div>
         <div class="absolute bottom-[-10%] left-[20%] w-96 h-96 bg-rose-300/20 dark:bg-rose-600/10 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[80px] animate-blob" style="animation-delay: 4s"></div>
     </div>
 
-    <header class="bg-[#0f172a] text-white pt-10 pb-24 px-6 rounded-b-[2.5rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] relative z-30">
+    <header class="bg-[#ec4899] text-white pt-10 pb-24 px-6 rounded-b-[2.5rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] relative z-30">
         <div class="absolute inset-0 overflow-hidden rounded-b-[2.5rem] pointer-events-none">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-brand-500/20 rounded-full mix-blend-screen filter blur-[60px]"></div>
+            <div class="absolute top-0 right-0 w-64 h-64 bg-pink-500/20 rounded-full mix-blend-screen filter blur-[60px]"></div>
         </div>
         <div class="max-w-3xl mx-auto flex justify-between items-center relative z-10">
             <div class="flex items-center gap-3.5">
                 <div id="dynamicLogoWidget" class="w-14 h-14 shrink-0 rounded-[1.2rem] flex items-center justify-center shadow-lg border border-white/20 transition-all duration-700">
                     </div>
                 <div>
-                    <p id="greetingText" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Memuat...</p>
+                    <p id="greetingText" class="text-[10px] font-bold text-pink-400 uppercase tracking-widest mb-1.5">Memuat...</p>
                     <p id="quoteText" class="text-xs md:text-sm font-semibold text-white italic leading-relaxed max-w-[240px] drop-shadow-sm transition-opacity duration-500">"Sedang memuat inspirasi harian..."</p>
                 </div>
             </div>
             <div class="flex flex-col items-end gap-2 shrink-0">
-                <button onclick="toggleMenuTambahan(true)" class="w-10 h-10 bg-white/5 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center hover:bg-white/10 transition-all duration-300 active:scale-90 text-white shadow-sm ring-1 ring-white/5">
-                    <i class="fas fa-layer-group text-sm"></i>
+                <button onclick="showPage('Settings')" title="Pengaturan" aria-label="Pengaturan" class="w-10 h-10 bg-white/5 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center hover:bg-white/10 transition-all duration-300 active:scale-90 text-white shadow-sm ring-1 ring-white/5">
+                    <i class="fas fa-cog text-sm"></i>
                 </button>
-                <span id="modeLabelHeader" class="inline-block px-2.5 py-1 bg-brand-500/80 backdrop-blur-md border border-brand-400/50 text-white rounded-lg text-[8px] font-bold uppercase tracking-wider shadow-sm transition-all duration-300">Fokus: KASIR</span>
+                <span id="modeLabelHeader" class="inline-block px-2.5 py-1 bg-pink-500/80 backdrop-blur-md border border-pink-400/50 text-white rounded-lg text-[8px] font-bold uppercase tracking-wider shadow-sm transition-all duration-300">Fokus: KASIR</span>
             </div>
         </div>
     </header>
@@ -182,38 +216,38 @@
         
         <section id="pageDashboard" class="page-content active-page space-y-5">
             <div class="grid grid-cols-2 gap-3 md:gap-4 relative z-50">
-                <div onclick="editSaldoPrompt('bank')" class="relative overflow-hidden bg-gradient-to-br from-indigo-500 to-brand-700 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(99,102,241,0.4)] cursor-pointer group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-5px_rgba(99,102,241,0.5)]">
+                <div onclick="editSaldoPrompt('bank')" class="relative overflow-hidden bg-gradient-to-br from-pink-500 to-pink-700 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(99,102,241,0.4)] cursor-pointer group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-5px_rgba(99,102,241,0.5)]">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-bl-[3rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
                     <div class="flex justify-between items-start mb-4 relative z-10">
                         <div class="w-9 h-9 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-university text-white text-sm drop-shadow-md"></i></div>
                         <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-cog text-white text-[9px]"></i></div>
                     </div>
                     <div class="relative z-10">
-                        <p class="text-[9px] font-bold text-indigo-200 uppercase tracking-widest mb-1">Saldo Bank</p>
+                        <p class="text-[9px] font-bold text-pink-200 uppercase tracking-widest mb-1">Saldo Bank</p>
                         <h3 id="statBank" class="text-lg md:text-xl font-black tracking-tight truncate drop-shadow-sm">Rp 0</h3>
                     </div>
                 </div>
                 
-                <div onclick="editSaldoPrompt('cash')" class="relative overflow-hidden bg-gradient-to-br from-emerald-400 to-emerald-600 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(16,185,129,0.4)] cursor-pointer group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-5px_rgba(16,185,129,0.5)]">
+                <div onclick="editSaldoPrompt('cash')" class="relative overflow-hidden bg-gradient-to-br from-pink-400 to-pink-600 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(16,185,129,0.4)] cursor-pointer group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-5px_rgba(16,185,129,0.5)]">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-bl-[3rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
                     <div class="flex justify-between items-start mb-4 relative z-10">
                         <div class="w-9 h-9 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-wallet text-white text-sm drop-shadow-md"></i></div>
                         <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-cog text-white text-[9px]"></i></div>
                     </div>
                     <div class="relative z-10">
-                        <p class="text-[9px] font-bold text-emerald-100 uppercase tracking-widest mb-1">Saldo Cash</p>
+                        <p class="text-[9px] font-bold text-pink-100 uppercase tracking-widest mb-1">Saldo Cash</p>
                         <h3 id="statCash" class="text-lg md:text-xl font-black tracking-tight truncate drop-shadow-sm">Rp 0</h3>
                     </div>
                 </div>
 
-                <div class="relative overflow-hidden bg-gradient-to-br from-amber-400 to-amber-500 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(245,158,11,0.3)] transition-all duration-300 cursor-default">
+                <div class="relative overflow-hidden bg-gradient-to-br from-pink-400 to-pink-500 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(245,158,11,0.3)] transition-all duration-300 cursor-default">
                     <div class="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-bl-[3rem] pointer-events-none"></div>
                     <div class="flex justify-between items-start mb-3 relative z-10">
                         <div class="w-8 h-8 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-clock text-white text-xs drop-shadow-md"></i></div>
                         <div class="w-6 h-6 flex items-center justify-center opacity-50"><i class="fas fa-info-circle text-white text-[10px]"></i></div>
                     </div>
                     <div class="relative z-10">
-                        <p class="text-[8px] font-bold text-amber-100 uppercase tracking-widest mb-0.5">Dana Pending</p>
+                        <p class="text-[8px] font-bold text-pink-100 uppercase tracking-widest mb-0.5">Dana Pending</p>
                         <h3 id="statPending" class="text-base md:text-lg font-black tracking-tight truncate drop-shadow-sm">Rp 0</h3>
                     </div>
                 </div>
@@ -234,55 +268,55 @@
             <div class="glass-card p-5 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
                     <div>
-                        <h2 class="text-base font-black text-slate-800 dark:text-white tracking-tight flex items-center gap-2"><i class="fas fa-chart-pie text-brand-500"></i> Analisis Cerdas</h2>
-                        <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mt-1">Performa Transaksi Kasir</p>
+                        <h2 class="text-base font-black text-pink-800 dark:text-white tracking-tight flex items-center gap-2"><i class="fas fa-chart-pie text-pink-500"></i> Analisis Cerdas</h2>
+                        <p class="text-[10px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-wider mt-1">Performa Transaksi Kasir</p>
                     </div>
-                    <div class="flex bg-slate-100/80 dark:bg-slate-800/80 p-1.5 rounded-xl border border-slate-200/60 dark:border-slate-700/60 w-fit">
+                    <div class="flex bg-pink-100/80 dark:bg-pink-800/80 p-1.5 rounded-xl border border-pink-200/60 dark:border-pink-700/60 w-fit">
                         <button onclick="setAnalysisTime('hari')" id="tabHari" class="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 tab-active">Hari</button>
-                        <button onclick="setAnalysisTime('bulan')" id="tabBulan" class="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-slate-500 hover:text-slate-700 dark:hover:text-white dark:hover:bg-slate-700/50">Bulan</button>
-                        <button onclick="setAnalysisTime('tahun')" id="tabTahun" class="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-slate-500 hover:text-slate-700 dark:hover:text-white dark:hover:bg-slate-700/50">Tahun</button>
+                        <button onclick="setAnalysisTime('bulan')" id="tabBulan" class="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-pink-500 hover:text-pink-700 dark:hover:text-white dark:hover:bg-pink-700/50">Bulan</button>
+                        <button onclick="setAnalysisTime('tahun')" id="tabTahun" class="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-pink-500 hover:text-pink-700 dark:hover:text-white dark:hover:bg-pink-700/50">Tahun</button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3 mb-6">
-                    <div class="col-span-2 bg-gradient-to-br from-brand-600 to-brand-800 rounded-[1.8rem] p-5 text-white shadow-[0_15px_30px_-5px_rgba(99,102,241,0.4)] relative overflow-hidden group">
+                    <div class="col-span-2 bg-gradient-to-br from-pink-600 to-pink-800 rounded-[1.8rem] p-5 text-white shadow-[0_15px_30px_-5px_rgba(99,102,241,0.4)] relative overflow-hidden group">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-bl-[4rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
                         <div class="flex justify-between items-start mb-2 relative z-10">
-                            <p class="text-[10px] font-bold text-brand-200 uppercase tracking-widest">Total Keuntungan</p>
+                            <p class="text-[10px] font-bold text-pink-200 uppercase tracking-widest">Total Keuntungan</p>
                             <div class="bg-white/20 backdrop-blur-sm px-2.5 py-1 rounded-lg flex items-center gap-1.5 border border-white/10">
-                                <i class="fas fa-check-circle text-[9px] text-brand-100"></i>
+                                <i class="fas fa-check-circle text-[9px] text-pink-100"></i>
                                 <span id="countTrx" class="text-[9px] font-bold text-white tracking-widest">0 Trx</span>
                             </div>
                         </div>
                         <h2 id="analyticLaba" class="text-3xl md:text-4xl font-black tracking-tighter drop-shadow-md relative z-10">Rp 0</h2>
                     </div>
                     
-                    <div class="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-slate-100 dark:border-slate-700 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
+                    <div class="bg-white/90 dark:bg-pink-800/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-pink-100 dark:border-pink-700 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
                         <div class="flex items-center gap-2 mb-2">
-                            <div class="w-6 h-6 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-500 flex items-center justify-center border border-blue-100/50 dark:border-blue-800/50"><i class="fas fa-coins text-[10px]"></i></div>
-                            <p class="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Total Saldo</p>
+                            <div class="w-6 h-6 rounded-lg bg-pink-50 dark:bg-pink-900/30 text-pink-500 flex items-center justify-center border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-coins text-[10px]"></i></div>
+                            <p class="text-[9px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest">Total Saldo</p>
                         </div>
-                        <h3 id="valTotalSaldo" class="text-[13px] md:text-base font-black text-slate-800 dark:text-white tracking-tight pl-1">Rp 0</h3>
+                        <h3 id="valTotalSaldo" class="text-[13px] md:text-base font-black text-pink-800 dark:text-white tracking-tight pl-1">Rp 0</h3>
                     </div>
                     
-                    <div class="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-slate-100 dark:border-slate-700 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
+                    <div class="bg-white/90 dark:bg-pink-800/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-pink-100 dark:border-pink-700 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
                         <div class="flex items-center gap-2 mb-2">
-                            <div class="w-6 h-6 rounded-lg bg-amber-50 dark:bg-amber-900/30 text-amber-500 flex items-center justify-center border border-amber-100/50 dark:border-amber-800/50"><i class="fas fa-percent text-[10px]"></i></div>
-                            <p class="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Margin Profit</p>
+                            <div class="w-6 h-6 rounded-lg bg-pink-50 dark:bg-pink-900/30 text-pink-500 flex items-center justify-center border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-percent text-[10px]"></i></div>
+                            <p class="text-[9px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest">Margin Profit</p>
                         </div>
-                        <h3 id="valMargin" class="text-[13px] md:text-base font-black text-emerald-500 tracking-tight pl-1">0%</h3>
+                        <h3 id="valMargin" class="text-[13px] md:text-base font-black text-pink-500 tracking-tight pl-1">0%</h3>
                     </div>
                 </div>
                 
-                <div class="bg-white/60 dark:bg-slate-900/60 backdrop-blur-md rounded-3xl p-5 border border-slate-100 dark:border-slate-800 shadow-[inset_0_2px_15px_rgba(0,0,0,0.01)]">
+                <div class="bg-white/60 dark:bg-pink-900/60 backdrop-blur-md rounded-3xl p-5 border border-pink-100 dark:border-pink-800 shadow-[inset_0_2px_15px_rgba(0,0,0,0.01)]">
                     <div class="swiper chartSwiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide flex flex-col justify-end">
-                                <p class="text-[9px] font-extrabold text-brand-400 uppercase tracking-widest mb-3 w-full text-center">Grafik Pergerakan Profit</p>
+                                <p class="text-[9px] font-extrabold text-pink-400 uppercase tracking-widest mb-3 w-full text-center">Grafik Pergerakan Profit</p>
                                 <div class="relative w-full h-full"><canvas id="profitChart"></canvas></div>
                             </div>
                             <div class="swiper-slide flex flex-col justify-end">
-                                <p class="text-[9px] font-extrabold text-emerald-400 uppercase tracking-widest mb-3 w-full text-center">Grafik Pemasukan (Omzet)</p>
+                                <p class="text-[9px] font-extrabold text-pink-400 uppercase tracking-widest mb-3 w-full text-center">Grafik Pemasukan (Omzet)</p>
                                 <div class="relative w-full h-full"><canvas id="omzetChart"></canvas></div>
                             </div>
                         </div>
@@ -292,37 +326,37 @@
             </div>
 
             <div>
-                <h3 class="text-xs font-black text-slate-700 dark:text-slate-200 tracking-tight flex items-center gap-2 mb-3 ml-1"><i class="fas fa-layer-group text-rose-500"></i> Rincian Kategori Piutang</h3>
+                <h3 class="text-xs font-black text-pink-700 dark:text-pink-200 tracking-tight flex items-center gap-2 mb-3 ml-1"><i class="fas fa-layer-group text-rose-500"></i> Rincian Kategori Piutang</h3>
                 <div id="kategoriPiutangGrid" class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    <div class="text-center py-6 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-600 col-span-full border border-dashed border-slate-200 dark:border-slate-700 rounded-2xl">Memuat kategori...</div>
+                    <div class="text-center py-6 text-[10px] font-bold uppercase tracking-widest text-pink-400 dark:text-pink-600 col-span-full border border-dashed border-pink-200 dark:border-pink-700 rounded-2xl">Memuat kategori...</div>
                 </div>
             </div>
         </section>
 
         <section id="pageRiwayat" class="page-content space-y-4">
             
-            <div class="sticky top-20 z-30 bg-[#f8fafc]/90 dark:bg-[#020617]/90 backdrop-blur-xl pb-3 pt-2 -mx-2 px-2 border-b border-slate-200/50 dark:border-slate-800/50">
+            <div class="sticky top-20 z-30 bg-[#f8fafc]/90 dark:bg-[#020617]/90 backdrop-blur-xl pb-3 pt-2 -mx-2 px-2 border-b border-pink-200/50 dark:border-pink-800/50">
                 
-                <div class="flex p-1 bg-slate-200/50 dark:bg-slate-800/50 rounded-xl mb-3">
-                    <button onclick="switchMode('kasir')" id="tabRiwayatKasir" class="w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-white dark:bg-slate-700 text-brand-600 dark:text-brand-400">Kasir</button>
-                    <button onclick="switchMode('tagihan')" id="tabRiwayatTagihan" class="w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white">Piutang</button>
+                <div class="flex p-1 bg-pink-200/50 dark:bg-pink-800/50 rounded-xl mb-3">
+                    <button onclick="switchMode('kasir')" id="tabRiwayatKasir" class="w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-white dark:bg-pink-700 text-pink-600 dark:text-pink-400">Kasir</button>
+                    <button onclick="switchMode('tagihan')" id="tabRiwayatTagihan" class="w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-pink-500 dark:text-pink-400 hover:text-pink-800 dark:hover:text-white">Piutang</button>
                 </div>
 
                 <div class="flex items-center gap-2">
                     <div class="relative flex-1 group">
-                        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 text-[10px] transition-colors group-focus-within:text-brand-500"></i>
-                        <input type="text" id="searchInput" oninput="debounceSearch()" placeholder="Cari nama atau keterangan..." class="w-full pl-8 pr-3 py-2 bg-slate-100 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800 rounded-lg outline-none text-[10px] font-semibold text-slate-700 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:border-brand-400 dark:focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all duration-300 shadow-sm placeholder:text-slate-400">
+                        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-pink-400 dark:text-pink-500 text-[10px] transition-colors group-focus-within:text-pink-500"></i>
+                        <input type="text" id="searchInput" oninput="debounceSearch()" placeholder="Cari nama atau keterangan..." class="w-full pl-8 pr-3 py-2 bg-pink-100 dark:bg-pink-900/80 border border-pink-200/50 dark:border-pink-800 rounded-lg outline-none text-[10px] font-semibold text-pink-700 dark:text-white focus:bg-white dark:focus:bg-pink-800 focus:border-pink-400 dark:focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 transition-all duration-300 shadow-sm placeholder:text-pink-400">
                     </div>
                     
-                    <div class="relative w-8 h-8 bg-slate-100 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800 rounded-lg flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-slate-800 transition-colors">
-                        <i id="filterIconState" class="fas fa-filter text-slate-500 dark:text-slate-400 text-[10px]"></i>
+                    <div class="relative w-8 h-8 bg-pink-100 dark:bg-pink-900/80 border border-pink-200/50 dark:border-pink-800 rounded-lg flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-pink-800 transition-colors">
+                        <i id="filterIconState" class="fas fa-filter text-pink-500 dark:text-pink-400 text-[10px]"></i>
                         <select id="filterKatDropdown" onchange="setFilterKat(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer appearance-none">
                             <option value="Semua">Semua Kategori</option>
                         </select>
                     </div>
 
-                    <div class="relative w-8 h-8 bg-slate-100 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800 rounded-lg flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-slate-800 transition-colors">
-                        <i id="sortIconState" class="fas fa-sort-amount-down text-slate-500 dark:text-slate-400 text-[10px]"></i>
+                    <div class="relative w-8 h-8 bg-pink-100 dark:bg-pink-900/80 border border-pink-200/50 dark:border-pink-800 rounded-lg flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-pink-800 transition-colors">
+                        <i id="sortIconState" class="fas fa-sort-amount-down text-pink-500 dark:text-pink-400 text-[10px]"></i>
                         <select id="sortDropdown" onchange="setSort(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer appearance-none">
                             <option value="terbaru">⏳ Terbaru</option>
                             <option value="terlama">🕰️ Terlama</option>
@@ -336,14 +370,20 @@
             </div>
             
             <div id="emptyState" class="hidden text-center py-16">
-                <div class="w-24 h-24 bg-white/80 dark:bg-slate-800/80 shadow-md border border-slate-100/50 dark:border-slate-700/50 text-slate-300 dark:text-slate-600 rounded-[2rem] flex items-center justify-center mx-auto mb-5 transform rotate-3 transition-transform hover:rotate-6 hover:scale-105 duration-300 backdrop-blur-md">
+                <div class="w-24 h-24 bg-white/80 dark:bg-pink-800/80 shadow-md border border-pink-100/50 dark:border-pink-700/50 text-pink-300 dark:text-pink-600 rounded-[2rem] flex items-center justify-center mx-auto mb-5 transform rotate-3 transition-transform hover:rotate-6 hover:scale-105 duration-300 backdrop-blur-md">
                     <i class="fas fa-receipt text-4xl -rotate-3"></i>
                 </div>
-                <h3 class="font-extrabold text-slate-700 dark:text-slate-300 text-base">Belum ada data</h3>
-                <p class="text-[10px] font-medium text-slate-400 dark:text-slate-500 mt-1.5 max-w-[200px] mx-auto leading-relaxed">Data riwayat Anda akan tersusun rapi dan aman di sini.</p>
+                <h3 class="font-extrabold text-pink-700 dark:text-pink-300 text-base">Belum ada data</h3>
+                <p class="text-[10px] font-medium text-pink-400 dark:text-pink-500 mt-1.5 max-w-[200px] mx-auto leading-relaxed">Data riwayat Anda akan tersusun rapi dan aman di sini.</p>
             </div>
 
             <div id="listJurnal" class="space-y-2"></div>
+            <div id="historyPager" class="hidden mt-3 flex flex-col items-center gap-2">
+                <p id="historyCount" class="text-[9px] font-bold text-pink-400 uppercase tracking-widest text-center"></p>
+                <button id="historyMoreBtn" onclick="toggleHistoryAll()" class="px-5 py-2.5 rounded-xl bg-white dark:bg-pink-900 border border-pink-200 dark:border-pink-700 text-pink-600 dark:text-pink-400 text-[9px] font-black uppercase tracking-widest shadow-sm active:scale-95 transition-all">
+                    Lihat Semua
+                </button>
+            </div>
             
         </section>
 
@@ -351,64 +391,64 @@
             <div class="glass-card p-6 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
                 <div class="flex items-center justify-between mb-2">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-slate-800 dark:bg-brand-500 text-white rounded-2xl flex items-center justify-center shadow-inner transition-colors duration-300"><i class="fas fa-moon text-lg"></i></div>
+                        <div class="w-12 h-12 bg-pink-800 dark:bg-pink-500 text-white rounded-2xl flex items-center justify-center shadow-inner transition-colors duration-300"><i class="fas fa-moon text-lg"></i></div>
                         <div>
-                            <h3 class="font-black text-base text-slate-800 dark:text-white tracking-tight">Tema Tampilan</h3>
-                            <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">Nyalakan Mode Malam</p>
+                            <h3 class="font-black text-base text-pink-800 dark:text-white tracking-tight">Tema Tampilan</h3>
+                            <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest mt-1">Nyalakan Mode Malam</p>
                         </div>
                     </div>
-                    <button onclick="toggleTheme()" class="w-14 h-7 rounded-full bg-slate-200 dark:bg-brand-500 relative transition-colors duration-300 flex items-center shadow-inner cursor-pointer">
-                        <div class="w-6 h-6 rounded-full bg-white absolute left-0.5 dark:translate-x-7 transition-transform duration-300 shadow-sm border border-slate-100 dark:border-transparent flex items-center justify-center"></div>
+                    <button onclick="toggleTheme()" class="w-14 h-7 rounded-full bg-pink-200 dark:bg-pink-500 relative transition-colors duration-300 flex items-center shadow-inner cursor-pointer">
+                        <div class="w-6 h-6 rounded-full bg-white absolute left-0.5 dark:translate-x-7 transition-transform duration-300 shadow-sm border border-pink-100 dark:border-transparent flex items-center justify-center"></div>
                     </button>
                 </div>
             </div>
 
             <div class="glass-card p-6 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
-                <div class="flex items-center justify-between mb-6 border-b border-slate-100 dark:border-slate-700 pb-5">
+                <div class="flex items-center justify-between mb-6 border-b border-pink-100 dark:border-pink-700 pb-5">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-indigo-50/80 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center shadow-inner border border-indigo-100/50 dark:border-indigo-800/50"><i class="fas fa-vault text-lg"></i></div>
+                        <div class="w-12 h-12 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-2xl flex items-center justify-center shadow-inner border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-vault text-lg"></i></div>
                         <div>
-                            <h3 class="font-black text-base text-slate-800 dark:text-white tracking-tight">Pengaturan Saldo</h3>
-                            <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">Ubah Modal Manual</p>
+                            <h3 class="font-black text-base text-pink-800 dark:text-white tracking-tight">Pengaturan Saldo</h3>
+                            <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest mt-1">Ubah Modal Manual</p>
                         </div>
                     </div>
                 </div>
                 <div class="space-y-5">
-                    <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium leading-relaxed bg-slate-50/50 dark:bg-slate-900/50 p-3.5 rounded-xl border border-slate-100 dark:border-slate-800">Sesuaikan saldo Bank & Cash Anda jika ada ketidaksesuaian uang fisik dengan sistem.</p>
-                    <button onclick="aturModalAwal()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3.5 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(79,70,229,0.5)] active:scale-95 transition-all duration-300 hover:-translate-y-0.5"><i class="fas fa-edit mr-1.5"></i> Sesuaikan Saldo</button>
+                    <p class="text-[10px] text-pink-500 dark:text-pink-400 font-medium leading-relaxed bg-pink-50/50 dark:bg-pink-900/50 p-3.5 rounded-xl border border-pink-100 dark:border-pink-800">Sesuaikan saldo Bank & Cash Anda jika ada ketidaksesuaian uang fisik dengan sistem.</p>
+                    <button onclick="aturModalAwal()" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3.5 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(79,70,229,0.5)] active:scale-95 transition-all duration-300 hover:-translate-y-0.5"><i class="fas fa-edit mr-1.5"></i> Sesuaikan Saldo</button>
                 </div>
             </div>
 
             <div class="glass-card p-6 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
-                <div class="flex items-center justify-between mb-6 border-b border-slate-100 dark:border-slate-700 pb-5">
+                <div class="flex items-center justify-between mb-6 border-b border-pink-100 dark:border-pink-700 pb-5">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-brand-50/80 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 rounded-2xl flex items-center justify-center shadow-inner border border-brand-100/50 dark:border-brand-800/50"><i class="fas fa-tags text-lg"></i></div>
+                        <div class="w-12 h-12 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-2xl flex items-center justify-center shadow-inner border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-tags text-lg"></i></div>
                         <div>
-                            <h3 class="font-black text-base text-slate-800 dark:text-white tracking-tight">Kustom Kategori</h3>
-                            <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">Mode Aktif: <span id="settingModeKatLabel" class="text-brand-500 font-black">Kasir</span></p>
+                            <h3 class="font-black text-base text-pink-800 dark:text-white tracking-tight">Kustom Kategori</h3>
+                            <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest mt-1">Mode Aktif: <span id="settingModeKatLabel" class="text-pink-500 font-black">Kasir</span></p>
                         </div>
                     </div>
-                    <button id="btnSettingsTambahKat" onclick="tambahKategoriPrompt()" class="bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 dark:hover:bg-slate-600 text-white w-10 h-10 rounded-2xl shadow-lg flex items-center justify-center transition-all duration-300 active:scale-90 hidden hover:-translate-y-1"><i class="fas fa-plus"></i></button>
+                    <button id="btnSettingsTambahKat" onclick="tambahKategoriPrompt()" class="bg-pink-800 dark:bg-pink-700 hover:bg-pink-900 dark:hover:bg-pink-600 text-white w-10 h-10 rounded-2xl shadow-lg flex items-center justify-center transition-all duration-300 active:scale-90 hidden hover:-translate-y-1"><i class="fas fa-plus"></i></button>
                 </div>
-                <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 mb-4 ml-1 italic tracking-wide">*Klik kategori di bawah untuk mengubah / menghapus (Khusus Piutang)</p>
+                <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 mb-4 ml-1 italic tracking-wide">*Klik kategori di bawah untuk mengubah / menghapus (Khusus Piutang)</p>
                 <div id="listKategoriSettings" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
             </div>
 
             <div class="glass-card p-6 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
-                <div class="flex items-center gap-4 mb-6 border-b border-slate-100 dark:border-slate-700 pb-5">
-                    <div class="w-12 h-12 bg-slate-100/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 rounded-2xl flex items-center justify-center shadow-inner border border-white dark:border-slate-700"><i class="fas fa-database text-lg"></i></div>
+                <div class="flex items-center gap-4 mb-6 border-b border-pink-100 dark:border-pink-700 pb-5">
+                    <div class="w-12 h-12 bg-pink-100/80 dark:bg-pink-800/80 text-pink-600 dark:text-pink-400 rounded-2xl flex items-center justify-center shadow-inner border border-white dark:border-pink-700"><i class="fas fa-database text-lg"></i></div>
                     <div>
-                        <h3 class="font-black text-base text-slate-800 dark:text-white tracking-tight">Arsip Otomatis</h3>
-                        <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">Penyimpanan Kasir</p>
+                        <h3 class="font-black text-base text-pink-800 dark:text-white tracking-tight">Arsip Otomatis</h3>
+                        <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest mt-1">Penyimpanan Kasir</p>
                     </div>
                 </div>
                 <div class="space-y-5">
-                    <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium leading-relaxed bg-slate-50/50 dark:bg-slate-900/50 p-3.5 rounded-xl border border-slate-100 dark:border-slate-800">Data kasir lama akan otomatis dihapus dan <strong>diunduh menjadi PDF</strong> untuk menjaga database tetap ringan.</p>
+                    <p class="text-[10px] text-pink-500 dark:text-pink-400 font-medium leading-relaxed bg-pink-50/50 dark:bg-pink-900/50 p-3.5 rounded-xl border border-pink-100 dark:border-pink-800">Data kasir lama akan otomatis dihapus dan <strong>diunduh menjadi PDF</strong> untuk menjaga database tetap ringan.</p>
                     <div class="flex items-center gap-3">
-                        <input type="number" id="settingArchiveDays" value="60" class="flex-1 p-3.5 bg-white/80 dark:bg-slate-800 rounded-2xl text-sm font-black text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 text-center focus:border-brand-500 dark:focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all duration-300 shadow-sm backdrop-blur-sm outline-none">
-                        <span class="font-black text-[10px] text-slate-500 dark:text-slate-400 bg-slate-100/80 dark:bg-slate-800/80 px-5 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 uppercase tracking-widest backdrop-blur-sm">Hari</span>
+                        <input type="number" id="settingArchiveDays" value="60" class="flex-1 p-3.5 bg-white/80 dark:bg-pink-800 rounded-2xl text-sm font-black text-pink-800 dark:text-white border border-pink-200 dark:border-pink-700 text-center focus:border-pink-500 dark:focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 transition-all duration-300 shadow-sm backdrop-blur-sm outline-none">
+                        <span class="font-black text-[10px] text-pink-500 dark:text-pink-400 bg-pink-100/80 dark:bg-pink-800/80 px-5 py-3.5 rounded-2xl border border-pink-200 dark:border-pink-700 uppercase tracking-widest backdrop-blur-sm">Hari</span>
                     </div>
-                    <button onclick="saveSettings()" class="w-full bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 dark:hover:bg-slate-600 text-white py-3.5 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(0,0,0,0.5)] active:scale-95 transition-all duration-300 hover:-translate-y-0.5">Simpan Konfigurasi</button>
+                    <button onclick="saveSettings()" class="w-full bg-pink-800 dark:bg-pink-700 hover:bg-pink-900 dark:hover:bg-pink-600 text-white py-3.5 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(0,0,0,0.5)] active:scale-95 transition-all duration-300 hover:-translate-y-0.5">Simpan Konfigurasi</button>
                 </div>
             </div>
         </section>
@@ -421,112 +461,85 @@
     </div>
 
     <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-[22rem] glass-nav px-2 py-1.5 rounded-[2.5rem] flex items-center justify-between shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] z-50">
-        <button onclick="showPage('Dashboard')" id="navDashboard" class="flex-1 py-2.5 flex flex-col items-center text-brand-600 dark:text-brand-400 transition-colors duration-300 group">
+        <button onclick="showPage('Dashboard')" id="navDashboard" class="flex-1 py-2.5 flex flex-col items-center text-pink-600 dark:text-pink-400 transition-colors duration-300 group">
             <i class="fas fa-chart-pie text-lg mb-1 transition-transform duration-300 group-hover:-translate-y-1 group-active:scale-90"></i>
             <span class="text-[8px] font-extrabold tracking-widest uppercase">Beranda</span>
         </button>
         
         <div class="flex-1 flex justify-center -mt-10 relative z-10">
-            <button onclick="toggleModalKasir(true)" class="w-14 h-14 bg-gradient-to-tr from-brand-600 to-brand-400 text-white rounded-[1.8rem] rotate-3 hover:rotate-6 flex items-center justify-center shadow-[0_15px_30px_-5px_rgba(99,102,241,0.6)] border-[4px] border-[#f8fafc] dark:border-[#020617] transform transition-all duration-300 hover:scale-105 active:scale-90">
+            <button onclick="toggleModalKasir(true)" class="w-14 h-14 bg-gradient-to-tr from-pink-600 to-pink-400 text-white rounded-[1.8rem] rotate-3 hover:rotate-6 flex items-center justify-center shadow-[0_15px_30px_-5px_rgba(99,102,241,0.6)] border-[4px] border-[#f8fafc] dark:border-[#020617] transform transition-all duration-300 hover:scale-105 active:scale-90">
                 <i class="fas fa-plus text-xl -rotate-3 group-hover:-rotate-6 transition-transform"></i>
             </button>
         </div>
 
-        <button onclick="showPage('Riwayat')" id="navRiwayat" class="flex-1 py-2.5 flex flex-col items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors duration-300 group">
+        <button onclick="showPage('Riwayat')" id="navRiwayat" class="flex-1 py-2.5 flex flex-col items-center text-pink-400 hover:text-pink-600 dark:hover:text-pink-200 transition-colors duration-300 group">
             <i class="fas fa-receipt text-lg mb-1 transition-transform duration-300 group-hover:-translate-y-1 group-active:scale-90"></i>
             <span class="text-[8px] font-extrabold tracking-widest uppercase">Riwayat</span>
         </button>
     </nav>
 
-    <div id="modalMenuTambahan" onclick="if(event.target === this) toggleMenuTambahan(false)" class="fixed inset-0 bg-slate-900/40 dark:bg-slate-900/80 backdrop-blur-md z-[300] flex items-end md:items-center justify-center pb-6 md:p-4 transition-opacity duration-300">
-        <div class="bg-white dark:bg-slate-900 w-[92%] max-w-sm p-6 md:p-8 shadow-2xl rounded-[2.5rem] transform transition-transform animate-slideUp border border-white dark:border-slate-800">
-            <div class="text-center mb-6">
-                <div class="w-12 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mx-auto mb-5 md:hidden"></div>
-                <h2 class="font-black text-xl tracking-tight text-slate-800 dark:text-white">Menu Pintas</h2>
-                <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">Akses Cepat FinanceOS</p>
-            </div>
-            
-            <div class="space-y-3">
-                <button onclick="showPage('Settings'); toggleMenuTambahan(false);" class="w-full flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-100 dark:border-slate-700/50 transition-all duration-300 group active:scale-95 hover:shadow-md">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-[1rem] bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-200 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 border border-slate-50 dark:border-slate-600"><i class="fas fa-cog text-lg"></i></div>
-                        <div class="text-left">
-                            <p class="font-extrabold text-sm text-slate-800 dark:text-white">Pengaturan</p>
-                            <p class="text-[9px] font-medium text-slate-400 dark:text-slate-400 mt-0.5">Tema, Kategori & Database</p>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-right text-slate-300 dark:text-slate-600 text-xs group-hover:text-slate-500 transition-colors"></i>
-                </button>
-            </div>
-
-            <button onclick="toggleMenuTambahan(false)" class="w-full mt-6 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all duration-300 active:scale-95 flex items-center justify-center gap-2">
-                <i class="fas fa-times"></i> Tutup Menu
-            </button>
-        </div>
-    </div>
-
-    <div id="modalKasir" class="fixed inset-0 bg-slate-900/40 dark:bg-slate-900/80 backdrop-blur-md z-[100] items-end md:items-center justify-center p-2 md:p-4 transition-opacity duration-300">
-        <div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-[2.5rem] p-6 relative shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] overflow-y-auto max-h-[92vh] no-scrollbar transform transition-transform border border-white dark:border-slate-800">
-            <button type="button" onclick="toggleModalKasir(false)" class="absolute right-5 top-5 w-8 h-8 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-rose-50 hover:text-rose-500 dark:hover:bg-rose-900/30 transition-colors duration-300"><i class="fas fa-times text-xs"></i></button>
-            <div class="flex items-center gap-3.5 mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
-                <div class="w-10 h-10 bg-brand-50/80 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 rounded-xl flex items-center justify-center shadow-inner border border-brand-100/50 dark:border-brand-800/50"><i class="fas fa-file-signature text-sm"></i></div>
+    <div id="modalKasir" class="fixed inset-0 bg-pink-900/40 dark:bg-pink-900/80 backdrop-blur-md z-[100] items-end md:items-center justify-center p-2 md:p-4 transition-opacity duration-300">
+        <div class="bg-white dark:bg-pink-900 w-full max-w-md rounded-[2.5rem] p-6 relative shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] overflow-y-auto max-h-[92vh] no-scrollbar transform transition-transform border border-white dark:border-pink-800">
+            <button type="button" onclick="toggleModalKasir(false)" class="absolute right-5 top-5 w-8 h-8 bg-pink-50 dark:bg-pink-800 rounded-full flex items-center justify-center text-pink-400 dark:text-pink-500 hover:bg-rose-50 hover:text-rose-500 dark:hover:bg-rose-900/30 transition-colors duration-300"><i class="fas fa-times text-xs"></i></button>
+            <div class="flex items-center gap-3.5 mb-6 border-b border-pink-100 dark:border-pink-800 pb-4">
+                <div class="w-10 h-10 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-xl flex items-center justify-center shadow-inner border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-file-signature text-sm"></i></div>
                 <div>
-                    <h2 class="text-lg font-black tracking-tight text-slate-800 dark:text-white leading-none">Formulir Data</h2>
-                    <p id="modalSubtitle" class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1.5">Input Kasir Baru</p>
+                    <h2 class="text-lg font-black tracking-tight text-pink-800 dark:text-white leading-none">Formulir Data</h2>
+                    <p id="modalSubtitle" class="text-[9px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest mt-1.5">Input Kasir Baru</p>
                 </div>
             </div>
             
             <div class="space-y-4">
                 
                 <div id="wrapJenisTrx" class="mb-2">
-                    <label class="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1.5 block mb-1">Jenis Transaksi</label>
-                    <select id="jenisTrxKasir" onchange="toggleJenisTrx()" class="w-full p-3 bg-slate-50/80 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl font-bold text-[11px] outline-none text-slate-700 dark:text-slate-200 focus:border-brand-500 transition-all shadow-sm cursor-pointer">
+                    <label class="text-[9px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest ml-1.5 block mb-1">Jenis Transaksi</label>
+                    <select id="jenisTrxKasir" onchange="toggleJenisTrx()" class="w-full p-3 bg-pink-50/80 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-2xl font-bold text-[11px] outline-none text-pink-700 dark:text-pink-200 focus:border-pink-500 transition-all shadow-sm cursor-pointer">
                         <option value="Pemasukan">🟢 Pemasukan / Penjualan</option>
                         <option value="Pengeluaran">🔴 Pengeluaran / Pakai Saldo</option>
                     </select>
                 </div>
 
                 <div class="space-y-2">
-                    <label class="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1.5 block">Detail Trx & Pelanggan</label>
+                    <label class="text-[9px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest ml-1.5 block">Detail Trx & Pelanggan</label>
                     <div class="flex gap-2.5">
-                        <select id="ket" class="flex-1 p-3 bg-slate-50/80 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl font-bold text-xs outline-none text-slate-700 dark:text-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 focus:bg-white dark:focus:bg-slate-800 transition-all shadow-sm cursor-pointer"></select>
-                        <button type="button" id="btnTambahKat" onclick="tambahKategoriPrompt()" class="w-12 bg-slate-800 dark:bg-slate-700 text-white rounded-2xl hover:bg-slate-900 dark:hover:bg-slate-600 transition-all shadow-md flex items-center justify-center active:scale-95 hover:-translate-y-0.5"><i class="fas fa-plus text-[10px]"></i></button>
+                        <select id="ket" class="flex-1 p-3 bg-pink-50/80 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-2xl font-bold text-xs outline-none text-pink-700 dark:text-pink-200 focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:bg-white dark:focus:bg-pink-800 transition-all shadow-sm cursor-pointer"></select>
+                        <button type="button" id="btnTambahKat" onclick="tambahKategoriPrompt()" class="w-12 bg-pink-800 dark:bg-pink-700 text-white rounded-2xl hover:bg-pink-900 dark:hover:bg-pink-600 transition-all shadow-md flex items-center justify-center active:scale-95 hover:-translate-y-0.5"><i class="fas fa-plus text-[10px]"></i></button>
                     </div>
-                    <input type="text" id="nama" oninput="formatNamaInput(event)" placeholder="Keterangan / Detail..." class="w-full p-3.5 bg-slate-50/80 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl outline-none text-xs font-bold text-slate-800 dark:text-white focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 focus:bg-white dark:focus:bg-slate-800 transition-all shadow-sm">
+                    <input type="text" id="nama" oninput="formatNamaInput(event)" placeholder="Keterangan / Detail..." class="w-full p-3.5 bg-pink-50/80 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-2xl outline-none text-xs font-bold text-pink-800 dark:text-white focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:bg-white dark:focus:bg-pink-800 transition-all shadow-sm">
                 </div>
 
-                <div class="p-4 bg-slate-50/50 dark:bg-slate-800/50 rounded-[1.5rem] border border-slate-100 dark:border-slate-700/50 shadow-sm relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-16 h-16 bg-white dark:bg-slate-800 rounded-bl-full opacity-50 pointer-events-none"></div>
-                    <label id="labelNominal" class="text-[9px] font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1 mb-2.5 block relative z-10">Nominal Keuangan (Modal & Jual)</label>
+                <div class="p-4 bg-pink-50/50 dark:bg-pink-800/50 rounded-[1.5rem] border border-pink-100 dark:border-pink-700/50 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-white dark:bg-pink-800 rounded-bl-full opacity-50 pointer-events-none"></div>
+                    <label id="labelNominal" class="text-[9px] font-extrabold text-pink-500 dark:text-pink-400 uppercase tracking-widest ml-1 mb-2.5 block relative z-10">Nominal Keuangan (Modal & Jual)</label>
                     <div id="gridNominal" class="grid grid-cols-2 gap-3 relative z-10">
                         <div id="wrapVal1" class="relative group">
-                            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 text-[10px] font-black group-focus-within:text-brand-500 transition-colors">Rp</span>
-                            <input type="text" inputmode="numeric" oninput="formatUangInput(event)" id="val1" placeholder="Modal" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl outline-none text-xs font-black text-slate-700 dark:text-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all shadow-sm">
+                            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-400 dark:text-pink-500 text-[10px] font-black group-focus-within:text-pink-500 transition-colors">Rp</span>
+                            <input type="text" inputmode="numeric" oninput="formatUangInput(event)" id="val1" placeholder="Modal" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-pink-900 border border-pink-200 dark:border-pink-700 rounded-xl outline-none text-xs font-black text-pink-700 dark:text-pink-200 focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 transition-all shadow-sm">
                         </div>
                         <div id="wrapVal2" class="relative group">
-                            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-500 dark:text-emerald-500/80 text-[10px] font-black group-focus-within:text-emerald-600 transition-colors">Rp</span>
-                            <input type="text" inputmode="numeric" oninput="formatUangInput(event)" id="val2" placeholder="Harga Jual" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-900/50 rounded-xl outline-none text-xs font-black text-emerald-600 dark:text-emerald-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition-all shadow-sm">
+                            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-500 dark:text-pink-500/80 text-[10px] font-black group-focus-within:text-pink-600 transition-colors">Rp</span>
+                            <input type="text" inputmode="numeric" oninput="formatUangInput(event)" id="val2" placeholder="Harga Jual" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-pink-900 border border-pink-200 dark:border-pink-900/50 rounded-xl outline-none text-xs font-black text-pink-600 dark:text-pink-400 focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 transition-all shadow-sm">
                         </div>
                     </div>
                 </div>
 
                 <div id="kasirExtraFields" class="grid grid-cols-2 gap-3">
                     <div>
-                        <label id="labelSumberModal" class="text-[8px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1.5 mb-1.5 block">Potong Modal Dari</label>
-                        <select id="sumberModal" class="w-full p-3 bg-slate-50/80 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-bold text-[10px] outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 focus:bg-white dark:focus:bg-slate-800 transition-all shadow-sm cursor-pointer dark:text-slate-200">
+                        <label id="labelSumberModal" class="text-[8px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest ml-1.5 mb-1.5 block">Potong Modal Dari</label>
+                        <select id="sumberModal" class="w-full p-3 bg-pink-50/80 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-xl font-bold text-[10px] outline-none focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:bg-white dark:focus:bg-pink-800 transition-all shadow-sm cursor-pointer dark:text-pink-200">
                             <option value="Bank">💳 Saldo Bank</option>
                             <option value="Tunai">💵 Uang Cash</option>
                         </select>
                     </div>
                     <div id="wrapMetodeBayar">
-                        <label class="text-[8px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1.5 mb-1.5 block">Pembayaran Ke</label>
-                        <select id="metodeBayar" class="w-full p-3 bg-slate-50/80 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-bold text-[10px] outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 focus:bg-white dark:focus:bg-slate-800 transition-all shadow-sm cursor-pointer dark:text-slate-200">
+                        <label class="text-[8px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest ml-1.5 mb-1.5 block">Pembayaran Ke</label>
+                        <select id="metodeBayar" class="w-full p-3 bg-pink-50/80 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-xl font-bold text-[10px] outline-none focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:bg-white dark:focus:bg-pink-800 transition-all shadow-sm cursor-pointer dark:text-pink-200">
                             <option value="Tunai">💵 Uang Cash</option>
                             <option value="Transfer">📱 Transfer Bank</option>
                         </select>
                     </div>
                     <div class="col-span-2" id="wrapStatusTrx">
-                        <select id="statusTrx" class="w-full p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-black text-[10px] outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all text-center text-slate-700 dark:text-slate-200 shadow-sm mt-1 cursor-pointer">
+                        <select id="statusTrx" class="w-full p-3 bg-white dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-xl font-black text-[10px] outline-none focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 transition-all text-center text-pink-700 dark:text-pink-200 shadow-sm mt-1 cursor-pointer">
                             <option value="Sukses">✅ STATUS: LUNAS (UANG DITERIMA)</option>
                             <option value="Pending">⏳ STATUS: PENDING (BELUM BAYAR)</option>
                         </select>
@@ -552,57 +565,57 @@
                     </div>
                 </div>
 
-                <button type="button" id="btnSimpan" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-4 rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(99,102,241,0.6)] transition-all duration-300 active:scale-95 hover:-translate-y-0.5 mt-2">Catat ke Jurnal Data</button>
+                <button type="button" id="btnSimpan" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-4 rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(99,102,241,0.6)] transition-all duration-300 active:scale-95 hover:-translate-y-0.5 mt-2">Catat ke Jurnal Data</button>
             </div>
         </div>
     </div>
 
-    <div id="modalCicilan" class="fixed inset-0 bg-slate-900/40 dark:bg-slate-900/80 backdrop-blur-md z-[200] items-end md:items-center justify-center p-2 md:p-4 transition-opacity duration-300">
-        <div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-[2.5rem] p-6 relative shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] flex flex-col max-h-[92vh] border border-white dark:border-slate-800">
-            <button type="button" onclick="closeModalCicilan()" class="absolute right-5 top-5 w-8 h-8 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-rose-50 hover:text-rose-500 dark:hover:bg-rose-900/30 transition-colors duration-300"><i class="fas fa-times text-sm"></i></button>
+    <div id="modalCicilan" class="fixed inset-0 bg-pink-900/40 dark:bg-pink-900/80 backdrop-blur-md z-[200] items-end md:items-center justify-center p-2 md:p-4 transition-opacity duration-300">
+        <div class="bg-white dark:bg-pink-900 w-full max-w-md rounded-[2.5rem] p-6 relative shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] flex flex-col max-h-[92vh] border border-white dark:border-pink-800">
+            <button type="button" onclick="closeModalCicilan()" class="absolute right-5 top-5 w-8 h-8 bg-pink-50 dark:bg-pink-800 rounded-full flex items-center justify-center text-pink-400 dark:text-pink-500 hover:bg-rose-50 hover:text-rose-500 dark:hover:bg-rose-900/30 transition-colors duration-300"><i class="fas fa-times text-sm"></i></button>
             
-            <div class="mb-5 border-b border-slate-100 dark:border-slate-800 pb-4">
-                <p id="mcKet" class="text-[9px] font-bold text-brand-500 uppercase tracking-widest mb-1.5 bg-brand-50/80 dark:bg-brand-900/30 w-fit px-2.5 py-1 rounded-lg border border-brand-100/50 dark:border-brand-800/50">Kategori</p>
-                <h2 id="mcNama" class="text-xl font-black tracking-tight text-slate-800 dark:text-white pr-8 truncate leading-none mt-1">Nama Pelanggan</h2>
+            <div class="mb-5 border-b border-pink-100 dark:border-pink-800 pb-4">
+                <p id="mcKet" class="text-[9px] font-bold text-pink-500 uppercase tracking-widest mb-1.5 bg-pink-50/80 dark:bg-pink-900/30 w-fit px-2.5 py-1 rounded-lg border border-pink-100/50 dark:border-pink-800/50">Kategori</p>
+                <h2 id="mcNama" class="text-xl font-black tracking-tight text-pink-800 dark:text-white pr-8 truncate leading-none mt-1">Nama Pelanggan</h2>
             </div>
 
-            <div class="bg-slate-50/80 dark:bg-slate-800/80 p-4 rounded-[1.5rem] border border-slate-100 dark:border-slate-700 mb-5 grid grid-cols-2 gap-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.01)] relative overflow-hidden">
-                <div class="absolute right-0 top-0 w-20 h-20 bg-white/60 dark:bg-slate-700/60 rounded-bl-full pointer-events-none"></div>
+            <div class="bg-pink-50/80 dark:bg-pink-800/80 p-4 rounded-[1.5rem] border border-pink-100 dark:border-pink-700 mb-5 grid grid-cols-2 gap-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.01)] relative overflow-hidden">
+                <div class="absolute right-0 top-0 w-20 h-20 bg-white/60 dark:bg-pink-700/60 rounded-bl-full pointer-events-none"></div>
                 <div class="relative z-10">
-                    <p class="text-[8px] text-slate-400 dark:text-slate-500 uppercase font-extrabold tracking-widest mb-1">Total Tagihan</p>
-                    <p id="mcTotalTagihan" class="text-sm font-black text-slate-800 dark:text-slate-200">Rp 0</p>
+                    <p class="text-[8px] text-pink-400 dark:text-pink-500 uppercase font-extrabold tracking-widest mb-1">Total Tagihan</p>
+                    <p id="mcTotalTagihan" class="text-sm font-black text-pink-800 dark:text-pink-200">Rp 0</p>
                 </div>
                 <div class="text-right relative z-10">
-                    <p class="text-[8px] text-slate-400 dark:text-slate-500 uppercase font-extrabold tracking-widest mb-1">Total Dibayar</p>
-                    <p id="mcTotalDibayar" class="text-sm font-black text-emerald-500">Rp 0</p>
+                    <p class="text-[8px] text-pink-400 dark:text-pink-500 uppercase font-extrabold tracking-widest mb-1">Total Dibayar</p>
+                    <p id="mcTotalDibayar" class="text-sm font-black text-pink-500">Rp 0</p>
                 </div>
-                <div class="col-span-2 mt-1.5 pt-3 border-t border-slate-200/60 dark:border-slate-700/60 flex justify-between items-center relative z-10">
+                <div class="col-span-2 mt-1.5 pt-3 border-t border-pink-200/60 dark:border-pink-700/60 flex justify-between items-center relative z-10">
                     <p class="text-[8px] text-rose-500 uppercase font-extrabold tracking-widest bg-rose-50/80 dark:bg-rose-900/30 px-2.5 py-1 rounded-lg border border-rose-100 dark:border-rose-800/50">Sisa Hutang</p>
                     <p id="mcSisa" class="text-lg font-black text-rose-600 dark:text-rose-400 tracking-tight">Rp 0</p>
                 </div>
             </div>
 
             <div class="flex-1 overflow-y-auto no-scrollbar min-h-[140px] mb-4">
-                <p class="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3 sticky top-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md py-1.5 z-10 border-b border-slate-100 dark:border-slate-800">Riwayat Pembayaran</p>
+                <p class="text-[9px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest mb-3 sticky top-0 bg-white/95 dark:bg-pink-900/95 backdrop-blur-md py-1.5 z-10 border-b border-pink-100 dark:border-pink-800">Riwayat Pembayaran</p>
                 <div id="mcListHistory" class="space-y-2.5"></div>
             </div>
 
-            <div id="mcFormArea" class="pt-4 border-t border-slate-100 dark:border-slate-800">
-                <label class="text-[9px] font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 block ml-1.5">Terima Uang Ke</label>
+            <div id="mcFormArea" class="pt-4 border-t border-pink-100 dark:border-pink-800">
+                <label class="text-[9px] font-extrabold text-pink-500 dark:text-pink-400 uppercase tracking-widest mb-2 block ml-1.5">Terima Uang Ke</label>
                 <div class="flex gap-2 mb-3">
-                    <select id="mcMasukKe" class="w-[35%] p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl font-bold text-[10px] outline-none focus:border-brand-500 dark:text-white transition-all shadow-sm">
+                    <select id="mcMasukKe" class="w-[35%] p-3 bg-pink-50 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-2xl font-bold text-[10px] outline-none focus:border-pink-500 dark:text-white transition-all shadow-sm">
                         <option value="Bank">💳 Bank</option>
                         <option value="Cash">💵 Cash</option>
                     </select>
                     <div class="relative flex-1 group">
-                        <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 text-[10px] font-black group-focus-within:text-brand-500 transition-colors">Rp</span>
-                        <input type="text" inputmode="numeric" oninput="formatUangInput(event)" id="mcNominalInput" placeholder="Ketik Nominal..." class="w-full pl-9 pr-3 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl outline-none text-xs font-black dark:text-white focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 focus:bg-white dark:focus:bg-slate-700 transition-all shadow-sm">
+                        <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-400 dark:text-pink-500 text-[10px] font-black group-focus-within:text-pink-500 transition-colors">Rp</span>
+                        <input type="text" inputmode="numeric" oninput="formatUangInput(event)" id="mcNominalInput" placeholder="Ketik Nominal..." class="w-full pl-9 pr-3 py-3 bg-pink-50 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-2xl outline-none text-xs font-black dark:text-white focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:bg-white dark:focus:bg-pink-700 transition-all shadow-sm">
                     </div>
                 </div>
-                <button type="button" onclick="simpanCicilan()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(16,185,129,0.5)] transition-all duration-300 active:scale-95 hover:-translate-y-0.5">Konfirmasi Terima Uang</button>
+                <button type="button" onclick="simpanCicilan()" class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3.5 rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(16,185,129,0.5)] transition-all duration-300 active:scale-95 hover:-translate-y-0.5">Konfirmasi Terima Uang</button>
             </div>
-            <div id="mcLunasArea" class="hidden pt-4 border-t border-slate-100 dark:border-slate-800 text-center">
-                <div class="inline-flex items-center justify-center px-6 py-3 bg-emerald-50/80 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-sm border border-emerald-100/50 dark:border-emerald-800/50">
+            <div id="mcLunasArea" class="hidden pt-4 border-t border-pink-100 dark:border-pink-800 text-center">
+                <div class="inline-flex items-center justify-center px-6 py-3 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-sm border border-pink-100/50 dark:border-pink-800/50">
                     <i class="fas fa-check-circle mr-2 text-sm"></i> Lunas Sepenuhnya
                 </div>
             </div>
@@ -654,7 +667,7 @@
         const Toast = Swal.mixin({
             toast: true, position: 'top', showConfirmButton: false, timer: 2500,
             timerProgressBar: true, background: 'rgba(255, 255, 255, 0.95)', color: '#1e293b',
-            customClass: { popup: '!rounded-full !shadow-[0_15px_40px_-10px_rgba(0,0,0,0.1)] !backdrop-blur-xl border border-slate-200 !px-5 !py-3 mt-4' },
+            customClass: { popup: '!rounded-full !shadow-[0_15px_40px_-10px_rgba(0,0,0,0.1)] !backdrop-blur-xl border border-pink-200 !px-5 !py-3 mt-4' },
             didOpen: (toast) => { toast.addEventListener('mouseenter', Swal.stopTimer); toast.addEventListener('mouseleave', Swal.resumeTimer); }
         });
         
@@ -665,11 +678,11 @@
                 confirmButtonText: confirmBtnText, cancelButtonText: '<span style="color:#64748b; font-weight:700;">Batal</span>',
                 reverseButtons: true,
                 customClass: { 
-                    popup: '!rounded-[2.5rem] !shadow-2xl border border-slate-100 !pb-6 !pt-8 dark:!bg-slate-900 dark:border-slate-800',
-                    title: '!text-xl !font-black !text-slate-800 dark:!text-white !mt-2',
-                    htmlContainer: '!text-xs !font-medium !text-slate-500 dark:!text-slate-400 !leading-relaxed',
+                    popup: '!rounded-[2.5rem] !shadow-2xl border border-pink-100 !pb-6 !pt-8 dark:!bg-pink-900 dark:border-pink-800',
+                    title: '!text-xl !font-black !text-pink-800 dark:!text-white !mt-2',
+                    htmlContainer: '!text-xs !font-medium !text-pink-500 dark:!text-pink-400 !leading-relaxed',
                     confirmButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !tracking-wider !text-[11px] !uppercase !shadow-lg hover:!scale-105 transition-transform duration-300',
-                    cancelButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !tracking-wider !text-[11px] !uppercase border border-slate-200 dark:border-slate-700 dark:!bg-slate-800 hover:!bg-slate-100 transition-colors'
+                    cancelButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !tracking-wider !text-[11px] !uppercase border border-pink-200 dark:border-pink-700 dark:!bg-pink-800 hover:!bg-pink-100 transition-colors'
                 }
             });
         };
@@ -694,7 +707,7 @@
             if(hour >= 5 && hour < 11) { 
                 greet = 'Selamat Pagi,'; 
                 // Pagi: Latar Biru Cerah + Matahari berputar perlahan
-                widgetClass = 'bg-gradient-to-br from-sky-400 to-blue-500 shadow-blue-500/30';
+                widgetClass = 'bg-gradient-to-br from-sky-400 to-pink-500 shadow-pink-500/30';
                 iconHtml = '<i class="fas fa-sun text-yellow-200 text-2xl animate-spin-slow"></i>';
             } 
             else if(hour >= 11 && hour < 15) { 
@@ -706,14 +719,14 @@
             else if(hour >= 15 && hour < 18) { 
                 greet = 'Selamat Sore,'; 
                 // Sore: Latar Ungu Senja + Awan dan Matahari terapung
-                widgetClass = 'bg-gradient-to-br from-indigo-400 to-purple-500 shadow-indigo-500/30';
+                widgetClass = 'bg-gradient-to-br from-pink-400 to-pink-500 shadow-pink-500/30';
                 iconHtml = '<i class="fas fa-cloud-sun text-orange-200 text-xl animate-float"></i>';
             } 
             else { 
                 greet = 'Selamat Malam,'; 
                 // Malam: Latar Gelap + Bulan bergoyang (Wiggle)
-                widgetClass = 'bg-gradient-to-br from-slate-800 to-slate-900 shadow-slate-900/50';
-                iconHtml = '<i class="fas fa-moon text-blue-100 text-xl animate-wiggle"></i>';
+                widgetClass = 'bg-gradient-to-br from-pink-800 to-pink-900 shadow-pink-900/50';
+                iconHtml = '<i class="fas fa-moon text-pink-100 text-xl animate-wiggle"></i>';
             }
 
             document.getElementById('greetingText').innerText = greet;
@@ -780,9 +793,19 @@
         const formatTgl = (d) => { return new Date(d).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) + " " + new Date(d).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }); };
 
         let searchTimeout;
+        let historyShowAll = false;
+        const HISTORY_LIMIT = 15;
+        window.toggleHistoryAll = () => {
+            historyShowAll = !historyShowAll;
+            renderRiwayat();
+        };
+        const resetHistoryView = () => {
+            historyShowAll = false;
+            renderRiwayat();
+        };
         window.debounceSearch = () => {
             clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => { renderRiwayat(); }, 300); 
+            searchTimeout = setTimeout(() => { historyShowAll = false; renderRiwayat(); }, 300); 
         };
 
         window.toggleJenisTrx = () => {
@@ -833,8 +856,8 @@
         window.showPage = (p) => {
             document.querySelectorAll('.page-content').forEach(el => el.classList.remove('active-page'));
             document.getElementById('page' + p).classList.add('active-page');
-            document.getElementById('navDashboard').className = p === 'Dashboard' ? 'flex-1 py-2.5 flex flex-col items-center text-brand-600 dark:text-brand-400 transition-colors duration-300 group' : 'flex-1 py-2.5 flex flex-col items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors duration-300 group';
-            document.getElementById('navRiwayat').className = p === 'Riwayat' ? 'flex-1 py-2.5 flex flex-col items-center text-brand-600 dark:text-brand-400 transition-colors duration-300 group' : 'flex-1 py-2.5 flex flex-col items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors duration-300 group';
+            document.getElementById('navDashboard').className = p === 'Dashboard' ? 'flex-1 py-2.5 flex flex-col items-center text-pink-600 dark:text-pink-400 transition-colors duration-300 group' : 'flex-1 py-2.5 flex flex-col items-center text-pink-400 hover:text-pink-600 dark:hover:text-pink-300 transition-colors duration-300 group';
+            document.getElementById('navRiwayat').className = p === 'Riwayat' ? 'flex-1 py-2.5 flex flex-col items-center text-pink-600 dark:text-pink-400 transition-colors duration-300 group' : 'flex-1 py-2.5 flex flex-col items-center text-pink-400 hover:text-pink-600 dark:hover:text-pink-300 transition-colors duration-300 group';
             if (p === 'Settings') loadKategori();
         };
 
@@ -856,10 +879,10 @@
 
             if(isKasir) {
                 badge.innerText = "Fokus: KASIR";
-                badge.className = "inline-block px-3 py-1.5 bg-brand-500/90 backdrop-blur-md border border-brand-400/50 text-white rounded-lg text-[8px] font-extrabold uppercase tracking-widest shadow-sm transition-all duration-300";
+                badge.className = "inline-block px-3 py-1.5 bg-pink-500/90 backdrop-blur-md border border-pink-400/50 text-white rounded-lg text-[8px] font-extrabold uppercase tracking-widest shadow-sm transition-all duration-300";
                 
-                tabKasir.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-white dark:bg-slate-700 text-brand-600 dark:text-brand-400";
-                tabTagihan.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white";
+                tabKasir.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-white dark:bg-pink-700 text-pink-600 dark:text-pink-400";
+                tabTagihan.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-pink-500 dark:text-pink-400 hover:text-pink-800 dark:hover:text-white";
                 
                 btnSub.innerText = "Input Kasir Baru";
                 labelNominal.innerText = "Nominal Keuangan (Modal & Jual)";
@@ -868,13 +891,13 @@
                 inputVal2.placeholder = "Harga Jual";
                 btnTambahKat.classList.add('hidden'); 
                 if(btnSettingsTambahKat) btnSettingsTambahKat.classList.add('hidden');
-                if(settingModeKatLabel) { settingModeKatLabel.innerText = "Kasir"; settingModeKatLabel.className = "text-brand-500 font-black"; }
+                if(settingModeKatLabel) { settingModeKatLabel.innerText = "Kasir"; settingModeKatLabel.className = "text-pink-500 font-black"; }
             } else {
                 badge.innerText = "Fokus: PIUTANG";
                 badge.className = "inline-block px-3 py-1.5 bg-rose-500/90 backdrop-blur-md border border-rose-400/50 text-white rounded-lg text-[8px] font-extrabold uppercase tracking-widest shadow-sm transition-all duration-300";
                 
                 tabTagihan.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-rose-500 text-white";
-                tabKasir.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white";
+                tabKasir.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-pink-500 dark:text-pink-400 hover:text-pink-800 dark:hover:text-white";
 
                 btnSub.innerText = "Input Tagihan/Hutang Baru";
                 labelNominal.innerText = "Total Tagihan Piutang";
@@ -899,14 +922,13 @@
             
             const fIcon = document.getElementById('filterIconState');
             const sIcon = document.getElementById('sortIconState');
-            if(fIcon) fIcon.className = "fas fa-filter text-slate-500 dark:text-slate-400 text-[10px]";
-            if(sIcon) sIcon.className = "fas fa-sort-amount-down text-slate-500 dark:text-slate-400 text-[10px]";
+            if(fIcon) fIcon.className = "fas fa-filter text-pink-500 dark:text-pink-400 text-[10px]";
+            if(sIcon) sIcon.className = "fas fa-sort-amount-down text-pink-500 dark:text-pink-400 text-[10px]";
             
             loadKategori();
             renderRiwayat();
         };
 
-        window.toggleMenuTambahan = (s) => document.getElementById('modalMenuTambahan').style.display = s ? 'flex' : 'none';
         window.toggleModalKasir = (s) => {
             if (s) window.resetFormInput();
             document.getElementById('modalKasir').classList.toggle('active-modal', s);
@@ -915,8 +937,8 @@
 
         window.setAnalysisTime = (r) => {
             analysisRange = r;
-            document.querySelectorAll('#pageDashboard .bg-slate-100\\/80 button').forEach(b => {
-                b.className = 'px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-slate-500 hover:text-slate-700 dark:hover:text-white dark:hover:bg-slate-700/50';
+            document.querySelectorAll('#pageDashboard .bg-pink-100\\/80 button').forEach(b => {
+                b.className = 'px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-pink-500 hover:text-pink-700 dark:hover:text-white dark:hover:bg-pink-700/50';
             });
             const activeId = 'tab' + r.charAt(0).toUpperCase() + r.slice(1);
             if(document.getElementById(activeId)) document.getElementById(activeId).className = 'px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 tab-active';
@@ -928,14 +950,14 @@
             const { value: formValues } = await Swal.fire({
                 title: 'Tambah Kategori',
                 html: `
-                    <input id="swal-input-icon" class="swal2-input !w-16 !text-center !text-3xl !p-2 !mx-auto !block focus:!ring-4 focus:!ring-brand-500/10 focus:!border-brand-500 transition-all !rounded-2xl dark:!bg-slate-800 dark:!text-white dark:!border-slate-700" placeholder="📌" maxlength="2" value="📌">
-                    <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mt-1.5 mb-4">Pilih 1 Emoji</p>
-                    <input id="swal-input-nama" class="swal2-input !w-[85%] !text-center font-black text-slate-700 text-sm focus:!ring-4 focus:!ring-brand-500/10 focus:!border-brand-500 transition-all !rounded-2xl dark:!bg-slate-800 dark:!text-white dark:!border-slate-700" placeholder="Nama Kategori (Cth: Pinjaman)">
+                    <input id="swal-input-icon" class="swal2-input !w-16 !text-center !text-3xl !p-2 !mx-auto !block focus:!ring-4 focus:!ring-pink-500/10 focus:!border-pink-500 transition-all !rounded-2xl dark:!bg-pink-800 dark:!text-white dark:!border-pink-700" placeholder="📌" maxlength="2" value="📌">
+                    <p class="text-[9px] font-bold uppercase tracking-widest text-pink-400 mt-1.5 mb-4">Pilih 1 Emoji</p>
+                    <input id="swal-input-nama" class="swal2-input !w-[85%] !text-center font-black text-pink-700 text-sm focus:!ring-4 focus:!ring-pink-500/10 focus:!border-pink-500 transition-all !rounded-2xl dark:!bg-pink-800 dark:!text-white dark:!border-pink-700" placeholder="Nama Kategori (Cth: Pinjaman)">
                 `,
                 focusConfirm: false,
                 showCancelButton: true, confirmButtonText: 'Simpan', cancelButtonText: '<span style="color:#64748b; font-weight:700;">Batal</span>',
                 confirmButtonColor: '#e11d48', cancelButtonColor: '#f1f5f9', reverseButtons: true,
-                customClass: { popup: '!rounded-[2.5rem] !pt-8 dark:!bg-slate-900', confirmButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase !shadow-lg', cancelButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase border border-slate-200 dark:border-slate-700 dark:!bg-slate-800' },
+                customClass: { popup: '!rounded-[2.5rem] !pt-8 dark:!bg-pink-900', confirmButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase !shadow-lg', cancelButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase border border-pink-200 dark:border-pink-700 dark:!bg-pink-800' },
                 preConfirm: () => { return { icon: document.getElementById('swal-input-icon').value || '📌', nama: document.getElementById('swal-input-nama').value } }
             });
 
@@ -952,14 +974,14 @@
             const result = await Swal.fire({
                 title: 'Edit Kategori',
                 html: `
-                    <input id="swal-edit-icon" class="swal2-input !w-16 !text-center !text-3xl !p-2 !mx-auto !block focus:!ring-4 focus:!ring-brand-500/10 focus:!border-brand-500 transition-all !rounded-2xl dark:!bg-slate-800 dark:!text-white dark:!border-slate-700" placeholder="📌" maxlength="2" value="${oldIcon}">
-                    <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mt-1.5 mb-4">Ubah Emoji</p>
-                    <input id="swal-edit-nama" class="swal2-input !w-[85%] !text-center font-black text-slate-700 text-sm focus:!ring-4 focus:!ring-brand-500/10 focus:!border-brand-500 transition-all !rounded-2xl dark:!bg-slate-800 dark:!text-white dark:!border-slate-700" placeholder="Nama Kategori" value="${oldNama}">
+                    <input id="swal-edit-icon" class="swal2-input !w-16 !text-center !text-3xl !p-2 !mx-auto !block focus:!ring-4 focus:!ring-pink-500/10 focus:!border-pink-500 transition-all !rounded-2xl dark:!bg-pink-800 dark:!text-white dark:!border-pink-700" placeholder="📌" maxlength="2" value="${oldIcon}">
+                    <p class="text-[9px] font-bold uppercase tracking-widest text-pink-400 mt-1.5 mb-4">Ubah Emoji</p>
+                    <input id="swal-edit-nama" class="swal2-input !w-[85%] !text-center font-black text-pink-700 text-sm focus:!ring-4 focus:!ring-pink-500/10 focus:!border-pink-500 transition-all !rounded-2xl dark:!bg-pink-800 dark:!text-white dark:!border-pink-700" placeholder="Nama Kategori" value="${oldNama}">
                 `,
                 showCancelButton: true, showDenyButton: true,
                 confirmButtonText: 'Update', denyButtonText: 'Hapus', cancelButtonText: '<span style="color:#64748b; font-weight:700;">Batal</span>',
                 confirmButtonColor: '#e11d48', denyButtonColor: '#ef4444', cancelButtonColor: '#f1f5f9', reverseButtons: true,
-                customClass: { popup: '!rounded-[2.5rem] !pt-8 dark:!bg-slate-900', confirmButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[10px] !uppercase !shadow-md', denyButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[10px] !uppercase !shadow-md', cancelButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[10px] !uppercase border border-slate-200 dark:border-slate-700 dark:!bg-slate-800' },
+                customClass: { popup: '!rounded-[2.5rem] !pt-8 dark:!bg-pink-900', confirmButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[10px] !uppercase !shadow-md', denyButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[10px] !uppercase !shadow-md', cancelButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[10px] !uppercase border border-pink-200 dark:border-pink-700 dark:!bg-pink-800' },
                 preConfirm: () => { return { icon: document.getElementById('swal-edit-icon').value || '📌', nama: document.getElementById('swal-edit-nama').value } }
             });
 
@@ -978,16 +1000,16 @@
         window.setFilterKat = (k) => { 
             filterKategoriActive = k; 
             const icon = document.getElementById('filterIconState');
-            if(k === 'Semua') icon.className = "fas fa-filter text-slate-500 dark:text-slate-400 text-[10px]";
-            else icon.className = "fas fa-filter text-brand-500 text-[10px]";
+            if(k === 'Semua') icon.className = "fas fa-filter text-pink-500 dark:text-pink-400 text-[10px]";
+            else icon.className = "fas fa-filter text-pink-500 text-[10px]";
             renderRiwayat(); 
         };
         
         window.setSort = (val) => { 
             currentSort = val; 
             const icon = document.getElementById('sortIconState');
-            if(val === 'terbaru') icon.className = "fas fa-sort-amount-down text-slate-500 dark:text-slate-400 text-[10px]";
-            else icon.className = "fas fa-sort-amount-down text-brand-500 text-[10px]";
+            if(val === 'terbaru') icon.className = "fas fa-sort-amount-down text-pink-500 dark:text-pink-400 text-[10px]";
+            else icon.className = "fas fa-sort-amount-down text-pink-500 text-[10px]";
             renderRiwayat(); 
         };
 
@@ -1014,9 +1036,9 @@
                     selHtml += `<option value="${combined}">${combined}</option>`;
                     filDropdownHtml += `<option value="${combined}">${combined}</option>`;
                     listSettingsHtml += `
-                        <div class="flex items-center gap-3 p-3 bg-slate-50/50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-2xl opacity-70 cursor-not-allowed">
+                        <div class="flex items-center gap-3 p-3 bg-pink-50/50 dark:bg-pink-800/50 border border-pink-100 dark:border-pink-700 rounded-2xl opacity-70 cursor-not-allowed">
                             <span class="text-base">${k.icon}</span>
-                            <span class="text-[10px] font-extrabold text-slate-500 dark:text-slate-400 truncate">${k.nama}</span>
+                            <span class="text-[10px] font-extrabold text-pink-500 dark:text-pink-400 truncate">${k.nama}</span>
                         </div>`;
                 });
                 
@@ -1042,9 +1064,9 @@
                         filDropdownHtml += `<option value="${combined}">${combined}</option>`;
                         
                         listSettingsHtml += `
-                            <div onclick="editKategori('${d.id}', '${data.nama}', '${icon}')" class="flex items-center gap-3 p-3 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl cursor-pointer hover:border-rose-300 dark:hover:border-rose-500 hover:shadow-md transition-all duration-300 group">
+                            <div onclick="editKategori('${d.id}', '${data.nama}', '${icon}')" class="flex items-center gap-3 p-3 bg-white dark:bg-pink-800 border border-pink-100 dark:border-pink-700 rounded-2xl cursor-pointer hover:border-rose-300 dark:hover:border-rose-500 hover:shadow-md transition-all duration-300 group">
                                 <span class="text-base group-hover:scale-110 transition-transform">${icon}</span>
-                                <span class="text-[10px] font-extrabold text-slate-700 dark:text-slate-200 truncate">${data.nama}</span>
+                                <span class="text-[10px] font-extrabold text-pink-700 dark:text-pink-200 truncate">${data.nama}</span>
                             </div>`;
                     });
                     
@@ -1075,26 +1097,26 @@
             const { value: formValues } = await Swal.fire({
                 title: 'Sesuaikan Saldo',
                 html: `
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mt-0 mb-5">Atur Saldo Bank & Uang Fisik</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-pink-400 mt-0 mb-5">Atur Saldo Bank & Uang Fisik</p>
                     <div class="space-y-4 text-left">
                         <div>
-                            <label class="text-[9px] font-extrabold uppercase tracking-widest text-indigo-500 ml-1.5"><i class="fas fa-university mr-1"></i> Saldo Bank (Rp)</label>
+                            <label class="text-[9px] font-extrabold uppercase tracking-widest text-pink-500 ml-1.5"><i class="fas fa-university mr-1"></i> Saldo Bank (Rp)</label>
                             <div class="relative group mt-1.5">
-                                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-indigo-400 text-[10px] font-black group-focus-within:text-indigo-600 transition-colors">Rp</span>
-                                <input id="swal-modal-bank" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-indigo-50/50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 rounded-2xl outline-none text-sm font-black text-indigo-700 dark:text-indigo-400 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 transition-all shadow-sm" value="${b.toLocaleString('id-ID')}">
+                                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-400 text-[10px] font-black group-focus-within:text-pink-600 transition-colors">Rp</span>
+                                <input id="swal-modal-bank" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-pink-50/50 dark:bg-pink-900/30 border border-pink-100 dark:border-pink-800 rounded-2xl outline-none text-sm font-black text-pink-700 dark:text-pink-400 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 transition-all shadow-sm" value="${b.toLocaleString('id-ID')}">
                             </div>
                         </div>
                         <div>
-                            <label class="text-[9px] font-extrabold uppercase tracking-widest text-emerald-500 ml-1.5"><i class="fas fa-wallet mr-1"></i> Saldo Cash (Rp)</label>
+                            <label class="text-[9px] font-extrabold uppercase tracking-widest text-pink-500 ml-1.5"><i class="fas fa-wallet mr-1"></i> Saldo Cash (Rp)</label>
                             <div class="relative group mt-1.5">
-                                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-400 text-[10px] font-black group-focus-within:text-emerald-600 transition-colors">Rp</span>
-                                <input id="swal-modal-cash" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-emerald-50/50 dark:bg-emerald-900/30 border border-emerald-100 dark:border-emerald-800 rounded-2xl outline-none text-sm font-black text-emerald-700 dark:text-emerald-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/20 transition-all shadow-sm" value="${c.toLocaleString('id-ID')}">
+                                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-400 text-[10px] font-black group-focus-within:text-pink-600 transition-colors">Rp</span>
+                                <input id="swal-modal-cash" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-pink-50/50 dark:bg-pink-900/30 border border-pink-100 dark:border-pink-800 rounded-2xl outline-none text-sm font-black text-pink-700 dark:text-pink-400 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 transition-all shadow-sm" value="${c.toLocaleString('id-ID')}">
                             </div>
                         </div>
                     </div>
                 `,
                 showCancelButton: true, confirmButtonColor: '#4f46e5', cancelButtonColor: '#f1f5f9', confirmButtonText: 'Simpan Saldo', cancelButtonText: '<span style="color:#64748b; font-weight:700;">Batal</span>', reverseButtons: true,
-                customClass: { popup: '!rounded-[2.5rem] !pt-8 !pb-6 dark:!bg-slate-900', confirmButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase !shadow-lg', cancelButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase border border-slate-200 dark:border-slate-700 dark:!bg-slate-800' },
+                customClass: { popup: '!rounded-[2.5rem] !pt-8 !pb-6 dark:!bg-pink-900', confirmButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase !shadow-lg', cancelButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase border border-pink-200 dark:border-pink-700 dark:!bg-pink-800' },
                 preConfirm: () => {
                     return { bank: parseUang(document.getElementById('swal-modal-bank').value), cash: parseUang(document.getElementById('swal-modal-cash').value) }
                 }
@@ -1159,39 +1181,39 @@
                 html: `
                     <div class="text-left mt-3">
                         <div class="mb-4">
-                            <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Keterangan / Nama</label>
+                            <label class="block text-[10px] font-bold text-pink-500 dark:text-pink-400 uppercase tracking-widest mb-1.5 ml-1">Keterangan / Nama</label>
                             <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none"><i class="fas fa-file-signature text-slate-400 text-xs"></i></div>
-                                <input id="swal-edit-nama" class="w-full pl-9 pr-3 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-800 dark:text-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 transition-all outline-none shadow-sm" value="${data.nama}">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none"><i class="fas fa-file-signature text-pink-400 text-xs"></i></div>
+                                <input id="swal-edit-nama" class="w-full pl-9 pr-3 py-3 bg-pink-50 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-xl text-xs font-bold text-pink-800 dark:text-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none shadow-sm" value="${data.nama}">
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-3 mb-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Modal Dasar</label>
+                                <label class="block text-[10px] font-bold text-pink-500 dark:text-pink-400 uppercase tracking-widest mb-1.5 ml-1">Modal Dasar</label>
                                 <div class="relative">
-                                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] font-bold">Rp</span>
-                                    <input id="swal-edit-val1" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-black text-slate-700 dark:text-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 transition-all outline-none shadow-sm" value="${data.val1.toLocaleString('id-ID')}">
+                                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-400 text-[10px] font-bold">Rp</span>
+                                    <input id="swal-edit-val1" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-pink-900 border border-pink-200 dark:border-pink-700 rounded-xl text-xs font-black text-pink-700 dark:text-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none shadow-sm" value="${data.val1.toLocaleString('id-ID')}">
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Harga Jual</label>
+                                <label class="block text-[10px] font-bold text-pink-500 dark:text-pink-400 uppercase tracking-widest mb-1.5 ml-1">Harga Jual</label>
                                 <div class="relative">
-                                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-500 text-[10px] font-bold">Rp</span>
-                                    <input id="swal-edit-val2" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-900/50 rounded-xl text-xs font-black text-emerald-600 dark:text-emerald-400 focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all outline-none shadow-sm" value="${data.val2.toLocaleString('id-ID')}">
+                                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-500 text-[10px] font-bold">Rp</span>
+                                    <input id="swal-edit-val2" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-pink-900 border border-pink-200 dark:border-pink-900/50 rounded-xl text-xs font-black text-pink-600 dark:text-pink-400 focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none shadow-sm" value="${data.val2.toLocaleString('id-ID')}">
                                 </div>
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Sumber Modal</label>
-                                <select id="swal-edit-sumber" class="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 outline-none shadow-sm">
+                                <label class="block text-[10px] font-bold text-pink-500 dark:text-pink-400 uppercase tracking-widest mb-1.5 ml-1">Sumber Modal</label>
+                                <select id="swal-edit-sumber" class="w-full p-3 bg-pink-50 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-xl text-xs font-bold text-pink-700 dark:text-pink-200 focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 outline-none shadow-sm">
                                     <option value="Bank" ${data.sumberModal === 'Bank' ? 'selected' : ''}>💳 Bank</option>
                                     <option value="Tunai" ${data.sumberModal === 'Tunai' ? 'selected' : ''}>💵 Tunai</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Uang Masuk Ke</label>
-                                <select id="swal-edit-metode" class="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 outline-none shadow-sm">
+                                <label class="block text-[10px] font-bold text-pink-500 dark:text-pink-400 uppercase tracking-widest mb-1.5 ml-1">Uang Masuk Ke</label>
+                                <select id="swal-edit-metode" class="w-full p-3 bg-pink-50 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-xl text-xs font-bold text-pink-700 dark:text-pink-200 focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 outline-none shadow-sm">
                                     <option value="Transfer" ${data.metode === 'Transfer' ? 'selected' : ''}>📱 Transfer</option>
                                     <option value="Tunai" ${data.metode === 'Tunai' ? 'selected' : ''}>💵 Tunai</option>
                                 </select>
@@ -1200,7 +1222,7 @@
                     </div>
                 `,
                 showCancelButton: true, confirmButtonText: 'Simpan Revisi', cancelButtonText: '<span style="color:#64748b; font-weight:700;">Batal</span>', reverseButtons: true,
-                customClass: { popup: '!rounded-[2.5rem] !pt-6 !pb-6 dark:!bg-slate-900', confirmButton: '!rounded-2xl !px-5 !py-3.5 !font-bold !text-[11px] !uppercase !shadow-lg', cancelButton: '!rounded-2xl !px-5 !py-3.5 !font-bold !text-[11px] !uppercase border border-slate-200 dark:border-slate-700 dark:!bg-slate-800' },
+                customClass: { popup: '!rounded-[2.5rem] !pt-6 !pb-6 dark:!bg-pink-900', confirmButton: '!rounded-2xl !px-5 !py-3.5 !font-bold !text-[11px] !uppercase !shadow-lg', cancelButton: '!rounded-2xl !px-5 !py-3.5 !font-bold !text-[11px] !uppercase border border-pink-200 dark:border-pink-700 dark:!bg-pink-800' },
                 preConfirm: () => {
                     return {
                         nama: document.getElementById('swal-edit-nama').value.trim(),
@@ -1405,10 +1427,10 @@
                 const nama = splitKat.slice(1).join(' ') || kat;
 
                 katGridHtml += `
-                    <div class="glass-card p-4 rounded-[1.5rem] premium-shadow flex flex-col justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group cursor-default border border-slate-100 dark:border-slate-700 hover:border-rose-200 dark:hover:border-rose-500">
+                    <div class="glass-card p-4 rounded-[1.5rem] premium-shadow flex flex-col justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group cursor-default border border-pink-100 dark:border-pink-700 hover:border-rose-200 dark:hover:border-rose-500">
                         <div class="w-8 h-8 rounded-[0.8rem] bg-gradient-to-br from-rose-50 dark:from-rose-900/30 to-rose-100 dark:to-rose-800/30 flex items-center justify-center mb-3 shadow-inner border border-white dark:border-rose-700/50 group-hover:scale-110 transition-transform duration-300"><span class="text-sm">${icon}</span></div>
-                        <p class="text-[8px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1 truncate">${nama}</p>
-                        <p class="text-xs md:text-sm font-black text-slate-800 dark:text-slate-200 tracking-tight">Rp ${total.toLocaleString('id-ID')}</p>
+                        <p class="text-[8px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest mb-1 truncate">${nama}</p>
+                        <p class="text-xs md:text-sm font-black text-pink-800 dark:text-pink-200 tracking-tight">Rp ${total.toLocaleString('id-ID')}</p>
                     </div>`;
             }
             katGrid.innerHTML = katGridHtml; 
@@ -1468,6 +1490,24 @@
             });
             // ==========================================
 
+            const totalFiltered = filtered.length;
+            const visibleItems = historyShowAll ? filtered : filtered.slice(0, HISTORY_LIMIT);
+
+            const pager = document.getElementById('historyPager');
+            const countLabel = document.getElementById('historyCount');
+            const moreBtn = document.getElementById('historyMoreBtn');
+            if (pager && totalFiltered > HISTORY_LIMIT) {
+                pager.classList.remove('hidden');
+                countLabel.innerText = historyShowAll
+                    ? `Menampilkan semua ${totalFiltered} transaksi`
+                    : `Menampilkan ${Math.min(HISTORY_LIMIT, totalFiltered)} dari ${totalFiltered} transaksi`;
+                moreBtn.innerHTML = historyShowAll
+                    ? '<i class="fas fa-compress-alt mr-1"></i> Tampilkan Ringkas'
+                    : `<i class="fas fa-list mr-1"></i> Lihat Semua (${totalFiltered})`;
+            } else if (pager) {
+                pager.classList.add('hidden');
+            }
+
             const markedCount = filtered.filter(i => i.ditandai).length;
             if (markedCount > 0) {
                 bulkBtn.classList.remove('hidden');
@@ -1478,7 +1518,8 @@
 
             if(filtered.length === 0) { 
                 list.innerHTML = "";
-                emptyState.classList.remove('hidden'); 
+                emptyState.classList.remove('hidden');
+                if (pager) pager.classList.add('hidden');
                 return; 
             } else { 
                 emptyState.classList.add('hidden'); 
@@ -1486,21 +1527,21 @@
 
             let listHtml = ""; 
 
-            filtered.forEach(i => {
+            visibleItems.forEach(i => {
                 const isTagihan = currentMode === 'tagihan';
                 const isPending = i.status === 'Pending';
                 const isLunasTagihan = isTagihan && i.sisaTagihan <= 0;
                 
                 const isPengeluaran = !isTagihan && (i.jenis === 'Pengeluaran' || (i.val2 === 0 && i.val1 > 0));
                 
-                let badgeClass = isPending ? 'bg-gradient-to-br from-amber-50 dark:from-amber-900/30 to-amber-100 dark:to-amber-800/30 text-amber-500' : 'bg-gradient-to-br from-brand-50 dark:from-brand-900/30 to-brand-100 dark:to-brand-800/30 text-brand-500';
-                if(isTagihan) badgeClass = isLunasTagihan ? 'bg-gradient-to-br from-emerald-50 dark:from-emerald-900/30 to-emerald-100 dark:to-emerald-800/30 text-emerald-500' : 'bg-gradient-to-br from-rose-50 dark:from-rose-900/30 to-rose-100 dark:to-rose-800/30 text-rose-500';
+                let badgeClass = isPending ? 'bg-gradient-to-br from-pink-50 dark:from-pink-900/30 to-pink-100 dark:to-pink-800/30 text-pink-500' : 'bg-gradient-to-br from-pink-50 dark:from-pink-900/30 to-pink-100 dark:to-pink-800/30 text-pink-500';
+                if(isTagihan) badgeClass = isLunasTagihan ? 'bg-gradient-to-br from-pink-50 dark:from-pink-900/30 to-pink-100 dark:to-pink-800/30 text-pink-500' : 'bg-gradient-to-br from-rose-50 dark:from-rose-900/30 to-rose-100 dark:to-rose-800/30 text-rose-500';
                 if(isPengeluaran) badgeClass = 'bg-gradient-to-br from-rose-50 dark:from-rose-900/30 to-rose-100 dark:to-rose-800/30 text-rose-500';
                 
                 let iconMode = isTagihan ? (isLunasTagihan ? 'fa-check-circle' : 'fa-file-invoice') : (isPending ? 'fa-clock' : 'fa-check-circle');
                 if(isPengeluaran) iconMode = 'fa-arrow-right-from-bracket';
 
-                let borderColor = i.ditandai ? 'border-amber-400 bg-amber-50/30 dark:bg-amber-900/20' : 'border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900';
+                let borderColor = i.ditandai ? 'border-pink-400 bg-pink-50/30 dark:bg-pink-900/20' : 'border-pink-100 dark:border-pink-800 bg-white dark:bg-pink-900';
 
                 if(currentMode === 'tagihan') {
                     let percent = i.val2 > 0 ? (i.totalDibayar / i.val2) * 100 : 0;
@@ -1509,55 +1550,55 @@
 
                     listHtml += `
                     <div class="rounded-[1.2rem] shadow-[0_2px_10px_rgba(0,0,0,0.02)] border ${borderColor} overflow-hidden transition-all duration-300">
-                        <div onclick="toggleDetail('detail-${i.id}', 'icon-${i.id}')" class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                        <div onclick="toggleDetail('detail-${i.id}', 'icon-${i.id}')" class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-pink-50/50 dark:hover:bg-pink-800/50 transition-colors">
                             <div class="flex items-center gap-3.5 overflow-hidden flex-1 pr-2">
                                 <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${badgeClass}">
                                     <i class="fas ${iconMode} text-sm"></i>
                                 </div>
                                 <div class="overflow-hidden leading-tight mt-0.5">
                                     <div class="flex items-center gap-1.5">
-                                        <h4 class="font-black text-[13px] text-slate-800 dark:text-white truncate tracking-tight">${i.nama}</h4>
-                                        ${i.ditandai ? '<i class="fas fa-star text-amber-400 text-[10px]"></i>' : ''}
+                                        <h4 class="font-black text-[13px] text-pink-800 dark:text-white truncate tracking-tight">${i.nama}</h4>
+                                        ${i.ditandai ? '<i class="fas fa-star text-pink-400 text-[10px]"></i>' : ''}
                                     </div>
-                                    <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 mt-0.5 truncate uppercase tracking-widest">${i.keterangan}</p>
+                                    <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 mt-0.5 truncate uppercase tracking-widest">${i.keterangan}</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-3 shrink-0">
                                 <div class="text-right mt-0.5">
-                                    <p class="font-black text-[13px] text-slate-800 dark:text-white">Rp ${i.val2.toLocaleString('id-ID')}</p>
-                                    ${isLunasTagihan ? '<p class="text-[8px] font-black text-emerald-500 mt-0.5 uppercase tracking-widest">LUNAS</p>' : `<p class="text-[8px] font-black text-rose-500 dark:text-rose-400 mt-0.5 uppercase tracking-widest">Sisa Rp ${i.sisaTagihan.toLocaleString('id-ID')}</p>`}
+                                    <p class="font-black text-[13px] text-pink-800 dark:text-white">Rp ${i.val2.toLocaleString('id-ID')}</p>
+                                    ${isLunasTagihan ? '<p class="text-[8px] font-black text-pink-500 mt-0.5 uppercase tracking-widest">LUNAS</p>' : `<p class="text-[8px] font-black text-rose-500 dark:text-rose-400 mt-0.5 uppercase tracking-widest">Sisa Rp ${i.sisaTagihan.toLocaleString('id-ID')}</p>`}
                                 </div>
                                 <div class="w-6 h-6 flex items-center justify-center">
-                                    <i id="icon-${i.id}" class="fas fa-chevron-down text-slate-300 dark:text-slate-600 text-[11px] transition-transform duration-300"></i>
+                                    <i id="icon-${i.id}" class="fas fa-chevron-down text-pink-300 dark:text-pink-600 text-[11px] transition-transform duration-300"></i>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="detail-${i.id}" class="hidden border-t ${i.ditandai ? 'border-amber-200 dark:border-amber-800/50' : 'border-slate-100 dark:border-slate-800'} bg-slate-50/50 dark:bg-slate-800/50 p-4">
+                        <div id="detail-${i.id}" class="hidden border-t ${i.ditandai ? 'border-pink-200 dark:border-pink-800/50' : 'border-pink-100 dark:border-pink-800'} bg-pink-50/50 dark:bg-pink-800/50 p-4">
                             <div class="flex justify-between items-center mb-4">
-                                <span class="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest"><i class="far fa-calendar-alt mr-1"></i> ${i.formattedTglBuat}</span>
+                                <span class="text-[8px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest"><i class="far fa-calendar-alt mr-1"></i> ${i.formattedTglBuat}</span>
                                 <div class="flex gap-2">
-                                    <button onclick="toggleMark('${i.id}', ${i.ditandai || false})" class="w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm active:scale-90 ${i.ditandai ? 'bg-amber-50 border-amber-200 text-amber-500 dark:bg-amber-900/30 dark:border-amber-700/50' : 'bg-white dark:bg-slate-700 border-slate-200 dark:border-slate-600 text-slate-400 hover:text-amber-500'}"><i class="fas fa-star text-[10px]"></i></button>
-                                    <button onclick="deleteData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-trash-can text-[10px]"></i></button>
+                                    <button onclick="toggleMark('${i.id}', ${i.ditandai || false})" class="w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm active:scale-90 ${i.ditandai ? 'bg-pink-50 border-pink-200 text-pink-500 dark:bg-pink-900/30 dark:border-pink-700/50' : 'bg-white dark:bg-pink-700 border-pink-200 dark:border-pink-600 text-pink-400 hover:text-pink-500'}"><i class="fas fa-star text-[10px]"></i></button>
+                                    <button onclick="deleteData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-pink-700 border border-pink-200 dark:border-pink-600 flex items-center justify-center text-pink-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-trash-can text-[10px]"></i></button>
                                 </div>
                             </div>
                             
-                            <div class="bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm mb-3">
+                            <div class="bg-white dark:bg-pink-900 p-3 rounded-xl border border-pink-100 dark:border-pink-700 shadow-sm mb-3">
                                 <div class="flex justify-between items-end mb-2">
                                     <div>
-                                        <p class="text-[8px] text-slate-400 dark:text-slate-500 font-extrabold uppercase tracking-widest mb-1">Total Dibayar</p>
-                                        <p class="font-black text-sm text-emerald-500 leading-none">Rp ${i.totalDibayar.toLocaleString('id-ID')}</p>
+                                        <p class="text-[8px] text-pink-400 dark:text-pink-500 font-extrabold uppercase tracking-widest mb-1">Total Dibayar</p>
+                                        <p class="font-black text-sm text-pink-500 leading-none">Rp ${i.totalDibayar.toLocaleString('id-ID')}</p>
                                     </div>
                                     <div class="text-right">
-                                        <p class="text-[8px] text-slate-400 dark:text-slate-500 font-bold"><i class="far fa-calendar-times text-[7px] text-rose-400 mr-0.5"></i> Tempo: ${i.jatuhTempo ? formatTgl(new Date(i.jatuhTempo)).split(' ')[0] : 'Bebas'}</p>
-                                        ${tenorText ? `<p class="text-[8px] text-brand-500 font-bold mt-0.5">${tenorText.replace(' • ', '')}</p>` : ''}
+                                        <p class="text-[8px] text-pink-400 dark:text-pink-500 font-bold"><i class="far fa-calendar-times text-[7px] text-rose-400 mr-0.5"></i> Tempo: ${i.jatuhTempo ? formatTgl(new Date(i.jatuhTempo)).split(' ')[0] : 'Bebas'}</p>
+                                        ${tenorText ? `<p class="text-[8px] text-pink-500 font-bold mt-0.5">${tenorText.replace(' • ', '')}</p>` : ''}
                                     </div>
                                 </div>
-                                <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden mt-3">
-                                    <div class="bg-${isLunasTagihan ? 'emerald' : 'brand'}-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: ${percent}%"></div>
+                                <div class="w-full bg-pink-100 dark:bg-pink-800 h-1.5 rounded-full overflow-hidden mt-3">
+                                    <div class="bg-${isLunasTagihan ? 'pink' : 'pink'}-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: ${percent}%"></div>
                                 </div>
                             </div>
-                            <button onclick="openModalCicilan('${i.id}', 'tagihan')" class="w-full bg-white dark:bg-slate-800 text-brand-600 dark:text-brand-400 border border-slate-200 dark:border-slate-700 py-3 rounded-xl text-[10px] font-black uppercase tracking-wider hover:bg-brand-50 dark:hover:bg-slate-700 transition-all duration-300 shadow-sm active:scale-95 group/btn"><i class="fas fa-list-ul mr-2 group-hover/btn:scale-110 transition-transform"></i> Kelola Cicilan Pembayaran</button>
+                            <button onclick="openModalCicilan('${i.id}', 'tagihan')" class="w-full bg-white dark:bg-pink-800 text-pink-600 dark:text-pink-400 border border-pink-200 dark:border-pink-700 py-3 rounded-xl text-[10px] font-black uppercase tracking-wider hover:bg-pink-50 dark:hover:bg-pink-700 transition-all duration-300 shadow-sm active:scale-95 group/btn"><i class="fas fa-list-ul mr-2 group-hover/btn:scale-110 transition-transform"></i> Kelola Cicilan Pembayaran</button>
                         </div>
                     </div>`;
 
@@ -1570,18 +1611,18 @@
                         actionButton = `<p class="text-[8px] font-black text-rose-500 mt-2 uppercase tracking-widest bg-rose-50 dark:bg-rose-900/30 px-3 py-1 rounded-md border border-rose-100 dark:border-rose-800/50 inline-block">-Rp ${i.val1.toLocaleString('id-ID')}</p>`;
                     } else if (isPending) {
                         actionButton = `<div class="mt-3">
-                            <div class="flex justify-between text-[8px] font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-widest">
+                            <div class="flex justify-between text-[8px] font-bold text-pink-500 dark:text-pink-400 mb-1.5 uppercase tracking-widest">
                                 <span>Terbayar: Rp ${i.totalDibayar.toLocaleString('id-ID')}</span>
-                                <span class="text-amber-500">Sisa: Rp ${i.sisaTagihan.toLocaleString('id-ID')}</span>
+                                <span class="text-pink-500">Sisa: Rp ${i.sisaTagihan.toLocaleString('id-ID')}</span>
                             </div>
-                            <div class="w-full bg-slate-200/60 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden mb-3">
-                                <div class="bg-amber-500 h-full transition-all duration-1000" style="width: ${percent}%"></div>
+                            <div class="w-full bg-pink-200/60 dark:bg-pink-700 h-1.5 rounded-full overflow-hidden mb-3">
+                                <div class="bg-pink-500 h-full transition-all duration-1000" style="width: ${percent}%"></div>
                             </div>
-                            <button onclick="openModalCicilan('${i.id}', 'kasir')" class="w-full bg-amber-500 text-white px-5 py-3 rounded-xl text-[10px] font-black uppercase tracking-wider shadow-[0_4px_10px_rgba(245,158,11,0.3)] hover:bg-amber-600 transition-all duration-300 active:scale-95 flex justify-center items-center gap-1.5"><i class="fas fa-list-ul text-xs"></i> Kelola Pembayaran</button>
+                            <button onclick="openModalCicilan('${i.id}', 'kasir')" class="w-full bg-pink-500 text-white px-5 py-3 rounded-xl text-[10px] font-black uppercase tracking-wider shadow-[0_4px_10px_rgba(245,158,11,0.3)] hover:bg-pink-600 transition-all duration-300 active:scale-95 flex justify-center items-center gap-1.5"><i class="fas fa-list-ul text-xs"></i> Kelola Pembayaran</button>
                            </div>`;
                     } else {
                         let profit = i.val2 - i.val1;
-                        let pColor = profit >= 0 ? 'emerald' : 'rose';
+                        let pColor = profit >= 0 ? 'pink' : 'rose';
                         let pSign = profit >= 0 ? '+' : '-';
                         actionButton = `<p class="text-[8px] font-black text-${pColor}-500 mt-2 uppercase tracking-widest bg-${pColor}-50 dark:bg-${pColor}-900/30 px-3 py-1 rounded-md border border-${pColor}-100 dark:border-${pColor}-800/50 inline-block">${pSign}Rp ${Math.abs(profit).toLocaleString('id-ID')}</p>`;
                     }
@@ -1590,27 +1631,27 @@
                     let displayStatus = "";
                     if (isPengeluaran) {
                         displayPrice = `<p class="font-black text-[13px] text-rose-500 dark:text-rose-400">- Rp ${i.val1.toLocaleString('id-ID')}</p>`;
-                        displayStatus = `<p class="text-[8px] font-black text-slate-400 mt-0.5 uppercase tracking-widest">DIKELUARKAN</p>`;
+                        displayStatus = `<p class="text-[8px] font-black text-pink-400 mt-0.5 uppercase tracking-widest">DIKELUARKAN</p>`;
                     } else {
-                        displayPrice = `<p class="font-black text-[13px] text-slate-800 dark:text-white">Rp ${i.val2.toLocaleString('id-ID')}</p>`;
+                        displayPrice = `<p class="font-black text-[13px] text-pink-800 dark:text-white">Rp ${i.val2.toLocaleString('id-ID')}</p>`;
                         displayStatus = isPending 
-                            ? `<p class="text-[8px] font-black text-amber-500 mt-0.5 uppercase tracking-widest">Sisa Rp ${i.sisaTagihan.toLocaleString('id-ID')}</p>`
-                            : `<p class="text-[8px] font-black text-emerald-500 mt-0.5 uppercase tracking-widest">LUNAS</p>`;
+                            ? `<p class="text-[8px] font-black text-pink-500 mt-0.5 uppercase tracking-widest">Sisa Rp ${i.sisaTagihan.toLocaleString('id-ID')}</p>`
+                            : `<p class="text-[8px] font-black text-pink-500 mt-0.5 uppercase tracking-widest">LUNAS</p>`;
                     }
 
                     listHtml += `
                     <div class="bg-white rounded-[1.2rem] shadow-[0_2px_10px_rgba(0,0,0,0.02)] border ${borderColor} overflow-hidden transition-all duration-300">
-                        <div onclick="toggleDetail('detail-${i.id}', 'icon-${i.id}')" class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                        <div onclick="toggleDetail('detail-${i.id}', 'icon-${i.id}')" class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-pink-50/50 dark:hover:bg-pink-800/50 transition-colors">
                             <div class="flex items-center gap-3.5 overflow-hidden flex-1 pr-2">
                                 <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${badgeClass}">
                                     <i class="fas ${iconMode} text-sm"></i>
                                 </div>
                                 <div class="overflow-hidden leading-tight mt-0.5">
                                     <div class="flex items-center gap-1.5">
-                                        <h4 class="font-black text-[13px] text-slate-800 dark:text-white truncate tracking-tight">${i.nama}</h4>
-                                        ${i.ditandai ? '<i class="fas fa-star text-amber-400 text-[10px]"></i>' : ''}
+                                        <h4 class="font-black text-[13px] text-pink-800 dark:text-white truncate tracking-tight">${i.nama}</h4>
+                                        ${i.ditandai ? '<i class="fas fa-star text-pink-400 text-[10px]"></i>' : ''}
                                     </div>
-                                    <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 mt-0.5 truncate uppercase tracking-widest">${i.keterangan}${isPengeluaran ? ' • PENGELUARAN' : (isPending ? ' • PENDING' : '')}</p>
+                                    <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 mt-0.5 truncate uppercase tracking-widest">${i.keterangan}${isPengeluaran ? ' • PENGELUARAN' : (isPending ? ' • PENDING' : '')}</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-3 shrink-0">
@@ -1619,28 +1660,28 @@
                                     ${displayStatus}
                                 </div>
                                 <div class="w-6 h-6 flex items-center justify-center">
-                                    <i id="icon-${i.id}" class="fas fa-chevron-down text-slate-300 dark:text-slate-600 text-[11px] transition-transform duration-300"></i>
+                                    <i id="icon-${i.id}" class="fas fa-chevron-down text-pink-300 dark:text-pink-600 text-[11px] transition-transform duration-300"></i>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="detail-${i.id}" class="hidden border-t ${i.ditandai ? 'border-amber-200 dark:border-amber-800/50' : 'border-slate-100 dark:border-slate-800'} bg-slate-50/50 dark:bg-slate-800/50 p-4">
+                        <div id="detail-${i.id}" class="hidden border-t ${i.ditandai ? 'border-pink-200 dark:border-pink-800/50' : 'border-pink-100 dark:border-pink-800'} bg-pink-50/50 dark:bg-pink-800/50 p-4">
                             <div class="flex justify-between items-center mb-3">
-                                <span class="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest"><i class="far fa-calendar-alt mr-1"></i> ${i.formattedTglBuat}</span>
+                                <span class="text-[8px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest"><i class="far fa-calendar-alt mr-1"></i> ${i.formattedTglBuat}</span>
                                 <div class="flex gap-2">
-                                    <button onclick="toggleMark('${i.id}', ${i.ditandai || false})" class="w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm active:scale-90 ${i.ditandai ? 'bg-amber-50 border-amber-200 text-amber-500 dark:bg-amber-900/30 dark:border-amber-700/50' : 'bg-white dark:bg-slate-700 border-slate-200 dark:border-slate-600 text-slate-400 hover:text-amber-500'}"><i class="fas fa-star text-[10px]"></i></button>
-                                    <button onclick="editKasirData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-400 hover:text-brand-500 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-pen text-[10px]"></i></button>
-                                    <button onclick="deleteData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-trash-can text-[10px]"></i></button>
+                                    <button onclick="toggleMark('${i.id}', ${i.ditandai || false})" class="w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm active:scale-90 ${i.ditandai ? 'bg-pink-50 border-pink-200 text-pink-500 dark:bg-pink-900/30 dark:border-pink-700/50' : 'bg-white dark:bg-pink-700 border-pink-200 dark:border-pink-600 text-pink-400 hover:text-pink-500'}"><i class="fas fa-star text-[10px]"></i></button>
+                                    <button onclick="editKasirData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-pink-700 border border-pink-200 dark:border-pink-600 flex items-center justify-center text-pink-400 hover:text-pink-500 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-pen text-[10px]"></i></button>
+                                    <button onclick="deleteData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-pink-700 border border-pink-200 dark:border-pink-600 flex items-center justify-center text-pink-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-trash-can text-[10px]"></i></button>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-2">
-                                <div class="bg-white dark:bg-slate-900 p-2.5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                                    <p class="text-[8px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-0.5">Nilai Modal</p>
-                                    <p class="text-xs font-black text-slate-700 dark:text-slate-200">Rp ${i.val1.toLocaleString('id-ID')}</p>
+                                <div class="bg-white dark:bg-pink-900 p-2.5 rounded-xl border border-pink-100 dark:border-pink-700 shadow-sm">
+                                    <p class="text-[8px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest mb-0.5">Nilai Modal</p>
+                                    <p class="text-xs font-black text-pink-700 dark:text-pink-200">Rp ${i.val1.toLocaleString('id-ID')}</p>
                                 </div>
-                                <div class="bg-white dark:bg-slate-900 p-2.5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                                    <p class="text-[8px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-0.5">${isPengeluaran ? 'Sumber Saldo' : 'Alur Uang'}</p>
-                                    <p class="text-[10px] font-bold text-slate-600 dark:text-slate-300 mt-1">${isPengeluaran ? i.sumberModal : `${i.sumberModal || '-'} ➔ ${i.metode || '-'}`}</p>
+                                <div class="bg-white dark:bg-pink-900 p-2.5 rounded-xl border border-pink-100 dark:border-pink-700 shadow-sm">
+                                    <p class="text-[8px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest mb-0.5">${isPengeluaran ? 'Sumber Saldo' : 'Alur Uang'}</p>
+                                    <p class="text-[10px] font-bold text-pink-600 dark:text-pink-300 mt-1">${isPengeluaran ? i.sumberModal : `${i.sumberModal || '-'} ➔ ${i.metode || '-'}`}</p>
                                 </div>
                             </div>
                             ${actionButton}
@@ -1673,19 +1714,19 @@
                 sortedCicilan.forEach((c, idx) => {
                     const tgl = new Date(c.tanggal).toLocaleDateString('id-ID', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'});
                     mcListHtml += `
-                    <div class="bg-white dark:bg-slate-800 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-700 flex justify-between items-center shadow-sm hover:border-brand-200 transition-colors duration-300 group">
+                    <div class="bg-white dark:bg-pink-800 p-3.5 rounded-2xl border border-pink-100 dark:border-pink-700 flex justify-between items-center shadow-sm hover:border-pink-200 transition-colors duration-300 group">
                         <div class="flex items-center gap-3.5">
-                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-50 dark:from-emerald-900/30 to-emerald-100 dark:to-emerald-800/30 text-emerald-500 flex items-center justify-center shadow-inner border border-white dark:border-emerald-700/30 group-hover:scale-105 transition-transform"><i class="fas fa-arrow-down text-sm"></i></div>
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-50 dark:from-pink-900/30 to-pink-100 dark:to-pink-800/30 text-pink-500 flex items-center justify-center shadow-inner border border-white dark:border-pink-700/30 group-hover:scale-105 transition-transform"><i class="fas fa-arrow-down text-sm"></i></div>
                             <div>
-                                <p class="text-[10px] font-black text-slate-700 dark:text-slate-200 uppercase tracking-wider">Cicilan Ke-${data.cicilan.length - idx}</p>
-                                <p class="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase mt-0.5 tracking-widest">${c.dompet || 'Kas'} • ${tgl}</p>
+                                <p class="text-[10px] font-black text-pink-700 dark:text-pink-200 uppercase tracking-wider">Cicilan Ke-${data.cicilan.length - idx}</p>
+                                <p class="text-[8px] font-bold text-pink-400 dark:text-pink-500 uppercase mt-0.5 tracking-widest">${c.dompet || 'Kas'} • ${tgl}</p>
                             </div>
                         </div>
-                        <p class="text-xs font-black text-emerald-600 dark:text-emerald-400 bg-emerald-50/80 dark:bg-emerald-900/30 px-3 py-1.5 rounded-xl border border-emerald-100/50 dark:border-emerald-800/50">+ Rp ${c.nominal.toLocaleString('id-ID')}</p>
+                        <p class="text-xs font-black text-pink-600 dark:text-pink-400 bg-pink-50/80 dark:bg-pink-900/30 px-3 py-1.5 rounded-xl border border-pink-100/50 dark:border-pink-800/50">+ Rp ${c.nominal.toLocaleString('id-ID')}</p>
                     </div>`;
                 });
             } else {
-                mcListHtml = `<div class="text-center py-8 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-600 bg-slate-50/50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 border-dashed">Belum ada cicilan masuk</div>`;
+                mcListHtml = `<div class="text-center py-8 text-[10px] font-bold uppercase tracking-widest text-pink-400 dark:text-pink-600 bg-pink-50/50 dark:bg-pink-800/50 rounded-2xl border border-pink-200 dark:border-pink-700 border-dashed">Belum ada cicilan masuk</div>`;
             }
             
             listEl.innerHTML = mcListHtml;
@@ -1708,12 +1749,12 @@
             const nominal = parseUang(nominalStr);
             const masukKe = document.getElementById('mcMasukKe').value;
 
-            if(nominal <= 0) return Swal.fire({ icon: 'error', title: 'Perhatian', text: 'Nominal tidak boleh kosong.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
+            if(nominal <= 0) return Swal.fire({ icon: 'error', title: 'Perhatian', text: 'Nominal tidak boleh kosong.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
 
             const data = currentCicilanSource === 'kasir' ? masterKasir.find(x => x.id === currentCicilanId) : masterTagihan.find(x => x.id === currentCicilanId);
             const collectionName = currentCicilanSource === 'kasir' ? "jurnal_v7" : "tagihan_v2";
 
-            if(nominal > data.sisaTagihan) return Swal.fire({ icon: 'error', title: 'Perhatian', text: 'Nominal pembayaran melebihi sisa tagihan.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
+            if(nominal > data.sisaTagihan) return Swal.fire({ icon: 'error', title: 'Perhatian', text: 'Nominal pembayaran melebihi sisa tagihan.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
 
             const newCicilan = { nominal: nominal, tanggal: new Date().getTime(), dompet: masukKe };
 
@@ -1738,14 +1779,14 @@
                 setTimeout(() => openModalCicilan(currentCicilanId, currentCicilanSource), 500); 
                 Toast.fire({ icon: 'success', title: 'Pembayaran Tersimpan' });
             } catch (error) {
-                Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: 'Tidak dapat menyimpan cicilan.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
+                Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: 'Tidak dapat menyimpan cicilan.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
             }
         };
         document.getElementById('btnSimpan').onclick = async () => {
             const nama = document.getElementById('nama').value.trim();
             const kategori = document.getElementById('ket').value;
 
-            if(!nama) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Keterangan wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
+            if(!nama) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Keterangan wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
 
             let dataToSave = {};
 
@@ -1756,9 +1797,9 @@
 
                 if (jenisTrx === 'Pemasukan') {
                     val2 = parseUang(document.getElementById('val2').value);
-                    if(val2 <= 0 || isNaN(val2)) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Harga Jual wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
+                    if(val2 <= 0 || isNaN(val2)) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Harga Jual wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
                 } else {
-                    if(val1 <= 0 || isNaN(val1)) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Nominal Pengeluaran wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
+                    if(val1 <= 0 || isNaN(val1)) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Nominal Pengeluaran wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
                     val2 = 0; 
                 }
 
@@ -1792,12 +1833,12 @@
                         }
                     }
                 } catch(e) {
-                    return Swal.fire({ icon: 'error', title: 'Sistem Sibuk', text: 'Gagal menghubungi database.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
+                    return Swal.fire({ icon: 'error', title: 'Sistem Sibuk', text: 'Gagal menghubungi database.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
                 }
 
             } else {
                 const val2 = parseUang(document.getElementById('val2').value);
-                if(val2 <= 0 || isNaN(val2)) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Nominal wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
+                if(val2 <= 0 || isNaN(val2)) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Nominal wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
                 
                 const tglTempo = document.getElementById('tglTempo').value;
                 const tenor = document.getElementById('tenor').value;
@@ -1812,7 +1853,7 @@
                 try {
                     await addDoc(collection(db, "tagihan_v2"), dataToSave);
                 } catch(e) {
-                    return Swal.fire({ icon: 'error', title: 'Sistem Sibuk', text: 'Gagal menghubungi database.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
+                    return Swal.fire({ icon: 'error', title: 'Sistem Sibuk', text: 'Gagal menghubungi database.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
                 }
             }
 
