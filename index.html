@@ -248,38 +248,6 @@
 .dark .fo-status-pill.pending{background:rgba(165,104,22,.16);color:#fbbf24}
 </style>
 
-<style id="financeos-balance-light-fix">
-/* Balance visibility — light mode only */
-html:not(.dark) #valTotalSaldo {
-  color: #0f172a !important;
-  font-weight: 900 !important;
-}
-html:not(.dark) #pageDashboard .bg-white\/90:has(#valTotalSaldo) {
-  background: #ffffff !important;
-  border-color: #cbd5e1 !important;
-  box-shadow: 0 8px 22px -8px rgba(15,23,42,.14) !important;
-}
-html:not(.dark) #pageDashboard .bg-white\/90:has(#valTotalSaldo) .bg-slate-50 {
-  background: #e2e8f0 !important;
-  color: #334155 !important;
-  border-color: #cbd5e1 !important;
-}
-html:not(.dark) #pageDashboard .bg-white\/90:has(#valTotalSaldo) p {
-  color: #475569 !important;
-}
-/* Make Bank/Cash balances unmistakable in normal mode */
-html:not(.dark) #statBank,
-html:not(.dark) #statCash {
-  color: #ffffff !important;
-  text-shadow: 0 1px 2px rgba(15,23,42,.28);
-}
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt('bank')"] {
-  background: linear-gradient(135deg,#1e3a8a,#334155) !important;
-}
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt('cash')"] {
-  background: linear-gradient(135deg,#047857,#334155) !important;
-}
-</style>
 
 
 
@@ -442,80 +410,104 @@ html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#
 </style>
 
 
-<style id="financeos-balance-light-fix-v8">
-/* Balance cards: strong light-mode contrast, preserve dark mode */
-html:not(.dark) #statBank,
-html:not(.dark) #statCash {
-  color:#ffffff !important;
-  -webkit-text-fill-color:#ffffff !important;
-  text-shadow:0 1px 2px rgba(15,23,42,.28) !important;
-}
-html:not(.dark) #statBank + *,
-html:not(.dark) #statCash + * { color:#ffffff !important; }
-html:not(.dark) #valTotalSaldo {
-  color:#0f172a !important;
-  -webkit-text-fill-color:#0f172a !important;
-  font-weight:900 !important;
-  text-shadow:none !important;
-}
-html:not(.dark) #valTotalSaldo ~ * { color:#475569 !important; }
-html:not(.dark) #valTotalSaldo { background:transparent !important; }
-</style>
 
-<style id="financeos-balance-light-final">
-/* Final light-mode balance palette: readable text on soft colored surfaces */
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"],
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"],
-html:not(.dark) #pageDashboard #statPending,
-html:not(.dark) #pageDashboard #totalPiutang { -webkit-text-fill-color: initial; }
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"] {
-  background:linear-gradient(135deg,#dbeafe 0%,#bfdbfe 100%) !important;
-  color:#0f172a !important; border:1px solid #93c5fd !important;
-  box-shadow:0 12px 28px -10px rgba(37,99,235,.25) !important;
-}
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"] {
-  background:linear-gradient(135deg,#d1fae5 0%,#a7f3d0 100%) !important;
-  color:#064e3b !important; border:1px solid #6ee7b7 !important;
-  box-shadow:0 12px 28px -10px rgba(5,150,105,.23) !important;
-}
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"] p,
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"] h3 { color:#0f3b82 !important; text-shadow:none !important; }
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"] p,
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"] h3 { color:#065f46 !important; text-shadow:none !important; }
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"] .bg-white\/20,
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"] .bg-white\/20 {
-  background:rgba(255,255,255,.65) !important; border-color:rgba(255,255,255,.8) !important;
-}
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"] i { color:#2563eb !important; }
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"] i { color:#059669 !important; }
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"] .fa-sliders,
-html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"] .fa-sliders { color:#475569 !important; }
-html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(3) {
-  background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%) !important;
-  color:#78350f !important; border:1px solid #fcd34d !important;
-  box-shadow:0 12px 28px -10px rgba(217,119,6,.20) !important;
-}
-html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(3) p,
-html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(3) h3 { color:#78350f !important; text-shadow:none !important; }
-html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(4) {
-  background:linear-gradient(135deg,#fee2e2 0%,#fecaca 100%) !important;
-  color:#7f1d1d !important; border:1px solid #fca5a5 !important;
-  box-shadow:0 12px 28px -10px rgba(220,38,38,.20) !important;
-}
-html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(4) p,
-html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(4) h3 { color:#7f1d1d !important; text-shadow:none !important; }
-html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(3) .bg-white\/20,
-html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(4) .bg-white\/20 {
-  background:rgba(255,255,255,.62) !important; border-color:rgba(255,255,255,.78) !important;
-}
-html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(3) i { color:#d97706 !important; }
-html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(4) i { color:#dc2626 !important; }
-html:not(.dark) #pageDashboard #valTotalSaldo { color:#0f172a !important; -webkit-text-fill-color:#0f172a !important; }
-</style>
+
 
 <style id="financeos-riwayat-mode-polish">
 #tabRiwayatKasir.bg-blue-600 .bg-blue-50, #tabRiwayatTagihan.bg-red-600 .bg-red-50 { background: rgba(255,255,255,.16) !important; color: #fff !important; }
 #tabRiwayatKasir.bg-blue-600 .text-slate-400, #tabRiwayatTagihan.bg-red-600 .text-slate-400 { color: rgba(255,255,255,.72) !important; }
+</style>
+
+<style id="financeos-balance-colorful-v15">
+/* v15: every balance card has a deliberate, distinct identity in both themes. */
+#pageDashboard .fo-balance-bank{background:linear-gradient(135deg,#1d4ed8 0%,#2563eb 55%,#06b6d4 100%) !important;box-shadow:0 14px 28px -8px rgba(37,99,235,.42) !important;border:1px solid rgba(147,197,253,.45) !important;}
+#pageDashboard .fo-balance-cash{background:linear-gradient(135deg,#047857 0%,#059669 55%,#14b8a6 100%) !important;box-shadow:0 14px 28px -8px rgba(5,150,105,.40) !important;border:1px solid rgba(110,231,183,.45) !important;}
+#pageDashboard .fo-balance-total{background:linear-gradient(135deg,#6d28d9 0%,#7c3aed 55%,#4f46e5 100%) !important;color:#fff !important;box-shadow:0 12px 26px -8px rgba(109,40,217,.34) !important;border:1px solid rgba(196,181,253,.42) !important;}
+#pageDashboard .fo-balance-bank p,#pageDashboard .fo-balance-bank h3,#pageDashboard .fo-balance-cash p,#pageDashboard .fo-balance-cash h3,#pageDashboard .fo-balance-total p,#pageDashboard .fo-balance-total h3{color:#fff !important;-webkit-text-fill-color:#fff !important;}
+#pageDashboard .fo-balance-bank > .absolute,#pageDashboard .fo-balance-cash > .absolute{background:rgba(255,255,255,.10) !important;}
+.dark #pageDashboard .fo-balance-bank{background:linear-gradient(135deg,#1e40af 0%,#2563eb 55%,#0891b2 100%) !important;}
+.dark #pageDashboard .fo-balance-cash{background:linear-gradient(135deg,#065f46 0%,#059669 55%,#0f766e 100%) !important;}
+.dark #pageDashboard .fo-balance-total{background:linear-gradient(135deg,#581c87 0%,#6d28d9 55%,#4338ca 100%) !important;}
+#pageDashboard .fo-balance-bank i.fa-building-columns{color:#dbeafe !important;}
+#pageDashboard .fo-balance-cash i.fa-wallet{color:#d1fae5 !important;}
+#pageDashboard .fo-balance-total i.fa-coins{color:#ede9fe !important;}
+</style>
+
+<style id="financeos-global-contrast-v16">
+/* v16 — global text/background contrast normalization for every screen and both themes. */
+:root{--fo-light-text:#172033;--fo-light-body:#475569;--fo-light-muted:#64748b;--fo-dark-text:#f8fafc;--fo-dark-body:#cbd5e1;--fo-dark-muted:#94a3b8;}
+
+/* LIGHT MODE: dark text on light surfaces. */
+html:not(.dark) body{color:var(--fo-light-text) !important;}
+html:not(.dark) .glass-card,
+html:not(.dark) .glass-nav,
+html:not(.dark) .bg-white,
+html:not(.dark) .bg-white\/90,
+html:not(.dark) .bg-white\/95{color:var(--fo-light-text);}
+html:not(.dark) .text-slate-800{color:#0f172a !important;}
+html:not(.dark) .text-slate-700{color:#1e293b !important;}
+html:not(.dark) .text-slate-600{color:#334155 !important;}
+html:not(.dark) .text-slate-500{color:#475569 !important;}
+html:not(.dark) .text-slate-400{color:#64748b !important;}
+html:not(.dark) .text-gray-800{color:#1e293b !important;}
+html:not(.dark) .text-gray-700{color:#334155 !important;}
+html:not(.dark) .text-gray-600{color:#475569 !important;}
+html:not(.dark) .text-gray-500{color:#64748b !important;}
+html:not(.dark) .text-gray-400{color:#64748b !important;}
+html:not(.dark) .text-black{color:#0f172a !important;}
+html:not(.dark) input,
+html:not(.dark) select,
+html:not(.dark) textarea{color:#172033 !important;background-color:#fff !important;}
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder{color:#64748b !important;opacity:1 !important;}
+html:not(.dark) option{color:#172033 !important;background:#fff !important;}
+
+/* Dark mode: light text on dark surfaces. */
+html.dark body{color:var(--fo-dark-text) !important;}
+html.dark .glass-card,
+html.dark .glass-nav,
+html.dark .bg-slate-900,
+html.dark .bg-slate-800,
+html.dark .bg-slate-700{color:var(--fo-dark-text);}
+html.dark .text-slate-800,html.dark .text-slate-700{color:#f1f5f9 !important;}
+html.dark .text-slate-600{color:#e2e8f0 !important;}
+html.dark .text-slate-500{color:#cbd5e1 !important;}
+html.dark .text-slate-400{color:#94a3b8 !important;}
+html.dark .text-gray-800,html.dark .text-gray-700{color:#f1f5f9 !important;}
+html.dark .text-gray-600{color:#e2e8f0 !important;}
+html.dark .text-gray-500,html.dark .text-gray-400{color:#94a3b8 !important;}
+html.dark input,html.dark select,html.dark textarea{color:#f8fafc !important;background-color:#0f172a !important;border-color:#475569 !important;}
+html.dark input::placeholder,html.dark textarea::placeholder{color:#94a3b8 !important;opacity:1 !important;}
+html.dark option{color:#f8fafc !important;background:#0f172a !important;}
+
+/* Never let muted labels become invisible. */
+html:not(.dark) .text-white\/70,html:not(.dark) .text-white\/60{color:#475569 !important;}
+html.dark .text-white\/70,html.dark .text-white\/60{color:#cbd5e1 !important;}
+
+/* Colored cards intentionally keep white typography; normal cards do not. */
+html:not(.dark) .glass-card .text-white:not(button),
+html:not(.dark) .glass-nav .text-white:not(button){color:#172033 !important;}
+html.dark .glass-card .text-white:not(button),
+html.dark .glass-nav .text-white:not(button){color:#f8fafc !important;}
+
+/* Buttons, badges and deliberate colored surfaces retain white text for contrast. */
+button.text-white,
+[class*="bg-blue-500"].text-white,[class*="bg-blue-600"].text-white,
+[class*="bg-red-500"].text-white,[class*="bg-red-600"].text-white,
+[class*="bg-green-500"].text-white,[class*="bg-green-600"].text-white,
+[class*="bg-amber-500"].text-white,[class*="bg-amber-600"].text-white,
+[class*="bg-slate-500"].text-white,[class*="bg-slate-600"].text-white,
+[class*="bg-slate-700"].text-white,[class*="bg-slate-800"].text-white{color:#fff !important;-webkit-text-fill-color:#fff !important;}
+
+/* Status/semantic text remains readable in both themes. */
+html:not(.dark) .text-green-500,html:not(.dark) .text-green-600,html:not(.dark) .text-emerald-500,html:not(.dark) .text-emerald-600{color:#047857 !important;}
+html.dark .text-green-500,html.dark .text-green-600,html.dark .text-emerald-500,html.dark .text-emerald-600{color:#6ee7b7 !important;}
+html:not(.dark) .text-amber-500,html:not(.dark) .text-amber-600{color:#b45309 !important;}
+html.dark .text-amber-500,html.dark .text-amber-600{color:#fbbf24 !important;}
+html:not(.dark) .text-red-500,html:not(.dark) .text-red-600{color:#b91c1c !important;}
+html.dark .text-red-500,html.dark .text-red-600{color:#fca5a5 !important;}
+html:not(.dark) .text-blue-500,html:not(.dark) .text-blue-600{color:#1d4ed8 !important;}
+html.dark .text-blue-500,html.dark .text-blue-600{color:#93c5fd !important;}
 </style>
 </head>
 <body class="font-sans min-h-screen pb-32 relative pt-[env(safe-area-inset-top)] pb-[calc(8rem+env(safe-area-inset-bottom))]">
@@ -552,26 +544,26 @@ html:not(.dark) #pageDashboard #valTotalSaldo { color:#0f172a !important; -webki
         
         <section id="pageDashboard" class="page-content active-page space-y-5">
             <div class="grid grid-cols-2 gap-3 md:gap-4 relative z-50">
-                <div onclick="editSaldoPrompt('bank')" class="relative overflow-hidden bg-gradient-to-br from-slate-500 to-slate-700 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(99,102,241,0.4)] cursor-pointer group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-5px_rgba(99,102,241,0.5)]">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-bl-[3rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
+                <div onclick="editSaldoPrompt('bank')" class="fo-balance-bank relative overflow-hidden p-4 md:p-5 rounded-[1.5rem] text-white cursor-pointer group transition-all duration-300 hover:-translate-y-0.5">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-slate-50 dark:bg-slate-700/50 rounded-bl-[3rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
                     <div class="flex justify-between items-start mb-4 relative z-10">
                         <div class="w-9 h-9 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-building-columns text-white text-sm drop-shadow-md"></i></div>
-                        <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-sliders text-white text-[9px]"></i></div>
+                        <div class="w-6 h-6 rounded-full bg-white/15 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-sliders text-white text-[9px]"></i></div>
                     </div>
                     <div class="relative z-10">
-                        <p class="text-[9px] font-bold text-slate-200 uppercase tracking-widest mb-1">Saldo Bank</p>
+                        <p class="text-[9px] font-bold text-white/80 uppercase tracking-widest mb-1">Saldo Bank</p>
                         <h3 id="statBank" class="text-lg md:text-xl font-black tracking-tight truncate drop-shadow-sm">Rp 0</h3>
                     </div>
                 </div>
                 
-                <div onclick="editSaldoPrompt('cash')" class="relative overflow-hidden bg-gradient-to-br from-slate-400 to-slate-600 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(16,185,129,0.4)] cursor-pointer group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-5px_rgba(16,185,129,0.5)]">
+                <div onclick="editSaldoPrompt('cash')" class="fo-balance-cash relative overflow-hidden p-4 md:p-5 rounded-[1.5rem] text-white cursor-pointer group transition-all duration-300 hover:-translate-y-0.5">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-bl-[3rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
                     <div class="flex justify-between items-start mb-4 relative z-10">
                         <div class="w-9 h-9 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-wallet text-white text-sm drop-shadow-md"></i></div>
                         <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-sliders text-white text-[9px]"></i></div>
                     </div>
                     <div class="relative z-10">
-                        <p class="text-[9px] font-bold text-slate-100 uppercase tracking-widest mb-1">Saldo Cash</p>
+                        <p class="text-[9px] font-bold text-white/80 uppercase tracking-widest mb-1">Saldo Cash</p>
                         <h3 id="statCash" class="text-lg md:text-xl font-black tracking-tight truncate drop-shadow-sm">Rp 0</h3>
                     </div>
                 </div>
@@ -627,12 +619,12 @@ html:not(.dark) #pageDashboard #valTotalSaldo { color:#0f172a !important; -webki
                         <h2 id="analyticLaba" class="text-3xl md:text-4xl font-black tracking-tighter drop-shadow-md relative z-10">Rp 0</h2>
                     </div>
                     
-                    <div class="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-slate-100 dark:border-slate-700 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
+                    <div class="fo-balance-total rounded-[1.5rem] p-4 flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
                         <div class="flex items-center gap-2 mb-2">
-                            <div class="w-6 h-6 rounded-lg bg-slate-50 dark:bg-slate-900/30 text-slate-500 flex items-center justify-center border border-slate-100/50 dark:border-slate-800/50"><i class="fas fa-coins text-[10px]"></i></div>
-                            <p class="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Total Saldo</p>
+                            <div class="w-6 h-6 rounded-lg bg-white/20 text-white flex items-center justify-center border border-white/20"><i class="fas fa-coins text-[10px]"></i></div>
+                            <p class="text-[9px] font-extrabold text-white/80 uppercase tracking-widest">Total Saldo</p>
                         </div>
-                        <h3 id="valTotalSaldo" class="text-[13px] md:text-base font-black text-slate-800 dark:text-white tracking-tight pl-1">Rp 0</h3>
+                        <h3 id="valTotalSaldo" class="text-[13px] md:text-base font-black text-white tracking-tight pl-1 drop-shadow-sm">Rp 0</h3>
                     </div>
                     
                     <div class="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-slate-100 dark:border-slate-700 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
