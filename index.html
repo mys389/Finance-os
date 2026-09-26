@@ -7,8 +7,8 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#ec4899">
-    <link rel="manifest" href='data:application/manifest+json,{"name":"FinanceOS Pro","short_name":"FinanceOS","display":"standalone","background_color":"#ec4899","theme_color":"#ec4899"}'>
+    <meta name="theme-color" content="#0f172a">
+    <link rel="manifest" href='data:application/manifest+json,{"name":"FinanceOS Pro","short_name":"FinanceOS","display":"standalone","background_color":"#0f172a","theme_color":"#0f172a"}'>
     
     <title>FinanceOS Pro - Ultimate Edition</title>
     
@@ -32,7 +32,6 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: { pink: { 50: '#fdf2f8', 100: '#fce7f3', 200: '#fbcfe8', 300: '#f9a8d4', 400: '#f472b6', 500: '#ec4899', 600: '#db2777', 700: '#be185d', 800: '#9d174d', 900: '#831843' } },
                     animation: { 'blob': 'blob 7s infinite', 'slideUpFade': 'slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards' },
                     keyframes: { 
                         blob: { '0%': { transform: 'translate(0px, 0px) scale(1)' }, '33%': { transform: 'translate(30px, -50px) scale(1.1)' }, '66%': { transform: 'translate(-20px, 20px) scale(0.9)' }, '100%': { transform: 'translate(0px, 0px) scale(1)' } },
@@ -43,7 +42,7 @@
         }
     </script>
     <style>
-        body { background-color: #fdf2f8; color: #831843; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s; }
+        body { background-color: #f6f8fb; color: #0f172a; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s; }
         .dark body { background-color: #020617; color: #f1f5f9; }
         
         .page-content { display: none; animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
@@ -88,227 +87,378 @@
         .animate-float { animation: float 4s ease-in-out infinite; }
         .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
 
-        /* ===== FinanceOS Pro — Modern Pink & Blue (layout preserved) ===== */
+    <style id="financeos-professional-theme">
+        /* FinanceOS — Professional Executive Theme
+           Palette: Midnight Navy / Slate / Champagne Gold
+           Semantic colors: Green=income/success, Red=expense/delete, Amber=pending/warning
+           Layout and JavaScript are intentionally untouched. */
         :root {
-            --fos-pink: #2563eb;
-            --fos-pink-soft: #eff6ff;
-            --fos-pink: #ec4899;
-            --fos-pink-soft: #fdf2f8;
-            --fos-ink: #ec4899;
+            --pro-navy: #0f172a;
+            --pro-navy-2: #1e293b;
+            --pro-slate: #475569;
+            --pro-muted: #94a3b8;
+            --pro-line: #e2e8f0;
+            --pro-bg: #f6f8fb;
+            --pro-surface: #ffffff;
+            --pro-gold: #b08d57;
+            --pro-gold-soft: #f5efe5;
+            --pro-green: #167a5a;
+            --pro-red: #b93838;
+            --pro-amber: #a56816;
         }
+
+        html, body { background: var(--pro-bg) !important; color: var(--pro-navy) !important; }
         body {
             background:
-                radial-gradient(circle at 0% 0%, rgba(37,99,235,.07), transparent 28%),
-                radial-gradient(circle at 100% 0%, rgba(236,72,153,.07), transparent 28%),
-                #f8fafc;
+                radial-gradient(circle at 92% 0%, rgba(176,141,87,.07), transparent 26%),
+                linear-gradient(180deg, #f8fafc 0%, #f6f8fb 58%, #eef2f7 100%) !important;
         }
         .dark body {
             background:
-                radial-gradient(circle at 0% 0%, rgba(37,99,235,.12), transparent 28%),
-                radial-gradient(circle at 100% 0%, rgba(236,72,153,.10), transparent 28%),
-                #020617;
+                radial-gradient(circle at 92% 0%, rgba(176,141,87,.08), transparent 26%),
+                linear-gradient(180deg, #0b1120 0%, #0f172a 100%) !important;
+            color: #e5e7eb !important;
         }
-        .glass-card {
-            border-color: rgba(148,163,184,.18);
-            box-shadow: 0 12px 35px rgba(15,23,42,.045);
+
+        /* Remove decorative floral layer from the previous feminine theme. */
+        body::before, body::after, .glass-card::after { content: none !important; }
+
+        /* Header */
+        header.bg-\[\#0f172a\] {
+            background: linear-gradient(135deg, #0b1220 0%, #172033 58%, #24324a 100%) !important;
+            box-shadow: 0 20px 40px -15px rgba(15,23,42,.42) !important;
         }
-        .glass-nav {
-            border-color: rgba(148,163,184,.20);
-            box-shadow: 0 14px 35px rgba(15,23,42,.08);
+        header .bg-slate-500\/80 { background: rgba(176,141,87,.86) !important; }
+        header .text-slate-400 { color: #d6bc91 !important; }
+
+        /* Ambient blobs: very subtle navy/gold, never slate. */
+        .fixed.inset-0 .bg-slate-300\/30,
+        .fixed.inset-0 .bg-slate-300\/20,
+        .fixed.inset-0 .bg-red-300\/20,
+        .fixed.inset-0 .dark\:bg-slate-600\/20,
+        .fixed.inset-0 .dark\:bg-slate-600\/10,
+        .fixed.inset-0 .dark\:bg-red-600\/10 {
+            background-color: rgba(176,141,87,.055) !important;
         }
-        .tab-active {
-            border-color: rgba(37,99,235,.10);
-            box-shadow: 0 5px 16px rgba(37,99,235,.08);
+
+        /* Primary Tailwind palette remapping. */
+        [class~="text-slate-50"],[class~="text-slate-100"],[class~="text-slate-200"],[class~="text-slate-300"],[class~="text-slate-400"],[class~="text-slate-500"],[class~="text-slate-600"],[class~="text-slate-700"],[class~="text-slate-800"],[class~="text-slate-900"] { color: var(--pro-navy-2) !important; }
+        [class~="text-slate-400"],[class~="text-slate-500"],[class~="text-slate-600"] { color: var(--pro-slate) !important; }
+        [class~="text-slate-800"],[class~="text-slate-900"] { color: var(--pro-navy) !important; }
+        .dark [class~="text-slate-200"], .dark [class~="text-slate-300"], .dark [class~="text-slate-400"], .dark [class~="text-slate-500"] { color: #cbd5e1 !important; }
+
+        [class~="bg-slate-50"],[class~="bg-slate-100"],[class~="bg-slate-200"] { background-color: #f1f5f9 !important; }
+        [class~="bg-slate-300"],[class~="bg-slate-400"] { background-color: #cbd5e1 !important; }
+        [class~="bg-slate-500"],[class~="bg-slate-600"],[class~="bg-slate-700"],[class~="bg-slate-800"],[class~="bg-slate-900"] { background-color: var(--pro-navy) !important; color: #fff !important; }
+        .dark [class~="bg-slate-50"], .dark [class~="bg-slate-100"], .dark [class~="bg-slate-200"] { background-color: #1e293b !important; }
+        .dark [class~="bg-slate-800"], .dark [class~="bg-slate-900"] { background-color: #111827 !important; }
+
+        [class~="border-slate-100"],[class~="border-slate-200"],[class~="border-slate-300"] { border-color: var(--pro-line) !important; }
+        [class~="border-slate-400"],[class~="border-slate-500"],[class~="border-slate-600"],[class~="border-slate-700"],[class~="border-slate-800"],[class~="border-slate-900"] { border-color: #cbd5e1 !important; }
+
+        /* Gradient utilities become navy-to-slate, with gold reserved for premium accents. */
+        [class*="from-slate-"] { --tw-gradient-from: #0f172a var(--tw-gradient-from-position) !important; --tw-gradient-to: rgba(15,23,42,0) var(--tw-gradient-to-position) !important; }
+        [class*="to-slate-"] { --tw-gradient-to: #334155 var(--tw-gradient-to-position) !important; }
+        [class*="from-red-"] { --tw-gradient-from: #334155 var(--tw-gradient-from-position) !important; --tw-gradient-to: rgba(51,65,85,0) var(--tw-gradient-to-position) !important; }
+        [class*="to-red-"] { --tw-gradient-to: #64748b var(--tw-gradient-to-position) !important; }
+        [class*="from-slate-"][class*="to-slate-"] { background-image: linear-gradient(135deg, #0f172a, #334155) !important; }
+
+        /* Gold for the central/high-value accent, without making the UI flashy. */
+        nav button.bg-gradient-to-tr {
+            background-image: linear-gradient(135deg, #b08d57, #d1b98a) !important;
+            box-shadow: 0 15px 30px -8px rgba(176,141,87,.38) !important;
         }
-        .toggle-active {
-            background: linear-gradient(135deg, var(--fos-pink), var(--fos-pink));
-            box-shadow: 0 8px 18px rgba(37,99,235,.22);
-        }
-        input:focus, select:focus, textarea:focus {
-            border-color: rgba(37,99,235,.45) !important;
-            box-shadow: 0 0 0 4px rgba(37,99,235,.08) !important;
-        }
-        /* Accent hanya untuk elemen yang memang memakai pink color; struktur/layout asli tidak diubah. */
-        .text-pink-600 { color: var(--fos-pink) !important; }
-        .bg-pink-600 { background-color: var(--fos-pink) !important; }
-        .from-pink-600 { --tw-gradient-from: var(--fos-pink) var(--tw-gradient-from-position) !important; }
-        .to-pink-400 { --tw-gradient-to: var(--fos-pink) var(--tw-gradient-to-position) !important; }
-        .border-pink-200 { border-color: #bfdbfe !important; }
-        .focus\:border-pink-500:focus { border-color: var(--fos-pink) !important; }
-        .focus\:ring-pink-500\/10:focus { --tw-ring-color: rgba(37,99,235,.10) !important; }
+        .toggle-active { background: #b08d57 !important; box-shadow: 0 8px 18px rgba(176,141,87,.24) !important; }
+
+        /* Blue utilities -> executive navy/slate. */
+        [class~="text-blue-400"],[class~="text-blue-500"],[class~="text-blue-600"],[class~="text-blue-700"] { color: #334155 !important; }
+        [class~="bg-blue-50"],[class~="bg-blue-100"] { background-color: #eef2f7 !important; }
+        [class~="bg-blue-500"],[class~="bg-blue-600"],[class~="bg-blue-700"] { background-color: #334155 !important; color: #fff !important; }
+        [class~="border-blue-100"],[class~="border-blue-200"],[class~="border-blue-300"] { border-color: #cbd5e1 !important; }
+
+        /* Red is reserved for destructive actions. */
+        [class~="text-red-400"],[class~="text-red-500"],[class~="text-red-600"],[class~="text-red-700"] { color: var(--pro-red) !important; }
+        [class~="bg-red-50"],[class~="bg-red-100"] { background-color: #fef2f2 !important; }
+        [class~="bg-red-500"],[class~="bg-red-600"],[class~="bg-red-700"] { background-color: var(--pro-red) !important; color: #fff !important; }
+        [class~="border-red-300"],[class~="border-red-400"],[class~="border-red-500"] { border-color: #e7b4b4 !important; }
+
+        /* Cards, navigation and controls. */
+        .glass-card { background: rgba(255,255,255,.88) !important; border: 1px solid rgba(148,163,184,.22) !important; box-shadow: 0 12px 35px rgba(15,23,42,.055) !important; }
+        .dark .glass-card { background: rgba(15,23,42,.76) !important; border-color: rgba(148,163,184,.14) !important; box-shadow: 0 14px 34px rgba(0,0,0,.24) !important; }
+        .glass-nav { background: rgba(255,255,255,.94) !important; border: 1px solid rgba(148,163,184,.25) !important; box-shadow: 0 18px 40px rgba(15,23,42,.12) !important; }
+        .dark .glass-nav { background: rgba(15,23,42,.94) !important; border-color: rgba(148,163,184,.18) !important; }
+        .tab-active { background: #fff !important; color: var(--pro-navy) !important; border-color: var(--pro-line) !important; box-shadow: 0 5px 15px rgba(15,23,42,.07) !important; }
+        .dark .tab-active { background: #1e293b !important; color: #f8fafc !important; border-color: #334155 !important; }
+
+        input, select, textarea { color: #1e293b !important; background: #fff !important; border-color: #cbd5e1 !important; }
+        .dark input, .dark select, .dark textarea { color: #e5e7eb !important; background: #111827 !important; border-color: #334155 !important; }
+        input:focus, select:focus, textarea:focus { border-color: var(--pro-gold) !important; box-shadow: 0 0 0 3px rgba(176,141,87,.16) !important; outline: none !important; }
+
+        /* Filled primary controls and status colors. */
+        [class~="bg-slate-500"],[class~="bg-slate-600"] { background-color: var(--pro-navy) !important; }
+        [class~="hover:bg-slate-600"]:hover,[class~="hover:bg-slate-700"]:hover { background-color: #334155 !important; }
+        [class~="bg-green-500"],[class~="bg-green-600"],[class~="bg-emerald-500"],[class~="bg-emerald-600"] { background-color: var(--pro-green) !important; color: #fff !important; }
+        [class~="text-green-500"],[class~="text-green-600"],[class~="text-emerald-500"],[class~="text-emerald-600"] { color: var(--pro-green) !important; }
+        [class~="text-amber-500"],[class~="text-amber-600"] { color: var(--pro-amber) !important; }
+
+        /* Icons: neutral by default; white on filled controls. */
+        i[class*="fa-"] { color: #52657d !important; }
+        button i[class*="fa-"], [class~="bg-slate-500"] i[class*="fa-"], [class~="bg-slate-600"] i[class*="fa-"], [class~="bg-blue-500"] i[class*="fa-"], [class~="bg-blue-600"] i[class*="fa-"], [class~="bg-red-500"] i[class*="fa-"] { color: #fff !important; }
+        .dark i[class*="fa-"] { color: #a8b4c5 !important; }
+        .dark button i[class*="fa-"] { color: #fff !important; }
+
+        /* Typography / surfaces. */
+        h1,h2,h3,h4 { color: #172033; }
+        .dark h1,.dark h2,.dark h3,.dark h4 { color: #f3f6fb; }
+        .premium-shadow { box-shadow: 0 14px 34px rgba(15,23,42,.06) !important; }
+        .dark .premium-shadow { box-shadow: 0 14px 34px rgba(0,0,0,.28) !important; }
+
+        /* SweetAlert dialogs follow the same executive palette. */
+        .swal2-popup { border: 1px solid #e2e8f0 !important; border-radius: 1.75rem !important; }
+        .swal2-confirm { background: #0f172a !important; }
+        .swal2-cancel { color: #475569 !important; border-color: #cbd5e1 !important; }
+        .dark .swal2-popup { background: #111827 !important; color: #e5e7eb !important; border-color: #334155 !important; }
+        .dark .swal2-cancel { color: #cbd5e1 !important; background: #1e293b !important; border-color: #475569 !important; }
+
+        /* Preserve the original mobile performance optimizations. */
         @media (max-width: 640px) {
-            .glass-card { box-shadow: 0 8px 24px rgba(15,23,42,.04); }
+            .page-content { contain: layout paint; }
+            #listJurnal > div { content-visibility: auto; contain-intrinsic-size: 74px; }
+            .backdrop-blur-xl, .backdrop-blur-md { backdrop-filter: blur(8px); }
+            .transition-all { transition-duration: 180ms !important; }
         }
     
-/* Mobile performance: keep the history compact and reduce expensive effects on small screens */
-@media (max-width: 640px) {
-  .page-content { contain: layout paint; }
-  #listJurnal > div { content-visibility: auto; contain-intrinsic-size: 74px; }
-  .backdrop-blur-xl, .backdrop-blur-md { backdrop-filter: blur(8px); }
-  .transition-all { transition-duration: 180ms !important; }
-}
-
-/* Feminine floral accents - tetap ringan untuk HP */
-body::before{content:"✿  ❀  ✿";position:fixed;top:72px;right:-10px;font-size:30px;letter-spacing:8px;color:rgba(236,72,153,.16);transform:rotate(-12deg);pointer-events:none;z-index:0;}
-body::after{content:"❀  ✿";position:fixed;bottom:82px;left:-8px;font-size:26px;letter-spacing:7px;color:rgba(244,114,182,.14);transform:rotate(8deg);pointer-events:none;z-index:0;}
-.glass-card,.premium-shadow{position:relative;overflow:hidden;}
-.glass-card::after{content:"✿";position:absolute;right:14px;top:10px;font-size:18px;color:rgba(236,72,153,.10);pointer-events:none;}
-@media(max-width:640px){body::before{top:68px;font-size:22px;letter-spacing:5px;}body::after{bottom:76px;font-size:20px;letter-spacing:4px}.glass-card::after{font-size:14px;right:10px;top:8px;}}
-
-/* Refined Pink + Blue visual palette */
-:root{--fos-pink:#ec4899;--fos-pink-soft:#fff1f7;--fos-blue:#4f7cff;--fos-blue-soft:#eef4ff;--fos-ink:#7c3158;}
-body{background:radial-gradient(circle at 8% 0%,rgba(236,72,153,.13),transparent 30%),radial-gradient(circle at 95% 12%,rgba(79,124,255,.10),transparent 28%),linear-gradient(180deg,#fff7fb 0%,#fffafd 52%,#f7f9ff 100%);color:#7c3158;}
-.dark body{background:radial-gradient(circle at 8% 0%,rgba(236,72,153,.16),transparent 30%),radial-gradient(circle at 95% 12%,rgba(79,124,255,.14),transparent 28%),linear-gradient(180deg,#211421 0%,#151827 100%);color:#fce7f3;}
-.glass-card{background:rgba(255,255,255,.80);border:1px solid rgba(236,72,153,.10);box-shadow:0 12px 34px rgba(236,72,153,.07),0 4px 18px rgba(79,124,255,.04);}
-.dark .glass-card{background:rgba(35,25,39,.72);border-color:rgba(236,72,153,.13);box-shadow:0 14px 34px rgba(0,0,0,.22);}
-.glass-nav{background:rgba(255,255,255,.88);border-color:rgba(236,72,153,.10);box-shadow:0 10px 30px rgba(79,124,255,.07);}
-.dark .glass-nav{background:rgba(25,20,30,.90);border-color:rgba(236,72,153,.14);}
-.tab-active{background:linear-gradient(135deg,#fff0f7,#eef4ff);color:#7c3158;border-color:rgba(79,124,255,.14);box-shadow:0 6px 18px rgba(79,124,255,.10);}
-.dark .tab-active{background:linear-gradient(135deg,#392133,#20283f);color:#fce7f3;border-color:rgba(79,124,255,.18);}
-.toggle-active{background:linear-gradient(135deg,#ec4899,#4f7cff)!important;box-shadow:0 8px 18px rgba(236,72,153,.20);}
-input:focus,select:focus,textarea:focus{border-color:rgba(79,124,255,.50)!important;box-shadow:0 0 0 4px rgba(79,124,255,.10)!important;}
-.text-pink-600{color:#e83f93!important}.bg-pink-600{background-color:#ec4899!important}.from-pink-600{--tw-gradient-from:#ec4899 var(--tw-gradient-from-position)!important}.to-pink-400{--tw-gradient-to:#f472b6 var(--tw-gradient-to-position)!important}
-.border-pink-200{border-color:#f5bfd8!important}.focus\:border-pink-500:focus{border-color:#ec4899!important}.focus\:ring-pink-500\/10:focus{--tw-ring-color:rgba(236,72,153,.10)!important}
-/* Blue is reserved for highlights, active states and information so the pink remains dominant. */
-.text-blue-600{color:#4f7cff!important}.bg-blue-600{background-color:#4f7cff!important}.border-blue-200{border-color:#cbd9ff!important}
-body::before{color:rgba(236,72,153,.13)}body::after{color:rgba(79,124,255,.12)}
+/* FinanceOS status + icon palette */
+.fo-status-lunas{color:#167a5a!important}
+.fo-status-pending{color:#a56816!important}
+.fo-status-keluar{color:#b93838!important}
+.fo-icon-lunas{background:#ecf8f3!important;color:#167a5a!important;border:1px solid #ccebdd!important}
+.fo-icon-pending{background:#fff7e8!important;color:#a56816!important;border:1px solid #f3d9a2!important}
+.fo-icon-keluar{background:#fff0f0!important;color:#b93838!important;border:1px solid #f1cccc!important}
+.fo-icon-tagihan{background:#f0f5ff!important;color:#365ea8!important;border:1px solid #d5e0f7!important}
+.dark .fo-icon-lunas{background:rgba(22,122,90,.16)!important;border-color:rgba(74,222,128,.20)!important;color:#6ee7b7!important}
+.dark .fo-icon-pending{background:rgba(165,104,22,.16)!important;border-color:rgba(251,191,36,.20)!important;color:#fbbf24!important}
+.dark .fo-icon-keluar{background:rgba(185,56,56,.16)!important;border-color:rgba(248,113,113,.20)!important;color:#fca5a5!important}
+.dark .fo-icon-tagihan{background:rgba(54,94,168,.18)!important;border-color:rgba(96,165,250,.20)!important;color:#93c5fd!important}
+.fo-status-pill{display:inline-flex;align-items:center;gap:.3rem;padding:.18rem .45rem;border-radius:.4rem;font-size:8px;font-weight:900;letter-spacing:.08em}
+.fo-status-pill.lunas{background:#ecf8f3;color:#167a5a}
+.fo-status-pill.pending{background:#fff7e8;color:#a56816}
+.dark .fo-status-pill.lunas{background:rgba(22,122,90,.16);color:#6ee7b7}
+.dark .fo-status-pill.pending{background:rgba(165,104,22,.16);color:#fbbf24}
 </style>
 
-<style id="pink-only-theme">
-/* FinanceOS — unified pink theme (light + dark) */
-:root {
-  --pink-main: #ec4899;
-  --pink-dark: #be185d;
-  --pink-soft: #fdf2f8;
-  --pink-border: #f9a8d4;
+<style id="financeos-balance-light-fix">
+/* Balance visibility — light mode only */
+html:not(.dark) #valTotalSaldo {
+  color: #0f172a !important;
+  font-weight: 900 !important;
 }
-body { accent-color: var(--pink-main); }
-.dark body { background-color: #1f0a14 !important; }
-/* Keep gradients and component accents consistently pink. */
-[class*="from-pink-"] { --tw-gradient-from: #db2777 var(--tw-gradient-from-position) !important; }
-[class*="to-pink-"] { --tw-gradient-to: #ec4899 var(--tw-gradient-to-position) !important; }
-/* Form controls */
-input:focus, select:focus, textarea:focus { border-color: #ec4899 !important; box-shadow: 0 0 0 2px rgba(236,72,153,.15) !important; }
-/* Links / buttons that used non-pink inline colors */
-button, a { --tw-ring-color: #ec4899; }
-</style>
-
-<style id="balanced-pink-blue-theme">
-/* Balanced Pink + Blue theme: pink accents, blue base */
-:root{--fos-pink:#e86aa8;--fos-pink-soft:#fff1f7;--fos-blue:#4f78c9;--fos-blue-soft:#eef4ff;--fos-ink:#334155;}
-html,body{background:#f4f7fc!important;color:#334155!important;}
-body{background:radial-gradient(circle at 8% 0%,rgba(232,106,168,.12),transparent 26%),radial-gradient(circle at 92% 8%,rgba(79,120,201,.14),transparent 30%),linear-gradient(180deg,#fff9fc 0%,#f6f9ff 48%,#eef4fc 100%)!important;}
-.dark body{background:radial-gradient(circle at 8% 0%,rgba(232,106,168,.14),transparent 26%),radial-gradient(circle at 92% 8%,rgba(79,120,201,.16),transparent 30%),linear-gradient(180deg,#172033 0%,#121827 100%)!important;color:#eaf0fb!important;}
-.glass-card{background:rgba(255,255,255,.84)!important;border:1px solid rgba(79,120,201,.12)!important;box-shadow:0 10px 28px rgba(51,65,85,.06),0 4px 16px rgba(232,106,168,.045)!important;}
-.dark .glass-card{background:rgba(27,36,54,.82)!important;border-color:rgba(125,150,200,.14)!important;}
-.glass-nav{background:rgba(255,255,255,.92)!important;border-color:rgba(79,120,201,.14)!important;box-shadow:0 10px 28px rgba(51,65,85,.08)!important;}
-.dark .glass-nav{background:rgba(18,27,43,.92)!important;border-color:rgba(125,150,200,.15)!important;}
-.tab-active{background:linear-gradient(135deg,#eef4ff,#fff1f7)!important;color:#334155!important;border-color:rgba(79,120,201,.16)!important;box-shadow:0 5px 15px rgba(79,120,201,.09)!important;}
-.dark .tab-active{background:linear-gradient(135deg,#243653,#38283a)!important;color:#f3f6fb!important;}
-.toggle-active{background:linear-gradient(135deg,#4f78c9,#e86aa8)!important;box-shadow:0 7px 16px rgba(79,120,201,.20)!important;}
-input:focus,select:focus,textarea:focus{border-color:rgba(79,120,201,.55)!important;box-shadow:0 0 0 4px rgba(79,120,201,.10)!important;}
-.text-pink-600{color:#d85d98!important}.bg-pink-600{background-color:#e86aa8!important}.from-pink-600{--tw-gradient-from:#4f78c9 var(--tw-gradient-from-position)!important}.to-pink-400{--tw-gradient-to:#e86aa8 var(--tw-gradient-to-position)!important}
-.border-pink-200{border-color:#cbd9ef!important}.focus\:border-pink-500:focus{border-color:#e86aa8!important}.focus\:ring-pink-500\/10:focus{--tw-ring-color:rgba(232,106,168,.10)!important}
-body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106,168,.13)!important}.glass-card::after{color:rgba(232,106,168,.09)!important}
-/* Keep pink and blue visually balanced across common Tailwind utility classes */
-.text-pink-500,.text-pink-700{color:#d85d98!important}.bg-pink-50{background-color:#fff5f9!important}.bg-pink-100{background-color:#ffe8f2!important}.bg-pink-200{background-color:#f8d0df!important}.bg-blue-50{background-color:#eef4ff!important}.bg-blue-100{background-color:#dfeaff!important}.text-blue-600,.text-blue-700{color:#4f78c9!important}.bg-blue-600{background-color:#4f78c9!important}.border-blue-200{border-color:#cbd9ef!important}
-</style>
-
-<style id="modern-icon-style">
-/* Modern icon system: soft containers, consistent sizing, and subtle motion. */
-.fa, .fas, .far, .fab {
-  line-height: 1;
-  vertical-align: middle;
+html:not(.dark) #pageDashboard .bg-white\/90:has(#valTotalSaldo) {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 8px 22px -8px rgba(15,23,42,.14) !important;
 }
-.icon-modern {
-  width: 2.35rem; height: 2.35rem;
-  display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 0.85rem;
-  background: linear-gradient(135deg, rgba(37,99,235,.10), rgba(236,72,153,.12));
-  color: #2563eb;
-  box-shadow: 0 4px 12px rgba(37,99,235,.08);
-  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+html:not(.dark) #pageDashboard .bg-white\/90:has(#valTotalSaldo) .bg-slate-50 {
+  background: #e2e8f0 !important;
+  color: #334155 !important;
+  border-color: #cbd5e1 !important;
 }
-.icon-modern:hover { transform: translateY(-1px); box-shadow: 0 7px 16px rgba(37,99,235,.12); }
-.dark .icon-modern {
-  background: linear-gradient(135deg, rgba(59,130,246,.16), rgba(244,114,182,.14));
-  color: #93c5fd;
+html:not(.dark) #pageDashboard .bg-white\/90:has(#valTotalSaldo) p {
+  color: #475569 !important;
 }
-.icon-modern.icon-pink { color:#db2777; background:rgba(236,72,153,.11); }
-.icon-modern.icon-blue { color:#2563eb; background:rgba(37,99,235,.11); }
-.icon-modern.icon-soft { color:#64748b; background:rgba(100,116,139,.10); }
-.dark .icon-modern.icon-pink { color:#f9a8d4; background:rgba(236,72,153,.16); }
-.dark .icon-modern.icon-blue { color:#93c5fd; background:rgba(59,130,246,.16); }
-.icon-btn-modern {
-  width:2.4rem;height:2.4rem;border-radius:.8rem;
-  display:inline-flex;align-items:center;justify-content:center;
-  transition:all .18s ease;
+/* Make Bank/Cash balances unmistakable in normal mode */
+html:not(.dark) #statBank,
+html:not(.dark) #statCash {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(15,23,42,.28);
 }
-.icon-btn-modern:hover { transform:translateY(-1px) scale(1.03); }
-@media (max-width:640px){
-  .icon-modern { width:2.1rem;height:2.1rem;border-radius:.72rem; }
-  .icon-btn-modern { width:2.25rem;height:2.25rem; }
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt('bank')"] {
+  background: linear-gradient(135deg,#1e3a8a,#334155) !important;
+}
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt('cash')"] {
+  background: linear-gradient(135deg,#047857,#334155) !important;
 }
 </style>
 
-<style id="financeos-contrast-theme">
-:root{--fo-bg:#f5f8ff;--fo-surface:#ffffff;--fo-text:#24324a;--fo-muted:#64748b;--fo-blue:#2563eb;--fo-blue-soft:#eaf2ff;--fo-pink:#e83e8c;--fo-pink-soft:#fff0f7;--fo-border:#dbe4f0;}
-body{background:linear-gradient(135deg,#f7faff 0%,#fff8fc 52%,#eef5ff 100%) !important;color:var(--fo-text) !important;}
-/* Make normal text clearly darker than the pastel background */
-body,.text-gray-500,.text-gray-600,.text-slate-500,.text-slate-600{color:var(--fo-text) !important;}
-.text-gray-400,.text-gray-500,.text-slate-400,.text-slate-500{color:var(--fo-muted) !important;}
-/* Cards and surfaces */
-.bg-white{background-color:rgba(255,255,255,.96) !important;}
-.border-gray-100,.border-gray-200,.border-slate-100,.border-slate-200{border-color:var(--fo-border) !important;}
-/* Blue = navigation, information and focus */
-.text-blue-500,.text-blue-600,.text-blue-700{color:var(--fo-blue) !important;}
-.bg-blue-50{background-color:var(--fo-blue-soft) !important;}
-.border-blue-100,.border-blue-200{border-color:#bfdbfe !important;}
-/* Pink = primary actions and important highlights */
-.text-pink-500,.text-pink-600,.text-pink-700{color:var(--fo-pink) !important;}
-.bg-pink-50{background-color:var(--fo-pink-soft) !important;}
-.border-pink-100,.border-pink-200{border-color:#f7b6d3 !important;}
-/* Icons: dark blue/pink contrast instead of pastel-on-pastel */
-i[class*="fa-"]{color:#31506f !important;}
-button i[class*="fa-"],.bg-blue-500 i[class*="fa-"],.bg-blue-600 i[class*="fa-"],.bg-pink-500 i[class*="fa-"],.bg-pink-600 i[class*="fa-"]{color:#fff !important;}
-/* Primary filled controls */
-.bg-pink-500,.bg-pink-600{background-color:var(--fo-pink) !important;color:#fff !important;}
-.bg-blue-500,.bg-blue-600{background-color:var(--fo-blue) !important;color:#fff !important;}
-/* Inputs: readable dark text and distinct focus */
-input,select,textarea{color:#24324a !important;background:#fff !important;border-color:#cbd5e1 !important;}
-input:focus,select:focus,textarea:focus{border-color:var(--fo-blue) !important;box-shadow:0 0 0 3px rgba(37,99,235,.14) !important;outline:none !important;}
-/* Bottom navigation */
-nav i[class*="fa-"],.bottom-nav i[class*="fa-"]{color:#52657d !important;}
-nav .text-pink-500 i[class*="fa-"],nav .text-pink-600 i[class*="fa-"]{color:var(--fo-pink) !important;}
-/* Headings */
-h1,h2,h3,h4{color:#1f2f46;}
-/* Dark mode keeps contrast */
-.dark body{background:linear-gradient(135deg,#101827 0%,#1b1520 55%,#101827 100%) !important;color:#e7edf7 !important;}
-.dark .bg-white{background-color:#182235 !important;}
-.dark input,.dark select,.dark textarea{background:#111a2a !important;color:#e7edf7 !important;border-color:#33445d !important;}
-.dark h1,.dark h2,.dark h3,.dark h4{color:#f3f6fb;}
-.dark i[class*="fa-"]{color:#9bb6dc !important;}
-.dark button i[class*="fa-"],.dark .bg-blue-500 i[class*="fa-"],.dark .bg-blue-600 i[class*="fa-"],.dark .bg-pink-500 i[class*="fa-"],.dark .bg-pink-600 i[class*="fa-"]{color:#fff !important;}
+
+
+<style id="financeos-colorful-ui-v6">
+/* ===== FinanceOS Colorful UI v6 =====
+   Color is semantic, not decorative: every foreground is chosen for contrast. */
+:root{
+  --fo-blue:#2563eb; --fo-blue-dark:#1d4ed8; --fo-cyan:#0891b2;
+  --fo-green:#059669; --fo-green-dark:#047857;
+  --fo-amber:#d97706; --fo-red:#dc2626; --fo-purple:#7c3aed;
+  --fo-indigo:#4f46e5; --fo-teal:#0f766e;
+}
+
+/* ---------- HOME / DASHBOARD CARDS ---------- */
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt('bank')"]{
+  background:linear-gradient(135deg,#1d4ed8 0%,#2563eb 58%,#0891b2 100%) !important;
+  box-shadow:0 16px 30px -8px rgba(37,99,235,.38) !important;
+}
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt('cash')"]{
+  background:linear-gradient(135deg,#047857 0%,#059669 58%,#0f766e 100%) !important;
+  box-shadow:0 16px 30px -8px rgba(5,150,105,.35) !important;
+}
+#pageDashboard [onclick="editSaldoPrompt('bank')"] p,
+#pageDashboard [onclick="editSaldoPrompt('cash')"] p,
+#pageDashboard [onclick="editSaldoPrompt('bank')"] h3,
+#pageDashboard [onclick="editSaldoPrompt('cash')"] h3{color:#fff !important}
+#pageDashboard [onclick="editSaldoPrompt('bank')"] .fa-building-columns{color:#dbeafe !important}
+#pageDashboard [onclick="editSaldoPrompt('cash')"] .fa-wallet{color:#d1fae5 !important}
+
+html:not(.dark) #pageDashboard .bg-gradient-to-br.from-slate-400.to-slate-500{
+  background:linear-gradient(135deg,#b45309 0%,#d97706 60%,#f59e0b 100%) !important;
+  box-shadow:0 16px 30px -8px rgba(217,119,6,.28) !important;
+}
+html:not(.dark) #pageDashboard .bg-gradient-to-br.from-red-500.to-red-700{
+  background:linear-gradient(135deg,#b91c1c 0%,#dc2626 60%,#ef4444 100%) !important;
+}
+#pageDashboard .bg-gradient-to-br.from-slate-400.to-slate-500 p,
+#pageDashboard .bg-gradient-to-br.from-red-500.to-red-700 p,
+#pageDashboard .bg-gradient-to-br.from-slate-400.to-slate-500 h3,
+#pageDashboard .bg-gradient-to-br.from-red-500.to-red-700 h3{color:#fff !important}
+#pageDashboard .bg-gradient-to-br.from-slate-400.to-slate-500 .fa-clock-rotate-left{color:#fef3c7 !important}
+#pageDashboard .bg-gradient-to-br.from-red-500.to-red-700 .fa-file-invoice{color:#fee2e2 !important}
+
+/* Main analytics hero */
+#pageDashboard .bg-gradient-to-br.from-slate-600.to-slate-800{
+  background:linear-gradient(135deg,#312e81 0%,#4f46e5 58%,#7c3aed 100%) !important;
+  box-shadow:0 16px 30px -8px rgba(79,70,229,.32) !important;
+}
+#pageDashboard .bg-gradient-to-br.from-slate-600.to-slate-800 p,
+#pageDashboard .bg-gradient-to-br.from-slate-600.to-slate-800 h2,
+#pageDashboard .bg-gradient-to-br.from-slate-600.to-slate-800 span{color:#fff !important}
+#pageDashboard .bg-gradient-to-br.from-slate-600.to-slate-800 .fa-circle-check{color:#c4b5fd !important}
+
+/* ---------- COLORFUL ICON SYSTEM ---------- */
+/* Default non-white icons get a clear blue/cyan accent instead of flat slate. */
+#pageDashboard i.fas:not(.text-white),
+#pageDashboard i.far:not(.text-white){color:var(--fo-blue) !important}
+
+/* Semantic icon colors across the whole application. */
+i.fa-house{color:#2563eb !important}
+i.fa-receipt,i.fa-file-invoice,i.fa-file-invoice-dollar{color:#7c3aed !important}
+i.fa-building-columns{color:#2563eb !important}
+i.fa-wallet,i.fa-coins{color:#059669 !important}
+i.fa-clock,i.fa-clock-rotate-left{color:#d97706 !important}
+i.fa-circle-check,i.fa-check,i.fa-check-circle{color:#059669 !important}
+i.fa-circle-xmark,i.fa-xmark,i.fa-trash{color:#dc2626 !important}
+i.fa-arrow-right-from-bracket,i.fa-arrow-down{color:#dc2626 !important}
+i.fa-arrow-up,i.fa-arrow-up-right{color:#059669 !important}
+i.fa-file-pen,i.fa-pen,i.fa-pen-to-square{color:#2563eb !important}
+i.fa-plus{color:#7c3aed !important}
+i.fa-chart-simple,i.fa-chart-line,i.fa-chart-column{color:#4f46e5 !important}
+i.fa-percent{color:#7c3aed !important}
+i.fa-tag{color:#0891b2 !important}
+i.fa-filter{color:#0891b2 !important}
+i.fa-arrow-down-wide-short{color:#4f46e5 !important}
+i.fa-grid-2,i.fa-list,i.fa-list-ul{color:#7c3aed !important}
+i.fa-star{color:#d97706 !important}
+i.fa-calendar,i.fa-calendar-alt,i.fa-calendar-days{color:#0891b2 !important}
+i.fa-calendar-times{color:#dc2626 !important}
+i.fa-database{color:#0891b2 !important}
+i.fa-gear,i.fa-sliders,i.fa-wrench{color:#64748b !important}
+i.fa-circle-info{color:#0891b2 !important}
+i.fa-sun{color:#f59e0b !important}
+i.fa-moon{color:#818cf8 !important}
+i.fa-cloud-sun{color:#f97316 !important}
+i.fa-search{color:#2563eb !important}
+i.fa-ellipsis,i.fa-ellipsis-vertical{color:#64748b !important}
+
+/* Keep icons intentionally white when they sit on saturated controls/cards. */
+.bg-red-500 i,.bg-red-600 i,.bg-red-700 i,
+.bg-amber-600 i,.bg-amber-700 i,
+.bg-slate-800 i,.bg-slate-900 i,
+.bg-gradient-to-br i.text-white,.bg-gradient-to-tr i.text-white,
+button.bg-slate-800 i,button.bg-slate-700 i{color:#fff !important}
+
+/* Icon containers on light surfaces: stronger tint + visible border. */
+html:not(.dark) #pageDashboard .bg-slate-50,
+html:not(.dark) #pageDashboard .bg-slate-50\/80,
+html:not(.dark) #pageDashboard .bg-slate-100\/80{
+  border-color:#dbe4f0 !important;
+}
+html:not(.dark) #pageDashboard .fa-coins{color:#059669 !important}
+html:not(.dark) #pageDashboard .fa-percent{color:#7c3aed !important}
+html:not(.dark) #pageDashboard .fa-chart-simple{color:#4f46e5 !important}
+html:not(.dark) #pageDashboard .fa-grid-2{color:#dc2626 !important}
+
+/* ---------- TEXT / BACKGROUND CONTRAST ---------- */
+html:not(.dark) #pageDashboard .bg-white,
+html:not(.dark) #pageDashboard .bg-white\/90,
+html:not(.dark) #pageDashboard .bg-white\/70{
+  color:#0f172a !important;
+}
+html:not(.dark) #pageDashboard .bg-white h1,
+html:not(.dark) #pageDashboard .bg-white h2,
+html:not(.dark) #pageDashboard .bg-white h3,
+html:not(.dark) #pageDashboard .bg-white\/90 h1,
+html:not(.dark) #pageDashboard .bg-white\/90 h2,
+html:not(.dark) #pageDashboard .bg-white\/90 h3{color:#0f172a !important}
+html:not(.dark) #pageDashboard .bg-white p.text-slate-400,
+html:not(.dark) #pageDashboard .bg-white\/90 p.text-slate-400,
+html:not(.dark) #pageDashboard .bg-white\/70 p.text-slate-400{color:#64748b !important}
+html:not(.dark) #pageDashboard .bg-white p.text-slate-500,
+html:not(.dark) #pageDashboard .bg-white\/90 p.text-slate-500,
+html:not(.dark) #pageDashboard .bg-white\/70 p.text-slate-500{color:#475569 !important}
+
+/* Header/nav: preserve white text and give controls colored icons. */
+header i.fa-gear,header i.fa-sliders{color:#cbd5e1 !important}
+nav i.fa-house{color:#2563eb !important}
+nav i.fa-receipt{color:#7c3aed !important}
+nav button.bg-gradient-to-tr i.fa-plus{color:#fff !important}
+
+/* Light-mode navigation contrast */
+html:not(.dark) nav .text-slate-400{color:#64748b !important}
+html:not(.dark) nav #navDashboard.text-slate-600{color:#2563eb !important}
+html:not(.dark) nav #navRiwayat{color:#7c3aed !important}
+
+/* Dark mode: preserve contrast while retaining the colorful semantic accents. */
+.dark #pageDashboard .bg-white\/90,
+.dark #pageDashboard .bg-white\/70{color:#f8fafc !important}
+.dark #pageDashboard .bg-white\/90 h1,
+.dark #pageDashboard .bg-white\/90 h2,
+.dark #pageDashboard .bg-white\/90 h3{color:#f8fafc !important}
+.dark #pageDashboard .bg-white\/90 p.text-slate-400,
+.dark #pageDashboard .bg-white\/70 p.text-slate-400{color:#94a3b8 !important}
+.dark #pageDashboard i.fa-building-columns{color:#60a5fa !important}
+.dark #pageDashboard i.fa-wallet{color:#34d399 !important}
+.dark #pageDashboard i.fa-clock-rotate-left{color:#fbbf24 !important}
+.dark #pageDashboard i.fa-file-invoice{color:#f87171 !important}
+.dark #pageDashboard i.fa-coins{color:#34d399 !important}
+.dark #pageDashboard i.fa-percent{color:#a78bfa !important}
+.dark #pageDashboard i.fa-chart-simple{color:#818cf8 !important}
+.dark #pageDashboard i.fa-grid-2{color:#f87171 !important}
+
+/* Prevent pale text on pale surfaces in common controls. */
+html:not(.dark) input,html:not(.dark) select,html:not(.dark) textarea{
+  color:#0f172a !important;
+  background-color:#fff !important;
+}
+html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#94a3b8 !important}
 </style>
+
 </head>
 <body class="font-sans min-h-screen pb-32 relative pt-[env(safe-area-inset-top)] pb-[calc(8rem+env(safe-area-inset-bottom))]">
 
     <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-pink-300/30 dark:bg-pink-600/20 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[80px] animate-blob"></div>
-        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-pink-300/20 dark:bg-pink-600/10 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[80px] animate-blob" style="animation-delay: 2s"></div>
-        <div class="absolute bottom-[-10%] left-[20%] w-96 h-96 bg-rose-300/20 dark:bg-rose-600/10 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[80px] animate-blob" style="animation-delay: 4s"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-slate-300/30 dark:bg-slate-600/20 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[80px] animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-slate-300/20 dark:bg-slate-600/10 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[80px] animate-blob" style="animation-delay: 2s"></div>
+        <div class="absolute bottom-[-10%] left-[20%] w-96 h-96 bg-red-300/20 dark:bg-red-600/10 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[80px] animate-blob" style="animation-delay: 4s"></div>
     </div>
 
-    <header class="bg-[#ec4899] text-white pt-10 pb-24 px-6 rounded-b-[2.5rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] relative z-30">
+    <header class="bg-[#0f172a] text-white pt-10 pb-24 px-6 rounded-b-[2.5rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] relative z-30">
         <div class="absolute inset-0 overflow-hidden rounded-b-[2.5rem] pointer-events-none">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-pink-500/20 rounded-full mix-blend-screen filter blur-[60px]"></div>
+            <div class="absolute top-0 right-0 w-64 h-64 bg-slate-500/20 rounded-full mix-blend-screen filter blur-[60px]"></div>
         </div>
         <div class="max-w-3xl mx-auto flex justify-between items-center relative z-10">
             <div class="flex items-center gap-3.5">
                 <div id="dynamicLogoWidget" class="w-14 h-14 shrink-0 rounded-[1.2rem] flex items-center justify-center shadow-lg border border-white/20 transition-all duration-700">
                     </div>
                 <div>
-                    <p id="greetingText" class="text-[10px] font-bold text-pink-400 uppercase tracking-widest mb-1.5">Memuat...</p>
+                    <p id="greetingText" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Memuat...</p>
                     <p id="quoteText" class="text-xs md:text-sm font-semibold text-white italic leading-relaxed max-w-[240px] drop-shadow-sm transition-opacity duration-500">"Sedang memuat inspirasi harian..."</p>
                 </div>
             </div>
@@ -316,7 +466,7 @@ h1,h2,h3,h4{color:#1f2f46;}
                 <button onclick="showPage('Settings')" title="Pengaturan" aria-label="Pengaturan" class="w-10 h-10 bg-white/5 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center hover:bg-white/10 transition-all duration-300 active:scale-90 text-white shadow-sm ring-1 ring-white/5">
                     <i class="fas fa-sliders text-sm"></i>
                 </button>
-                <span id="modeLabelHeader" class="inline-block px-2.5 py-1 bg-pink-500/80 backdrop-blur-md border border-pink-400/50 text-white rounded-lg text-[8px] font-bold uppercase tracking-wider shadow-sm transition-all duration-300">Fokus: KASIR</span>
+                <span id="modeLabelHeader" class="inline-block px-2.5 py-1 bg-slate-500/80 backdrop-blur-md border border-slate-400/50 text-white rounded-lg text-[8px] font-bold uppercase tracking-wider shadow-sm transition-all duration-300">Fokus: KASIR</span>
             </div>
         </div>
     </header>
@@ -325,50 +475,50 @@ h1,h2,h3,h4{color:#1f2f46;}
         
         <section id="pageDashboard" class="page-content active-page space-y-5">
             <div class="grid grid-cols-2 gap-3 md:gap-4 relative z-50">
-                <div onclick="editSaldoPrompt('bank')" class="relative overflow-hidden bg-gradient-to-br from-pink-500 to-pink-700 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(99,102,241,0.4)] cursor-pointer group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-5px_rgba(99,102,241,0.5)]">
+                <div onclick="editSaldoPrompt('bank')" class="relative overflow-hidden bg-gradient-to-br from-slate-500 to-slate-700 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(99,102,241,0.4)] cursor-pointer group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-5px_rgba(99,102,241,0.5)]">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-bl-[3rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
                     <div class="flex justify-between items-start mb-4 relative z-10">
                         <div class="w-9 h-9 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-building-columns text-white text-sm drop-shadow-md"></i></div>
                         <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-sliders text-white text-[9px]"></i></div>
                     </div>
                     <div class="relative z-10">
-                        <p class="text-[9px] font-bold text-pink-200 uppercase tracking-widest mb-1">Saldo Bank</p>
+                        <p class="text-[9px] font-bold text-slate-200 uppercase tracking-widest mb-1">Saldo Bank</p>
                         <h3 id="statBank" class="text-lg md:text-xl font-black tracking-tight truncate drop-shadow-sm">Rp 0</h3>
                     </div>
                 </div>
                 
-                <div onclick="editSaldoPrompt('cash')" class="relative overflow-hidden bg-gradient-to-br from-pink-400 to-pink-600 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(16,185,129,0.4)] cursor-pointer group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-5px_rgba(16,185,129,0.5)]">
+                <div onclick="editSaldoPrompt('cash')" class="relative overflow-hidden bg-gradient-to-br from-slate-400 to-slate-600 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(16,185,129,0.4)] cursor-pointer group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-5px_rgba(16,185,129,0.5)]">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-bl-[3rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
                     <div class="flex justify-between items-start mb-4 relative z-10">
                         <div class="w-9 h-9 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-wallet text-white text-sm drop-shadow-md"></i></div>
                         <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-sliders text-white text-[9px]"></i></div>
                     </div>
                     <div class="relative z-10">
-                        <p class="text-[9px] font-bold text-pink-100 uppercase tracking-widest mb-1">Saldo Cash</p>
+                        <p class="text-[9px] font-bold text-slate-100 uppercase tracking-widest mb-1">Saldo Cash</p>
                         <h3 id="statCash" class="text-lg md:text-xl font-black tracking-tight truncate drop-shadow-sm">Rp 0</h3>
                     </div>
                 </div>
 
-                <div class="relative overflow-hidden bg-gradient-to-br from-pink-400 to-pink-500 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(245,158,11,0.3)] transition-all duration-300 cursor-default">
+                <div class="relative overflow-hidden bg-gradient-to-br from-slate-400 to-slate-500 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(245,158,11,0.3)] transition-all duration-300 cursor-default">
                     <div class="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-bl-[3rem] pointer-events-none"></div>
                     <div class="flex justify-between items-start mb-3 relative z-10">
                         <div class="w-8 h-8 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-clock-rotate-left text-white text-xs drop-shadow-md"></i></div>
                         <div class="w-6 h-6 flex items-center justify-center opacity-50"><i class="fas fa-circle-info text-white text-[10px]"></i></div>
                     </div>
                     <div class="relative z-10">
-                        <p class="text-[8px] font-bold text-pink-100 uppercase tracking-widest mb-0.5">Dana Pending</p>
+                        <p class="text-[8px] font-bold text-slate-100 uppercase tracking-widest mb-0.5">Dana Pending</p>
                         <h3 id="statPending" class="text-base md:text-lg font-black tracking-tight truncate drop-shadow-sm">Rp 0</h3>
                     </div>
                 </div>
 
-                <div class="relative overflow-hidden bg-gradient-to-br from-rose-500 to-rose-700 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(225,29,72,0.3)] transition-all duration-300 cursor-default">
+                <div class="relative overflow-hidden bg-gradient-to-br from-red-500 to-red-700 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(225,29,72,0.3)] transition-all duration-300 cursor-default">
                     <div class="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-bl-[3rem] pointer-events-none"></div>
                     <div class="flex justify-between items-start mb-3 relative z-10">
                         <div class="w-8 h-8 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-file-invoice text-white text-xs drop-shadow-md"></i></div>
                         <div class="w-6 h-6 flex items-center justify-center opacity-50"><i class="fas fa-circle-info text-white text-[10px]"></i></div>
                     </div>
                     <div class="relative z-10">
-                        <p class="text-[8px] font-bold text-rose-200 uppercase tracking-widest mb-0.5">Piutang Berjalan</p>
+                        <p class="text-[8px] font-bold text-red-200 uppercase tracking-widest mb-0.5">Piutang Berjalan</p>
                         <h3 id="totalPiutang" class="text-base md:text-lg font-black tracking-tight truncate drop-shadow-sm">Rp 0</h3>
                     </div>
                 </div>
@@ -377,49 +527,49 @@ h1,h2,h3,h4{color:#1f2f46;}
             <div class="glass-card p-5 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
                     <div>
-                        <h2 class="text-base font-black text-pink-800 dark:text-white tracking-tight flex items-center gap-2"><i class="fas fa-chart-simple text-pink-500"></i> Analisis Cerdas</h2>
-                        <p class="text-[10px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-wider mt-1">Performa Transaksi Kasir</p>
+                        <h2 class="text-base font-black text-slate-800 dark:text-white tracking-tight flex items-center gap-2"><i class="fas fa-chart-simple text-slate-500"></i> Analisis Cerdas</h2>
+                        <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mt-1">Performa Transaksi Kasir</p>
                     </div>
-                    <div class="flex bg-pink-100/80 dark:bg-pink-800/80 p-1.5 rounded-xl border border-pink-200/60 dark:border-pink-700/60 w-fit">
+                    <div class="flex bg-slate-100/80 dark:bg-slate-800/80 p-1.5 rounded-xl border border-slate-200/60 dark:border-slate-700/60 w-fit">
                         <button onclick="setAnalysisTime('hari')" id="tabHari" class="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 tab-active">Hari</button>
-                        <button onclick="setAnalysisTime('bulan')" id="tabBulan" class="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-pink-500 hover:text-pink-700 dark:hover:text-white dark:hover:bg-pink-700/50">Bulan</button>
-                        <button onclick="setAnalysisTime('tahun')" id="tabTahun" class="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-pink-500 hover:text-pink-700 dark:hover:text-white dark:hover:bg-pink-700/50">Tahun</button>
+                        <button onclick="setAnalysisTime('bulan')" id="tabBulan" class="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-slate-500 hover:text-slate-700 dark:hover:text-white dark:hover:bg-slate-700/50">Bulan</button>
+                        <button onclick="setAnalysisTime('tahun')" id="tabTahun" class="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-slate-500 hover:text-slate-700 dark:hover:text-white dark:hover:bg-slate-700/50">Tahun</button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3 mb-6">
-                    <div class="col-span-2 bg-gradient-to-br from-pink-600 to-pink-800 rounded-[1.8rem] p-5 text-white shadow-[0_15px_30px_-5px_rgba(99,102,241,0.4)] relative overflow-hidden group">
+                    <div class="col-span-2 bg-gradient-to-br from-slate-600 to-slate-800 rounded-[1.8rem] p-5 text-white shadow-[0_15px_30px_-5px_rgba(99,102,241,0.4)] relative overflow-hidden group">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-bl-[4rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
                         <div class="flex justify-between items-start mb-2 relative z-10">
-                            <p class="text-[10px] font-bold text-pink-200 uppercase tracking-widest">Total Keuntungan</p>
+                            <p class="text-[10px] font-bold text-slate-200 uppercase tracking-widest">Total Keuntungan</p>
                             <div class="bg-white/20 backdrop-blur-sm px-2.5 py-1 rounded-lg flex items-center gap-1.5 border border-white/10">
-                                <i class="fas fa-circle-check text-[9px] text-pink-100"></i>
+                                <i class="fas fa-circle-check text-[9px] text-slate-100"></i>
                                 <span id="countTrx" class="text-[9px] font-bold text-white tracking-widest">0 Trx</span>
                             </div>
                         </div>
                         <h2 id="analyticLaba" class="text-3xl md:text-4xl font-black tracking-tighter drop-shadow-md relative z-10">Rp 0</h2>
                     </div>
                     
-                    <div class="bg-white/90 dark:bg-pink-800/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-pink-100 dark:border-pink-700 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
+                    <div class="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-slate-100 dark:border-slate-700 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
                         <div class="flex items-center gap-2 mb-2">
-                            <div class="w-6 h-6 rounded-lg bg-pink-50 dark:bg-pink-900/30 text-pink-500 flex items-center justify-center border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-coins text-[10px]"></i></div>
-                            <p class="text-[9px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest">Total Saldo</p>
+                            <div class="w-6 h-6 rounded-lg bg-slate-50 dark:bg-slate-900/30 text-slate-500 flex items-center justify-center border border-slate-100/50 dark:border-slate-800/50"><i class="fas fa-coins text-[10px]"></i></div>
+                            <p class="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Total Saldo</p>
                         </div>
-                        <h3 id="valTotalSaldo" class="text-[13px] md:text-base font-black text-pink-800 dark:text-white tracking-tight pl-1">Rp 0</h3>
+                        <h3 id="valTotalSaldo" class="text-[13px] md:text-base font-black text-slate-800 dark:text-white tracking-tight pl-1">Rp 0</h3>
                     </div>
                     
-                    <div class="bg-white/90 dark:bg-pink-800/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-pink-100 dark:border-pink-700 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
+                    <div class="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-[1.5rem] p-4 border border-slate-100 dark:border-slate-700 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.02)] flex flex-col justify-center transition-transform duration-300 hover:-translate-y-1">
                         <div class="flex items-center gap-2 mb-2">
-                            <div class="w-6 h-6 rounded-lg bg-pink-50 dark:bg-pink-900/30 text-pink-500 flex items-center justify-center border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-percent text-[10px]"></i></div>
-                            <p class="text-[9px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest">Margin Profit</p>
+                            <div class="w-6 h-6 rounded-lg bg-slate-50 dark:bg-slate-900/30 text-slate-500 flex items-center justify-center border border-slate-100/50 dark:border-slate-800/50"><i class="fas fa-percent text-[10px]"></i></div>
+                            <p class="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Margin Profit</p>
                         </div>
-                        <h3 id="valMargin" class="text-[13px] md:text-base font-black text-pink-500 tracking-tight pl-1">0%</h3>
+                        <h3 id="valMargin" class="text-[13px] md:text-base font-black text-slate-500 tracking-tight pl-1">0%</h3>
                     </div>
                 </div>
                 
-                <div class="bg-white/70 dark:bg-pink-900/60 backdrop-blur-md rounded-3xl p-5 border border-pink-100 dark:border-pink-800 shadow-sm">
+                <div class="bg-white/70 dark:bg-slate-900/60 backdrop-blur-md rounded-3xl p-5 border border-slate-100 dark:border-slate-800 shadow-sm">
                     <div class="flex items-center justify-between mb-3">
-                        <p class="text-[9px] font-extrabold text-pink-400 uppercase tracking-widest">Ringkasan Performa</p>
+                        <p class="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest">Ringkasan Performa</p>
                         <span class="text-[8px] font-bold text-slate-400">Profit & Omzet</span>
                     </div>
                     <div class="relative h-48 md:h-56"><canvas id="performanceChart"></canvas></div>
@@ -427,37 +577,37 @@ h1,h2,h3,h4{color:#1f2f46;}
             </div>
 
             <div>
-                <h3 class="text-xs font-black text-pink-700 dark:text-pink-200 tracking-tight flex items-center gap-2 mb-3 ml-1"><i class="fas fa-grid-2 text-rose-500"></i> Rincian Kategori Piutang</h3>
+                <h3 class="text-xs font-black text-slate-700 dark:text-slate-200 tracking-tight flex items-center gap-2 mb-3 ml-1"><i class="fas fa-grid-2 text-red-500"></i> Rincian Kategori Piutang</h3>
                 <div id="kategoriPiutangGrid" class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    <div class="text-center py-6 text-[10px] font-bold uppercase tracking-widest text-pink-400 dark:text-pink-600 col-span-full border border-dashed border-pink-200 dark:border-pink-700 rounded-2xl">Memuat kategori...</div>
+                    <div class="text-center py-6 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-600 col-span-full border border-dashed border-slate-200 dark:border-slate-700 rounded-2xl">Memuat kategori...</div>
                 </div>
             </div>
         </section>
 
         <section id="pageRiwayat" class="page-content space-y-4">
             
-            <div class="sticky top-20 z-30 bg-[#f8fafc]/90 dark:bg-[#020617]/90 backdrop-blur-xl pb-3 pt-2 -mx-2 px-2 border-b border-pink-200/50 dark:border-pink-800/50">
+            <div class="sticky top-20 z-30 bg-[#f8fafc]/90 dark:bg-[#020617]/90 backdrop-blur-xl pb-3 pt-2 -mx-2 px-2 border-b border-slate-200/50 dark:border-slate-800/50">
                 
-                <div class="flex p-1 bg-pink-200/50 dark:bg-pink-800/50 rounded-xl mb-3">
-                    <button onclick="switchMode('kasir')" id="tabRiwayatKasir" class="w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-white dark:bg-pink-700 text-pink-600 dark:text-pink-400">Kasir</button>
-                    <button onclick="switchMode('tagihan')" id="tabRiwayatTagihan" class="w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-pink-500 dark:text-pink-400 hover:text-pink-800 dark:hover:text-white">Piutang</button>
+                <div class="flex p-1 bg-slate-200/50 dark:bg-slate-800/50 rounded-xl mb-3">
+                    <button onclick="switchMode('kasir')" id="tabRiwayatKasir" class="w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-400">Kasir</button>
+                    <button onclick="switchMode('tagihan')" id="tabRiwayatTagihan" class="w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white">Piutang</button>
                 </div>
 
                 <div class="flex items-center gap-2">
                     <div class="relative flex-1 group">
-                        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-pink-400 dark:text-pink-500 text-[10px] transition-colors group-focus-within:text-pink-500"></i>
-                        <input type="text" id="searchInput" oninput="debounceSearch()" placeholder="Cari nama atau keterangan..." class="w-full pl-8 pr-3 py-2 bg-pink-100 dark:bg-pink-900/80 border border-pink-200/50 dark:border-pink-800 rounded-lg outline-none text-[10px] font-semibold text-pink-700 dark:text-white focus:bg-white dark:focus:bg-pink-800 focus:border-pink-400 dark:focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 transition-all duration-300 shadow-sm placeholder:text-pink-400">
+                        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 text-[10px] transition-colors group-focus-within:text-slate-500"></i>
+                        <input type="text" id="searchInput" oninput="debounceSearch()" placeholder="Cari nama atau keterangan..." class="w-full pl-8 pr-3 py-2 bg-slate-100 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800 rounded-lg outline-none text-[10px] font-semibold text-slate-700 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:border-slate-400 dark:focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 transition-all duration-300 shadow-sm placeholder:text-slate-400">
                     </div>
                     
-                    <div class="relative w-8 h-8 bg-pink-100 dark:bg-pink-900/80 border border-pink-200/50 dark:border-pink-800 rounded-lg flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-pink-800 transition-colors">
-                        <i id="filterIconState" class="fas fa-filter text-pink-500 dark:text-pink-400 text-[10px]"></i>
+                    <div class="relative w-8 h-8 bg-slate-100 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800 rounded-lg flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-slate-800 transition-colors">
+                        <i id="filterIconState" class="fas fa-filter text-slate-500 dark:text-slate-400 text-[10px]"></i>
                         <select id="filterKatDropdown" onchange="setFilterKat(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer appearance-none">
                             <option value="Semua">Semua Kategori</option>
                         </select>
                     </div>
 
-                    <div class="relative w-8 h-8 bg-pink-100 dark:bg-pink-900/80 border border-pink-200/50 dark:border-pink-800 rounded-lg flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-pink-800 transition-colors">
-                        <i id="sortIconState" class="fas fa-arrow-down-wide-short text-pink-500 dark:text-pink-400 text-[10px]"></i>
+                    <div class="relative w-8 h-8 bg-slate-100 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800 rounded-lg flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-slate-800 transition-colors">
+                        <i id="sortIconState" class="fas fa-arrow-down-wide-short text-slate-500 dark:text-slate-400 text-[10px]"></i>
                         <select id="sortDropdown" onchange="setSort(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer appearance-none">
                             <option value="terbaru">⏳ Terbaru</option>
                             <option value="terlama">🕰️ Terlama</option>
@@ -471,17 +621,17 @@ h1,h2,h3,h4{color:#1f2f46;}
             </div>
             
             <div id="emptyState" class="hidden text-center py-16">
-                <div class="w-24 h-24 bg-white/80 dark:bg-pink-800/80 shadow-md border border-pink-100/50 dark:border-pink-700/50 text-pink-300 dark:text-pink-600 rounded-[2rem] flex items-center justify-center mx-auto mb-5 transform rotate-3 transition-transform hover:rotate-6 hover:scale-105 duration-300 backdrop-blur-md">
+                <div class="w-24 h-24 bg-white/80 dark:bg-slate-800/80 shadow-md border border-slate-100/50 dark:border-slate-700/50 text-slate-300 dark:text-slate-600 rounded-[2rem] flex items-center justify-center mx-auto mb-5 transform rotate-3 transition-transform hover:rotate-6 hover:scale-105 duration-300 backdrop-blur-md">
                     <i class="fas fa-receipt text-4xl -rotate-3"></i>
                 </div>
-                <h3 class="font-extrabold text-pink-700 dark:text-pink-300 text-base">Belum ada data</h3>
-                <p class="text-[10px] font-medium text-pink-400 dark:text-pink-500 mt-1.5 max-w-[200px] mx-auto leading-relaxed">Data riwayat Anda akan tersusun rapi dan aman di sini.</p>
+                <h3 class="font-extrabold text-slate-700 dark:text-slate-300 text-base">Belum ada data</h3>
+                <p class="text-[10px] font-medium text-slate-400 dark:text-slate-500 mt-1.5 max-w-[200px] mx-auto leading-relaxed">Data riwayat Anda akan tersusun rapi dan aman di sini.</p>
             </div>
 
             <div id="listJurnal" class="space-y-2"></div>
             <div id="historyPager" class="hidden mt-3 flex flex-col items-center gap-2">
-                <p id="historyCount" class="text-[9px] font-bold text-pink-400 uppercase tracking-widest text-center"></p>
-                <button id="historyMoreBtn" onclick="toggleHistoryAll()" class="px-5 py-2.5 rounded-xl bg-white dark:bg-pink-900 border border-pink-200 dark:border-pink-700 text-pink-600 dark:text-pink-400 text-[9px] font-black uppercase tracking-widest shadow-sm active:scale-95 transition-all">
+                <p id="historyCount" class="text-[9px] font-bold text-slate-400 uppercase tracking-widest text-center"></p>
+                <button id="historyMoreBtn" onclick="toggleHistoryAll()" class="px-5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-[9px] font-black uppercase tracking-widest shadow-sm active:scale-95 transition-all">
                     Lihat Semua
                 </button>
             </div>
@@ -492,155 +642,155 @@ h1,h2,h3,h4{color:#1f2f46;}
             <div class="glass-card p-6 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
                 <div class="flex items-center justify-between mb-2">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-pink-800 dark:bg-pink-500 text-white rounded-2xl flex items-center justify-center shadow-inner transition-colors duration-300"><i class="fas fa-moon text-lg"></i></div>
+                        <div class="w-12 h-12 bg-slate-800 dark:bg-slate-500 text-white rounded-2xl flex items-center justify-center shadow-inner transition-colors duration-300"><i class="fas fa-moon text-lg"></i></div>
                         <div>
-                            <h3 class="font-black text-base text-pink-800 dark:text-white tracking-tight">Tema Tampilan</h3>
-                            <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest mt-1">Nyalakan Mode Malam</p>
+                            <h3 class="font-black text-base text-slate-800 dark:text-white tracking-tight">Tema Tampilan</h3>
+                            <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">Nyalakan Mode Malam</p>
                         </div>
                     </div>
-                    <button onclick="toggleTheme()" class="w-14 h-7 rounded-full bg-pink-200 dark:bg-pink-500 relative transition-colors duration-300 flex items-center shadow-inner cursor-pointer">
-                        <div class="w-6 h-6 rounded-full bg-white absolute left-0.5 dark:translate-x-7 transition-transform duration-300 shadow-sm border border-pink-100 dark:border-transparent flex items-center justify-center"></div>
+                    <button onclick="toggleTheme()" class="w-14 h-7 rounded-full bg-slate-200 dark:bg-slate-500 relative transition-colors duration-300 flex items-center shadow-inner cursor-pointer">
+                        <div class="w-6 h-6 rounded-full bg-white absolute left-0.5 dark:translate-x-7 transition-transform duration-300 shadow-sm border border-slate-100 dark:border-transparent flex items-center justify-center"></div>
                     </button>
                 </div>
             </div>
 
             <div class="glass-card p-6 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
-                <div class="flex items-center justify-between mb-6 border-b border-pink-100 dark:border-pink-700 pb-5">
+                <div class="flex items-center justify-between mb-6 border-b border-slate-100 dark:border-slate-700 pb-5">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-2xl flex items-center justify-center shadow-inner border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-safe text-lg"></i></div>
+                        <div class="w-12 h-12 bg-slate-50/80 dark:bg-slate-900/30 text-slate-600 dark:text-slate-400 rounded-2xl flex items-center justify-center shadow-inner border border-slate-100/50 dark:border-slate-800/50"><i class="fas fa-safe text-lg"></i></div>
                         <div>
-                            <h3 class="font-black text-base text-pink-800 dark:text-white tracking-tight">Pengaturan Saldo</h3>
-                            <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest mt-1">Ubah Modal Manual</p>
+                            <h3 class="font-black text-base text-slate-800 dark:text-white tracking-tight">Pengaturan Saldo</h3>
+                            <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">Ubah Modal Manual</p>
                         </div>
                     </div>
                 </div>
                 <div class="space-y-5">
-                    <p class="text-[10px] text-pink-500 dark:text-pink-400 font-medium leading-relaxed bg-pink-50/50 dark:bg-pink-900/50 p-3.5 rounded-xl border border-pink-100 dark:border-pink-800">Sesuaikan saldo Bank & Cash Anda jika ada ketidaksesuaian uang fisik dengan sistem.</p>
-                    <button onclick="aturModalAwal()" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3.5 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(79,70,229,0.5)] active:scale-95 transition-all duration-300 hover:-translate-y-0.5"><i class="fas fa-pen-to-square mr-1.5"></i> Sesuaikan Saldo</button>
+                    <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium leading-relaxed bg-slate-50/50 dark:bg-slate-900/50 p-3.5 rounded-xl border border-slate-100 dark:border-slate-800">Sesuaikan saldo Bank & Cash Anda jika ada ketidaksesuaian uang fisik dengan sistem.</p>
+                    <button onclick="aturModalAwal()" class="w-full bg-slate-600 hover:bg-slate-700 text-white py-3.5 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(79,70,229,0.5)] active:scale-95 transition-all duration-300 hover:-translate-y-0.5"><i class="fas fa-pen-to-square mr-1.5"></i> Sesuaikan Saldo</button>
                 </div>
             </div>
 
             <div class="glass-card p-6 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
-                <div class="flex items-center justify-between mb-6 border-b border-pink-100 dark:border-pink-700 pb-5">
+                <div class="flex items-center justify-between mb-6 border-b border-slate-100 dark:border-slate-700 pb-5">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-2xl flex items-center justify-center shadow-inner border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-tag text-lg"></i></div>
+                        <div class="w-12 h-12 bg-slate-50/80 dark:bg-slate-900/30 text-slate-600 dark:text-slate-400 rounded-2xl flex items-center justify-center shadow-inner border border-slate-100/50 dark:border-slate-800/50"><i class="fas fa-tag text-lg"></i></div>
                         <div>
-                            <h3 class="font-black text-base text-pink-800 dark:text-white tracking-tight">Kustom Kategori</h3>
-                            <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest mt-1">Mode Aktif: <span id="settingModeKatLabel" class="text-pink-500 font-black">Kasir</span></p>
+                            <h3 class="font-black text-base text-slate-800 dark:text-white tracking-tight">Kustom Kategori</h3>
+                            <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">Mode Aktif: <span id="settingModeKatLabel" class="text-slate-500 font-black">Kasir</span></p>
                         </div>
                     </div>
-                    <button id="btnSettingsTambahKat" onclick="tambahKategoriPrompt()" class="bg-pink-800 dark:bg-pink-700 hover:bg-pink-900 dark:hover:bg-pink-600 text-white w-10 h-10 rounded-2xl shadow-lg flex items-center justify-center transition-all duration-300 active:scale-90 hidden hover:-translate-y-1"><i class="fas fa-plus"></i></button>
+                    <button id="btnSettingsTambahKat" onclick="tambahKategoriPrompt()" class="bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 dark:hover:bg-slate-600 text-white w-10 h-10 rounded-2xl shadow-lg flex items-center justify-center transition-all duration-300 active:scale-90 hidden hover:-translate-y-1"><i class="fas fa-plus"></i></button>
                 </div>
-                <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 mb-4 ml-1 italic tracking-wide">*Klik kategori di bawah untuk mengubah / menghapus (Khusus Piutang)</p>
+                <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 mb-4 ml-1 italic tracking-wide">*Klik kategori di bawah untuk mengubah / menghapus (Khusus Piutang)</p>
                 <div id="listKategoriSettings" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
             </div>
 
             <div class="glass-card p-6 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
-                <div class="flex items-center gap-4 mb-6 border-b border-pink-100 dark:border-pink-700 pb-5">
-                    <div class="w-12 h-12 bg-pink-100/80 dark:bg-pink-800/80 text-pink-600 dark:text-pink-400 rounded-2xl flex items-center justify-center shadow-inner border border-white dark:border-pink-700"><i class="fas fa-database text-lg"></i></div>
+                <div class="flex items-center gap-4 mb-6 border-b border-slate-100 dark:border-slate-700 pb-5">
+                    <div class="w-12 h-12 bg-slate-100/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 rounded-2xl flex items-center justify-center shadow-inner border border-white dark:border-slate-700"><i class="fas fa-database text-lg"></i></div>
                     <div>
-                        <h3 class="font-black text-base text-pink-800 dark:text-white tracking-tight">Arsip Otomatis</h3>
-                        <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest mt-1">Penyimpanan Kasir</p>
+                        <h3 class="font-black text-base text-slate-800 dark:text-white tracking-tight">Arsip Otomatis</h3>
+                        <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">Penyimpanan Kasir</p>
                     </div>
                 </div>
                 <div class="space-y-5">
-                    <p class="text-[10px] text-pink-500 dark:text-pink-400 font-medium leading-relaxed bg-pink-50/50 dark:bg-pink-900/50 p-3.5 rounded-xl border border-pink-100 dark:border-pink-800">Data kasir lama akan otomatis dihapus dan <strong>diunduh menjadi PDF</strong> untuk menjaga database tetap ringan.</p>
+                    <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium leading-relaxed bg-slate-50/50 dark:bg-slate-900/50 p-3.5 rounded-xl border border-slate-100 dark:border-slate-800">Data kasir lama akan otomatis dihapus dan <strong>diunduh menjadi PDF</strong> untuk menjaga database tetap ringan.</p>
                     <div class="flex items-center gap-3">
-                        <input type="number" id="settingArchiveDays" value="60" class="flex-1 p-3.5 bg-white/80 dark:bg-pink-800 rounded-2xl text-sm font-black text-pink-800 dark:text-white border border-pink-200 dark:border-pink-700 text-center focus:border-pink-500 dark:focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 transition-all duration-300 shadow-sm backdrop-blur-sm outline-none">
-                        <span class="font-black text-[10px] text-pink-500 dark:text-pink-400 bg-pink-100/80 dark:bg-pink-800/80 px-5 py-3.5 rounded-2xl border border-pink-200 dark:border-pink-700 uppercase tracking-widest backdrop-blur-sm">Hari</span>
+                        <input type="number" id="settingArchiveDays" value="60" class="flex-1 p-3.5 bg-white/80 dark:bg-slate-800 rounded-2xl text-sm font-black text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 text-center focus:border-slate-500 dark:focus:border-slate-500 focus:ring-4 focus:ring-slate-500/10 transition-all duration-300 shadow-sm backdrop-blur-sm outline-none">
+                        <span class="font-black text-[10px] text-slate-500 dark:text-slate-400 bg-slate-100/80 dark:bg-slate-800/80 px-5 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 uppercase tracking-widest backdrop-blur-sm">Hari</span>
                     </div>
-                    <button onclick="saveSettings()" class="w-full bg-pink-800 dark:bg-pink-700 hover:bg-pink-900 dark:hover:bg-pink-600 text-white py-3.5 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(0,0,0,0.5)] active:scale-95 transition-all duration-300 hover:-translate-y-0.5">Simpan Konfigurasi</button>
+                    <button onclick="saveSettings()" class="w-full bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 dark:hover:bg-slate-600 text-white py-3.5 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(0,0,0,0.5)] active:scale-95 transition-all duration-300 hover:-translate-y-0.5">Simpan Konfigurasi</button>
                 </div>
             </div>
         </section>
     </main>
 
     <div id="bulkDeleteBtn" class="fixed bottom-28 right-1/2 translate-x-1/2 md:right-6 md:translate-x-0 z-[60] hidden transition-all duration-300">
-        <button onclick="deleteMarked()" class="bg-rose-500 hover:bg-rose-600 text-white px-5 py-3.5 rounded-[1.5rem] shadow-[0_10px_20px_-5px_rgba(225,29,72,0.6)] font-black text-[10px] uppercase tracking-widest flex items-center gap-2 transition-transform active:scale-95 border border-rose-400">
-            <i class="fas fa-trash text-sm"></i> Hapus <span id="markedCount" class="bg-white text-rose-600 px-2 py-0.5 rounded-lg ml-1">0</span>
+        <button onclick="deleteMarked()" class="bg-red-500 hover:bg-red-600 text-white px-5 py-3.5 rounded-[1.5rem] shadow-[0_10px_20px_-5px_rgba(225,29,72,0.6)] font-black text-[10px] uppercase tracking-widest flex items-center gap-2 transition-transform active:scale-95 border border-red-400">
+            <i class="fas fa-trash text-sm"></i> Hapus <span id="markedCount" class="bg-white text-red-600 px-2 py-0.5 rounded-lg ml-1">0</span>
         </button>
     </div>
 
     <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-[22rem] glass-nav px-2 py-1.5 rounded-[2.5rem] flex items-center justify-between shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] z-50">
-        <button onclick="showPage('Dashboard')" id="navDashboard" class="flex-1 py-2.5 flex flex-col items-center text-pink-600 dark:text-pink-400 transition-colors duration-300 group">
+        <button onclick="showPage('Dashboard')" id="navDashboard" class="flex-1 py-2.5 flex flex-col items-center text-slate-600 dark:text-slate-400 transition-colors duration-300 group">
             <i class="fas fa-house text-lg mb-1 transition-transform duration-300 group-hover:-translate-y-1 group-active:scale-90"></i>
             <span class="text-[8px] font-extrabold tracking-widest uppercase">Beranda</span>
         </button>
         
         <div class="flex-1 flex justify-center -mt-10 relative z-10">
-            <button onclick="toggleModalKasir(true)" class="w-14 h-14 bg-gradient-to-tr from-pink-600 to-pink-400 text-white rounded-[1.8rem] rotate-3 hover:rotate-6 flex items-center justify-center shadow-[0_15px_30px_-5px_rgba(99,102,241,0.6)] border-[4px] border-[#f8fafc] dark:border-[#020617] transform transition-all duration-300 hover:scale-105 active:scale-90">
+            <button onclick="toggleModalKasir(true)" class="w-14 h-14 bg-gradient-to-tr from-slate-600 to-slate-400 text-white rounded-[1.8rem] rotate-3 hover:rotate-6 flex items-center justify-center shadow-[0_15px_30px_-5px_rgba(99,102,241,0.6)] border-[4px] border-[#f8fafc] dark:border-[#020617] transform transition-all duration-300 hover:scale-105 active:scale-90">
                 <i class="fas fa-plus text-xl -rotate-3 group-hover:-rotate-6 transition-transform"></i>
             </button>
         </div>
 
-        <button onclick="showPage('Riwayat')" id="navRiwayat" class="flex-1 py-2.5 flex flex-col items-center text-pink-400 hover:text-pink-600 dark:hover:text-pink-200 transition-colors duration-300 group">
+        <button onclick="showPage('Riwayat')" id="navRiwayat" class="flex-1 py-2.5 flex flex-col items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors duration-300 group">
             <i class="fas fa-receipt text-lg mb-1 transition-transform duration-300 group-hover:-translate-y-1 group-active:scale-90"></i>
             <span class="text-[8px] font-extrabold tracking-widest uppercase">Riwayat</span>
         </button>
     </nav>
 
-    <div id="modalKasir" class="fixed inset-0 bg-pink-900/40 dark:bg-pink-900/80 backdrop-blur-md z-[100] items-end md:items-center justify-center p-2 md:p-4 transition-opacity duration-300">
-        <div class="bg-white dark:bg-pink-900 w-full max-w-md rounded-[2.5rem] p-6 relative shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] overflow-y-auto max-h-[92vh] no-scrollbar transform transition-transform border border-white dark:border-pink-800">
-            <button type="button" onclick="toggleModalKasir(false)" class="absolute right-5 top-5 w-8 h-8 bg-pink-50 dark:bg-pink-800 rounded-full flex items-center justify-center text-pink-400 dark:text-pink-500 hover:bg-rose-50 hover:text-rose-500 dark:hover:bg-rose-900/30 transition-colors duration-300"><i class="fas fa-xmark text-xs"></i></button>
-            <div class="flex items-center gap-3.5 mb-6 border-b border-pink-100 dark:border-pink-800 pb-4">
-                <div class="w-10 h-10 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-xl flex items-center justify-center shadow-inner border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-file-pen text-sm"></i></div>
+    <div id="modalKasir" class="fixed inset-0 bg-slate-900/40 dark:bg-slate-900/80 backdrop-blur-md z-[100] items-end md:items-center justify-center p-2 md:p-4 transition-opacity duration-300">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-[2.5rem] p-6 relative shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] overflow-y-auto max-h-[92vh] no-scrollbar transform transition-transform border border-white dark:border-slate-800">
+            <button type="button" onclick="toggleModalKasir(false)" class="absolute right-5 top-5 w-8 h-8 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-red-50 hover:text-red-500 dark:hover:bg-red-900/30 transition-colors duration-300"><i class="fas fa-xmark text-xs"></i></button>
+            <div class="flex items-center gap-3.5 mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+                <div class="w-10 h-10 bg-slate-50/80 dark:bg-slate-900/30 text-slate-600 dark:text-slate-400 rounded-xl flex items-center justify-center shadow-inner border border-slate-100/50 dark:border-slate-800/50"><i class="fas fa-file-pen text-sm"></i></div>
                 <div>
-                    <h2 class="text-lg font-black tracking-tight text-pink-800 dark:text-white leading-none">Formulir Data</h2>
-                    <p id="modalSubtitle" class="text-[9px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest mt-1.5">Input Kasir Baru</p>
+                    <h2 class="text-lg font-black tracking-tight text-slate-800 dark:text-white leading-none">Formulir Data</h2>
+                    <p id="modalSubtitle" class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1.5">Input Kasir Baru</p>
                 </div>
             </div>
             
             <div class="space-y-4">
                 
                 <div id="wrapJenisTrx" class="mb-2">
-                    <label class="text-[9px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest ml-1.5 block mb-1">Jenis Transaksi</label>
-                    <select id="jenisTrxKasir" onchange="toggleJenisTrx()" class="w-full p-3 bg-pink-50/80 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-2xl font-bold text-[11px] outline-none text-pink-700 dark:text-pink-200 focus:border-pink-500 transition-all shadow-sm cursor-pointer">
+                    <label class="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1.5 block mb-1">Jenis Transaksi</label>
+                    <select id="jenisTrxKasir" onchange="toggleJenisTrx()" class="w-full p-3 bg-slate-50/80 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl font-bold text-[11px] outline-none text-slate-700 dark:text-slate-200 focus:border-slate-500 transition-all shadow-sm cursor-pointer">
                         <option value="Pemasukan">🟢 Pemasukan / Penjualan</option>
                         <option value="Pengeluaran">🔴 Pengeluaran / Pakai Saldo</option>
                     </select>
                 </div>
 
                 <div class="space-y-2">
-                    <label class="text-[9px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest ml-1.5 block">Detail Trx & Pelanggan</label>
+                    <label class="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1.5 block">Detail Trx & Pelanggan</label>
                     <div class="flex gap-2.5">
-                        <select id="ket" class="flex-1 p-3 bg-pink-50/80 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-2xl font-bold text-xs outline-none text-pink-700 dark:text-pink-200 focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:bg-white dark:focus:bg-pink-800 transition-all shadow-sm cursor-pointer"></select>
-                        <button type="button" id="btnTambahKat" onclick="tambahKategoriPrompt()" class="w-12 bg-pink-800 dark:bg-pink-700 text-white rounded-2xl hover:bg-pink-900 dark:hover:bg-pink-600 transition-all shadow-md flex items-center justify-center active:scale-95 hover:-translate-y-0.5"><i class="fas fa-plus text-[10px]"></i></button>
+                        <select id="ket" class="flex-1 p-3 bg-slate-50/80 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl font-bold text-xs outline-none text-slate-700 dark:text-slate-200 focus:border-slate-500 focus:ring-4 focus:ring-slate-500/10 focus:bg-white dark:focus:bg-slate-800 transition-all shadow-sm cursor-pointer"></select>
+                        <button type="button" id="btnTambahKat" onclick="tambahKategoriPrompt()" class="w-12 bg-slate-800 dark:bg-slate-700 text-white rounded-2xl hover:bg-slate-900 dark:hover:bg-slate-600 transition-all shadow-md flex items-center justify-center active:scale-95 hover:-translate-y-0.5"><i class="fas fa-plus text-[10px]"></i></button>
                     </div>
-                    <input type="text" id="nama" oninput="formatNamaInput(event)" placeholder="Keterangan / Detail..." class="w-full p-3.5 bg-pink-50/80 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-2xl outline-none text-xs font-bold text-pink-800 dark:text-white focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:bg-white dark:focus:bg-pink-800 transition-all shadow-sm">
+                    <input type="text" id="nama" oninput="formatNamaInput(event)" placeholder="Keterangan / Detail..." class="w-full p-3.5 bg-slate-50/80 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl outline-none text-xs font-bold text-slate-800 dark:text-white focus:border-slate-500 focus:ring-4 focus:ring-slate-500/10 focus:bg-white dark:focus:bg-slate-800 transition-all shadow-sm">
                 </div>
 
-                <div class="p-4 bg-pink-50/50 dark:bg-pink-800/50 rounded-[1.5rem] border border-pink-100 dark:border-pink-700/50 shadow-sm relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-16 h-16 bg-white dark:bg-pink-800 rounded-bl-full opacity-50 pointer-events-none"></div>
-                    <label id="labelNominal" class="text-[9px] font-extrabold text-pink-500 dark:text-pink-400 uppercase tracking-widest ml-1 mb-2.5 block relative z-10">Nominal Keuangan (Modal & Jual)</label>
+                <div class="p-4 bg-slate-50/50 dark:bg-slate-800/50 rounded-[1.5rem] border border-slate-100 dark:border-slate-700/50 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-white dark:bg-slate-800 rounded-bl-full opacity-50 pointer-events-none"></div>
+                    <label id="labelNominal" class="text-[9px] font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1 mb-2.5 block relative z-10">Nominal Keuangan (Modal & Jual)</label>
                     <div id="gridNominal" class="grid grid-cols-2 gap-3 relative z-10">
                         <div id="wrapVal1" class="relative group">
-                            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-400 dark:text-pink-500 text-[10px] font-black group-focus-within:text-pink-500 transition-colors">Rp</span>
-                            <input type="text" inputmode="numeric" oninput="formatUangInput(event)" id="val1" placeholder="Modal" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-pink-900 border border-pink-200 dark:border-pink-700 rounded-xl outline-none text-xs font-black text-pink-700 dark:text-pink-200 focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 transition-all shadow-sm">
+                            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 text-[10px] font-black group-focus-within:text-slate-500 transition-colors">Rp</span>
+                            <input type="text" inputmode="numeric" oninput="formatUangInput(event)" id="val1" placeholder="Modal" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl outline-none text-xs font-black text-slate-700 dark:text-slate-200 focus:border-slate-500 focus:ring-4 focus:ring-slate-500/10 transition-all shadow-sm">
                         </div>
                         <div id="wrapVal2" class="relative group">
-                            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-500 dark:text-pink-500/80 text-[10px] font-black group-focus-within:text-pink-600 transition-colors">Rp</span>
-                            <input type="text" inputmode="numeric" oninput="formatUangInput(event)" id="val2" placeholder="Harga Jual" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-pink-900 border border-pink-200 dark:border-pink-900/50 rounded-xl outline-none text-xs font-black text-pink-600 dark:text-pink-400 focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 transition-all shadow-sm">
+                            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-500/80 text-[10px] font-black group-focus-within:text-slate-600 transition-colors">Rp</span>
+                            <input type="text" inputmode="numeric" oninput="formatUangInput(event)" id="val2" placeholder="Harga Jual" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-900/50 rounded-xl outline-none text-xs font-black text-slate-600 dark:text-slate-400 focus:border-slate-500 focus:ring-4 focus:ring-slate-500/10 transition-all shadow-sm">
                         </div>
                     </div>
                 </div>
 
                 <div id="kasirExtraFields" class="grid grid-cols-2 gap-3">
                     <div>
-                        <label id="labelSumberModal" class="text-[8px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest ml-1.5 mb-1.5 block">Potong Modal Dari</label>
-                        <select id="sumberModal" class="w-full p-3 bg-pink-50/80 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-xl font-bold text-[10px] outline-none focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:bg-white dark:focus:bg-pink-800 transition-all shadow-sm cursor-pointer dark:text-pink-200">
+                        <label id="labelSumberModal" class="text-[8px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1.5 mb-1.5 block">Potong Modal Dari</label>
+                        <select id="sumberModal" class="w-full p-3 bg-slate-50/80 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-bold text-[10px] outline-none focus:border-slate-500 focus:ring-4 focus:ring-slate-500/10 focus:bg-white dark:focus:bg-slate-800 transition-all shadow-sm cursor-pointer dark:text-slate-200">
                             <option value="Bank">💳 Saldo Bank</option>
                             <option value="Tunai">💵 Uang Cash</option>
                         </select>
                     </div>
                     <div id="wrapMetodeBayar">
-                        <label class="text-[8px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest ml-1.5 mb-1.5 block">Pembayaran Ke</label>
-                        <select id="metodeBayar" class="w-full p-3 bg-pink-50/80 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-xl font-bold text-[10px] outline-none focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:bg-white dark:focus:bg-pink-800 transition-all shadow-sm cursor-pointer dark:text-pink-200">
+                        <label class="text-[8px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1.5 mb-1.5 block">Pembayaran Ke</label>
+                        <select id="metodeBayar" class="w-full p-3 bg-slate-50/80 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-bold text-[10px] outline-none focus:border-slate-500 focus:ring-4 focus:ring-slate-500/10 focus:bg-white dark:focus:bg-slate-800 transition-all shadow-sm cursor-pointer dark:text-slate-200">
                             <option value="Tunai">💵 Uang Cash</option>
                             <option value="Transfer">📱 Transfer Bank</option>
                         </select>
                     </div>
                     <div class="col-span-2" id="wrapStatusTrx">
-                        <select id="statusTrx" class="w-full p-3 bg-white dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-xl font-black text-[10px] outline-none focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 transition-all text-center text-pink-700 dark:text-pink-200 shadow-sm mt-1 cursor-pointer">
+                        <select id="statusTrx" onchange="updateStatusColor()" class="w-full p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-black text-[10px] outline-none focus:border-slate-500 focus:ring-4 focus:ring-slate-500/10 transition-all text-center text-slate-700 dark:text-slate-200 shadow-sm mt-1 cursor-pointer">
                             <option value="Sukses">✅ STATUS: LUNAS (UANG DITERIMA)</option>
                             <option value="Pending">⏳ STATUS: PENDING (BELUM BAYAR)</option>
                         </select>
@@ -649,12 +799,12 @@ h1,h2,h3,h4{color:#1f2f46;}
 
                 <div id="tagihanExtraFields" class="hidden grid grid-cols-2 gap-3">
                     <div>
-                        <label class="text-[8px] font-extrabold text-rose-400 dark:text-rose-500 uppercase tracking-widest ml-1.5 mb-1.5 block">Jatuh Tempo</label>
-                        <input type="date" id="tglTempo" class="w-full p-3 bg-rose-50/50 dark:bg-rose-900/20 border border-rose-200 dark:border-rose-800 rounded-xl outline-none text-[10px] font-bold text-rose-600 dark:text-rose-400 focus:border-rose-400 focus:ring-4 focus:ring-rose-400/10 transition-all shadow-sm cursor-pointer">
+                        <label class="text-[8px] font-extrabold text-red-400 dark:text-red-500 uppercase tracking-widest ml-1.5 mb-1.5 block">Jatuh Tempo</label>
+                        <input type="date" id="tglTempo" class="w-full p-3 bg-red-50/50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl outline-none text-[10px] font-bold text-red-600 dark:text-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/10 transition-all shadow-sm cursor-pointer">
                     </div>
                     <div>
-                        <label class="text-[8px] font-extrabold text-rose-400 dark:text-rose-500 uppercase tracking-widest ml-1.5 mb-1.5 block">Waktu Tenor</label>
-                        <select id="tenor" class="w-full p-3 bg-rose-50/50 dark:bg-rose-900/20 border border-rose-200 dark:border-rose-800 rounded-xl font-bold text-[10px] outline-none text-rose-600 dark:text-rose-400 focus:border-rose-400 focus:ring-4 focus:ring-rose-400/10 transition-all shadow-sm cursor-pointer">
+                        <label class="text-[8px] font-extrabold text-red-400 dark:text-red-500 uppercase tracking-widest ml-1.5 mb-1.5 block">Waktu Tenor</label>
+                        <select id="tenor" class="w-full p-3 bg-red-50/50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl font-bold text-[10px] outline-none text-red-600 dark:text-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/10 transition-all shadow-sm cursor-pointer">
                             <option value="Bebas">Bebas Waktu</option>
                             <option value="1 Minggu">1 Minggu</option>
                             <option value="1 Bulan">1 Bulan</option>
@@ -666,57 +816,57 @@ h1,h2,h3,h4{color:#1f2f46;}
                     </div>
                 </div>
 
-                <button type="button" id="btnSimpan" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-4 rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(99,102,241,0.6)] transition-all duration-300 active:scale-95 hover:-translate-y-0.5 mt-2">Catat ke Jurnal Data</button>
+                <button type="button" id="btnSimpan" class="w-full bg-slate-600 hover:bg-slate-700 text-white py-4 rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(99,102,241,0.6)] transition-all duration-300 active:scale-95 hover:-translate-y-0.5 mt-2">Catat ke Jurnal Data</button>
             </div>
         </div>
     </div>
 
-    <div id="modalCicilan" class="fixed inset-0 bg-pink-900/40 dark:bg-pink-900/80 backdrop-blur-md z-[200] items-end md:items-center justify-center p-2 md:p-4 transition-opacity duration-300">
-        <div class="bg-white dark:bg-pink-900 w-full max-w-md rounded-[2.5rem] p-6 relative shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] flex flex-col max-h-[92vh] border border-white dark:border-pink-800">
-            <button type="button" onclick="closeModalCicilan()" class="absolute right-5 top-5 w-8 h-8 bg-pink-50 dark:bg-pink-800 rounded-full flex items-center justify-center text-pink-400 dark:text-pink-500 hover:bg-rose-50 hover:text-rose-500 dark:hover:bg-rose-900/30 transition-colors duration-300"><i class="fas fa-xmark text-sm"></i></button>
+    <div id="modalCicilan" class="fixed inset-0 bg-slate-900/40 dark:bg-slate-900/80 backdrop-blur-md z-[200] items-end md:items-center justify-center p-2 md:p-4 transition-opacity duration-300">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-[2.5rem] p-6 relative shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] flex flex-col max-h-[92vh] border border-white dark:border-slate-800">
+            <button type="button" onclick="closeModalCicilan()" class="absolute right-5 top-5 w-8 h-8 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 dark:text-slate-500 hover:bg-red-50 hover:text-red-500 dark:hover:bg-red-900/30 transition-colors duration-300"><i class="fas fa-xmark text-sm"></i></button>
             
-            <div class="mb-5 border-b border-pink-100 dark:border-pink-800 pb-4">
-                <p id="mcKet" class="text-[9px] font-bold text-pink-500 uppercase tracking-widest mb-1.5 bg-pink-50/80 dark:bg-pink-900/30 w-fit px-2.5 py-1 rounded-lg border border-pink-100/50 dark:border-pink-800/50">Kategori</p>
-                <h2 id="mcNama" class="text-xl font-black tracking-tight text-pink-800 dark:text-white pr-8 truncate leading-none mt-1">Nama Pelanggan</h2>
+            <div class="mb-5 border-b border-slate-100 dark:border-slate-800 pb-4">
+                <p id="mcKet" class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 bg-slate-50/80 dark:bg-slate-900/30 w-fit px-2.5 py-1 rounded-lg border border-slate-100/50 dark:border-slate-800/50">Kategori</p>
+                <h2 id="mcNama" class="text-xl font-black tracking-tight text-slate-800 dark:text-white pr-8 truncate leading-none mt-1">Nama Pelanggan</h2>
             </div>
 
-            <div class="bg-pink-50/80 dark:bg-pink-800/80 p-4 rounded-[1.5rem] border border-pink-100 dark:border-pink-700 mb-5 grid grid-cols-2 gap-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.01)] relative overflow-hidden">
-                <div class="absolute right-0 top-0 w-20 h-20 bg-white/60 dark:bg-pink-700/60 rounded-bl-full pointer-events-none"></div>
+            <div class="bg-slate-50/80 dark:bg-slate-800/80 p-4 rounded-[1.5rem] border border-slate-100 dark:border-slate-700 mb-5 grid grid-cols-2 gap-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.01)] relative overflow-hidden">
+                <div class="absolute right-0 top-0 w-20 h-20 bg-white/60 dark:bg-slate-700/60 rounded-bl-full pointer-events-none"></div>
                 <div class="relative z-10">
-                    <p class="text-[8px] text-pink-400 dark:text-pink-500 uppercase font-extrabold tracking-widest mb-1">Total Tagihan</p>
-                    <p id="mcTotalTagihan" class="text-sm font-black text-pink-800 dark:text-pink-200">Rp 0</p>
+                    <p class="text-[8px] text-slate-400 dark:text-slate-500 uppercase font-extrabold tracking-widest mb-1">Total Tagihan</p>
+                    <p id="mcTotalTagihan" class="text-sm font-black text-slate-800 dark:text-slate-200">Rp 0</p>
                 </div>
                 <div class="text-right relative z-10">
-                    <p class="text-[8px] text-pink-400 dark:text-pink-500 uppercase font-extrabold tracking-widest mb-1">Total Dibayar</p>
-                    <p id="mcTotalDibayar" class="text-sm font-black text-pink-500">Rp 0</p>
+                    <p class="text-[8px] text-slate-400 dark:text-slate-500 uppercase font-extrabold tracking-widest mb-1">Total Dibayar</p>
+                    <p id="mcTotalDibayar" class="text-sm font-black text-slate-500">Rp 0</p>
                 </div>
-                <div class="col-span-2 mt-1.5 pt-3 border-t border-pink-200/60 dark:border-pink-700/60 flex justify-between items-center relative z-10">
-                    <p class="text-[8px] text-rose-500 uppercase font-extrabold tracking-widest bg-rose-50/80 dark:bg-rose-900/30 px-2.5 py-1 rounded-lg border border-rose-100 dark:border-rose-800/50">Sisa Hutang</p>
-                    <p id="mcSisa" class="text-lg font-black text-rose-600 dark:text-rose-400 tracking-tight">Rp 0</p>
+                <div class="col-span-2 mt-1.5 pt-3 border-t border-slate-200/60 dark:border-slate-700/60 flex justify-between items-center relative z-10">
+                    <p class="text-[8px] text-red-500 uppercase font-extrabold tracking-widest bg-red-50/80 dark:bg-red-900/30 px-2.5 py-1 rounded-lg border border-red-100 dark:border-red-800/50">Sisa Hutang</p>
+                    <p id="mcSisa" class="text-lg font-black text-red-600 dark:text-red-400 tracking-tight">Rp 0</p>
                 </div>
             </div>
 
             <div class="flex-1 overflow-y-auto no-scrollbar min-h-[140px] mb-4">
-                <p class="text-[9px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest mb-3 sticky top-0 bg-white/95 dark:bg-pink-900/95 backdrop-blur-md py-1.5 z-10 border-b border-pink-100 dark:border-pink-800">Riwayat Pembayaran</p>
+                <p class="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3 sticky top-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md py-1.5 z-10 border-b border-slate-100 dark:border-slate-800">Riwayat Pembayaran</p>
                 <div id="mcListHistory" class="space-y-2.5"></div>
             </div>
 
-            <div id="mcFormArea" class="pt-4 border-t border-pink-100 dark:border-pink-800">
-                <label class="text-[9px] font-extrabold text-pink-500 dark:text-pink-400 uppercase tracking-widest mb-2 block ml-1.5">Terima Uang Ke</label>
+            <div id="mcFormArea" class="pt-4 border-t border-slate-100 dark:border-slate-800">
+                <label class="text-[9px] font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 block ml-1.5">Terima Uang Ke</label>
                 <div class="flex gap-2 mb-3">
-                    <select id="mcMasukKe" class="w-[35%] p-3 bg-pink-50 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-2xl font-bold text-[10px] outline-none focus:border-pink-500 dark:text-white transition-all shadow-sm">
+                    <select id="mcMasukKe" class="w-[35%] p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl font-bold text-[10px] outline-none focus:border-slate-500 dark:text-white transition-all shadow-sm">
                         <option value="Bank">💳 Bank</option>
                         <option value="Cash">💵 Cash</option>
                     </select>
                     <div class="relative flex-1 group">
-                        <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-400 dark:text-pink-500 text-[10px] font-black group-focus-within:text-pink-500 transition-colors">Rp</span>
-                        <input type="text" inputmode="numeric" oninput="formatUangInput(event)" id="mcNominalInput" placeholder="Ketik Nominal..." class="w-full pl-9 pr-3 py-3 bg-pink-50 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-2xl outline-none text-xs font-black dark:text-white focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:bg-white dark:focus:bg-pink-700 transition-all shadow-sm">
+                        <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 text-[10px] font-black group-focus-within:text-slate-500 transition-colors">Rp</span>
+                        <input type="text" inputmode="numeric" oninput="formatUangInput(event)" id="mcNominalInput" placeholder="Ketik Nominal..." class="w-full pl-9 pr-3 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl outline-none text-xs font-black dark:text-white focus:border-slate-500 focus:ring-4 focus:ring-slate-500/10 focus:bg-white dark:focus:bg-slate-700 transition-all shadow-sm">
                     </div>
                 </div>
-                <button type="button" onclick="simpanCicilan()" class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3.5 rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(16,185,129,0.5)] transition-all duration-300 active:scale-95 hover:-translate-y-0.5">Konfirmasi Terima Uang</button>
+                <button type="button" onclick="simpanCicilan()" class="w-full bg-slate-500 hover:bg-slate-600 text-white py-3.5 rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(16,185,129,0.5)] transition-all duration-300 active:scale-95 hover:-translate-y-0.5">Konfirmasi Terima Uang</button>
             </div>
-            <div id="mcLunasArea" class="hidden pt-4 border-t border-pink-100 dark:border-pink-800 text-center">
-                <div class="inline-flex items-center justify-center px-6 py-3 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-sm border border-pink-100/50 dark:border-pink-800/50">
+            <div id="mcLunasArea" class="hidden pt-4 border-t border-slate-100 dark:border-slate-800 text-center">
+                <div class="inline-flex items-center justify-center px-6 py-3 bg-slate-50/80 dark:bg-slate-900/30 text-slate-600 dark:text-slate-400 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-sm border border-slate-100/50 dark:border-slate-800/50">
                     <i class="fas fa-circle-check mr-2 text-sm"></i> Lunas Sepenuhnya
                 </div>
             </div>
@@ -768,7 +918,7 @@ h1,h2,h3,h4{color:#1f2f46;}
         const Toast = Swal.mixin({
             toast: true, position: 'top', showConfirmButton: false, timer: 2500,
             timerProgressBar: true, background: 'rgba(255, 255, 255, 0.95)', color: '#1e293b',
-            customClass: { popup: '!rounded-full !shadow-[0_15px_40px_-10px_rgba(0,0,0,0.1)] !backdrop-blur-xl border border-pink-200 !px-5 !py-3 mt-4' },
+            customClass: { popup: '!rounded-full !shadow-[0_15px_40px_-10px_rgba(0,0,0,0.1)] !backdrop-blur-xl border border-slate-200 !px-5 !py-3 mt-4' },
             didOpen: (toast) => { toast.addEventListener('mouseenter', Swal.stopTimer); toast.addEventListener('mouseleave', Swal.resumeTimer); }
         });
         
@@ -779,11 +929,11 @@ h1,h2,h3,h4{color:#1f2f46;}
                 confirmButtonText: confirmBtnText, cancelButtonText: '<span style="color:#64748b; font-weight:700;">Batal</span>',
                 reverseButtons: true,
                 customClass: { 
-                    popup: '!rounded-[2.5rem] !shadow-2xl border border-pink-100 !pb-6 !pt-8 dark:!bg-pink-900 dark:border-pink-800',
-                    title: '!text-xl !font-black !text-pink-800 dark:!text-white !mt-2',
-                    htmlContainer: '!text-xs !font-medium !text-pink-500 dark:!text-pink-400 !leading-relaxed',
+                    popup: '!rounded-[2.5rem] !shadow-2xl border border-slate-100 !pb-6 !pt-8 dark:!bg-slate-900 dark:border-slate-800',
+                    title: '!text-xl !font-black !text-slate-800 dark:!text-white !mt-2',
+                    htmlContainer: '!text-xs !font-medium !text-slate-500 dark:!text-slate-400 !leading-relaxed',
                     confirmButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !tracking-wider !text-[11px] !uppercase !shadow-lg hover:!scale-105 transition-transform duration-300',
-                    cancelButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !tracking-wider !text-[11px] !uppercase border border-pink-200 dark:border-pink-700 dark:!bg-pink-800 hover:!bg-pink-100 transition-colors'
+                    cancelButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !tracking-wider !text-[11px] !uppercase border border-slate-200 dark:border-slate-700 dark:!bg-slate-800 hover:!bg-slate-100 transition-colors'
                 }
             });
         };
@@ -799,7 +949,7 @@ h1,h2,h3,h4{color:#1f2f46;}
             if(hour >= 5 && hour < 11) { 
                 greet = 'Selamat Pagi,'; 
                 // Pagi: Latar Biru Cerah + Matahari berputar perlahan
-                widgetClass = 'bg-gradient-to-br from-sky-400 to-pink-500 shadow-pink-500/30';
+                widgetClass = 'bg-gradient-to-br from-sky-400 to-slate-500 shadow-slate-500/30';
                 iconHtml = '<i class="fas fa-sun text-yellow-200 text-2xl animate-spin-slow"></i>';
             } 
             else if(hour >= 11 && hour < 15) { 
@@ -811,14 +961,14 @@ h1,h2,h3,h4{color:#1f2f46;}
             else if(hour >= 15 && hour < 18) { 
                 greet = 'Selamat Sore,'; 
                 // Sore: Latar Ungu Senja + Awan dan Matahari terapung
-                widgetClass = 'bg-gradient-to-br from-pink-400 to-pink-500 shadow-pink-500/30';
+                widgetClass = 'bg-gradient-to-br from-slate-400 to-slate-500 shadow-slate-500/30';
                 iconHtml = '<i class="fas fa-cloud-sun text-orange-200 text-xl animate-float"></i>';
             } 
             else { 
                 greet = 'Selamat Malam,'; 
                 // Malam: Latar Gelap + Bulan bergoyang (Wiggle)
-                widgetClass = 'bg-gradient-to-br from-pink-800 to-pink-900 shadow-pink-900/50';
-                iconHtml = '<i class="fas fa-moon text-pink-100 text-xl animate-wiggle"></i>';
+                widgetClass = 'bg-gradient-to-br from-slate-800 to-slate-900 shadow-slate-900/50';
+                iconHtml = '<i class="fas fa-moon text-slate-100 text-xl animate-wiggle"></i>';
             }
 
             document.getElementById('greetingText').innerText = greet;
@@ -854,7 +1004,7 @@ h1,h2,h3,h4{color:#1f2f46;}
                 const fallbackQuotes = [
                     "Kecerdasan finansial dimulai dari hal kecil yang dicatat setiap hari.",
                     "Keberhasilan adalah kumpulan usaha kecil yang diulang terus-menerus.",
-                    "Fokuslah pada prosesnya, biarkan hasilnya yang berbicara.",
+                    "Fokuslah pada predsnya, biarkan hasilnya yang berbicara.",
                     "Jangan takut mencoba. Sebuah perjalanan seribu mil dimulai dari satu langkah.",
                     "Peluang selalu hadir untuk mereka yang terus melangkah dan bersyukur."
                 ];
@@ -926,6 +1076,13 @@ h1,h2,h3,h4{color:#1f2f46;}
             }
         };
 
+        window.updateStatusColor = () => {
+            const el = document.getElementById('statusTrx');
+            if (!el) return;
+            el.classList.remove('fo-status-lunas','fo-status-pending');
+            el.classList.add(el.value === 'Pending' ? 'fo-status-pending' : 'fo-status-lunas');
+        };
+
         window.resetFormInput = () => {
             document.getElementById('nama').value = "";
             document.getElementById('val1').value = "";
@@ -939,6 +1096,7 @@ h1,h2,h3,h4{color:#1f2f46;}
                 document.getElementById('sumberModal').value = "Bank";
                 document.getElementById('metodeBayar').value = "Tunai";
                 document.getElementById('statusTrx').value = "Sukses";
+                window.updateStatusColor();
             } else {
                 document.getElementById('tglTempo').value = "";
                 document.getElementById('tenor').value = "Bebas";
@@ -948,8 +1106,8 @@ h1,h2,h3,h4{color:#1f2f46;}
         window.showPage = (p) => {
             document.querySelectorAll('.page-content').forEach(el => el.classList.remove('active-page'));
             document.getElementById('page' + p).classList.add('active-page');
-            document.getElementById('navDashboard').className = p === 'Dashboard' ? 'flex-1 py-2.5 flex flex-col items-center text-pink-600 dark:text-pink-400 transition-colors duration-300 group' : 'flex-1 py-2.5 flex flex-col items-center text-pink-400 hover:text-pink-600 dark:hover:text-pink-300 transition-colors duration-300 group';
-            document.getElementById('navRiwayat').className = p === 'Riwayat' ? 'flex-1 py-2.5 flex flex-col items-center text-pink-600 dark:text-pink-400 transition-colors duration-300 group' : 'flex-1 py-2.5 flex flex-col items-center text-pink-400 hover:text-pink-600 dark:hover:text-pink-300 transition-colors duration-300 group';
+            document.getElementById('navDashboard').className = p === 'Dashboard' ? 'flex-1 py-2.5 flex flex-col items-center text-slate-600 dark:text-slate-400 transition-colors duration-300 group' : 'flex-1 py-2.5 flex flex-col items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors duration-300 group';
+            document.getElementById('navRiwayat').className = p === 'Riwayat' ? 'flex-1 py-2.5 flex flex-col items-center text-slate-600 dark:text-slate-400 transition-colors duration-300 group' : 'flex-1 py-2.5 flex flex-col items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors duration-300 group';
             if (p === 'Settings') loadKategori();
         };
 
@@ -971,10 +1129,10 @@ h1,h2,h3,h4{color:#1f2f46;}
 
             if(isKasir) {
                 badge.innerText = "Fokus: KASIR";
-                badge.className = "inline-block px-3 py-1.5 bg-pink-500/90 backdrop-blur-md border border-pink-400/50 text-white rounded-lg text-[8px] font-extrabold uppercase tracking-widest shadow-sm transition-all duration-300";
+                badge.className = "inline-block px-3 py-1.5 bg-slate-500/90 backdrop-blur-md border border-slate-400/50 text-white rounded-lg text-[8px] font-extrabold uppercase tracking-widest shadow-sm transition-all duration-300";
                 
-                tabKasir.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-white dark:bg-pink-700 text-pink-600 dark:text-pink-400";
-                tabTagihan.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-pink-500 dark:text-pink-400 hover:text-pink-800 dark:hover:text-white";
+                tabKasir.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-400";
+                tabTagihan.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white";
                 
                 btnSub.innerText = "Input Kasir Baru";
                 labelNominal.innerText = "Nominal Keuangan (Modal & Jual)";
@@ -983,13 +1141,13 @@ h1,h2,h3,h4{color:#1f2f46;}
                 inputVal2.placeholder = "Harga Jual";
                 btnTambahKat.classList.add('hidden'); 
                 if(btnSettingsTambahKat) btnSettingsTambahKat.classList.add('hidden');
-                if(settingModeKatLabel) { settingModeKatLabel.innerText = "Kasir"; settingModeKatLabel.className = "text-pink-500 font-black"; }
+                if(settingModeKatLabel) { settingModeKatLabel.innerText = "Kasir"; settingModeKatLabel.className = "text-slate-500 font-black"; }
             } else {
                 badge.innerText = "Fokus: PIUTANG";
-                badge.className = "inline-block px-3 py-1.5 bg-rose-500/90 backdrop-blur-md border border-rose-400/50 text-white rounded-lg text-[8px] font-extrabold uppercase tracking-widest shadow-sm transition-all duration-300";
+                badge.className = "inline-block px-3 py-1.5 bg-red-500/90 backdrop-blur-md border border-red-400/50 text-white rounded-lg text-[8px] font-extrabold uppercase tracking-widest shadow-sm transition-all duration-300";
                 
-                tabTagihan.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-rose-500 text-white";
-                tabKasir.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-pink-500 dark:text-pink-400 hover:text-pink-800 dark:hover:text-white";
+                tabTagihan.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-red-500 text-white";
+                tabKasir.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white";
 
                 btnSub.innerText = "Input Tagihan/Hutang Baru";
                 labelNominal.innerText = "Total Tagihan Piutang";
@@ -998,7 +1156,7 @@ h1,h2,h3,h4{color:#1f2f46;}
                 inputVal2.placeholder = "Nominal Tagihan (Wajib)";
                 btnTambahKat.classList.remove('hidden');
                 if(btnSettingsTambahKat) btnSettingsTambahKat.classList.remove('hidden');
-                if(settingModeKatLabel) { settingModeKatLabel.innerText = "Tagihan"; settingModeKatLabel.className = "text-rose-500 font-black"; }
+                if(settingModeKatLabel) { settingModeKatLabel.innerText = "Tagihan"; settingModeKatLabel.className = "text-red-500 font-black"; }
             }
             
             document.getElementById('wrapJenisTrx').style.display = isKasir ? 'block' : 'none';
@@ -1014,8 +1172,8 @@ h1,h2,h3,h4{color:#1f2f46;}
             
             const fIcon = document.getElementById('filterIconState');
             const sIcon = document.getElementById('sortIconState');
-            if(fIcon) fIcon.className = "fas fa-filter text-pink-500 dark:text-pink-400 text-[10px]";
-            if(sIcon) sIcon.className = "fas fa-arrow-down-wide-short text-pink-500 dark:text-pink-400 text-[10px]";
+            if(fIcon) fIcon.className = "fas fa-filter text-slate-500 dark:text-slate-400 text-[10px]";
+            if(sIcon) sIcon.className = "fas fa-arrow-down-wide-short text-slate-500 dark:text-slate-400 text-[10px]";
             
             loadKategori();
             renderRiwayat();
@@ -1029,8 +1187,8 @@ h1,h2,h3,h4{color:#1f2f46;}
 
         window.setAnalysisTime = (r) => {
             analysisRange = r;
-            document.querySelectorAll('#pageDashboard .bg-pink-100\\/80 button').forEach(b => {
-                b.className = 'px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-pink-500 hover:text-pink-700 dark:hover:text-white dark:hover:bg-pink-700/50';
+            document.querySelectorAll('#pageDashboard .bg-slate-100\\/80 button').forEach(b => {
+                b.className = 'px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 text-slate-500 hover:text-slate-700 dark:hover:text-white dark:hover:bg-slate-700/50';
             });
             const activeId = 'tab' + r.charAt(0).toUpperCase() + r.slice(1);
             if(document.getElementById(activeId)) document.getElementById(activeId).className = 'px-4 py-1.5 text-[9px] font-bold uppercase tracking-wide rounded-lg transition-all duration-300 tab-active';
@@ -1042,14 +1200,14 @@ h1,h2,h3,h4{color:#1f2f46;}
             const { value: formValues } = await Swal.fire({
                 title: 'Tambah Kategori',
                 html: `
-                    <input id="swal-input-icon" class="swal2-input !w-16 !text-center !text-3xl !p-2 !mx-auto !block focus:!ring-4 focus:!ring-pink-500/10 focus:!border-pink-500 transition-all !rounded-2xl dark:!bg-pink-800 dark:!text-white dark:!border-pink-700" placeholder="📌" maxlength="2" value="📌">
-                    <p class="text-[9px] font-bold uppercase tracking-widest text-pink-400 mt-1.5 mb-4">Pilih 1 Emoji</p>
-                    <input id="swal-input-nama" class="swal2-input !w-[85%] !text-center font-black text-pink-700 text-sm focus:!ring-4 focus:!ring-pink-500/10 focus:!border-pink-500 transition-all !rounded-2xl dark:!bg-pink-800 dark:!text-white dark:!border-pink-700" placeholder="Nama Kategori (Cth: Pinjaman)">
+                    <input id="swal-input-icon" class="swal2-input !w-16 !text-center !text-3xl !p-2 !mx-auto !block focus:!ring-4 focus:!ring-slate-500/10 focus:!border-slate-500 transition-all !rounded-2xl dark:!bg-slate-800 dark:!text-white dark:!border-slate-700" placeholder="📌" maxlength="2" value="📌">
+                    <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mt-1.5 mb-4">Pilih 1 Emoji</p>
+                    <input id="swal-input-nama" class="swal2-input !w-[85%] !text-center font-black text-slate-700 text-sm focus:!ring-4 focus:!ring-slate-500/10 focus:!border-slate-500 transition-all !rounded-2xl dark:!bg-slate-800 dark:!text-white dark:!border-slate-700" placeholder="Nama Kategori (Cth: Pinjaman)">
                 `,
                 focusConfirm: false,
                 showCancelButton: true, confirmButtonText: 'Simpan', cancelButtonText: '<span style="color:#64748b; font-weight:700;">Batal</span>',
                 confirmButtonColor: '#e11d48', cancelButtonColor: '#f1f5f9', reverseButtons: true,
-                customClass: { popup: '!rounded-[2.5rem] !pt-8 dark:!bg-pink-900', confirmButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase !shadow-lg', cancelButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase border border-pink-200 dark:border-pink-700 dark:!bg-pink-800' },
+                customClass: { popup: '!rounded-[2.5rem] !pt-8 dark:!bg-slate-900', confirmButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase !shadow-lg', cancelButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase border border-slate-200 dark:border-slate-700 dark:!bg-slate-800' },
                 preConfirm: () => { return { icon: document.getElementById('swal-input-icon').value || '📌', nama: document.getElementById('swal-input-nama').value } }
             });
 
@@ -1066,14 +1224,14 @@ h1,h2,h3,h4{color:#1f2f46;}
             const result = await Swal.fire({
                 title: 'Edit Kategori',
                 html: `
-                    <input id="swal-edit-icon" class="swal2-input !w-16 !text-center !text-3xl !p-2 !mx-auto !block focus:!ring-4 focus:!ring-pink-500/10 focus:!border-pink-500 transition-all !rounded-2xl dark:!bg-pink-800 dark:!text-white dark:!border-pink-700" placeholder="📌" maxlength="2" value="${oldIcon}">
-                    <p class="text-[9px] font-bold uppercase tracking-widest text-pink-400 mt-1.5 mb-4">Ubah Emoji</p>
-                    <input id="swal-edit-nama" class="swal2-input !w-[85%] !text-center font-black text-pink-700 text-sm focus:!ring-4 focus:!ring-pink-500/10 focus:!border-pink-500 transition-all !rounded-2xl dark:!bg-pink-800 dark:!text-white dark:!border-pink-700" placeholder="Nama Kategori" value="${oldNama}">
+                    <input id="swal-edit-icon" class="swal2-input !w-16 !text-center !text-3xl !p-2 !mx-auto !block focus:!ring-4 focus:!ring-slate-500/10 focus:!border-slate-500 transition-all !rounded-2xl dark:!bg-slate-800 dark:!text-white dark:!border-slate-700" placeholder="📌" maxlength="2" value="${oldIcon}">
+                    <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mt-1.5 mb-4">Ubah Emoji</p>
+                    <input id="swal-edit-nama" class="swal2-input !w-[85%] !text-center font-black text-slate-700 text-sm focus:!ring-4 focus:!ring-slate-500/10 focus:!border-slate-500 transition-all !rounded-2xl dark:!bg-slate-800 dark:!text-white dark:!border-slate-700" placeholder="Nama Kategori" value="${oldNama}">
                 `,
                 showCancelButton: true, showDenyButton: true,
                 confirmButtonText: 'Update', denyButtonText: 'Hapus', cancelButtonText: '<span style="color:#64748b; font-weight:700;">Batal</span>',
                 confirmButtonColor: '#e11d48', denyButtonColor: '#ef4444', cancelButtonColor: '#f1f5f9', reverseButtons: true,
-                customClass: { popup: '!rounded-[2.5rem] !pt-8 dark:!bg-pink-900', confirmButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[10px] !uppercase !shadow-md', denyButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[10px] !uppercase !shadow-md', cancelButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[10px] !uppercase border border-pink-200 dark:border-pink-700 dark:!bg-pink-800' },
+                customClass: { popup: '!rounded-[2.5rem] !pt-8 dark:!bg-slate-900', confirmButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[10px] !uppercase !shadow-md', denyButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[10px] !uppercase !shadow-md', cancelButton: '!rounded-2xl !px-5 !py-3 !font-bold !text-[10px] !uppercase border border-slate-200 dark:border-slate-700 dark:!bg-slate-800' },
                 preConfirm: () => { return { icon: document.getElementById('swal-edit-icon').value || '📌', nama: document.getElementById('swal-edit-nama').value } }
             });
 
@@ -1092,16 +1250,16 @@ h1,h2,h3,h4{color:#1f2f46;}
         window.setFilterKat = (k) => { 
             filterKategoriActive = k; 
             const icon = document.getElementById('filterIconState');
-            if(k === 'Semua') icon.className = "fas fa-filter text-pink-500 dark:text-pink-400 text-[10px]";
-            else icon.className = "fas fa-filter text-pink-500 text-[10px]";
+            if(k === 'Semua') icon.className = "fas fa-filter text-slate-500 dark:text-slate-400 text-[10px]";
+            else icon.className = "fas fa-filter text-slate-500 text-[10px]";
             renderRiwayat(); 
         };
         
         window.setSort = (val) => { 
             currentSort = val; 
             const icon = document.getElementById('sortIconState');
-            if(val === 'terbaru') icon.className = "fas fa-arrow-down-wide-short text-pink-500 dark:text-pink-400 text-[10px]";
-            else icon.className = "fas fa-arrow-down-wide-short text-pink-500 text-[10px]";
+            if(val === 'terbaru') icon.className = "fas fa-arrow-down-wide-short text-slate-500 dark:text-slate-400 text-[10px]";
+            else icon.className = "fas fa-arrow-down-wide-short text-slate-500 text-[10px]";
             renderRiwayat(); 
         };
 
@@ -1128,9 +1286,9 @@ h1,h2,h3,h4{color:#1f2f46;}
                     selHtml += `<option value="${combined}">${combined}</option>`;
                     filDropdownHtml += `<option value="${combined}">${combined}</option>`;
                     listSettingsHtml += `
-                        <div class="flex items-center gap-3 p-3 bg-pink-50/50 dark:bg-pink-800/50 border border-pink-100 dark:border-pink-700 rounded-2xl opacity-70 cursor-not-allowed">
+                        <div class="flex items-center gap-3 p-3 bg-slate-50/50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-2xl opacity-70 cursor-not-allowed">
                             <span class="text-base">${k.icon}</span>
-                            <span class="text-[10px] font-extrabold text-pink-500 dark:text-pink-400 truncate">${k.nama}</span>
+                            <span class="text-[10px] font-extrabold text-slate-500 dark:text-slate-400 truncate">${k.nama}</span>
                         </div>`;
                 });
                 
@@ -1156,9 +1314,9 @@ h1,h2,h3,h4{color:#1f2f46;}
                         filDropdownHtml += `<option value="${combined}">${combined}</option>`;
                         
                         listSettingsHtml += `
-                            <div onclick="editKategori('${d.id}', '${data.nama}', '${icon}')" class="flex items-center gap-3 p-3 bg-white dark:bg-pink-800 border border-pink-100 dark:border-pink-700 rounded-2xl cursor-pointer hover:border-rose-300 dark:hover:border-rose-500 hover:shadow-md transition-all duration-300 group">
+                            <div onclick="editKategori('${d.id}', '${data.nama}', '${icon}')" class="flex items-center gap-3 p-3 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl cursor-pointer hover:border-red-300 dark:hover:border-red-500 hover:shadow-md transition-all duration-300 group">
                                 <span class="text-base group-hover:scale-110 transition-transform">${icon}</span>
-                                <span class="text-[10px] font-extrabold text-pink-700 dark:text-pink-200 truncate">${data.nama}</span>
+                                <span class="text-[10px] font-extrabold text-slate-700 dark:text-slate-200 truncate">${data.nama}</span>
                             </div>`;
                     });
                     
@@ -1189,26 +1347,26 @@ h1,h2,h3,h4{color:#1f2f46;}
             const { value: formValues } = await Swal.fire({
                 title: 'Sesuaikan Saldo',
                 html: `
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-pink-400 mt-0 mb-5">Atur Saldo Bank & Uang Fisik</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mt-0 mb-5">Atur Saldo Bank & Uang Fisik</p>
                     <div class="space-y-4 text-left">
                         <div>
-                            <label class="text-[9px] font-extrabold uppercase tracking-widest text-pink-500 ml-1.5"><i class="fas fa-building-columns mr-1"></i> Saldo Bank (Rp)</label>
+                            <label class="text-[9px] font-extrabold uppercase tracking-widest text-slate-500 ml-1.5"><i class="fas fa-building-columns mr-1"></i> Saldo Bank (Rp)</label>
                             <div class="relative group mt-1.5">
-                                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-400 text-[10px] font-black group-focus-within:text-pink-600 transition-colors">Rp</span>
-                                <input id="swal-modal-bank" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-pink-50/50 dark:bg-pink-900/30 border border-pink-100 dark:border-pink-800 rounded-2xl outline-none text-sm font-black text-pink-700 dark:text-pink-400 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 transition-all shadow-sm" value="${b.toLocaleString('id-ID')}">
+                                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] font-black group-focus-within:text-slate-600 transition-colors">Rp</span>
+                                <input id="swal-modal-bank" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-slate-50/50 dark:bg-slate-900/30 border border-slate-100 dark:border-slate-800 rounded-2xl outline-none text-sm font-black text-slate-700 dark:text-slate-400 focus:border-slate-400 focus:ring-4 focus:ring-slate-400/20 transition-all shadow-sm" value="${b.toLocaleString('id-ID')}">
                             </div>
                         </div>
                         <div>
-                            <label class="text-[9px] font-extrabold uppercase tracking-widest text-pink-500 ml-1.5"><i class="fas fa-wallet mr-1"></i> Saldo Cash (Rp)</label>
+                            <label class="text-[9px] font-extrabold uppercase tracking-widest text-slate-500 ml-1.5"><i class="fas fa-wallet mr-1"></i> Saldo Cash (Rp)</label>
                             <div class="relative group mt-1.5">
-                                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-400 text-[10px] font-black group-focus-within:text-pink-600 transition-colors">Rp</span>
-                                <input id="swal-modal-cash" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-pink-50/50 dark:bg-pink-900/30 border border-pink-100 dark:border-pink-800 rounded-2xl outline-none text-sm font-black text-pink-700 dark:text-pink-400 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 transition-all shadow-sm" value="${c.toLocaleString('id-ID')}">
+                                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] font-black group-focus-within:text-slate-600 transition-colors">Rp</span>
+                                <input id="swal-modal-cash" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-slate-50/50 dark:bg-slate-900/30 border border-slate-100 dark:border-slate-800 rounded-2xl outline-none text-sm font-black text-slate-700 dark:text-slate-400 focus:border-slate-400 focus:ring-4 focus:ring-slate-400/20 transition-all shadow-sm" value="${c.toLocaleString('id-ID')}">
                             </div>
                         </div>
                     </div>
                 `,
                 showCancelButton: true, confirmButtonColor: '#4f46e5', cancelButtonColor: '#f1f5f9', confirmButtonText: 'Simpan Saldo', cancelButtonText: '<span style="color:#64748b; font-weight:700;">Batal</span>', reverseButtons: true,
-                customClass: { popup: '!rounded-[2.5rem] !pt-8 !pb-6 dark:!bg-pink-900', confirmButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase !shadow-lg', cancelButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase border border-pink-200 dark:border-pink-700 dark:!bg-pink-800' },
+                customClass: { popup: '!rounded-[2.5rem] !pt-8 !pb-6 dark:!bg-slate-900', confirmButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase !shadow-lg', cancelButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !text-[11px] !uppercase border border-slate-200 dark:border-slate-700 dark:!bg-slate-800' },
                 preConfirm: () => {
                     return { bank: parseUang(document.getElementById('swal-modal-bank').value), cash: parseUang(document.getElementById('swal-modal-cash').value) }
                 }
@@ -1273,39 +1431,39 @@ h1,h2,h3,h4{color:#1f2f46;}
                 html: `
                     <div class="text-left mt-3">
                         <div class="mb-4">
-                            <label class="block text-[10px] font-bold text-pink-500 dark:text-pink-400 uppercase tracking-widest mb-1.5 ml-1">Keterangan / Nama</label>
+                            <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Keterangan / Nama</label>
                             <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none"><i class="fas fa-file-pen text-pink-400 text-xs"></i></div>
-                                <input id="swal-edit-nama" class="w-full pl-9 pr-3 py-3 bg-pink-50 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-xl text-xs font-bold text-pink-800 dark:text-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none shadow-sm" value="${data.nama}">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none"><i class="fas fa-file-pen text-slate-400 text-xs"></i></div>
+                                <input id="swal-edit-nama" class="w-full pl-9 pr-3 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-800 dark:text-white focus:ring-4 focus:ring-slate-500/10 focus:border-slate-500 transition-all outline-none shadow-sm" value="${data.nama}">
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-3 mb-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-pink-500 dark:text-pink-400 uppercase tracking-widest mb-1.5 ml-1">Modal Dasar</label>
+                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Modal Dasar</label>
                                 <div class="relative">
-                                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-400 text-[10px] font-bold">Rp</span>
-                                    <input id="swal-edit-val1" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-pink-900 border border-pink-200 dark:border-pink-700 rounded-xl text-xs font-black text-pink-700 dark:text-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none shadow-sm" value="${data.val1.toLocaleString('id-ID')}">
+                                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] font-bold">Rp</span>
+                                    <input id="swal-edit-val1" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-black text-slate-700 dark:text-white focus:ring-4 focus:ring-slate-500/10 focus:border-slate-500 transition-all outline-none shadow-sm" value="${data.val1.toLocaleString('id-ID')}">
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-pink-500 dark:text-pink-400 uppercase tracking-widest mb-1.5 ml-1">Harga Jual</label>
+                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Harga Jual</label>
                                 <div class="relative">
-                                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-500 text-[10px] font-bold">Rp</span>
-                                    <input id="swal-edit-val2" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-pink-900 border border-pink-200 dark:border-pink-900/50 rounded-xl text-xs font-black text-pink-600 dark:text-pink-400 focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none shadow-sm" value="${data.val2.toLocaleString('id-ID')}">
+                                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-[10px] font-bold">Rp</span>
+                                    <input id="swal-edit-val2" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-900/50 rounded-xl text-xs font-black text-slate-600 dark:text-slate-400 focus:ring-4 focus:ring-slate-500/10 focus:border-slate-500 transition-all outline-none shadow-sm" value="${data.val2.toLocaleString('id-ID')}">
                                 </div>
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-[10px] font-bold text-pink-500 dark:text-pink-400 uppercase tracking-widest mb-1.5 ml-1">Sumber Modal</label>
-                                <select id="swal-edit-sumber" class="w-full p-3 bg-pink-50 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-xl text-xs font-bold text-pink-700 dark:text-pink-200 focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 outline-none shadow-sm">
+                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Sumber Modal</label>
+                                <select id="swal-edit-sumber" class="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 focus:ring-4 focus:ring-slate-500/10 focus:border-slate-500 outline-none shadow-sm">
                                     <option value="Bank" ${data.sumberModal === 'Bank' ? 'selected' : ''}>💳 Bank</option>
                                     <option value="Tunai" ${data.sumberModal === 'Tunai' ? 'selected' : ''}>💵 Tunai</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-pink-500 dark:text-pink-400 uppercase tracking-widest mb-1.5 ml-1">Uang Masuk Ke</label>
-                                <select id="swal-edit-metode" class="w-full p-3 bg-pink-50 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-xl text-xs font-bold text-pink-700 dark:text-pink-200 focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 outline-none shadow-sm">
+                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Uang Masuk Ke</label>
+                                <select id="swal-edit-metode" class="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 focus:ring-4 focus:ring-slate-500/10 focus:border-slate-500 outline-none shadow-sm">
                                     <option value="Transfer" ${data.metode === 'Transfer' ? 'selected' : ''}>📱 Transfer</option>
                                     <option value="Tunai" ${data.metode === 'Tunai' ? 'selected' : ''}>💵 Tunai</option>
                                 </select>
@@ -1314,7 +1472,7 @@ h1,h2,h3,h4{color:#1f2f46;}
                     </div>
                 `,
                 showCancelButton: true, confirmButtonText: 'Simpan Revisi', cancelButtonText: '<span style="color:#64748b; font-weight:700;">Batal</span>', reverseButtons: true,
-                customClass: { popup: '!rounded-[2.5rem] !pt-6 !pb-6 dark:!bg-pink-900', confirmButton: '!rounded-2xl !px-5 !py-3.5 !font-bold !text-[11px] !uppercase !shadow-lg', cancelButton: '!rounded-2xl !px-5 !py-3.5 !font-bold !text-[11px] !uppercase border border-pink-200 dark:border-pink-700 dark:!bg-pink-800' },
+                customClass: { popup: '!rounded-[2.5rem] !pt-6 !pb-6 dark:!bg-slate-900', confirmButton: '!rounded-2xl !px-5 !py-3.5 !font-bold !text-[11px] !uppercase !shadow-lg', cancelButton: '!rounded-2xl !px-5 !py-3.5 !font-bold !text-[11px] !uppercase border border-slate-200 dark:border-slate-700 dark:!bg-slate-800' },
                 preConfirm: () => {
                     return {
                         nama: document.getElementById('swal-edit-nama').value.trim(),
@@ -1390,9 +1548,9 @@ h1,h2,h3,h4{color:#1f2f46;}
                     datasets: [
                         {
                             label: 'Profit', data: profit,
-                            borderColor: '#ec4899', backgroundColor: 'rgba(236,72,153,.10)',
+                            borderColor: '#0f172a', backgroundColor: 'rgba(176,141,87,.10)',
                             borderWidth: 2.5, tension: .35, fill: true, pointRadius: 2.5,
-                            pointBackgroundColor: '#fff', pointBorderColor: '#ec4899'
+                            pointBackgroundColor: '#fff', pointBorderColor: '#0f172a'
                         },
                         {
                             label: 'Omzet', data: omzet,
@@ -1520,9 +1678,9 @@ h1,h2,h3,h4{color:#1f2f46;}
                 const parts = String(kat || '').split(' ');
                 const icon = parts[0] || '📌';
                 const nama = parts.slice(1).join(' ') || kat || 'Lainnya';
-                html += `<div class="glass-card p-4 rounded-[1.5rem] premium-shadow flex flex-col justify-center border border-pink-100 dark:border-pink-700"><div class="w-8 h-8 rounded-[0.8rem] bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center mb-3 border border-pink-100 dark:border-pink-800"><span class="text-sm">${icon}</span></div><p class="text-[8px] font-extrabold text-pink-400 uppercase tracking-widest mb-1 truncate">${nama}</p><p class="text-xs md:text-sm font-black text-pink-800 dark:text-pink-200">Rp ${total.toLocaleString('id-ID')}</p></div>`;
+                html += `<div class="glass-card p-4 rounded-[1.5rem] premium-shadow flex flex-col justify-center border border-slate-100 dark:border-slate-700"><div class="w-8 h-8 rounded-[0.8rem] bg-slate-50 dark:bg-slate-900/30 flex items-center justify-center mb-3 border border-slate-100 dark:border-slate-800"><span class="text-sm">${icon}</span></div><p class="text-[8px] font-extrabold text-slate-400 uppercase tracking-widest mb-1 truncate">${nama}</p><p class="text-xs md:text-sm font-black text-slate-800 dark:text-slate-200">Rp ${total.toLocaleString('id-ID')}</p></div>`;
             }
-            katGrid.innerHTML = html || '<div class="text-center py-6 text-[10px] font-bold uppercase tracking-widest text-pink-400 col-span-full border border-dashed border-pink-200 dark:border-pink-700 rounded-2xl">Belum ada piutang berjalan</div>';
+            katGrid.innerHTML = html || '<div class="text-center py-6 text-[10px] font-bold uppercase tracking-widest text-slate-400 col-span-full border border-dashed border-slate-200 dark:border-slate-700 rounded-2xl">Belum ada piutang berjalan</div>';
         }
 
         window.addEventListener('beforeunload', () => { if (window.performanceChart) window.performanceChart.destroy(); });
@@ -1625,14 +1783,14 @@ h1,h2,h3,h4{color:#1f2f46;}
                 
                 const isPengeluaran = !isTagihan && (i.jenis === 'Pengeluaran' || (i.val2 === 0 && i.val1 > 0));
                 
-                let badgeClass = isPending ? 'bg-gradient-to-br from-pink-50 dark:from-pink-900/30 to-pink-100 dark:to-pink-800/30 text-pink-500' : 'bg-gradient-to-br from-pink-50 dark:from-pink-900/30 to-pink-100 dark:to-pink-800/30 text-pink-500';
-                if(isTagihan) badgeClass = isLunasTagihan ? 'bg-gradient-to-br from-pink-50 dark:from-pink-900/30 to-pink-100 dark:to-pink-800/30 text-pink-500' : 'bg-gradient-to-br from-rose-50 dark:from-rose-900/30 to-rose-100 dark:to-rose-800/30 text-rose-500';
-                if(isPengeluaran) badgeClass = 'bg-gradient-to-br from-rose-50 dark:from-rose-900/30 to-rose-100 dark:to-rose-800/30 text-rose-500';
+                let badgeClass = isPending ? 'fo-icon-pending' : 'fo-icon-lunas';
+                if(isTagihan) badgeClass = isLunasTagihan ? 'fo-icon-lunas' : 'fo-icon-tagihan';
+                if(isPengeluaran) badgeClass = 'fo-icon-keluar';
                 
-                let iconMode = isTagihan ? (isLunasTagihan ? 'fa-circle-check' : 'fa-file-invoice') : (isPending ? 'fa-clock-rotate-left' : 'fa-circle-check');
+                let iconMode = isTagihan ? (isLunasTagihan ? 'fa-circle-check' : 'fa-file-invoice-dollar') : (isPending ? 'fa-clock' : 'fa-circle-check');
                 if(isPengeluaran) iconMode = 'fa-arrow-right-from-bracket';
 
-                let borderColor = i.ditandai ? 'border-pink-400 bg-pink-50/30 dark:bg-pink-900/20' : 'border-pink-100 dark:border-pink-800 bg-white dark:bg-pink-900';
+                let borderColor = i.ditandai ? 'border-slate-400 bg-slate-50/30 dark:bg-slate-900/20' : 'border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900';
 
                 if(currentMode === 'tagihan') {
                     let percent = i.val2 > 0 ? (i.totalDibayar / i.val2) * 100 : 0;
@@ -1641,55 +1799,55 @@ h1,h2,h3,h4{color:#1f2f46;}
 
                     listHtml += `
                     <div class="rounded-[1.2rem] shadow-[0_2px_10px_rgba(0,0,0,0.02)] border ${borderColor} overflow-hidden transition-all duration-300">
-                        <div onclick="toggleDetail('detail-${i.id}', 'icon-${i.id}')" class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-pink-50/50 dark:hover:bg-pink-800/50 transition-colors">
+                        <div onclick="toggleDetail('detail-${i.id}', 'icon-${i.id}')" class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
                             <div class="flex items-center gap-3.5 overflow-hidden flex-1 pr-2">
                                 <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${badgeClass}">
                                     <i class="fas ${iconMode} text-sm"></i>
                                 </div>
                                 <div class="overflow-hidden leading-tight mt-0.5">
                                     <div class="flex items-center gap-1.5">
-                                        <h4 class="font-black text-[13px] text-pink-800 dark:text-white truncate tracking-tight">${i.nama}</h4>
-                                        ${i.ditandai ? '<i class="fas fa-star text-pink-400 text-[10px]"></i>' : ''}
+                                        <h4 class="font-black text-[13px] text-slate-800 dark:text-white truncate tracking-tight">${i.nama}</h4>
+                                        ${i.ditandai ? '<i class="fas fa-star text-slate-400 text-[10px]"></i>' : ''}
                                     </div>
-                                    <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 mt-0.5 truncate uppercase tracking-widest">${i.keterangan}</p>
+                                    <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 mt-0.5 truncate uppercase tracking-widest">${i.keterangan}</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-3 shrink-0">
                                 <div class="text-right mt-0.5">
-                                    <p class="font-black text-[13px] text-pink-800 dark:text-white">Rp ${i.val2.toLocaleString('id-ID')}</p>
-                                    ${isLunasTagihan ? '<p class="text-[8px] font-black text-pink-500 mt-0.5 uppercase tracking-widest">LUNAS</p>' : `<p class="text-[8px] font-black text-rose-500 dark:text-rose-400 mt-0.5 uppercase tracking-widest">Sisa Rp ${i.sisaTagihan.toLocaleString('id-ID')}</p>`}
+                                    <p class="font-black text-[13px] text-slate-800 dark:text-white">Rp ${i.val2.toLocaleString('id-ID')}</p>
+                                    ${isLunasTagihan ? '<p class="fo-status-pill lunas"><i class="fas fa-circle-check"></i>LUNAS</p>' : `<p class="fo-status-pill pending"><i class="fas fa-clock"></i>Sisa Rp ${i.sisaTagihan.toLocaleString('id-ID')}</p>`}
                                 </div>
                                 <div class="w-6 h-6 flex items-center justify-center">
-                                    <i id="icon-${i.id}" class="fas fa-chevron-down text-pink-300 dark:text-pink-600 text-[11px] transition-transform duration-300"></i>
+                                    <i id="icon-${i.id}" class="fas fa-chevron-down text-slate-300 dark:text-slate-600 text-[11px] transition-transform duration-300"></i>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="detail-${i.id}" class="hidden border-t ${i.ditandai ? 'border-pink-200 dark:border-pink-800/50' : 'border-pink-100 dark:border-pink-800'} bg-pink-50/50 dark:bg-pink-800/50 p-4">
+                        <div id="detail-${i.id}" class="hidden border-t ${i.ditandai ? 'border-slate-200 dark:border-slate-800/50' : 'border-slate-100 dark:border-slate-800'} bg-slate-50/50 dark:bg-slate-800/50 p-4">
                             <div class="flex justify-between items-center mb-4">
-                                <span class="text-[8px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest"><i class="far fa-calendar-alt mr-1"></i> ${i.formattedTglBuat}</span>
+                                <span class="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest"><i class="far fa-calendar-alt mr-1"></i> ${i.formattedTglBuat}</span>
                                 <div class="flex gap-2">
-                                    <button onclick="toggleMark('${i.id}', ${i.ditandai || false})" class="w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm active:scale-90 ${i.ditandai ? 'bg-pink-50 border-pink-200 text-pink-500 dark:bg-pink-900/30 dark:border-pink-700/50' : 'bg-white dark:bg-pink-700 border-pink-200 dark:border-pink-600 text-pink-400 hover:text-pink-500'}"><i class="fas fa-star text-[10px]"></i></button>
-                                    <button onclick="deleteData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-pink-700 border border-pink-200 dark:border-pink-600 flex items-center justify-center text-pink-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-trash text-[10px]"></i></button>
+                                    <button onclick="toggleMark('${i.id}', ${i.ditandai || false})" class="w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm active:scale-90 ${i.ditandai ? 'bg-slate-50 border-slate-200 text-slate-500 dark:bg-slate-900/30 dark:border-slate-700/50' : 'bg-white dark:bg-slate-700 border-slate-200 dark:border-slate-600 text-slate-400 hover:text-slate-500'}"><i class="fas fa-star text-[10px]"></i></button>
+                                    <button onclick="deleteData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-trash text-[10px]"></i></button>
                                 </div>
                             </div>
                             
-                            <div class="bg-white dark:bg-pink-900 p-3 rounded-xl border border-pink-100 dark:border-pink-700 shadow-sm mb-3">
+                            <div class="bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm mb-3">
                                 <div class="flex justify-between items-end mb-2">
                                     <div>
-                                        <p class="text-[8px] text-pink-400 dark:text-pink-500 font-extrabold uppercase tracking-widest mb-1">Total Dibayar</p>
-                                        <p class="font-black text-sm text-pink-500 leading-none">Rp ${i.totalDibayar.toLocaleString('id-ID')}</p>
+                                        <p class="text-[8px] text-slate-400 dark:text-slate-500 font-extrabold uppercase tracking-widest mb-1">Total Dibayar</p>
+                                        <p class="font-black text-sm text-slate-500 leading-none">Rp ${i.totalDibayar.toLocaleString('id-ID')}</p>
                                     </div>
                                     <div class="text-right">
-                                        <p class="text-[8px] text-pink-400 dark:text-pink-500 font-bold"><i class="far fa-calendar-times text-[7px] text-rose-400 mr-0.5"></i> Tempo: ${i.jatuhTempo ? formatTgl(new Date(i.jatuhTempo)).split(' ')[0] : 'Bebas'}</p>
-                                        ${tenorText ? `<p class="text-[8px] text-pink-500 font-bold mt-0.5">${tenorText.replace(' • ', '')}</p>` : ''}
+                                        <p class="text-[8px] text-slate-400 dark:text-slate-500 font-bold"><i class="far fa-calendar-times text-[7px] text-red-400 mr-0.5"></i> Tempo: ${i.jatuhTempo ? formatTgl(new Date(i.jatuhTempo)).split(' ')[0] : 'Bebas'}</p>
+                                        ${tenorText ? `<p class="text-[8px] text-slate-500 font-bold mt-0.5">${tenorText.replace(' • ', '')}</p>` : ''}
                                     </div>
                                 </div>
-                                <div class="w-full bg-pink-100 dark:bg-pink-800 h-1.5 rounded-full overflow-hidden mt-3">
-                                    <div class="bg-${isLunasTagihan ? 'pink' : 'pink'}-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: ${percent}%"></div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden mt-3">
+                                    <div class="bg-${isLunasTagihan ? 'slate' : 'slate'}-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: ${percent}%"></div>
                                 </div>
                             </div>
-                            <button onclick="openModalCicilan('${i.id}', 'tagihan')" class="w-full bg-white dark:bg-pink-800 text-pink-600 dark:text-pink-400 border border-pink-200 dark:border-pink-700 py-3 rounded-xl text-[10px] font-black uppercase tracking-wider hover:bg-pink-50 dark:hover:bg-pink-700 transition-all duration-300 shadow-sm active:scale-95 group/btn"><i class="fas fa-list-ul mr-2 group-hover/btn:scale-110 transition-transform"></i> Kelola Cicilan Pembayaran</button>
+                            <button onclick="openModalCicilan('${i.id}', 'tagihan')" class="w-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 py-3 rounded-xl text-[10px] font-black uppercase tracking-wider hover:bg-slate-50 dark:hover:bg-slate-700 transition-all duration-300 shadow-sm active:scale-95 group/btn"><i class="fas fa-list-ul mr-2 group-hover/btn:scale-110 transition-transform"></i> Kelola Cicilan Pembayaran</button>
                         </div>
                     </div>`;
 
@@ -1699,21 +1857,21 @@ h1,h2,h3,h4{color:#1f2f46;}
                     
                     let actionButton = '';
                     if (isPengeluaran) {
-                        actionButton = `<p class="text-[8px] font-black text-rose-500 mt-2 uppercase tracking-widest bg-rose-50 dark:bg-rose-900/30 px-3 py-1 rounded-md border border-rose-100 dark:border-rose-800/50 inline-block">-Rp ${i.val1.toLocaleString('id-ID')}</p>`;
+                        actionButton = `<p class="text-[8px] font-black text-red-500 mt-2 uppercase tracking-widest bg-red-50 dark:bg-red-900/30 px-3 py-1 rounded-md border border-red-100 dark:border-red-800/50 inline-block">-Rp ${i.val1.toLocaleString('id-ID')}</p>`;
                     } else if (isPending) {
                         actionButton = `<div class="mt-3">
-                            <div class="flex justify-between text-[8px] font-bold text-pink-500 dark:text-pink-400 mb-1.5 uppercase tracking-widest">
+                            <div class="flex justify-between text-[8px] font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-widest">
                                 <span>Terbayar: Rp ${i.totalDibayar.toLocaleString('id-ID')}</span>
-                                <span class="text-pink-500">Sisa: Rp ${i.sisaTagihan.toLocaleString('id-ID')}</span>
+                                <span class="text-slate-500">Sisa: Rp ${i.sisaTagihan.toLocaleString('id-ID')}</span>
                             </div>
-                            <div class="w-full bg-pink-200/60 dark:bg-pink-700 h-1.5 rounded-full overflow-hidden mb-3">
-                                <div class="bg-pink-500 h-full transition-all duration-1000" style="width: ${percent}%"></div>
+                            <div class="w-full bg-amber-100/70 dark:bg-amber-900/30 h-1.5 rounded-full overflow-hidden mb-3">
+                                <div class="bg-amber-500 h-full transition-all duration-1000" style="width: ${percent}%"></div>
                             </div>
-                            <button onclick="openModalCicilan('${i.id}', 'kasir')" class="w-full bg-pink-500 text-white px-5 py-3 rounded-xl text-[10px] font-black uppercase tracking-wider shadow-[0_4px_10px_rgba(245,158,11,0.3)] hover:bg-pink-600 transition-all duration-300 active:scale-95 flex justify-center items-center gap-1.5"><i class="fas fa-list-ul text-xs"></i> Kelola Pembayaran</button>
+                            <button onclick="openModalCicilan('${i.id}', 'kasir')" class="w-full bg-amber-600 text-white px-5 py-3 rounded-xl text-[10px] font-black uppercase tracking-wider shadow-[0_4px_10px_rgba(245,158,11,0.3)] hover:bg-amber-700 transition-all duration-300 active:scale-95 flex justify-center items-center gap-1.5"><i class="fas fa-list-ul text-xs"></i> Kelola Pembayaran</button>
                            </div>`;
                     } else {
                         let profit = i.val2 - i.val1;
-                        let pColor = profit >= 0 ? 'pink' : 'rose';
+                        let pColor = profit >= 0 ? 'slate' : 'red';
                         let pSign = profit >= 0 ? '+' : '-';
                         actionButton = `<p class="text-[8px] font-black text-${pColor}-500 mt-2 uppercase tracking-widest bg-${pColor}-50 dark:bg-${pColor}-900/30 px-3 py-1 rounded-md border border-${pColor}-100 dark:border-${pColor}-800/50 inline-block">${pSign}Rp ${Math.abs(profit).toLocaleString('id-ID')}</p>`;
                     }
@@ -1721,28 +1879,28 @@ h1,h2,h3,h4{color:#1f2f46;}
                     let displayPrice = "";
                     let displayStatus = "";
                     if (isPengeluaran) {
-                        displayPrice = `<p class="font-black text-[13px] text-rose-500 dark:text-rose-400">- Rp ${i.val1.toLocaleString('id-ID')}</p>`;
-                        displayStatus = `<p class="text-[8px] font-black text-pink-400 mt-0.5 uppercase tracking-widest">DIKELUARKAN</p>`;
+                        displayPrice = `<p class="font-black text-[13px] text-red-500 dark:text-red-400">- Rp ${i.val1.toLocaleString('id-ID')}</p>`;
+                        displayStatus = `<p class="text-[8px] font-black text-slate-400 mt-0.5 uppercase tracking-widest">DIKELUARKAN</p>`;
                     } else {
-                        displayPrice = `<p class="font-black text-[13px] text-pink-800 dark:text-white">Rp ${i.val2.toLocaleString('id-ID')}</p>`;
+                        displayPrice = `<p class="font-black text-[13px] text-slate-800 dark:text-white">Rp ${i.val2.toLocaleString('id-ID')}</p>`;
                         displayStatus = isPending 
-                            ? `<p class="text-[8px] font-black text-pink-500 mt-0.5 uppercase tracking-widest">Sisa Rp ${i.sisaTagihan.toLocaleString('id-ID')}</p>`
-                            : `<p class="text-[8px] font-black text-pink-500 mt-0.5 uppercase tracking-widest">LUNAS</p>`;
+                            ? `<p class="fo-status-pill pending mt-1"><i class="fas fa-clock"></i>Sisa Rp ${i.sisaTagihan.toLocaleString('id-ID')}</p>`
+                            : `<p class="fo-status-pill lunas mt-1"><i class="fas fa-circle-check"></i>LUNAS</p>`;
                     }
 
                     listHtml += `
                     <div class="bg-white rounded-[1.2rem] shadow-[0_2px_10px_rgba(0,0,0,0.02)] border ${borderColor} overflow-hidden transition-all duration-300">
-                        <div onclick="toggleDetail('detail-${i.id}', 'icon-${i.id}')" class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-pink-50/50 dark:hover:bg-pink-800/50 transition-colors">
+                        <div onclick="toggleDetail('detail-${i.id}', 'icon-${i.id}')" class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
                             <div class="flex items-center gap-3.5 overflow-hidden flex-1 pr-2">
                                 <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${badgeClass}">
                                     <i class="fas ${iconMode} text-sm"></i>
                                 </div>
                                 <div class="overflow-hidden leading-tight mt-0.5">
                                     <div class="flex items-center gap-1.5">
-                                        <h4 class="font-black text-[13px] text-pink-800 dark:text-white truncate tracking-tight">${i.nama}</h4>
-                                        ${i.ditandai ? '<i class="fas fa-star text-pink-400 text-[10px]"></i>' : ''}
+                                        <h4 class="font-black text-[13px] text-slate-800 dark:text-white truncate tracking-tight">${i.nama}</h4>
+                                        ${i.ditandai ? '<i class="fas fa-star text-slate-400 text-[10px]"></i>' : ''}
                                     </div>
-                                    <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 mt-0.5 truncate uppercase tracking-widest">${i.keterangan}${isPengeluaran ? ' • PENGELUARAN' : (isPending ? ' • PENDING' : '')}</p>
+                                    <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 mt-0.5 truncate uppercase tracking-widest">${i.keterangan}${isPengeluaran ? ' • PENGELUARAN' : (isPending ? ' • PENDING' : ' • LUNAS')}</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-3 shrink-0">
@@ -1751,28 +1909,28 @@ h1,h2,h3,h4{color:#1f2f46;}
                                     ${displayStatus}
                                 </div>
                                 <div class="w-6 h-6 flex items-center justify-center">
-                                    <i id="icon-${i.id}" class="fas fa-chevron-down text-pink-300 dark:text-pink-600 text-[11px] transition-transform duration-300"></i>
+                                    <i id="icon-${i.id}" class="fas fa-chevron-down text-slate-300 dark:text-slate-600 text-[11px] transition-transform duration-300"></i>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="detail-${i.id}" class="hidden border-t ${i.ditandai ? 'border-pink-200 dark:border-pink-800/50' : 'border-pink-100 dark:border-pink-800'} bg-pink-50/50 dark:bg-pink-800/50 p-4">
+                        <div id="detail-${i.id}" class="hidden border-t ${i.ditandai ? 'border-slate-200 dark:border-slate-800/50' : 'border-slate-100 dark:border-slate-800'} bg-slate-50/50 dark:bg-slate-800/50 p-4">
                             <div class="flex justify-between items-center mb-3">
-                                <span class="text-[8px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest"><i class="far fa-calendar-alt mr-1"></i> ${i.formattedTglBuat}</span>
+                                <span class="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest"><i class="far fa-calendar-alt mr-1"></i> ${i.formattedTglBuat}</span>
                                 <div class="flex gap-2">
-                                    <button onclick="toggleMark('${i.id}', ${i.ditandai || false})" class="w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm active:scale-90 ${i.ditandai ? 'bg-pink-50 border-pink-200 text-pink-500 dark:bg-pink-900/30 dark:border-pink-700/50' : 'bg-white dark:bg-pink-700 border-pink-200 dark:border-pink-600 text-pink-400 hover:text-pink-500'}"><i class="fas fa-star text-[10px]"></i></button>
-                                    <button onclick="editKasirData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-pink-700 border border-pink-200 dark:border-pink-600 flex items-center justify-center text-pink-400 hover:text-pink-500 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-pen text-[10px]"></i></button>
-                                    <button onclick="deleteData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-pink-700 border border-pink-200 dark:border-pink-600 flex items-center justify-center text-pink-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-trash text-[10px]"></i></button>
+                                    <button onclick="toggleMark('${i.id}', ${i.ditandai || false})" class="w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm active:scale-90 ${i.ditandai ? 'bg-slate-50 border-slate-200 text-slate-500 dark:bg-slate-900/30 dark:border-slate-700/50' : 'bg-white dark:bg-slate-700 border-slate-200 dark:border-slate-600 text-slate-400 hover:text-slate-500'}"><i class="fas fa-star text-[10px]"></i></button>
+                                    <button onclick="editKasirData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-400 hover:text-slate-500 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-pen text-[10px]"></i></button>
+                                    <button onclick="deleteData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-trash text-[10px]"></i></button>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-2">
-                                <div class="bg-white dark:bg-pink-900 p-2.5 rounded-xl border border-pink-100 dark:border-pink-700 shadow-sm">
-                                    <p class="text-[8px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest mb-0.5">Nilai Modal</p>
-                                    <p class="text-xs font-black text-pink-700 dark:text-pink-200">Rp ${i.val1.toLocaleString('id-ID')}</p>
+                                <div class="bg-white dark:bg-slate-900 p-2.5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                                    <p class="text-[8px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-0.5">Nilai Modal</p>
+                                    <p class="text-xs font-black text-slate-700 dark:text-slate-200">Rp ${i.val1.toLocaleString('id-ID')}</p>
                                 </div>
-                                <div class="bg-white dark:bg-pink-900 p-2.5 rounded-xl border border-pink-100 dark:border-pink-700 shadow-sm">
-                                    <p class="text-[8px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest mb-0.5">${isPengeluaran ? 'Sumber Saldo' : 'Alur Uang'}</p>
-                                    <p class="text-[10px] font-bold text-pink-600 dark:text-pink-300 mt-1">${isPengeluaran ? i.sumberModal : `${i.sumberModal || '-'} ➔ ${i.metode || '-'}`}</p>
+                                <div class="bg-white dark:bg-slate-900 p-2.5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                                    <p class="text-[8px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-0.5">${isPengeluaran ? 'Sumber Saldo' : 'Alur Uang'}</p>
+                                    <p class="text-[10px] font-bold text-slate-600 dark:text-slate-300 mt-1">${isPengeluaran ? i.sumberModal : `${i.sumberModal || '-'} ➔ ${i.metode || '-'}`}</p>
                                 </div>
                             </div>
                             ${actionButton}
@@ -1805,19 +1963,19 @@ h1,h2,h3,h4{color:#1f2f46;}
                 sortedCicilan.forEach((c, idx) => {
                     const tgl = new Date(c.tanggal).toLocaleDateString('id-ID', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'});
                     mcListHtml += `
-                    <div class="bg-white dark:bg-pink-800 p-3.5 rounded-2xl border border-pink-100 dark:border-pink-700 flex justify-between items-center shadow-sm hover:border-pink-200 transition-colors duration-300 group">
+                    <div class="bg-white dark:bg-slate-800 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-700 flex justify-between items-center shadow-sm hover:border-slate-200 transition-colors duration-300 group">
                         <div class="flex items-center gap-3.5">
-                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-50 dark:from-pink-900/30 to-pink-100 dark:to-pink-800/30 text-pink-500 flex items-center justify-center shadow-inner border border-white dark:border-pink-700/30 group-hover:scale-105 transition-transform"><i class="fas fa-arrow-down text-sm"></i></div>
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-50 dark:from-slate-900/30 to-slate-100 dark:to-slate-800/30 text-slate-500 flex items-center justify-center shadow-inner border border-white dark:border-slate-700/30 group-hover:scale-105 transition-transform"><i class="fas fa-arrow-down text-sm"></i></div>
                             <div>
-                                <p class="text-[10px] font-black text-pink-700 dark:text-pink-200 uppercase tracking-wider">Cicilan Ke-${data.cicilan.length - idx}</p>
-                                <p class="text-[8px] font-bold text-pink-400 dark:text-pink-500 uppercase mt-0.5 tracking-widest">${c.dompet || 'Kas'} • ${tgl}</p>
+                                <p class="text-[10px] font-black text-slate-700 dark:text-slate-200 uppercase tracking-wider">Cicilan Ke-${data.cicilan.length - idx}</p>
+                                <p class="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase mt-0.5 tracking-widest">${c.dompet || 'Kas'} • ${tgl}</p>
                             </div>
                         </div>
-                        <p class="text-xs font-black text-pink-600 dark:text-pink-400 bg-pink-50/80 dark:bg-pink-900/30 px-3 py-1.5 rounded-xl border border-pink-100/50 dark:border-pink-800/50">+ Rp ${c.nominal.toLocaleString('id-ID')}</p>
+                        <p class="text-xs font-black text-slate-600 dark:text-slate-400 bg-slate-50/80 dark:bg-slate-900/30 px-3 py-1.5 rounded-xl border border-slate-100/50 dark:border-slate-800/50">+ Rp ${c.nominal.toLocaleString('id-ID')}</p>
                     </div>`;
                 });
             } else {
-                mcListHtml = `<div class="text-center py-8 text-[10px] font-bold uppercase tracking-widest text-pink-400 dark:text-pink-600 bg-pink-50/50 dark:bg-pink-800/50 rounded-2xl border border-pink-200 dark:border-pink-700 border-dashed">Belum ada cicilan masuk</div>`;
+                mcListHtml = `<div class="text-center py-8 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-600 bg-slate-50/50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 border-dashed">Belum ada cicilan masuk</div>`;
             }
             
             listEl.innerHTML = mcListHtml;
@@ -1840,12 +1998,12 @@ h1,h2,h3,h4{color:#1f2f46;}
             const nominal = parseUang(nominalStr);
             const masukKe = document.getElementById('mcMasukKe').value;
 
-            if(nominal <= 0) return Swal.fire({ icon: 'error', title: 'Perhatian', text: 'Nominal tidak boleh kosong.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
+            if(nominal <= 0) return Swal.fire({ icon: 'error', title: 'Perhatian', text: 'Nominal tidak boleh kosong.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
 
             const data = currentCicilanSource === 'kasir' ? masterKasir.find(x => x.id === currentCicilanId) : masterTagihan.find(x => x.id === currentCicilanId);
             const collectionName = currentCicilanSource === 'kasir' ? "jurnal_v7" : "tagihan_v2";
 
-            if(nominal > data.sisaTagihan) return Swal.fire({ icon: 'error', title: 'Perhatian', text: 'Nominal pembayaran melebihi sisa tagihan.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
+            if(nominal > data.sisaTagihan) return Swal.fire({ icon: 'error', title: 'Perhatian', text: 'Nominal pembayaran melebihi sisa tagihan.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
 
             const newCicilan = { nominal: nominal, tanggal: new Date().getTime(), dompet: masukKe };
 
@@ -1870,14 +2028,14 @@ h1,h2,h3,h4{color:#1f2f46;}
                 setTimeout(() => openModalCicilan(currentCicilanId, currentCicilanSource), 500); 
                 Toast.fire({ icon: 'success', title: 'Pembayaran Tersimpan' });
             } catch (error) {
-                Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: 'Tidak dapat menyimpan cicilan.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
+                Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: 'Tidak dapat menyimpan cicilan.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
             }
         };
         document.getElementById('btnSimpan').onclick = async () => {
             const nama = document.getElementById('nama').value.trim();
             const kategori = document.getElementById('ket').value;
 
-            if(!nama) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Keterangan wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
+            if(!nama) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Keterangan wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
 
             let dataToSave = {};
 
@@ -1888,9 +2046,9 @@ h1,h2,h3,h4{color:#1f2f46;}
 
                 if (jenisTrx === 'Pemasukan') {
                     val2 = parseUang(document.getElementById('val2').value);
-                    if(val2 <= 0 || isNaN(val2)) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Harga Jual wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
+                    if(val2 <= 0 || isNaN(val2)) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Harga Jual wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
                 } else {
-                    if(val1 <= 0 || isNaN(val1)) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Nominal Pengeluaran wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
+                    if(val1 <= 0 || isNaN(val1)) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Nominal Pengeluaran wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
                     val2 = 0; 
                 }
 
@@ -1924,12 +2082,12 @@ h1,h2,h3,h4{color:#1f2f46;}
                         }
                     }
                 } catch(e) {
-                    return Swal.fire({ icon: 'error', title: 'Sistem Sibuk', text: 'Gagal menghubungi database.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
+                    return Swal.fire({ icon: 'error', title: 'Sistem Sibuk', text: 'Gagal menghubungi database.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
                 }
 
             } else {
                 const val2 = parseUang(document.getElementById('val2').value);
-                if(val2 <= 0 || isNaN(val2)) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Nominal wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
+                if(val2 <= 0 || isNaN(val2)) return Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Nominal wajib diisi.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
                 
                 const tglTempo = document.getElementById('tglTempo').value;
                 const tenor = document.getElementById('tenor').value;
@@ -1944,7 +2102,7 @@ h1,h2,h3,h4{color:#1f2f46;}
                 try {
                     await addDoc(collection(db, "tagihan_v2"), dataToSave);
                 } catch(e) {
-                    return Swal.fire({ icon: 'error', title: 'Sistem Sibuk', text: 'Gagal menghubungi database.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-pink-900' } });
+                    return Swal.fire({ icon: 'error', title: 'Sistem Sibuk', text: 'Gagal menghubungi database.', customClass: { popup: '!rounded-[2.5rem] dark:!bg-slate-900' } });
                 }
             }
 
@@ -1996,6 +2154,7 @@ h1,h2,h3,h4{color:#1f2f46;}
         });
         
         switchMode('kasir');
+        window.updateStatusColor();
         loadData();
         runAutoCleanup();
     </script>
