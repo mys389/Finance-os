@@ -161,6 +161,25 @@ body::after{content:"❀  ✿";position:fixed;bottom:82px;left:-8px;font-size:26
 .glass-card,.premium-shadow{position:relative;overflow:hidden;}
 .glass-card::after{content:"✿";position:absolute;right:14px;top:10px;font-size:18px;color:rgba(236,72,153,.10);pointer-events:none;}
 @media(max-width:640px){body::before{top:68px;font-size:22px;letter-spacing:5px;}body::after{bottom:76px;font-size:20px;letter-spacing:4px}.glass-card::after{font-size:14px;right:10px;top:8px;}}
+
+/* Refined Pink + Blue visual palette */
+:root{--fos-pink:#ec4899;--fos-pink-soft:#fff1f7;--fos-blue:#4f7cff;--fos-blue-soft:#eef4ff;--fos-ink:#7c3158;}
+body{background:radial-gradient(circle at 8% 0%,rgba(236,72,153,.13),transparent 30%),radial-gradient(circle at 95% 12%,rgba(79,124,255,.10),transparent 28%),linear-gradient(180deg,#fff7fb 0%,#fffafd 52%,#f7f9ff 100%);color:#7c3158;}
+.dark body{background:radial-gradient(circle at 8% 0%,rgba(236,72,153,.16),transparent 30%),radial-gradient(circle at 95% 12%,rgba(79,124,255,.14),transparent 28%),linear-gradient(180deg,#211421 0%,#151827 100%);color:#fce7f3;}
+.glass-card{background:rgba(255,255,255,.80);border:1px solid rgba(236,72,153,.10);box-shadow:0 12px 34px rgba(236,72,153,.07),0 4px 18px rgba(79,124,255,.04);}
+.dark .glass-card{background:rgba(35,25,39,.72);border-color:rgba(236,72,153,.13);box-shadow:0 14px 34px rgba(0,0,0,.22);}
+.glass-nav{background:rgba(255,255,255,.88);border-color:rgba(236,72,153,.10);box-shadow:0 10px 30px rgba(79,124,255,.07);}
+.dark .glass-nav{background:rgba(25,20,30,.90);border-color:rgba(236,72,153,.14);}
+.tab-active{background:linear-gradient(135deg,#fff0f7,#eef4ff);color:#7c3158;border-color:rgba(79,124,255,.14);box-shadow:0 6px 18px rgba(79,124,255,.10);}
+.dark .tab-active{background:linear-gradient(135deg,#392133,#20283f);color:#fce7f3;border-color:rgba(79,124,255,.18);}
+.toggle-active{background:linear-gradient(135deg,#ec4899,#4f7cff)!important;box-shadow:0 8px 18px rgba(236,72,153,.20);}
+.swiper-pagination-bullet-active{background:#4f7cff!important;}
+input:focus,select:focus,textarea:focus{border-color:rgba(79,124,255,.50)!important;box-shadow:0 0 0 4px rgba(79,124,255,.10)!important;}
+.text-pink-600{color:#e83f93!important}.bg-pink-600{background-color:#ec4899!important}.from-pink-600{--tw-gradient-from:#ec4899 var(--tw-gradient-from-position)!important}.to-pink-400{--tw-gradient-to:#f472b6 var(--tw-gradient-to-position)!important}
+.border-pink-200{border-color:#f5bfd8!important}.focus\:border-pink-500:focus{border-color:#ec4899!important}.focus\:ring-pink-500\/10:focus{--tw-ring-color:rgba(236,72,153,.10)!important}
+/* Blue is reserved for highlights, active states and information so the pink remains dominant. */
+.text-blue-600{color:#4f7cff!important}.bg-blue-600{background-color:#4f7cff!important}.border-blue-200{border-color:#cbd9ff!important}
+body::before{color:rgba(236,72,153,.13)}body::after{color:rgba(79,124,255,.12)}
 </style>
 
 <style id="pink-only-theme">
@@ -180,6 +199,28 @@ body { accent-color: var(--pink-main); }
 input:focus, select:focus, textarea:focus { border-color: #ec4899 !important; box-shadow: 0 0 0 2px rgba(236,72,153,.15) !important; }
 /* Links / buttons that used non-pink inline colors */
 button, a { --tw-ring-color: #ec4899; }
+</style>
+
+<style id="balanced-pink-blue-theme">
+/* Balanced Pink + Blue theme: pink accents, blue base */
+:root{--fos-pink:#e86aa8;--fos-pink-soft:#fff1f7;--fos-blue:#4f78c9;--fos-blue-soft:#eef4ff;--fos-ink:#334155;}
+html,body{background:#f4f7fc!important;color:#334155!important;}
+body{background:radial-gradient(circle at 8% 0%,rgba(232,106,168,.12),transparent 26%),radial-gradient(circle at 92% 8%,rgba(79,120,201,.14),transparent 30%),linear-gradient(180deg,#fff9fc 0%,#f6f9ff 48%,#eef4fc 100%)!important;}
+.dark body{background:radial-gradient(circle at 8% 0%,rgba(232,106,168,.14),transparent 26%),radial-gradient(circle at 92% 8%,rgba(79,120,201,.16),transparent 30%),linear-gradient(180deg,#172033 0%,#121827 100%)!important;color:#eaf0fb!important;}
+.glass-card{background:rgba(255,255,255,.84)!important;border:1px solid rgba(79,120,201,.12)!important;box-shadow:0 10px 28px rgba(51,65,85,.06),0 4px 16px rgba(232,106,168,.045)!important;}
+.dark .glass-card{background:rgba(27,36,54,.82)!important;border-color:rgba(125,150,200,.14)!important;}
+.glass-nav{background:rgba(255,255,255,.92)!important;border-color:rgba(79,120,201,.14)!important;box-shadow:0 10px 28px rgba(51,65,85,.08)!important;}
+.dark .glass-nav{background:rgba(18,27,43,.92)!important;border-color:rgba(125,150,200,.15)!important;}
+.tab-active{background:linear-gradient(135deg,#eef4ff,#fff1f7)!important;color:#334155!important;border-color:rgba(79,120,201,.16)!important;box-shadow:0 5px 15px rgba(79,120,201,.09)!important;}
+.dark .tab-active{background:linear-gradient(135deg,#243653,#38283a)!important;color:#f3f6fb!important;}
+.toggle-active{background:linear-gradient(135deg,#4f78c9,#e86aa8)!important;box-shadow:0 7px 16px rgba(79,120,201,.20)!important;}
+.swiper-pagination-bullet-active{background:#4f78c9!important;}
+input:focus,select:focus,textarea:focus{border-color:rgba(79,120,201,.55)!important;box-shadow:0 0 0 4px rgba(79,120,201,.10)!important;}
+.text-pink-600{color:#d85d98!important}.bg-pink-600{background-color:#e86aa8!important}.from-pink-600{--tw-gradient-from:#4f78c9 var(--tw-gradient-from-position)!important}.to-pink-400{--tw-gradient-to:#e86aa8 var(--tw-gradient-to-position)!important}
+.border-pink-200{border-color:#cbd9ef!important}.focus\:border-pink-500:focus{border-color:#e86aa8!important}.focus\:ring-pink-500\/10:focus{--tw-ring-color:rgba(232,106,168,.10)!important}
+body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106,168,.13)!important}.glass-card::after{color:rgba(232,106,168,.09)!important}
+/* Keep pink and blue visually balanced across common Tailwind utility classes */
+.text-pink-500,.text-pink-700{color:#d85d98!important}.bg-pink-50{background-color:#fff5f9!important}.bg-pink-100{background-color:#ffe8f2!important}.bg-pink-200{background-color:#f8d0df!important}.bg-blue-50{background-color:#eef4ff!important}.bg-blue-100{background-color:#dfeaff!important}.text-blue-600,.text-blue-700{color:#4f78c9!important}.bg-blue-600{background-color:#4f78c9!important}.border-blue-200{border-color:#cbd9ef!important}
 </style>
 </head>
 <body class="font-sans min-h-screen pb-32 relative pt-[env(safe-area-inset-top)] pb-[calc(8rem+env(safe-area-inset-bottom))]">
