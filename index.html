@@ -87,6 +87,7 @@
         .animate-float { animation: float 4s ease-in-out infinite; }
         .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
 
+    </style>
     <style id="financeos-professional-theme">
         /* FinanceOS — Professional Executive Theme
            Palette: Midnight Navy / Slate / Champagne Gold
@@ -440,6 +441,82 @@ html:not(.dark) input,html:not(.dark) select,html:not(.dark) textarea{
 html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#94a3b8 !important}
 </style>
 
+
+<style id="financeos-balance-light-fix-v8">
+/* Balance cards: strong light-mode contrast, preserve dark mode */
+html:not(.dark) #statBank,
+html:not(.dark) #statCash {
+  color:#ffffff !important;
+  -webkit-text-fill-color:#ffffff !important;
+  text-shadow:0 1px 2px rgba(15,23,42,.28) !important;
+}
+html:not(.dark) #statBank + *,
+html:not(.dark) #statCash + * { color:#ffffff !important; }
+html:not(.dark) #valTotalSaldo {
+  color:#0f172a !important;
+  -webkit-text-fill-color:#0f172a !important;
+  font-weight:900 !important;
+  text-shadow:none !important;
+}
+html:not(.dark) #valTotalSaldo ~ * { color:#475569 !important; }
+html:not(.dark) #valTotalSaldo { background:transparent !important; }
+</style>
+
+<style id="financeos-balance-light-final">
+/* Final light-mode balance palette: readable text on soft colored surfaces */
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"],
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"],
+html:not(.dark) #pageDashboard #statPending,
+html:not(.dark) #pageDashboard #totalPiutang { -webkit-text-fill-color: initial; }
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"] {
+  background:linear-gradient(135deg,#dbeafe 0%,#bfdbfe 100%) !important;
+  color:#0f172a !important; border:1px solid #93c5fd !important;
+  box-shadow:0 12px 28px -10px rgba(37,99,235,.25) !important;
+}
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"] {
+  background:linear-gradient(135deg,#d1fae5 0%,#a7f3d0 100%) !important;
+  color:#064e3b !important; border:1px solid #6ee7b7 !important;
+  box-shadow:0 12px 28px -10px rgba(5,150,105,.23) !important;
+}
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"] p,
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"] h3 { color:#0f3b82 !important; text-shadow:none !important; }
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"] p,
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"] h3 { color:#065f46 !important; text-shadow:none !important; }
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"] .bg-white\/20,
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"] .bg-white\/20 {
+  background:rgba(255,255,255,.65) !important; border-color:rgba(255,255,255,.8) !important;
+}
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"] i { color:#2563eb !important; }
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"] i { color:#059669 !important; }
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'bank\')"] .fa-sliders,
+html:not(.dark) #pageDashboard [onclick="editSaldoPrompt(\'cash\')"] .fa-sliders { color:#475569 !important; }
+html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(3) {
+  background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%) !important;
+  color:#78350f !important; border:1px solid #fcd34d !important;
+  box-shadow:0 12px 28px -10px rgba(217,119,6,.20) !important;
+}
+html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(3) p,
+html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(3) h3 { color:#78350f !important; text-shadow:none !important; }
+html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(4) {
+  background:linear-gradient(135deg,#fee2e2 0%,#fecaca 100%) !important;
+  color:#7f1d1d !important; border:1px solid #fca5a5 !important;
+  box-shadow:0 12px 28px -10px rgba(220,38,38,.20) !important;
+}
+html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(4) p,
+html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(4) h3 { color:#7f1d1d !important; text-shadow:none !important; }
+html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(3) .bg-white\/20,
+html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(4) .bg-white\/20 {
+  background:rgba(255,255,255,.62) !important; border-color:rgba(255,255,255,.78) !important;
+}
+html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(3) i { color:#d97706 !important; }
+html:not(.dark) #pageDashboard > .grid.grid-cols-2 > div:nth-child(4) i { color:#dc2626 !important; }
+html:not(.dark) #pageDashboard #valTotalSaldo { color:#0f172a !important; -webkit-text-fill-color:#0f172a !important; }
+</style>
+
+<style id="financeos-riwayat-mode-polish">
+#tabRiwayatKasir.bg-blue-600 .bg-blue-50, #tabRiwayatTagihan.bg-red-600 .bg-red-50 { background: rgba(255,255,255,.16) !important; color: #fff !important; }
+#tabRiwayatKasir.bg-blue-600 .text-slate-400, #tabRiwayatTagihan.bg-red-600 .text-slate-400 { color: rgba(255,255,255,.72) !important; }
+</style>
 </head>
 <body class="font-sans min-h-screen pb-32 relative pt-[env(safe-area-inset-top)] pb-[calc(8rem+env(safe-area-inset-bottom))]">
 
@@ -466,7 +543,7 @@ html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#
                 <button onclick="showPage('Settings')" title="Pengaturan" aria-label="Pengaturan" class="w-10 h-10 bg-white/5 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center hover:bg-white/10 transition-all duration-300 active:scale-90 text-white shadow-sm ring-1 ring-white/5">
                     <i class="fas fa-sliders text-sm"></i>
                 </button>
-                <span id="modeLabelHeader" class="inline-block px-2.5 py-1 bg-slate-500/80 backdrop-blur-md border border-slate-400/50 text-white rounded-lg text-[8px] font-bold uppercase tracking-wider shadow-sm transition-all duration-300">Fokus: KASIR</span>
+
             </div>
         </div>
     </header>
@@ -584,31 +661,34 @@ html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#
             </div>
         </section>
 
-        <section id="pageRiwayat" class="page-content space-y-4">
+        <section id="pageRiwayat" class="page-content space-y-2">
             
-            <div class="sticky top-20 z-30 bg-[#f8fafc]/90 dark:bg-[#020617]/90 backdrop-blur-xl pb-3 pt-2 -mx-2 px-2 border-b border-slate-200/50 dark:border-slate-800/50">
-                
-                <div class="flex p-1 bg-slate-200/50 dark:bg-slate-800/50 rounded-xl mb-3">
-                    <button onclick="switchMode('kasir')" id="tabRiwayatKasir" class="w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-400">Kasir</button>
-                    <button onclick="switchMode('tagihan')" id="tabRiwayatTagihan" class="w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white">Piutang</button>
-                </div>
+            <div class="sticky top-20 z-30 bg-[#f8fafc]/90 dark:bg-[#020617]/90 backdrop-blur-xl py-1.5 -mx-2 px-2 border-b border-slate-200/50 dark:border-slate-800/50">
+                <div class="flex items-center gap-1.5 w-full">
+                    <div class="inline-flex shrink-0 items-center gap-0.5 p-0.5 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200/70 dark:border-slate-800">
+                        <button onclick="switchMode('kasir')" id="tabRiwayatKasir" aria-label="Buka transaksi kasir" class="flex items-center justify-center gap-1 h-7 px-2.5 text-[9px] font-bold rounded-md transition-all duration-150 shadow-sm bg-blue-600 text-white">
+                            <i class="fas fa-cash-register text-[9px]"></i><span>Kasir</span>
+                        </button>
+                        <button onclick="switchMode('tagihan')" id="tabRiwayatTagihan" aria-label="Buka piutang" class="flex items-center justify-center gap-1 h-7 px-2.5 text-[9px] font-bold rounded-md transition-all duration-150 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-white">
+                            <i class="fas fa-file-invoice-dollar text-[9px]"></i><span>Piutang</span>
+                        </button>
+                    </div>
 
-                <div class="flex items-center gap-2">
-                    <div class="relative flex-1 group">
-                        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 text-[10px] transition-colors group-focus-within:text-slate-500"></i>
-                        <input type="text" id="searchInput" oninput="debounceSearch()" placeholder="Cari nama atau keterangan..." class="w-full pl-8 pr-3 py-2 bg-slate-100 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800 rounded-lg outline-none text-[10px] font-semibold text-slate-700 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:border-slate-400 dark:focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 transition-all duration-300 shadow-sm placeholder:text-slate-400">
+                    <div class="relative flex-1 min-w-0 group">
+                        <i class="fas fa-search absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 text-[9px]"></i>
+                        <input type="text" id="searchInput" oninput="debounceSearch()" placeholder="Cari..." class="w-full pl-7 pr-2 h-7 bg-slate-100 dark:bg-slate-900/80 border border-slate-200/70 dark:border-slate-800 rounded-lg outline-none text-[9px] font-semibold text-slate-700 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:border-slate-400 dark:focus:border-slate-500 focus:ring-1 focus:ring-slate-500/15 transition-all placeholder:text-slate-400">
                     </div>
                     
-                    <div class="relative w-8 h-8 bg-slate-100 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800 rounded-lg flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-slate-800 transition-colors">
-                        <i id="filterIconState" class="fas fa-filter text-slate-500 dark:text-slate-400 text-[10px]"></i>
-                        <select id="filterKatDropdown" onchange="setFilterKat(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer appearance-none">
+                    <div class="relative shrink-0 w-7 h-7 bg-slate-100 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800 rounded-lg flex items-center justify-center hover:bg-white dark:hover:bg-slate-800 transition-colors">
+                        <i id="filterIconState" class="fas fa-filter text-slate-500 dark:text-slate-400 text-[9px]"></i>
+                        <select id="filterKatDropdown" onchange="setFilterKat(this.value)" aria-label="Filter kategori" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer appearance-none">
                             <option value="Semua">Semua Kategori</option>
                         </select>
                     </div>
 
-                    <div class="relative w-8 h-8 bg-slate-100 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800 rounded-lg flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-slate-800 transition-colors">
-                        <i id="sortIconState" class="fas fa-arrow-down-wide-short text-slate-500 dark:text-slate-400 text-[10px]"></i>
-                        <select id="sortDropdown" onchange="setSort(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer appearance-none">
+                    <div class="relative shrink-0 w-7 h-7 bg-slate-100 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800 rounded-lg flex items-center justify-center hover:bg-white dark:hover:bg-slate-800 transition-colors">
+                        <i id="sortIconState" class="fas fa-arrow-down-wide-short text-slate-500 dark:text-slate-400 text-[9px]"></i>
+                        <select id="sortDropdown" onchange="setSort(this.value)" aria-label="Urutkan transaksi" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer appearance-none">
                             <option value="terbaru">⏳ Terbaru</option>
                             <option value="terlama">🕰️ Terlama</option>
                             <option value="terbesar">📈 Tertinggi</option>
@@ -620,12 +700,12 @@ html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#
                 </div>
             </div>
             
-            <div id="emptyState" class="hidden text-center py-16">
-                <div class="w-24 h-24 bg-white/80 dark:bg-slate-800/80 shadow-md border border-slate-100/50 dark:border-slate-700/50 text-slate-300 dark:text-slate-600 rounded-[2rem] flex items-center justify-center mx-auto mb-5 transform rotate-3 transition-transform hover:rotate-6 hover:scale-105 duration-300 backdrop-blur-md">
-                    <i class="fas fa-receipt text-4xl -rotate-3"></i>
+            <div id="emptyState" class="hidden text-center py-10">
+                <div class="w-16 h-16 bg-white/80 dark:bg-slate-800/80 shadow-md border border-slate-100/50 dark:border-slate-700/50 text-slate-300 dark:text-slate-600 rounded-2xl flex items-center justify-center mx-auto mb-3 transform rotate-3 transition-transform hover:rotate-6 hover:scale-105 duration-300 backdrop-blur-md">
+                    <i class="fas fa-receipt text-2xl -rotate-3"></i>
                 </div>
-                <h3 class="font-extrabold text-slate-700 dark:text-slate-300 text-base">Belum ada data</h3>
-                <p class="text-[10px] font-medium text-slate-400 dark:text-slate-500 mt-1.5 max-w-[200px] mx-auto leading-relaxed">Data riwayat Anda akan tersusun rapi dan aman di sini.</p>
+                <h3 class="font-extrabold text-slate-700 dark:text-slate-300 text-sm">Belum ada data</h3>
+                <p class="text-[9px] font-medium text-slate-400 dark:text-slate-500 mt-1 max-w-[200px] mx-auto leading-relaxed">Data riwayat Anda akan tersusun rapi dan aman di sini.</p>
             </div>
 
             <div id="listJurnal" class="space-y-2"></div>
@@ -685,23 +765,6 @@ html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#
                 <div id="listKategoriSettings" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
             </div>
 
-            <div class="glass-card p-6 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
-                <div class="flex items-center gap-4 mb-6 border-b border-slate-100 dark:border-slate-700 pb-5">
-                    <div class="w-12 h-12 bg-slate-100/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 rounded-2xl flex items-center justify-center shadow-inner border border-white dark:border-slate-700"><i class="fas fa-database text-lg"></i></div>
-                    <div>
-                        <h3 class="font-black text-base text-slate-800 dark:text-white tracking-tight">Arsip Otomatis</h3>
-                        <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">Penyimpanan Kasir</p>
-                    </div>
-                </div>
-                <div class="space-y-5">
-                    <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium leading-relaxed bg-slate-50/50 dark:bg-slate-900/50 p-3.5 rounded-xl border border-slate-100 dark:border-slate-800">Data kasir lama akan otomatis dihapus dan <strong>diunduh menjadi PDF</strong> untuk menjaga database tetap ringan.</p>
-                    <div class="flex items-center gap-3">
-                        <input type="number" id="settingArchiveDays" value="60" class="flex-1 p-3.5 bg-white/80 dark:bg-slate-800 rounded-2xl text-sm font-black text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 text-center focus:border-slate-500 dark:focus:border-slate-500 focus:ring-4 focus:ring-slate-500/10 transition-all duration-300 shadow-sm backdrop-blur-sm outline-none">
-                        <span class="font-black text-[10px] text-slate-500 dark:text-slate-400 bg-slate-100/80 dark:bg-slate-800/80 px-5 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 uppercase tracking-widest backdrop-blur-sm">Hari</span>
-                    </div>
-                    <button onclick="saveSettings()" class="w-full bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 dark:hover:bg-slate-600 text-white py-3.5 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(0,0,0,0.5)] active:scale-95 transition-all duration-300 hover:-translate-y-0.5">Simpan Konfigurasi</button>
-                </div>
-            </div>
         </section>
     </main>
 
@@ -1115,7 +1178,6 @@ html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#
             currentMode = mode;
             const isKasir = mode === 'kasir';
 
-            const badge = document.getElementById('modeLabelHeader');
             const tabKasir = document.getElementById('tabRiwayatKasir');
             const tabTagihan = document.getElementById('tabRiwayatTagihan');
             const btnSub = document.getElementById('modalSubtitle');
@@ -1128,11 +1190,8 @@ html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#
             const settingModeKatLabel = document.getElementById('settingModeKatLabel');
 
             if(isKasir) {
-                badge.innerText = "Fokus: KASIR";
-                badge.className = "inline-block px-3 py-1.5 bg-slate-500/90 backdrop-blur-md border border-slate-400/50 text-white rounded-lg text-[8px] font-extrabold uppercase tracking-widest shadow-sm transition-all duration-300";
-                
-                tabKasir.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-400";
-                tabTagihan.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white";
+                tabKasir.className = "flex-1 md:flex-none flex items-center justify-center gap-1.5 h-9 px-4 text-[10px] font-bold rounded-lg transition-all duration-200 shadow-sm bg-blue-600 text-white";
+                tabTagihan.className = "flex-1 md:flex-none flex items-center justify-center gap-1.5 h-9 px-4 text-[10px] font-bold rounded-lg transition-all duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-white";
                 
                 btnSub.innerText = "Input Kasir Baru";
                 labelNominal.innerText = "Nominal Keuangan (Modal & Jual)";
@@ -1143,11 +1202,8 @@ html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#
                 if(btnSettingsTambahKat) btnSettingsTambahKat.classList.add('hidden');
                 if(settingModeKatLabel) { settingModeKatLabel.innerText = "Kasir"; settingModeKatLabel.className = "text-slate-500 font-black"; }
             } else {
-                badge.innerText = "Fokus: PIUTANG";
-                badge.className = "inline-block px-3 py-1.5 bg-red-500/90 backdrop-blur-md border border-red-400/50 text-white rounded-lg text-[8px] font-extrabold uppercase tracking-widest shadow-sm transition-all duration-300";
-                
-                tabTagihan.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 shadow-sm bg-red-500 text-white";
-                tabKasir.className = "w-1/2 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white";
+                tabTagihan.className = "flex-1 md:flex-none flex items-center justify-center gap-1.5 h-9 px-4 text-[10px] font-bold rounded-lg transition-all duration-200 shadow-sm bg-red-600 text-white";
+                tabKasir.className = "flex-1 md:flex-none flex items-center justify-center gap-1.5 h-9 px-4 text-[10px] font-bold rounded-lg transition-all duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-white";
 
                 btnSub.innerText = "Input Tagihan/Hutang Baru";
                 labelNominal.innerText = "Total Tagihan Piutang";
@@ -1328,11 +1384,6 @@ html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#
             }
         }
 
-        window.saveSettings = async () => {
-            const days = document.getElementById('settingArchiveDays').value;
-            await setDoc(doc(db, "settings", "archive_config"), { days: parseInt(days) }, { merge: true });
-            Toast.fire({ icon: 'success', title: 'Konfigurasi Tersimpan' });
-        };
 
         window.aturModalAwal = async () => {
             const docRef = doc(db, "settings", "global_balance");
@@ -1688,6 +1739,7 @@ html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#
         window.toggleDetail = (id, iconId) => {
             const detailEl = document.getElementById(id);
             const iconEl = document.getElementById(iconId);
+            if (!detailEl || !iconEl) return;
             if (detailEl.classList.contains('hidden')) {
                 detailEl.classList.remove('hidden');
                 iconEl.classList.add('rotate-180');
@@ -1707,7 +1759,7 @@ html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#
             let targetData = currentMode === 'kasir' ? masterKasir : masterTagihan;
             list.className = "space-y-2.5"; 
 
-            const filtered = targetData.filter(i => (i.nama.toLowerCase().includes(s) || i.keterangan.toLowerCase().includes(s)) && (filterKategoriActive === "Semua" || i.keterangan === filterKategoriActive));
+            const filtered = targetData.filter(i => { const nama = String(i.nama || '').toLowerCase(); const keterangan = String(i.keterangan || '').toLowerCase(); return (nama.includes(s) || keterangan.includes(s)) && (filterKategoriActive === 'Semua' || i.keterangan === filterKategoriActive); });
             
             // ====== LOGIKA PENGURUTAN (SORTING) ======
             filtered.sort((a, b) => {
@@ -2111,8 +2163,9 @@ html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#
         };
 
         async function runAutoCleanup() {
-            const config = await getDoc(doc(db, "settings", "archive_config"));
-            const limitDays = config.exists() ? config.data().days : 60;
+            // Arsip otomatis tetap berjalan dengan batas standar 60 hari.
+            // Pengaturan manualnya dihapus agar menu Settings tetap ringkas.
+            const limitDays = 60;
             const now = new Date();
             
             onSnapshot(query(collection(db, "jurnal_v7"), orderBy("waktu", "asc")), async (snapshot) => {
@@ -2122,7 +2175,7 @@ html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#
                     if(d.waktu) {
                         const diff = Math.floor((now - d.waktu.toDate()) / (1000 * 60 * 60 * 24));
                         if(diff > limitDays && !d.ditandai) {
-                            archiveData.push([d.waktu.toDate().toLocaleDateString('id-ID'), d.nama, d.keterangan, "Rp "+d.val2.toLocaleString('id-ID')]);
+                            archiveData.push([d.waktu.toDate().toLocaleDateString('id-ID'), d.nama || '-', d.keterangan || '-', 'Rp ' + (Number(d.val2) || 0).toLocaleString('id-ID')]);
                             toDelete.push(docSnap.id);
                         }
                     }
