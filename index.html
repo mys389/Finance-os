@@ -19,8 +19,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -75,10 +73,6 @@
         select { -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: none !important; }
         .select-hide-arrow { background-image: none !important; padding-right: 1rem; text-align: center; text-align-last: center; }
 
-        .chartSwiper { width: 100%; height: 160px; padding-bottom: 28px; }
-        .swiper-pagination-bullet { background: #cbd5e1; opacity: 1; transition: all 0.3s;}
-        .swiper-pagination-bullet-active { background: #6366f1; width: 20px; border-radius: 6px; }
-
         .swal2-popup.swal2-toast { padding: 0.75rem 1.25rem !important; }
         .swal2-title { font-family: 'Inter', sans-serif !important; }
         .swal2-html-container { font-family: 'Inter', sans-serif !important; }
@@ -130,7 +124,6 @@
             background: linear-gradient(135deg, var(--fos-pink), var(--fos-pink));
             box-shadow: 0 8px 18px rgba(37,99,235,.22);
         }
-        .swiper-pagination-bullet-active { background: var(--fos-pink); }
         input:focus, select:focus, textarea:focus {
             border-color: rgba(37,99,235,.45) !important;
             box-shadow: 0 0 0 4px rgba(37,99,235,.08) !important;
@@ -173,7 +166,6 @@ body{background:radial-gradient(circle at 8% 0%,rgba(236,72,153,.13),transparent
 .tab-active{background:linear-gradient(135deg,#fff0f7,#eef4ff);color:#7c3158;border-color:rgba(79,124,255,.14);box-shadow:0 6px 18px rgba(79,124,255,.10);}
 .dark .tab-active{background:linear-gradient(135deg,#392133,#20283f);color:#fce7f3;border-color:rgba(79,124,255,.18);}
 .toggle-active{background:linear-gradient(135deg,#ec4899,#4f7cff)!important;box-shadow:0 8px 18px rgba(236,72,153,.20);}
-.swiper-pagination-bullet-active{background:#4f7cff!important;}
 input:focus,select:focus,textarea:focus{border-color:rgba(79,124,255,.50)!important;box-shadow:0 0 0 4px rgba(79,124,255,.10)!important;}
 .text-pink-600{color:#e83f93!important}.bg-pink-600{background-color:#ec4899!important}.from-pink-600{--tw-gradient-from:#ec4899 var(--tw-gradient-from-position)!important}.to-pink-400{--tw-gradient-to:#f472b6 var(--tw-gradient-to-position)!important}
 .border-pink-200{border-color:#f5bfd8!important}.focus\:border-pink-500:focus{border-color:#ec4899!important}.focus\:ring-pink-500\/10:focus{--tw-ring-color:rgba(236,72,153,.10)!important}
@@ -214,13 +206,89 @@ body{background:radial-gradient(circle at 8% 0%,rgba(232,106,168,.12),transparen
 .tab-active{background:linear-gradient(135deg,#eef4ff,#fff1f7)!important;color:#334155!important;border-color:rgba(79,120,201,.16)!important;box-shadow:0 5px 15px rgba(79,120,201,.09)!important;}
 .dark .tab-active{background:linear-gradient(135deg,#243653,#38283a)!important;color:#f3f6fb!important;}
 .toggle-active{background:linear-gradient(135deg,#4f78c9,#e86aa8)!important;box-shadow:0 7px 16px rgba(79,120,201,.20)!important;}
-.swiper-pagination-bullet-active{background:#4f78c9!important;}
 input:focus,select:focus,textarea:focus{border-color:rgba(79,120,201,.55)!important;box-shadow:0 0 0 4px rgba(79,120,201,.10)!important;}
 .text-pink-600{color:#d85d98!important}.bg-pink-600{background-color:#e86aa8!important}.from-pink-600{--tw-gradient-from:#4f78c9 var(--tw-gradient-from-position)!important}.to-pink-400{--tw-gradient-to:#e86aa8 var(--tw-gradient-to-position)!important}
 .border-pink-200{border-color:#cbd9ef!important}.focus\:border-pink-500:focus{border-color:#e86aa8!important}.focus\:ring-pink-500\/10:focus{--tw-ring-color:rgba(232,106,168,.10)!important}
 body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106,168,.13)!important}.glass-card::after{color:rgba(232,106,168,.09)!important}
 /* Keep pink and blue visually balanced across common Tailwind utility classes */
 .text-pink-500,.text-pink-700{color:#d85d98!important}.bg-pink-50{background-color:#fff5f9!important}.bg-pink-100{background-color:#ffe8f2!important}.bg-pink-200{background-color:#f8d0df!important}.bg-blue-50{background-color:#eef4ff!important}.bg-blue-100{background-color:#dfeaff!important}.text-blue-600,.text-blue-700{color:#4f78c9!important}.bg-blue-600{background-color:#4f78c9!important}.border-blue-200{border-color:#cbd9ef!important}
+</style>
+
+<style id="modern-icon-style">
+/* Modern icon system: soft containers, consistent sizing, and subtle motion. */
+.fa, .fas, .far, .fab {
+  line-height: 1;
+  vertical-align: middle;
+}
+.icon-modern {
+  width: 2.35rem; height: 2.35rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 0.85rem;
+  background: linear-gradient(135deg, rgba(37,99,235,.10), rgba(236,72,153,.12));
+  color: #2563eb;
+  box-shadow: 0 4px 12px rgba(37,99,235,.08);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.icon-modern:hover { transform: translateY(-1px); box-shadow: 0 7px 16px rgba(37,99,235,.12); }
+.dark .icon-modern {
+  background: linear-gradient(135deg, rgba(59,130,246,.16), rgba(244,114,182,.14));
+  color: #93c5fd;
+}
+.icon-modern.icon-pink { color:#db2777; background:rgba(236,72,153,.11); }
+.icon-modern.icon-blue { color:#2563eb; background:rgba(37,99,235,.11); }
+.icon-modern.icon-soft { color:#64748b; background:rgba(100,116,139,.10); }
+.dark .icon-modern.icon-pink { color:#f9a8d4; background:rgba(236,72,153,.16); }
+.dark .icon-modern.icon-blue { color:#93c5fd; background:rgba(59,130,246,.16); }
+.icon-btn-modern {
+  width:2.4rem;height:2.4rem;border-radius:.8rem;
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:all .18s ease;
+}
+.icon-btn-modern:hover { transform:translateY(-1px) scale(1.03); }
+@media (max-width:640px){
+  .icon-modern { width:2.1rem;height:2.1rem;border-radius:.72rem; }
+  .icon-btn-modern { width:2.25rem;height:2.25rem; }
+}
+</style>
+
+<style id="financeos-contrast-theme">
+:root{--fo-bg:#f5f8ff;--fo-surface:#ffffff;--fo-text:#24324a;--fo-muted:#64748b;--fo-blue:#2563eb;--fo-blue-soft:#eaf2ff;--fo-pink:#e83e8c;--fo-pink-soft:#fff0f7;--fo-border:#dbe4f0;}
+body{background:linear-gradient(135deg,#f7faff 0%,#fff8fc 52%,#eef5ff 100%) !important;color:var(--fo-text) !important;}
+/* Make normal text clearly darker than the pastel background */
+body,.text-gray-500,.text-gray-600,.text-slate-500,.text-slate-600{color:var(--fo-text) !important;}
+.text-gray-400,.text-gray-500,.text-slate-400,.text-slate-500{color:var(--fo-muted) !important;}
+/* Cards and surfaces */
+.bg-white{background-color:rgba(255,255,255,.96) !important;}
+.border-gray-100,.border-gray-200,.border-slate-100,.border-slate-200{border-color:var(--fo-border) !important;}
+/* Blue = navigation, information and focus */
+.text-blue-500,.text-blue-600,.text-blue-700{color:var(--fo-blue) !important;}
+.bg-blue-50{background-color:var(--fo-blue-soft) !important;}
+.border-blue-100,.border-blue-200{border-color:#bfdbfe !important;}
+/* Pink = primary actions and important highlights */
+.text-pink-500,.text-pink-600,.text-pink-700{color:var(--fo-pink) !important;}
+.bg-pink-50{background-color:var(--fo-pink-soft) !important;}
+.border-pink-100,.border-pink-200{border-color:#f7b6d3 !important;}
+/* Icons: dark blue/pink contrast instead of pastel-on-pastel */
+i[class*="fa-"]{color:#31506f !important;}
+button i[class*="fa-"],.bg-blue-500 i[class*="fa-"],.bg-blue-600 i[class*="fa-"],.bg-pink-500 i[class*="fa-"],.bg-pink-600 i[class*="fa-"]{color:#fff !important;}
+/* Primary filled controls */
+.bg-pink-500,.bg-pink-600{background-color:var(--fo-pink) !important;color:#fff !important;}
+.bg-blue-500,.bg-blue-600{background-color:var(--fo-blue) !important;color:#fff !important;}
+/* Inputs: readable dark text and distinct focus */
+input,select,textarea{color:#24324a !important;background:#fff !important;border-color:#cbd5e1 !important;}
+input:focus,select:focus,textarea:focus{border-color:var(--fo-blue) !important;box-shadow:0 0 0 3px rgba(37,99,235,.14) !important;outline:none !important;}
+/* Bottom navigation */
+nav i[class*="fa-"],.bottom-nav i[class*="fa-"]{color:#52657d !important;}
+nav .text-pink-500 i[class*="fa-"],nav .text-pink-600 i[class*="fa-"]{color:var(--fo-pink) !important;}
+/* Headings */
+h1,h2,h3,h4{color:#1f2f46;}
+/* Dark mode keeps contrast */
+.dark body{background:linear-gradient(135deg,#101827 0%,#1b1520 55%,#101827 100%) !important;color:#e7edf7 !important;}
+.dark .bg-white{background-color:#182235 !important;}
+.dark input,.dark select,.dark textarea{background:#111a2a !important;color:#e7edf7 !important;border-color:#33445d !important;}
+.dark h1,.dark h2,.dark h3,.dark h4{color:#f3f6fb;}
+.dark i[class*="fa-"]{color:#9bb6dc !important;}
+.dark button i[class*="fa-"],.dark .bg-blue-500 i[class*="fa-"],.dark .bg-blue-600 i[class*="fa-"],.dark .bg-pink-500 i[class*="fa-"],.dark .bg-pink-600 i[class*="fa-"]{color:#fff !important;}
 </style>
 </head>
 <body class="font-sans min-h-screen pb-32 relative pt-[env(safe-area-inset-top)] pb-[calc(8rem+env(safe-area-inset-bottom))]">
@@ -246,7 +314,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
             </div>
             <div class="flex flex-col items-end gap-2 shrink-0">
                 <button onclick="showPage('Settings')" title="Pengaturan" aria-label="Pengaturan" class="w-10 h-10 bg-white/5 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center hover:bg-white/10 transition-all duration-300 active:scale-90 text-white shadow-sm ring-1 ring-white/5">
-                    <i class="fas fa-cog text-sm"></i>
+                    <i class="fas fa-sliders text-sm"></i>
                 </button>
                 <span id="modeLabelHeader" class="inline-block px-2.5 py-1 bg-pink-500/80 backdrop-blur-md border border-pink-400/50 text-white rounded-lg text-[8px] font-bold uppercase tracking-wider shadow-sm transition-all duration-300">Fokus: KASIR</span>
             </div>
@@ -260,8 +328,8 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                 <div onclick="editSaldoPrompt('bank')" class="relative overflow-hidden bg-gradient-to-br from-pink-500 to-pink-700 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(99,102,241,0.4)] cursor-pointer group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-5px_rgba(99,102,241,0.5)]">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-bl-[3rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
                     <div class="flex justify-between items-start mb-4 relative z-10">
-                        <div class="w-9 h-9 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-university text-white text-sm drop-shadow-md"></i></div>
-                        <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-cog text-white text-[9px]"></i></div>
+                        <div class="w-9 h-9 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-building-columns text-white text-sm drop-shadow-md"></i></div>
+                        <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-sliders text-white text-[9px]"></i></div>
                     </div>
                     <div class="relative z-10">
                         <p class="text-[9px] font-bold text-pink-200 uppercase tracking-widest mb-1">Saldo Bank</p>
@@ -273,7 +341,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                     <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-bl-[3rem] pointer-events-none transition-transform duration-500 group-hover:scale-110"></div>
                     <div class="flex justify-between items-start mb-4 relative z-10">
                         <div class="w-9 h-9 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-wallet text-white text-sm drop-shadow-md"></i></div>
-                        <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-cog text-white text-[9px]"></i></div>
+                        <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm transform translate-x-2 group-hover:translate-x-0"><i class="fas fa-sliders text-white text-[9px]"></i></div>
                     </div>
                     <div class="relative z-10">
                         <p class="text-[9px] font-bold text-pink-100 uppercase tracking-widest mb-1">Saldo Cash</p>
@@ -284,8 +352,8 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                 <div class="relative overflow-hidden bg-gradient-to-br from-pink-400 to-pink-500 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(245,158,11,0.3)] transition-all duration-300 cursor-default">
                     <div class="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-bl-[3rem] pointer-events-none"></div>
                     <div class="flex justify-between items-start mb-3 relative z-10">
-                        <div class="w-8 h-8 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-clock text-white text-xs drop-shadow-md"></i></div>
-                        <div class="w-6 h-6 flex items-center justify-center opacity-50"><i class="fas fa-info-circle text-white text-[10px]"></i></div>
+                        <div class="w-8 h-8 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-clock-rotate-left text-white text-xs drop-shadow-md"></i></div>
+                        <div class="w-6 h-6 flex items-center justify-center opacity-50"><i class="fas fa-circle-info text-white text-[10px]"></i></div>
                     </div>
                     <div class="relative z-10">
                         <p class="text-[8px] font-bold text-pink-100 uppercase tracking-widest mb-0.5">Dana Pending</p>
@@ -296,8 +364,8 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                 <div class="relative overflow-hidden bg-gradient-to-br from-rose-500 to-rose-700 p-4 md:p-5 rounded-[1.8rem] text-white shadow-[0_15px_30px_-5px_rgba(225,29,72,0.3)] transition-all duration-300 cursor-default">
                     <div class="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-bl-[3rem] pointer-events-none"></div>
                     <div class="flex justify-between items-start mb-3 relative z-10">
-                        <div class="w-8 h-8 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-file-invoice-dollar text-white text-xs drop-shadow-md"></i></div>
-                        <div class="w-6 h-6 flex items-center justify-center opacity-50"><i class="fas fa-info-circle text-white text-[10px]"></i></div>
+                        <div class="w-8 h-8 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center shadow-inner border border-white/20"><i class="fas fa-file-invoice text-white text-xs drop-shadow-md"></i></div>
+                        <div class="w-6 h-6 flex items-center justify-center opacity-50"><i class="fas fa-circle-info text-white text-[10px]"></i></div>
                     </div>
                     <div class="relative z-10">
                         <p class="text-[8px] font-bold text-rose-200 uppercase tracking-widest mb-0.5">Piutang Berjalan</p>
@@ -309,7 +377,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
             <div class="glass-card p-5 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
                     <div>
-                        <h2 class="text-base font-black text-pink-800 dark:text-white tracking-tight flex items-center gap-2"><i class="fas fa-chart-pie text-pink-500"></i> Analisis Cerdas</h2>
+                        <h2 class="text-base font-black text-pink-800 dark:text-white tracking-tight flex items-center gap-2"><i class="fas fa-chart-simple text-pink-500"></i> Analisis Cerdas</h2>
                         <p class="text-[10px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-wider mt-1">Performa Transaksi Kasir</p>
                     </div>
                     <div class="flex bg-pink-100/80 dark:bg-pink-800/80 p-1.5 rounded-xl border border-pink-200/60 dark:border-pink-700/60 w-fit">
@@ -325,7 +393,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                         <div class="flex justify-between items-start mb-2 relative z-10">
                             <p class="text-[10px] font-bold text-pink-200 uppercase tracking-widest">Total Keuntungan</p>
                             <div class="bg-white/20 backdrop-blur-sm px-2.5 py-1 rounded-lg flex items-center gap-1.5 border border-white/10">
-                                <i class="fas fa-check-circle text-[9px] text-pink-100"></i>
+                                <i class="fas fa-circle-check text-[9px] text-pink-100"></i>
                                 <span id="countTrx" class="text-[9px] font-bold text-white tracking-widest">0 Trx</span>
                             </div>
                         </div>
@@ -349,25 +417,17 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                     </div>
                 </div>
                 
-                <div class="bg-white/60 dark:bg-pink-900/60 backdrop-blur-md rounded-3xl p-5 border border-pink-100 dark:border-pink-800 shadow-[inset_0_2px_15px_rgba(0,0,0,0.01)]">
-                    <div class="swiper chartSwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide flex flex-col justify-end">
-                                <p class="text-[9px] font-extrabold text-pink-400 uppercase tracking-widest mb-3 w-full text-center">Grafik Pergerakan Profit</p>
-                                <div class="relative w-full h-full"><canvas id="profitChart"></canvas></div>
-                            </div>
-                            <div class="swiper-slide flex flex-col justify-end">
-                                <p class="text-[9px] font-extrabold text-pink-400 uppercase tracking-widest mb-3 w-full text-center">Grafik Pemasukan (Omzet)</p>
-                                <div class="relative w-full h-full"><canvas id="omzetChart"></canvas></div>
-                            </div>
-                        </div>
-                        <div class="swiper-pagination"></div>
+                <div class="bg-white/70 dark:bg-pink-900/60 backdrop-blur-md rounded-3xl p-5 border border-pink-100 dark:border-pink-800 shadow-sm">
+                    <div class="flex items-center justify-between mb-3">
+                        <p class="text-[9px] font-extrabold text-pink-400 uppercase tracking-widest">Ringkasan Performa</p>
+                        <span class="text-[8px] font-bold text-slate-400">Profit & Omzet</span>
                     </div>
+                    <div class="relative h-48 md:h-56"><canvas id="performanceChart"></canvas></div>
                 </div>
             </div>
 
             <div>
-                <h3 class="text-xs font-black text-pink-700 dark:text-pink-200 tracking-tight flex items-center gap-2 mb-3 ml-1"><i class="fas fa-layer-group text-rose-500"></i> Rincian Kategori Piutang</h3>
+                <h3 class="text-xs font-black text-pink-700 dark:text-pink-200 tracking-tight flex items-center gap-2 mb-3 ml-1"><i class="fas fa-grid-2 text-rose-500"></i> Rincian Kategori Piutang</h3>
                 <div id="kategoriPiutangGrid" class="grid grid-cols-2 md:grid-cols-3 gap-3">
                     <div class="text-center py-6 text-[10px] font-bold uppercase tracking-widest text-pink-400 dark:text-pink-600 col-span-full border border-dashed border-pink-200 dark:border-pink-700 rounded-2xl">Memuat kategori...</div>
                 </div>
@@ -397,7 +457,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                     </div>
 
                     <div class="relative w-8 h-8 bg-pink-100 dark:bg-pink-900/80 border border-pink-200/50 dark:border-pink-800 rounded-lg flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-pink-800 transition-colors">
-                        <i id="sortIconState" class="fas fa-sort-amount-down text-pink-500 dark:text-pink-400 text-[10px]"></i>
+                        <i id="sortIconState" class="fas fa-arrow-down-wide-short text-pink-500 dark:text-pink-400 text-[10px]"></i>
                         <select id="sortDropdown" onchange="setSort(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer appearance-none">
                             <option value="terbaru">⏳ Terbaru</option>
                             <option value="terlama">🕰️ Terlama</option>
@@ -447,7 +507,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
             <div class="glass-card p-6 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
                 <div class="flex items-center justify-between mb-6 border-b border-pink-100 dark:border-pink-700 pb-5">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-2xl flex items-center justify-center shadow-inner border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-vault text-lg"></i></div>
+                        <div class="w-12 h-12 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-2xl flex items-center justify-center shadow-inner border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-safe text-lg"></i></div>
                         <div>
                             <h3 class="font-black text-base text-pink-800 dark:text-white tracking-tight">Pengaturan Saldo</h3>
                             <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest mt-1">Ubah Modal Manual</p>
@@ -456,14 +516,14 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                 </div>
                 <div class="space-y-5">
                     <p class="text-[10px] text-pink-500 dark:text-pink-400 font-medium leading-relaxed bg-pink-50/50 dark:bg-pink-900/50 p-3.5 rounded-xl border border-pink-100 dark:border-pink-800">Sesuaikan saldo Bank & Cash Anda jika ada ketidaksesuaian uang fisik dengan sistem.</p>
-                    <button onclick="aturModalAwal()" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3.5 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(79,70,229,0.5)] active:scale-95 transition-all duration-300 hover:-translate-y-0.5"><i class="fas fa-edit mr-1.5"></i> Sesuaikan Saldo</button>
+                    <button onclick="aturModalAwal()" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3.5 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-[0_10px_20px_-10px_rgba(79,70,229,0.5)] active:scale-95 transition-all duration-300 hover:-translate-y-0.5"><i class="fas fa-pen-to-square mr-1.5"></i> Sesuaikan Saldo</button>
                 </div>
             </div>
 
             <div class="glass-card p-6 md:p-8 rounded-[2.5rem] premium-shadow relative overflow-hidden">
                 <div class="flex items-center justify-between mb-6 border-b border-pink-100 dark:border-pink-700 pb-5">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-2xl flex items-center justify-center shadow-inner border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-tags text-lg"></i></div>
+                        <div class="w-12 h-12 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-2xl flex items-center justify-center shadow-inner border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-tag text-lg"></i></div>
                         <div>
                             <h3 class="font-black text-base text-pink-800 dark:text-white tracking-tight">Kustom Kategori</h3>
                             <p class="text-[9px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest mt-1">Mode Aktif: <span id="settingModeKatLabel" class="text-pink-500 font-black">Kasir</span></p>
@@ -497,13 +557,13 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
 
     <div id="bulkDeleteBtn" class="fixed bottom-28 right-1/2 translate-x-1/2 md:right-6 md:translate-x-0 z-[60] hidden transition-all duration-300">
         <button onclick="deleteMarked()" class="bg-rose-500 hover:bg-rose-600 text-white px-5 py-3.5 rounded-[1.5rem] shadow-[0_10px_20px_-5px_rgba(225,29,72,0.6)] font-black text-[10px] uppercase tracking-widest flex items-center gap-2 transition-transform active:scale-95 border border-rose-400">
-            <i class="fas fa-trash-can text-sm"></i> Hapus <span id="markedCount" class="bg-white text-rose-600 px-2 py-0.5 rounded-lg ml-1">0</span>
+            <i class="fas fa-trash text-sm"></i> Hapus <span id="markedCount" class="bg-white text-rose-600 px-2 py-0.5 rounded-lg ml-1">0</span>
         </button>
     </div>
 
     <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-[22rem] glass-nav px-2 py-1.5 rounded-[2.5rem] flex items-center justify-between shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] z-50">
         <button onclick="showPage('Dashboard')" id="navDashboard" class="flex-1 py-2.5 flex flex-col items-center text-pink-600 dark:text-pink-400 transition-colors duration-300 group">
-            <i class="fas fa-chart-pie text-lg mb-1 transition-transform duration-300 group-hover:-translate-y-1 group-active:scale-90"></i>
+            <i class="fas fa-house text-lg mb-1 transition-transform duration-300 group-hover:-translate-y-1 group-active:scale-90"></i>
             <span class="text-[8px] font-extrabold tracking-widest uppercase">Beranda</span>
         </button>
         
@@ -521,9 +581,9 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
 
     <div id="modalKasir" class="fixed inset-0 bg-pink-900/40 dark:bg-pink-900/80 backdrop-blur-md z-[100] items-end md:items-center justify-center p-2 md:p-4 transition-opacity duration-300">
         <div class="bg-white dark:bg-pink-900 w-full max-w-md rounded-[2.5rem] p-6 relative shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] overflow-y-auto max-h-[92vh] no-scrollbar transform transition-transform border border-white dark:border-pink-800">
-            <button type="button" onclick="toggleModalKasir(false)" class="absolute right-5 top-5 w-8 h-8 bg-pink-50 dark:bg-pink-800 rounded-full flex items-center justify-center text-pink-400 dark:text-pink-500 hover:bg-rose-50 hover:text-rose-500 dark:hover:bg-rose-900/30 transition-colors duration-300"><i class="fas fa-times text-xs"></i></button>
+            <button type="button" onclick="toggleModalKasir(false)" class="absolute right-5 top-5 w-8 h-8 bg-pink-50 dark:bg-pink-800 rounded-full flex items-center justify-center text-pink-400 dark:text-pink-500 hover:bg-rose-50 hover:text-rose-500 dark:hover:bg-rose-900/30 transition-colors duration-300"><i class="fas fa-xmark text-xs"></i></button>
             <div class="flex items-center gap-3.5 mb-6 border-b border-pink-100 dark:border-pink-800 pb-4">
-                <div class="w-10 h-10 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-xl flex items-center justify-center shadow-inner border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-file-signature text-sm"></i></div>
+                <div class="w-10 h-10 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-xl flex items-center justify-center shadow-inner border border-pink-100/50 dark:border-pink-800/50"><i class="fas fa-file-pen text-sm"></i></div>
                 <div>
                     <h2 class="text-lg font-black tracking-tight text-pink-800 dark:text-white leading-none">Formulir Data</h2>
                     <p id="modalSubtitle" class="text-[9px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest mt-1.5">Input Kasir Baru</p>
@@ -613,7 +673,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
 
     <div id="modalCicilan" class="fixed inset-0 bg-pink-900/40 dark:bg-pink-900/80 backdrop-blur-md z-[200] items-end md:items-center justify-center p-2 md:p-4 transition-opacity duration-300">
         <div class="bg-white dark:bg-pink-900 w-full max-w-md rounded-[2.5rem] p-6 relative shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] flex flex-col max-h-[92vh] border border-white dark:border-pink-800">
-            <button type="button" onclick="closeModalCicilan()" class="absolute right-5 top-5 w-8 h-8 bg-pink-50 dark:bg-pink-800 rounded-full flex items-center justify-center text-pink-400 dark:text-pink-500 hover:bg-rose-50 hover:text-rose-500 dark:hover:bg-rose-900/30 transition-colors duration-300"><i class="fas fa-times text-sm"></i></button>
+            <button type="button" onclick="closeModalCicilan()" class="absolute right-5 top-5 w-8 h-8 bg-pink-50 dark:bg-pink-800 rounded-full flex items-center justify-center text-pink-400 dark:text-pink-500 hover:bg-rose-50 hover:text-rose-500 dark:hover:bg-rose-900/30 transition-colors duration-300"><i class="fas fa-xmark text-sm"></i></button>
             
             <div class="mb-5 border-b border-pink-100 dark:border-pink-800 pb-4">
                 <p id="mcKet" class="text-[9px] font-bold text-pink-500 uppercase tracking-widest mb-1.5 bg-pink-50/80 dark:bg-pink-900/30 w-fit px-2.5 py-1 rounded-lg border border-pink-100/50 dark:border-pink-800/50">Kategori</p>
@@ -657,7 +717,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
             </div>
             <div id="mcLunasArea" class="hidden pt-4 border-t border-pink-100 dark:border-pink-800 text-center">
                 <div class="inline-flex items-center justify-center px-6 py-3 bg-pink-50/80 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-sm border border-pink-100/50 dark:border-pink-800/50">
-                    <i class="fas fa-check-circle mr-2 text-sm"></i> Lunas Sepenuhnya
+                    <i class="fas fa-circle-check mr-2 text-sm"></i> Lunas Sepenuhnya
                 </div>
             </div>
         </div>
@@ -726,15 +786,6 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                     cancelButton: '!rounded-2xl !px-6 !py-3.5 !font-bold !tracking-wider !text-[11px] !uppercase border border-pink-200 dark:border-pink-700 dark:!bg-pink-800 hover:!bg-pink-100 transition-colors'
                 }
             });
-        };
-
-        window.initSwiper = () => {
-            if(!window.chartSwiperInst) {
-                window.chartSwiperInst = new Swiper('.chartSwiper', {
-                    pagination: { el: '.swiper-pagination', dynamicBullets: true, clickable: true },
-                    spaceBetween: 20, grabCursor: true
-                });
-            }
         };
 
         // --- Logika Widget Dinamis & Quotes API (Terjemahan Otomatis) ---
@@ -964,7 +1015,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
             const fIcon = document.getElementById('filterIconState');
             const sIcon = document.getElementById('sortIconState');
             if(fIcon) fIcon.className = "fas fa-filter text-pink-500 dark:text-pink-400 text-[10px]";
-            if(sIcon) sIcon.className = "fas fa-sort-amount-down text-pink-500 dark:text-pink-400 text-[10px]";
+            if(sIcon) sIcon.className = "fas fa-arrow-down-wide-short text-pink-500 dark:text-pink-400 text-[10px]";
             
             loadKategori();
             renderRiwayat();
@@ -1049,8 +1100,8 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
         window.setSort = (val) => { 
             currentSort = val; 
             const icon = document.getElementById('sortIconState');
-            if(val === 'terbaru') icon.className = "fas fa-sort-amount-down text-pink-500 dark:text-pink-400 text-[10px]";
-            else icon.className = "fas fa-sort-amount-down text-pink-500 text-[10px]";
+            if(val === 'terbaru') icon.className = "fas fa-arrow-down-wide-short text-pink-500 dark:text-pink-400 text-[10px]";
+            else icon.className = "fas fa-arrow-down-wide-short text-pink-500 text-[10px]";
             renderRiwayat(); 
         };
 
@@ -1141,7 +1192,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                     <p class="text-[10px] font-bold uppercase tracking-widest text-pink-400 mt-0 mb-5">Atur Saldo Bank & Uang Fisik</p>
                     <div class="space-y-4 text-left">
                         <div>
-                            <label class="text-[9px] font-extrabold uppercase tracking-widest text-pink-500 ml-1.5"><i class="fas fa-university mr-1"></i> Saldo Bank (Rp)</label>
+                            <label class="text-[9px] font-extrabold uppercase tracking-widest text-pink-500 ml-1.5"><i class="fas fa-building-columns mr-1"></i> Saldo Bank (Rp)</label>
                             <div class="relative group mt-1.5">
                                 <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-400 text-[10px] font-black group-focus-within:text-pink-600 transition-colors">Rp</span>
                                 <input id="swal-modal-bank" type="text" inputmode="numeric" oninput="formatUangInput(event)" class="w-full pl-9 pr-3 py-3 bg-pink-50/50 dark:bg-pink-900/30 border border-pink-100 dark:border-pink-800 rounded-2xl outline-none text-sm font-black text-pink-700 dark:text-pink-400 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 transition-all shadow-sm" value="${b.toLocaleString('id-ID')}">
@@ -1224,7 +1275,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                         <div class="mb-4">
                             <label class="block text-[10px] font-bold text-pink-500 dark:text-pink-400 uppercase tracking-widest mb-1.5 ml-1">Keterangan / Nama</label>
                             <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none"><i class="fas fa-file-signature text-pink-400 text-xs"></i></div>
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none"><i class="fas fa-file-pen text-pink-400 text-xs"></i></div>
                                 <input id="swal-edit-nama" class="w-full pl-9 pr-3 py-3 bg-pink-50 dark:bg-pink-800 border border-pink-200 dark:border-pink-700 rounded-xl text-xs font-bold text-pink-800 dark:text-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none shadow-sm" value="${data.nama}">
                             </div>
                         </div>
@@ -1325,34 +1376,45 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
         }
 
         window.renderCharts = (labels, profit, omzet) => {
-            if(window.pChart) window.pChart.destroy();
-            if(window.oChart) window.oChart.destroy();
-            
-            const ctxP = document.getElementById('profitChart');
-            if(ctxP) {
-                const ctx = ctxP.getContext('2d');
-                const gradient = ctx.createLinearGradient(0, 0, 0, 160);
-                gradient.addColorStop(0, 'rgba(99, 102, 241, 0.5)');
-                gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
-                
-                window.pChart = new Chart(ctx, {
-                    type: 'line', data: { labels: labels, datasets: [{ data: profit, borderColor: '#6366f1', backgroundColor: gradient, borderWidth: 3, tension: 0.4, fill: true, pointRadius: 0, pointHoverRadius: 6, pointBackgroundColor: '#fff', pointBorderColor: '#6366f1', pointBorderWidth: 2 }] },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { backgroundColor: 'rgba(15, 23, 42, 0.95)', titleFont: {family: 'Inter', size: 10}, bodyFont: {family: 'Inter', size: 12, weight: 'bold'}, padding: 12, cornerRadius: 12, callbacks: { label: function(c) { return 'Rp ' + c.raw.toLocaleString('id-ID'); } } } }, scales: { x: { display: true, grid: { display: false } }, y: { display: false, beginAtZero: true } } }
-                });
+            if (window.performanceChart && typeof window.performanceChart.destroy === 'function') {
+                window.performanceChart.destroy();
+                window.performanceChart = null;
             }
-            
-            const ctxO = document.getElementById('omzetChart');
-            if(ctxO) {
-                const ctx = ctxO.getContext('2d');
-                const gradient = ctx.createLinearGradient(0, 0, 0, 160);
-                gradient.addColorStop(0, 'rgba(16, 185, 129, 0.8)');
-                gradient.addColorStop(1, 'rgba(16, 185, 129, 0.2)');
-
-                window.oChart = new Chart(ctx, {
-                    type: 'bar', data: { labels: labels, datasets: [{ data: omzet, backgroundColor: gradient, borderRadius: 6, hoverBackgroundColor: '#059669' }] },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { backgroundColor: 'rgba(15, 23, 42, 0.95)', titleFont: {family: 'Inter', size: 10}, bodyFont: {family: 'Inter', size: 12, weight: 'bold'}, padding: 12, cornerRadius: 12, callbacks: { label: function(c) { return 'Rp ' + c.raw.toLocaleString('id-ID'); } } } }, scales: { x: { display: true, grid: { display: false } }, y: { display: false, beginAtZero: true } } }
-                });
-            }
+            const canvas = document.getElementById('performanceChart');
+            if (!canvas || typeof Chart === 'undefined') return;
+            const ctx = canvas.getContext('2d');
+            window.performanceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [
+                        {
+                            label: 'Profit', data: profit,
+                            borderColor: '#ec4899', backgroundColor: 'rgba(236,72,153,.10)',
+                            borderWidth: 2.5, tension: .35, fill: true, pointRadius: 2.5,
+                            pointBackgroundColor: '#fff', pointBorderColor: '#ec4899'
+                        },
+                        {
+                            label: 'Omzet', data: omzet,
+                            borderColor: '#3b82f6', backgroundColor: 'rgba(59,130,246,.06)',
+                            borderWidth: 2.5, tension: .35, fill: true, pointRadius: 2.5,
+                            pointBackgroundColor: '#fff', pointBorderColor: '#3b82f6'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { display: true, position: 'top', labels: { usePointStyle: true, boxWidth: 7, font: { size: 9, weight: '700' } } },
+                        tooltip: { callbacks: { label: c => `${c.dataset.label}: Rp ${Number(c.raw || 0).toLocaleString('id-ID')}` } }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { font: { size: 8 } } },
+                        y: { beginAtZero: true, grid: { color: 'rgba(148,163,184,.12)' }, ticks: { display: false } }
+                    }
+                }
+            });
         };
 
         function loadData() {
@@ -1392,90 +1454,78 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
         }
 
         function processStats() {
-            let profit = 0, omzet = 0, trx = 0;
-            let pendingKasir = 0; 
-            let chartDataObj = {}; 
+            let profit = 0, omzet = 0, trx = 0, pendingKasir = 0;
+            const chartData = {};
             const now = new Date();
+            const monthNames = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des'];
+
+            const getPeriod = (dt) => {
+                if (analysisRange === 'hari') {
+                    if (dt.toDateString() !== now.toDateString()) return null;
+                    return dt.getHours().toString().padStart(2, '0') + ':00';
+                }
+                if (analysisRange === 'bulan') {
+                    if (dt.getMonth() !== now.getMonth() || dt.getFullYear() !== now.getFullYear()) return null;
+                    return String(dt.getDate()).padStart(2, '0');
+                }
+                if (dt.getFullYear() !== now.getFullYear()) return null;
+                return monthNames[dt.getMonth()];
+            };
 
             masterKasir.forEach(i => {
-                const dt = i.waktu?.toDate() || new Date();
-                let isMatch = false; let cLabel = "";
-                
-                if(analysisRange === 'hari') { 
-                    isMatch = dt.toDateString() === now.toDateString(); 
-                    cLabel = dt.getHours().toString().padStart(2, '0') + ":00"; 
-                }
-                else if(analysisRange === 'bulan') { 
-                    isMatch = (dt.getMonth() === now.getMonth() && dt.getFullYear() === now.getFullYear()); 
-                    cLabel = dt.getDate().toString(); 
-                }
-                else if(analysisRange === 'tahun') { 
-                    isMatch = dt.getFullYear() === now.getFullYear(); 
-                    const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"]; 
-                    cLabel = monthNames[dt.getMonth()]; 
-                }
-                
-                if (i.status === 'Pending') { pendingKasir += i.sisaTagihan; }
+                const val2 = Number(i.val2) || 0;
+                const val1 = Number(i.val1) || 0;
+                const sisa = Number(i.sisaTagihan) || 0;
+                if (i.status === 'Pending') pendingKasir += sisa;
+                if (i.status !== 'Sukses') return;
 
-                if(isMatch && i.status === 'Sukses') { 
-                    let profitTrx = i.val2 - i.val1;
-                    profit += profitTrx; 
-                    if(i.jenis !== 'Pengeluaran') omzet += i.val2;
-                    trx++; 
-                    if(!chartDataObj[cLabel]) chartDataObj[cLabel] = { profit: 0, omzet: 0 };
-                    chartDataObj[cLabel].profit += profitTrx; 
-                    if(i.jenis !== 'Pengeluaran') chartDataObj[cLabel].omzet += i.val2;
-                }
+                const label = getPeriod(i.waktu?.toDate ? i.waktu.toDate() : new Date());
+                if (!label) return;
+                const profitTrx = val2 - val1;
+                profit += profitTrx;
+                if (i.jenis !== 'Pengeluaran') omzet += val2;
+                trx++;
+                if (!chartData[label]) chartData[label] = { profit: 0, omzet: 0 };
+                chartData[label].profit += profitTrx;
+                if (i.jenis !== 'Pengeluaran') chartData[label].omzet += val2;
             });
 
-            document.getElementById('statPending').innerText = "Rp " + pendingKasir.toLocaleString('id-ID');
-            document.getElementById('analyticLaba').innerText = "Rp " + profit.toLocaleString('id-ID');
-            document.getElementById('countTrx').innerText = trx + " Trx";
-            
+            const byTime = analysisRange === 'tahun'
+                ? Object.keys(chartData).sort((a,b) => monthNames.indexOf(a) - monthNames.indexOf(b))
+                : Object.keys(chartData).sort((a,b) => a.localeCompare(b, 'id', { numeric: true }));
+
+            const el = id => document.getElementById(id);
+            if (el('statPending')) el('statPending').innerText = 'Rp ' + pendingKasir.toLocaleString('id-ID');
+            if (el('analyticLaba')) el('analyticLaba').innerText = 'Rp ' + profit.toLocaleString('id-ID');
+            if (el('countTrx')) el('countTrx').innerText = trx + ' Trx';
+            if (el('valMargin')) el('valMargin').innerText = (omzet > 0 ? (profit / omzet) * 100 : 0).toFixed(1) + '%';
+
             currentGlobalPending = pendingKasir;
             window.renderTotalSaldo();
-            
-            let margin = omzet > 0 ? (profit / omzet) * 100 : 0;
-            document.getElementById('valMargin').innerText = margin.toFixed(1) + "%";
-            
-            let sortedLabels = [];
-            if(analysisRange === 'hari') {
-                sortedLabels = Object.keys(chartDataObj).sort();
-            } else if(analysisRange === 'bulan') {
-                sortedLabels = Object.keys(chartDataObj).sort((a,b) => parseInt(a) - parseInt(b));
-            } else { 
-                const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"]; 
-                sortedLabels = Object.keys(chartDataObj).sort((a,b) => months.indexOf(a) - months.indexOf(b)); 
-            }
-            
-            renderCharts(sortedLabels, sortedLabels.map(l => chartDataObj[l].profit), sortedLabels.map(l => chartDataObj[l].omzet));
+            window.renderCharts(byTime, byTime.map(k => chartData[k].profit), byTime.map(k => chartData[k].omzet));
 
             let piutang = 0;
-            let tagihanPerKategori = {};
+            const tagihanPerKategori = {};
             masterTagihan.forEach(i => {
-                piutang += i.sisaTagihan; 
-                if(i.sisaTagihan > 0) tagihanPerKategori[i.keterangan] = (tagihanPerKategori[i.keterangan] || 0) + i.sisaTagihan;
+                const sisa = Number(i.sisaTagihan) || 0;
+                piutang += sisa;
+                if (sisa > 0) tagihanPerKategori[i.keterangan] = (tagihanPerKategori[i.keterangan] || 0) + sisa;
             });
+            if (el('totalPiutang')) el('totalPiutang').innerText = 'Rp ' + piutang.toLocaleString('id-ID');
 
-            document.getElementById('totalPiutang').innerText = "Rp " + piutang.toLocaleString('id-ID');
-            
-            const katGrid = document.getElementById('kategoriPiutangGrid');
-            let katGridHtml = ''; 
-            
+            const katGrid = el('kategoriPiutangGrid');
+            if (!katGrid) return;
+            let html = '';
             for (const [kat, total] of Object.entries(tagihanPerKategori)) {
-                const splitKat = kat.split(' ');
-                const icon = splitKat[0] || '📌';
-                const nama = splitKat.slice(1).join(' ') || kat;
-
-                katGridHtml += `
-                    <div class="glass-card p-4 rounded-[1.5rem] premium-shadow flex flex-col justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group cursor-default border border-pink-100 dark:border-pink-700 hover:border-rose-200 dark:hover:border-rose-500">
-                        <div class="w-8 h-8 rounded-[0.8rem] bg-gradient-to-br from-rose-50 dark:from-rose-900/30 to-rose-100 dark:to-rose-800/30 flex items-center justify-center mb-3 shadow-inner border border-white dark:border-rose-700/50 group-hover:scale-110 transition-transform duration-300"><span class="text-sm">${icon}</span></div>
-                        <p class="text-[8px] font-extrabold text-pink-400 dark:text-pink-500 uppercase tracking-widest mb-1 truncate">${nama}</p>
-                        <p class="text-xs md:text-sm font-black text-pink-800 dark:text-pink-200 tracking-tight">Rp ${total.toLocaleString('id-ID')}</p>
-                    </div>`;
+                const parts = String(kat || '').split(' ');
+                const icon = parts[0] || '📌';
+                const nama = parts.slice(1).join(' ') || kat || 'Lainnya';
+                html += `<div class="glass-card p-4 rounded-[1.5rem] premium-shadow flex flex-col justify-center border border-pink-100 dark:border-pink-700"><div class="w-8 h-8 rounded-[0.8rem] bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center mb-3 border border-pink-100 dark:border-pink-800"><span class="text-sm">${icon}</span></div><p class="text-[8px] font-extrabold text-pink-400 uppercase tracking-widest mb-1 truncate">${nama}</p><p class="text-xs md:text-sm font-black text-pink-800 dark:text-pink-200">Rp ${total.toLocaleString('id-ID')}</p></div>`;
             }
-            katGrid.innerHTML = katGridHtml; 
+            katGrid.innerHTML = html || '<div class="text-center py-6 text-[10px] font-bold uppercase tracking-widest text-pink-400 col-span-full border border-dashed border-pink-200 dark:border-pink-700 rounded-2xl">Belum ada piutang berjalan</div>';
         }
+
+        window.addEventListener('beforeunload', () => { if (window.performanceChart) window.performanceChart.destroy(); });
 
         window.toggleDetail = (id, iconId) => {
             const detailEl = document.getElementById(id);
@@ -1579,7 +1629,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                 if(isTagihan) badgeClass = isLunasTagihan ? 'bg-gradient-to-br from-pink-50 dark:from-pink-900/30 to-pink-100 dark:to-pink-800/30 text-pink-500' : 'bg-gradient-to-br from-rose-50 dark:from-rose-900/30 to-rose-100 dark:to-rose-800/30 text-rose-500';
                 if(isPengeluaran) badgeClass = 'bg-gradient-to-br from-rose-50 dark:from-rose-900/30 to-rose-100 dark:to-rose-800/30 text-rose-500';
                 
-                let iconMode = isTagihan ? (isLunasTagihan ? 'fa-check-circle' : 'fa-file-invoice') : (isPending ? 'fa-clock' : 'fa-check-circle');
+                let iconMode = isTagihan ? (isLunasTagihan ? 'fa-circle-check' : 'fa-file-invoice') : (isPending ? 'fa-clock-rotate-left' : 'fa-circle-check');
                 if(isPengeluaran) iconMode = 'fa-arrow-right-from-bracket';
 
                 let borderColor = i.ditandai ? 'border-pink-400 bg-pink-50/30 dark:bg-pink-900/20' : 'border-pink-100 dark:border-pink-800 bg-white dark:bg-pink-900';
@@ -1620,7 +1670,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                                 <span class="text-[8px] font-bold text-pink-400 dark:text-pink-500 uppercase tracking-widest"><i class="far fa-calendar-alt mr-1"></i> ${i.formattedTglBuat}</span>
                                 <div class="flex gap-2">
                                     <button onclick="toggleMark('${i.id}', ${i.ditandai || false})" class="w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm active:scale-90 ${i.ditandai ? 'bg-pink-50 border-pink-200 text-pink-500 dark:bg-pink-900/30 dark:border-pink-700/50' : 'bg-white dark:bg-pink-700 border-pink-200 dark:border-pink-600 text-pink-400 hover:text-pink-500'}"><i class="fas fa-star text-[10px]"></i></button>
-                                    <button onclick="deleteData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-pink-700 border border-pink-200 dark:border-pink-600 flex items-center justify-center text-pink-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-trash-can text-[10px]"></i></button>
+                                    <button onclick="deleteData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-pink-700 border border-pink-200 dark:border-pink-600 flex items-center justify-center text-pink-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-trash text-[10px]"></i></button>
                                 </div>
                             </div>
                             
@@ -1712,7 +1762,7 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
                                 <div class="flex gap-2">
                                     <button onclick="toggleMark('${i.id}', ${i.ditandai || false})" class="w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm active:scale-90 ${i.ditandai ? 'bg-pink-50 border-pink-200 text-pink-500 dark:bg-pink-900/30 dark:border-pink-700/50' : 'bg-white dark:bg-pink-700 border-pink-200 dark:border-pink-600 text-pink-400 hover:text-pink-500'}"><i class="fas fa-star text-[10px]"></i></button>
                                     <button onclick="editKasirData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-pink-700 border border-pink-200 dark:border-pink-600 flex items-center justify-center text-pink-400 hover:text-pink-500 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-pen text-[10px]"></i></button>
-                                    <button onclick="deleteData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-pink-700 border border-pink-200 dark:border-pink-600 flex items-center justify-center text-pink-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-trash-can text-[10px]"></i></button>
+                                    <button onclick="deleteData('${i.id}')" class="w-8 h-8 rounded-full bg-white dark:bg-pink-700 border border-pink-200 dark:border-pink-600 flex items-center justify-center text-pink-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-all duration-300 shadow-sm active:scale-90"><i class="fas fa-trash text-[10px]"></i></button>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-2">
@@ -1948,7 +1998,6 @@ body::before{color:rgba(79,120,201,.13)!important}body::after{color:rgba(232,106
         switchMode('kasir');
         loadData();
         runAutoCleanup();
-        window.initSwiper();
     </script>
 </body>
 </html>
